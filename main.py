@@ -2,8 +2,9 @@ import arcade
 import os
 
 SPRITE_SCALING = 5
-CHARACTER_SCALING = 1
+CHARACTER_SCALING = 4
 SPRITE_NATIVE_SIZE = 16
+CHARACTER_NATIVE_SIZE = 32
 SPRITE_SIZE = int(SPRITE_NATIVE_SIZE * SPRITE_SCALING)
 VIEWPORT_MARGIN = 200
 CAMERA_SPEED = 0.1
@@ -14,8 +15,6 @@ SCREEN_HEIGHT = 800
 SCREEN_TITLE = "Fake Zelda"
 
 
-CHARACTER_SCALING = 1
-
 # How fast to move, and how fast to run the animation
 MOVEMENT_SPEED = 5
 UPDATES_PER_FRAME = 5
@@ -24,7 +23,6 @@ UPDATES_PER_FRAME = 5
 RIGHT_FACING = 0
 LEFT_FACING = 1
 
-MOVEMENT_SPEED = 10
 
 
 class Room:
@@ -57,7 +55,7 @@ class PlayerCharacter(arcade.Sprite):
         # Used for flipping between image sequences
         self.cur_texture = 0
 
-        self.scale = 4
+        self.scale = CHARACTER_SCALING
         # Adjust the collision box. Default includes too much empty space
         # side-to-side. Box is centered at sprite center, (0, 0)
         self.points = [[8, -16], [8, 4], [-8, 4], [-8, -16]]
@@ -65,7 +63,7 @@ class PlayerCharacter(arcade.Sprite):
         # --- Load Textures ---
        
         # Images from Kenney.nl's Asset Pack 3
-        main_path = "assets\Cute Characters\global.png"
+        main_path = "assets\worldassets\Cute Characters\global.png"
         # main_path = ":resources:images/animated_characters/female_person/femalePerson"
         # main_path = ":resources:images/animated_characters/male_person/malePerson"
         # main_path = ":resources:images/animated_characters/male_adventurer/maleAdventurer"
@@ -123,7 +121,7 @@ def setup_room_1():
     room.wall_list = arcade.SpriteList()
     for y in (0, room.width - SPRITE_SIZE):
         for x in range(0, room.width, SPRITE_SIZE):
-            wall = arcade.Sprite("assets\Backgrounds\Tilesets\TilesetLogic.png",image_width=16, image_height = 16,image_x=16,image_y=0,scale=SPRITE_SCALING)
+            wall = arcade.Sprite("assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png",image_width=16, image_height = 16,image_x=16,image_y=0,scale=SPRITE_SCALING)
             wall.left = x
             wall.bottom = y
             room.wall_list.append(wall)
@@ -134,7 +132,7 @@ def setup_room_1():
         for y in range(SPRITE_SIZE, room.height - SPRITE_SIZE, SPRITE_SIZE):
             # Skip making a block 4 and 5 blocks up on the right side
             if (y != SPRITE_SIZE * 4 and y != SPRITE_SIZE * 5) or x == 0:
-                wall = arcade.Sprite("assets\Backgrounds\Tilesets\TilesetLogic.png",image_width=16, image_height = 16,center_x=0, center_y=0,scale=SPRITE_SCALING)
+                wall = arcade.Sprite("assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png",image_width=16, image_height = 16,center_x=0, center_y=0,scale=SPRITE_SCALING)
                 wall.left = x
                 wall.bottom = y
                 room.wall_list.append(wall)
@@ -144,7 +142,7 @@ def setup_room_1():
     # If you want coins or monsters in a level, then add that code here.
 
     # Load the background image for this level.
-    room.background = arcade.load_texture("assets\Backgrounds\Tilesets\TilesetLogic.png")
+    room.background = arcade.load_texture("assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png")
 
     return room
 
@@ -166,7 +164,7 @@ def setup_room_2():
     for y in (0, room.height - SPRITE_SIZE):
         # Loop for each box going across
         for x in range(0, room.width, SPRITE_SIZE):
-            wall = arcade.Sprite("assets\Backgrounds\Tilesets\TilesetLogic.png",image_width=16, image_height = 16,center_x=0, center_y=0,scale=SPRITE_SCALING)
+            wall = arcade.Sprite("assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png",image_width=16, image_height = 16,center_x=0, center_y=0,scale=SPRITE_SCALING)
             wall.left = x
             wall.bottom = y
             room.wall_list.append(wall)
@@ -177,16 +175,16 @@ def setup_room_2():
         for y in range(SPRITE_SIZE, room.height - SPRITE_SIZE, SPRITE_SIZE):
             # Skip making a block 4 and 5 blocks up
             if (y != SPRITE_SIZE * 4 and y != SPRITE_SIZE * 5) or x != 0:
-                wall = arcade.Sprite("assets\Backgrounds\Tilesets\TilesetLogic.png",image_width=16, image_height = 16,center_x=0, center_y=0,scale=SPRITE_SCALING)
+                wall = arcade.Sprite("assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png",image_width=16, image_height = 16,center_x=0, center_y=0,scale=SPRITE_SCALING)
                 wall.left = x
                 wall.bottom = y
                 room.wall_list.append(wall)
 
-    wall = arcade.Sprite("assets\Backgrounds\Tilesets\TilesetLogic.png",image_width=16, image_height = 16,center_x=0, center_y=0,scale=SPRITE_SCALING)
+    wall = arcade.Sprite("assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png",image_width=16, image_height = 16,center_x=0, center_y=0,scale=SPRITE_SCALING)
     wall.left = 5 * SPRITE_SIZE
     wall.bottom = 6 * SPRITE_SIZE
     room.wall_list.append(wall)
-    room.background = arcade.load_texture("assets\Backgrounds\Tilesets\TilesetLogic.png")
+    room.background = arcade.load_texture("assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png")
 
     return room
 
