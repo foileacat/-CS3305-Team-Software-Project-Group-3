@@ -1,10 +1,12 @@
 import arcade
 import os
-
-SPRITE_SCALING = 5
+import character_lists
+SPRITE_SCALING = 4
 CHARACTER_SCALING = 4
 SPRITE_NATIVE_SIZE = 16
 CHARACTER_NATIVE_SIZE = 32
+ACCESSORIES_NATIVE_SIZE = 32
+ACCESSORIES_OFFSET = 32*8
 SPRITE_SIZE = int(SPRITE_NATIVE_SIZE * SPRITE_SCALING)
 VIEWPORT_MARGIN = 200
 CAMERA_SPEED = 0.1
@@ -13,16 +15,20 @@ DEFAULT_SCREEN_HEIGHT = 800
 SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 800
 SCREEN_TITLE = "Fake Zelda"
-
-
+# setting arrow key controls
+UP_KEY = arcade.key.UP
+DOWN_KEY = arcade.key.DOWN
+LEFT_KEY = arcade.key.LEFT
+RIGHT_KEY = arcade.key.RIGHT
 # How fast to move, and how fast to run the animation
 MOVEMENT_SPEED = 5
 UPDATES_PER_FRAME = 5
 
 # Constants used to track if the player is facing left or right
-RIGHT_FACING = 0
-LEFT_FACING = 1
-
+RIGHT_FACING = 2
+LEFT_FACING = 3
+UP_FACING = 0
+DOWN_FACING = 1
 
 
 class Room:
@@ -30,6 +36,7 @@ class Room:
     This class holds all the information about the
     different rooms.
     """
+
     def __init__(self):
         # You may want many lists. Lists for coins, monsters, etc.
         self.wall_list = None
@@ -37,14 +44,64 @@ class Room:
         self.height = SPRITE_SIZE * 10
         self.background = None
 
-def load_texture_pair(filename,row,frame):
+
+def load_texture_list(filename, row, frame, offset):
     """
     Load a texture pair, with the second being a mirror image.
     """
+    offset = offset*ACCESSORIES_OFFSET
     return [
-        arcade.load_texture(filename,x=32*frame,y=32*row,width=32,height=32),
-        arcade.load_texture(filename,x=32*frame,y=32*(row+1),width=32,height=32)
+        arcade.load_texture(filename, x=offset+CHARACTER_NATIVE_SIZE*frame, y=CHARACTER_NATIVE_SIZE *
+                            row, width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE),
+        arcade.load_texture(filename, x=offset+CHARACTER_NATIVE_SIZE*frame, y=CHARACTER_NATIVE_SIZE*(
+            row+1), width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE),
+        arcade.load_texture(filename, x=offset+CHARACTER_NATIVE_SIZE*frame, y=CHARACTER_NATIVE_SIZE*(
+            row+2), width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE),
+        arcade.load_texture(filename, x=offset+CHARACTER_NATIVE_SIZE*frame, y=CHARACTER_NATIVE_SIZE*(
+            row+3), width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE)
     ]
+
+
+class PlayerAccessory(arcade.Sprite):
+    def __init__(self, path, color_offset):
+        super().__init__()
+        self.file_path = path
+        self.face_direction = RIGHT_FACING
+        self.cur_texture = 0
+        self.scale = CHARACTER_SCALING
+        self.points = [[6, -16], [6, 4], [6, 4], [6, -16]]
+        self.color_offset = color_offset
+        # main_path = ":resources:images/animated_characters/male_person/malePerson"
+        # main_path = ":resources:images/animated_characters/male_adventurer/maleAdventurer"
+        # main_path = ":resources:images/animated_characters/zombie/zombie"
+        # main_path = ":resources:images/animated_characters/robot/robot"
+
+        # Load textures for idle standing
+        self.idle_texture_list = load_texture_list(
+            self.file_path, 0, 0, self.color_offset)
+        # Load textures for walking
+        self.walk_textures = []
+        for frame in range(8):
+            texture = load_texture_list(
+                self.file_path, 0, frame, self.color_offset)
+            self.walk_textures.append(texture)
+
+    def update_animation(self, player_sprite, delta_time: float = 1 / 60):
+        self.face_direction = player_sprite.character_face_direction
+        self.center_x = player_sprite.center_x
+        self.center_y = player_sprite.center_y
+        # Walking animation
+        if player_sprite.change_x == 0 and player_sprite.change_y == 0:
+            self.texture = self.idle_texture_list[self.face_direction]
+            return
+        self.cur_texture += 1
+        if self.cur_texture > 7 * UPDATES_PER_FRAME:
+            self.cur_texture = 0
+        frame = self.cur_texture // UPDATES_PER_FRAME
+        direction = self.face_direction
+        self.texture = self.walk_textures[frame][direction]
+
+
 class PlayerCharacter(arcade.Sprite):
     def __init__(self):
 
@@ -58,34 +115,29 @@ class PlayerCharacter(arcade.Sprite):
         self.scale = CHARACTER_SCALING
         # Adjust the collision box. Default includes too much empty space
         # side-to-side. Box is centered at sprite center, (0, 0)
-        self.points = [[8, -16], [8, 4], [-8, 4], [-8, -16]]
+        self.points = [[8, -16], [8, -8], [-8, -8], [-8, -16]]
 
         # --- Load Textures ---
-       
-        # Images from Kenney.nl's Asset Pack 3
-        main_path = "assets\worldassets\Cute Characters\global.png"
-        # main_path = ":resources:images/animated_characters/female_person/femalePerson"
-        # main_path = ":resources:images/animated_characters/male_person/malePerson"
-        # main_path = ":resources:images/animated_characters/male_adventurer/maleAdventurer"
-        # main_path = ":resources:images/animated_characters/zombie/zombie"
-        # main_path = ":resources:images/animated_characters/robot/robot"
 
-        # Load textures for idle standing
-        self.idle_texture_pair = (arcade.load_texture(main_path,x=0,y=0,width=32,height=32),arcade.load_texture(main_path,x=0,y=32,width=32,height=32))
-        self.idle_hair_texture_pair = (arcade.load_texture(main_path,x=0,y=32*2,width=32,height=32),arcade.load_texture(main_path,x=0,y=32*3,width=32,height=32))
-        # Load textures for walking
-        self.hair_sprite = arcade.Sprite(texture=arcade.load_texture(main_path,x=32*0,y=32*2,width=32,height=32),scale=4)
-        self.hair_textures = []
-        for frame in range(8):
-            texture = load_texture_pair(main_path,2,frame)
-            self.hair_textures.append(texture)
+        # Images from Kenney.nl's Asset Pack 3
+        skintone = character_lists.skintones[2]
+        hairstyle = character_lists.hairstyles[7]
+        clothing = character_lists.clothing[3]
+
+        self.accessory_list = arcade.SpriteList()
+        self.hair = PlayerAccessory(hairstyle, 4)
+        self.clothes = PlayerAccessory(clothing, 2)
+        self.accessory_list.append(self.clothes)
+        self.accessory_list.append(self.hair)
+        
+
+        self.idle_texture_list = load_texture_list(skintone, 0, 0, 0)
 
         self.walk_textures = []
         for frame in range(8):
-            texture = load_texture_pair(main_path,0,frame)
+            texture = load_texture_list(skintone, 0, frame, 0)
             self.walk_textures.append(texture)
 
-        
         # Load textures for idle standing
         # Load textures for walking
         #self.right_walk_textures = []
@@ -95,15 +147,18 @@ class PlayerCharacter(arcade.Sprite):
     def update_animation(self, delta_time: float = 1 / 60):
 
         # Figure out if we need to flip face left or right
-        if self.change_x < 0 and self.character_face_direction == RIGHT_FACING:
+        if self.change_x < 0 and self.change_y == 0:
             self.character_face_direction = LEFT_FACING
-        elif self.change_x > 0 and self.character_face_direction == LEFT_FACING:
+        elif self.change_x > 0 and self.change_y == 0:
             self.character_face_direction = RIGHT_FACING
+        elif self.change_y < 0 and self.change_x == 0:
+            self.character_face_direction = UP_FACING
+        elif self.change_y > 0 and self.change_x == 0:
+            self.character_face_direction = DOWN_FACING
 
         # Idle animation
         if self.change_x == 0 and self.change_y == 0:
-            self.texture = self.idle_texture_pair[self.character_face_direction]
-            self.hair_sprite.texture = self.idle_hair_texture_pair[self.character_face_direction]
+            self.texture = self.idle_texture_list[self.character_face_direction]
             return
 
         # Walking animation
@@ -113,15 +168,31 @@ class PlayerCharacter(arcade.Sprite):
         frame = self.cur_texture // UPDATES_PER_FRAME
         direction = self.character_face_direction
         self.texture = self.walk_textures[frame][direction]
-        self.hair_sprite.texture = self.hair_textures[frame][direction]
-        
+
+
 def setup_room_1():
     room = Room()
-    # Sprite lists
+    room.map_name = "assets\starting_room\starting_room.tmx"
     room.wall_list = arcade.SpriteList()
+    layer_options = {
+        "walls": {
+            "use_spatial_hash": True,
+        },
+        "furniture": {
+            "use_spatial_hash": True,
+        },
+        "furniture 2": {
+            "use_spatial_hash": True,
+        },
+    }
+    room.tile_map = arcade.load_tilemap(
+        room.map_name, SPRITE_SCALING, layer_options=layer_options)
+    room.scene = arcade.Scene.from_tilemap(room.tile_map)
+
     for y in (0, room.width - SPRITE_SIZE):
         for x in range(0, room.width, SPRITE_SIZE):
-            wall = arcade.Sprite("assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png",image_width=16, image_height = 16,image_x=16,image_y=0,scale=SPRITE_SCALING)
+            wall = arcade.Sprite("assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png",
+                                 image_width=16, image_height=16, image_x=16, image_y=0, scale=SPRITE_SCALING)
             wall.left = x
             wall.bottom = y
             room.wall_list.append(wall)
@@ -132,17 +203,17 @@ def setup_room_1():
         for y in range(SPRITE_SIZE, room.height - SPRITE_SIZE, SPRITE_SIZE):
             # Skip making a block 4 and 5 blocks up on the right side
             if (y != SPRITE_SIZE * 4 and y != SPRITE_SIZE * 5) or x == 0:
-                wall = arcade.Sprite("assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png",image_width=16, image_height = 16,center_x=0, center_y=0,scale=SPRITE_SCALING)
+                wall = arcade.Sprite("assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png",
+                                     image_width=16, image_height=16, center_x=0, center_y=0, scale=SPRITE_SCALING)
                 wall.left = x
                 wall.bottom = y
                 room.wall_list.append(wall)
 
-   
-
     # If you want coins or monsters in a level, then add that code here.
 
     # Load the background image for this level.
-    room.background = arcade.load_texture("assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png")
+    room.background = arcade.load_texture(
+        "assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png")
 
     return room
 
@@ -164,7 +235,8 @@ def setup_room_2():
     for y in (0, room.height - SPRITE_SIZE):
         # Loop for each box going across
         for x in range(0, room.width, SPRITE_SIZE):
-            wall = arcade.Sprite("assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png",image_width=16, image_height = 16,center_x=0, center_y=0,scale=SPRITE_SCALING)
+            wall = arcade.Sprite("assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png",
+                                 image_width=16, image_height=16, center_x=0, center_y=0, scale=SPRITE_SCALING)
             wall.left = x
             wall.bottom = y
             room.wall_list.append(wall)
@@ -175,16 +247,19 @@ def setup_room_2():
         for y in range(SPRITE_SIZE, room.height - SPRITE_SIZE, SPRITE_SIZE):
             # Skip making a block 4 and 5 blocks up
             if (y != SPRITE_SIZE * 4 and y != SPRITE_SIZE * 5) or x != 0:
-                wall = arcade.Sprite("assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png",image_width=16, image_height = 16,center_x=0, center_y=0,scale=SPRITE_SCALING)
+                wall = arcade.Sprite("assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png",
+                                     image_width=16, image_height=16, center_x=0, center_y=0, scale=SPRITE_SCALING)
                 wall.left = x
                 wall.bottom = y
                 room.wall_list.append(wall)
 
-    wall = arcade.Sprite("assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png",image_width=16, image_height = 16,center_x=0, center_y=0,scale=SPRITE_SCALING)
+    wall = arcade.Sprite("assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png",
+                         image_width=16, image_height=16, center_x=0, center_y=0, scale=SPRITE_SCALING)
     wall.left = 5 * SPRITE_SIZE
     wall.bottom = 6 * SPRITE_SIZE
     room.wall_list.append(wall)
-    room.background = arcade.load_texture("assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png")
+    room.background = arcade.load_texture(
+        "assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png")
 
     return room
 
@@ -213,20 +288,19 @@ class MyGame(arcade.Window):
         self.player_sprite = None
         self.player_list = None
         self.physics_engine = None
-        self.camera_sprites = arcade.Camera(DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT)
-        self.camera_gui = arcade.Camera(DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT)
+        self.camera_sprites = arcade.Camera(
+            DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT)
+        self.camera_gui = arcade.Camera(
+            DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT)
 
     def setup(self):
         """ Set up the game and initialize the variables. """
-        # Set up the player
         self.player_sprite = PlayerCharacter()
         self.player_sprite.set_hit_box(self.player_sprite.points)
-        #self.player_sprite = arcade.Sprite("assets\Actor\Characters\Boy\SpriteSheet.png",image_width=16, image_height = 16,center_x=0, center_y=0,scale=SPRITE_SCALING)
-        self.player_sprite.center_x = 100
-        self.player_sprite.center_y = 100
-        self.player_sprite.hair_sprite.center_x = 100
-        self.player_sprite.hair_sprite.center_y = 100
+        self.player_sprite.center_x = 200
+        self.player_sprite.center_y = 200
         self.player_list = arcade.SpriteList()
+        self.player_accessory_list = self.player_sprite.accessory_list
         self.player_list.append(self.player_sprite)
 
         # Our list of rooms
@@ -244,8 +318,11 @@ class MyGame(arcade.Window):
         self.view_left = 0
         self.view_bottom = 0
         # Create a physics engine for this room
-        self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite,
-                                                         self.rooms[self.current_room].wall_list)
+        walls_list = []
+        walls_list.append(self.rooms[self.current_room].scene["walls"])
+        walls_list.append(self.rooms[self.current_room].scene["furniture"])
+        walls_list.append(self.rooms[self.current_room].scene["furniture 2"])
+        self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, walls=walls_list)
 
     def on_draw(self):
         """
@@ -261,31 +338,32 @@ class MyGame(arcade.Window):
                                             self.rooms[self.current_room].background)
 
         # Draw all the walls in this room
-        self.rooms[self.current_room].wall_list.draw(pixelated=True)
+        self.rooms[self.current_room].scene.draw(pixelated=True)
 
         # If you have coins or monsters, then copy and modify the line
         # above for each list.
         self.player_list.draw(pixelated=True)
-        self.player_sprite.hair_sprite.draw(pixelated=True)
+        self.player_accessory_list.draw(pixelated=True)
+        # self.player_sprite.hair_sprite.draw(pixelated=True)
 
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed. """
 
-        if key == arcade.key.UP:
+        if key == UP_KEY:
             self.player_sprite.change_y = MOVEMENT_SPEED
-        elif key == arcade.key.DOWN:
+        elif key == DOWN_KEY:
             self.player_sprite.change_y = -MOVEMENT_SPEED
-        elif key == arcade.key.LEFT:
+        elif key == LEFT_KEY:
             self.player_sprite.change_x = -MOVEMENT_SPEED
-        elif key == arcade.key.RIGHT:
+        elif key == RIGHT_KEY:
             self.player_sprite.change_x = MOVEMENT_SPEED
 
     def on_key_release(self, key, modifiers):
         """Called when the user releases a key. """
 
-        if key == arcade.key.UP or key == arcade.key.DOWN:
+        if key == UP_KEY or key == DOWN_KEY:
             self.player_sprite.change_y = 0
-        elif key == arcade.key.LEFT or key == arcade.key.RIGHT:
+        elif key == LEFT_KEY or key == RIGHT_KEY:
             self.player_sprite.change_x = 0
 
     def on_update(self, delta_time):
@@ -295,6 +373,7 @@ class MyGame(arcade.Window):
         # example though.)
         self.physics_engine.update()
         self.player_list.update_animation()
+        self.player_accessory_list.update_animation(self.player_sprite)
         # Do some logic here to figure out what room we are in, and if we need to go
         # to a different room.
         if self.player_sprite.center_x > self.rooms[self.current_room].width and self.current_room == 0:
@@ -308,21 +387,9 @@ class MyGame(arcade.Window):
                                                              self.rooms[self.current_room].wall_list)
             self.player_sprite.center_x = self.rooms[self.current_room].width
 
-        self.player_sprite.hair_sprite.center_x = self.player_sprite.center_x 
-        self.player_sprite.hair_sprite.center_y = self.player_sprite.center_y
         self.scroll_to_player()
-    
+
     def scroll_to_player(self):
-        """
-        Scroll the window to the player.
-        This method will attempt to keep the player at least VIEWPORT_MARGIN
-        pixels away from the edge.
-
-        if CAMERA_SPEED is 1, the camera will immediately move to the desired position.
-        Anything between 0 and 1 will have the camera move to the location with a smoother
-        pan.
-        """
-
         # --- Manage Scrolling ---
 
         # Scroll left
@@ -348,6 +415,7 @@ class MyGame(arcade.Window):
         # Scroll to the proper location
         position = self.view_left, self.view_bottom
         self.camera_sprites.move_to(position, CAMERA_SPEED)
+
 
 def main():
     """ Main function """

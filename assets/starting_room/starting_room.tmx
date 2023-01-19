@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="1">
+ <tileset firstgid="1" source="../worldassets/Backgrounds/TilesetInteriorFloor.tsx"/>
+ <tileset firstgid="375" source="../worldassets/Backgrounds/TilesetWallSimple.tsx"/>
+ <tileset firstgid="485" source="../worldassets/Backgrounds/TilesetInterior.tsx"/>
+ <tileset firstgid="805" source="../worldassets/Backgrounds/Elements.tsx"/>
+ <tileset firstgid="832" source="../worldassets/Backgrounds/TilesetElement.tsx"/>
+ <tileset firstgid="1072" source="../worldassets/Backgrounds/TilesetHouse.tsx"/>
+ <tileset firstgid="1831" source="../worldassets/Backgrounds/TilesetRelief.tsx"/>
+ <tileset firstgid="2071" source="../worldassets/Backgrounds/Basic Furniture.tsx"/>
+ <tileset firstgid="2125" source="../worldassets/Backgrounds/TopDownHouse_FurnitureState1.tsx"/>
+ <tileset firstgid="2359" source="../worldassets/Backgrounds/atlas_16x.tsx"/>
+ <layer id="1" name="floor" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJzbzs7gsIMA3gnEi9kZGBYSwEuBmJrqdhKpbiGV1dHCv9uBeAcBDPIvAEKbRn0=
+  </data>
+ </layer>
+ <layer id="5" name="walls" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJzbzs7gsIMA3gnEi9kZCIKlQDXUVLeTSHUgQE11tPDvdiDeQQCD/AsALOsbLQ==
+  </data>
+ </layer>
+ <layer id="3" name="wall dec" width="10" height="10" locked="1">
+  <data encoding="base64" compression="zlib">
+   eJxjYGBgkORggAMJKFscSWwU0A8AAJIMAGE=
+  </data>
+ </layer>
+ <layer id="2" name="furniture" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYICAHcwMDDuBeAc3A8MRIN7AjBCDgQdA9ikgPg3EL4BqvgDxAajYSSR1+EALN4L9mBtVbhoXgr0FSU6YB8FOA6qZgKSO2mAmK3bxc0Dx91C5UCAdhqRuOpA9A4jfAvE7JPEyILsch3m4AAAbThc0
+  </data>
+ </layer>
+ <layer id="4" name="furniture 2" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYBj8gIuLgYGbi7A6K6AaayLUkQsE2IhTZ0ikOmwAAKQgAQA=
+  </data>
+ </layer>
+</map>
