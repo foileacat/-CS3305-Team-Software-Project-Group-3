@@ -16,10 +16,10 @@ SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 800
 SCREEN_TITLE = "Fake Zelda"
 # setting arrow key controls
-UP_KEY = arcade.key.UP
-DOWN_KEY = arcade.key.DOWN
-LEFT_KEY = arcade.key.LEFT
-RIGHT_KEY = arcade.key.RIGHT
+UP_KEY = arcade.key.W
+DOWN_KEY = arcade.key.S
+LEFT_KEY = arcade.key.A
+RIGHT_KEY = arcade.key.D
 # How fast to move, and how fast to run the animation
 MOVEMENT_SPEED = 5
 UPDATES_PER_FRAME = 5
