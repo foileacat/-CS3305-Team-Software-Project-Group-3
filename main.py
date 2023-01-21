@@ -172,7 +172,7 @@ class PlayerCharacter(arcade.Sprite):
 
 def setup_room_1():
     room = Room()
-    room.map_name = "assets\starting_room\starting_room.tmx"
+    room.map_name = "assets\maps\starting_room.tmx"
     room.wall_list = arcade.SpriteList()
     layer_options = {
         "walls": {
@@ -191,7 +191,7 @@ def setup_room_1():
 
     for y in (0, room.width - SPRITE_SIZE):
         for x in range(0, room.width, SPRITE_SIZE):
-            wall = arcade.Sprite("assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png",
+            wall = arcade.Sprite("assets\\assetpacks\\ninja\Backgrounds\Tilesets\TilesetLogic.png",
                                  image_width=16, image_height=16, image_x=16, image_y=0, scale=SPRITE_SCALING)
             wall.left = x
             wall.bottom = y
@@ -203,7 +203,7 @@ def setup_room_1():
         for y in range(SPRITE_SIZE, room.height - SPRITE_SIZE, SPRITE_SIZE):
             # Skip making a block 4 and 5 blocks up on the right side
             if (y != SPRITE_SIZE * 4 and y != SPRITE_SIZE * 5) or x == 0:
-                wall = arcade.Sprite("assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png",
+                wall = arcade.Sprite("assets\\assetpacks\\ninja\Backgrounds\Tilesets\TilesetLogic.png",
                                      image_width=16, image_height=16, center_x=0, center_y=0, scale=SPRITE_SCALING)
                 wall.left = x
                 wall.bottom = y
@@ -213,7 +213,7 @@ def setup_room_1():
 
     # Load the background image for this level.
     room.background = arcade.load_texture(
-        "assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png")
+        "assets\\assetpacks\\ninja\Backgrounds\Tilesets\TilesetLogic.png")
 
     return room
 
@@ -235,7 +235,7 @@ def setup_room_2():
     for y in (0, room.height - SPRITE_SIZE):
         # Loop for each box going across
         for x in range(0, room.width, SPRITE_SIZE):
-            wall = arcade.Sprite("assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png",
+            wall = arcade.Sprite("assets\\assetpacks\\ninja\Backgrounds\Tilesets\TilesetLogic.png",
                                  image_width=16, image_height=16, center_x=0, center_y=0, scale=SPRITE_SCALING)
             wall.left = x
             wall.bottom = y
@@ -247,19 +247,19 @@ def setup_room_2():
         for y in range(SPRITE_SIZE, room.height - SPRITE_SIZE, SPRITE_SIZE):
             # Skip making a block 4 and 5 blocks up
             if (y != SPRITE_SIZE * 4 and y != SPRITE_SIZE * 5) or x != 0:
-                wall = arcade.Sprite("assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png",
+                wall = arcade.Sprite("assets\\assetpacks\\ninja\Backgrounds\Tilesets\TilesetLogic.png",
                                      image_width=16, image_height=16, center_x=0, center_y=0, scale=SPRITE_SCALING)
                 wall.left = x
                 wall.bottom = y
                 room.wall_list.append(wall)
 
-    wall = arcade.Sprite("assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png",
+    wall = arcade.Sprite("assets\\assetpacks\\ninja\Backgrounds\Tilesets\TilesetLogic.png",
                          image_width=16, image_height=16, center_x=0, center_y=0, scale=SPRITE_SCALING)
     wall.left = 5 * SPRITE_SIZE
     wall.bottom = 6 * SPRITE_SIZE
     room.wall_list.append(wall)
     room.background = arcade.load_texture(
-        "assets\worldassets\Backgrounds\Tilesets\TilesetLogic.png")
+        "assets\\assetpacks\\ninja\Backgrounds\Tilesets\TilesetLogic.png")
 
     return room
 
