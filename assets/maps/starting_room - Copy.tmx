@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="2">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="1">
  <tileset firstgid="1" source="Sources/TilesetInteriorFloor.tsx"/>
  <tileset firstgid="375" source="Sources/TilesetWallSimple.tsx"/>
  <tileset firstgid="485" source="Sources/TilesetInterior.tsx"/>
@@ -35,7 +35,4 @@
    eJxjYBj8gIuLgYGbi7A6K6AaayLUkQsE2IhTZ0ikOmwAAKQgAQA=
   </data>
  </layer>
- <objectgroup id="6" name="Object Layer 1">
-  <object id="1" x="81.5456" y="16.5223" width="13.3245" height="13.8574"/>
- </objectgroup>
 </map>

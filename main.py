@@ -1,4 +1,5 @@
 import arcade
+import arcade.gui
 import os
 import character_lists
 SPRITE_SCALING = 4
@@ -188,26 +189,10 @@ def setup_room_1():
     room.tile_map = arcade.load_tilemap(
         room.map_name, SPRITE_SCALING, layer_options=layer_options)
     room.scene = arcade.Scene.from_tilemap(room.tile_map)
-
-    for y in (0, room.width - SPRITE_SIZE):
-        for x in range(0, room.width, SPRITE_SIZE):
-            wall = arcade.Sprite("assets\\assetpacks\\ninja\Backgrounds\Tilesets\TilesetLogic.png",
-                                 image_width=16, image_height=16, image_x=16, image_y=0, scale=SPRITE_SCALING)
-            wall.left = x
-            wall.bottom = y
-            room.wall_list.append(wall)
-
-    # Create left and right column of boxes
-    for x in (0, room.width - SPRITE_SIZE):
-        # Loop for each box going across
-        for y in range(SPRITE_SIZE, room.height - SPRITE_SIZE, SPRITE_SIZE):
-            # Skip making a block 4 and 5 blocks up on the right side
-            if (y != SPRITE_SIZE * 4 and y != SPRITE_SIZE * 5) or x == 0:
-                wall = arcade.Sprite("assets\\assetpacks\\ninja\Backgrounds\Tilesets\TilesetLogic.png",
-                                     image_width=16, image_height=16, center_x=0, center_y=0, scale=SPRITE_SCALING)
-                wall.left = x
-                wall.bottom = y
-                room.wall_list.append(wall)
+    room.wall_list = []
+    room.wall_list.append(room.scene["walls"])
+    room.wall_list.append(room.scene["furniture"])
+    room.wall_list.append(room.scene["furniture 2"])
 
     # If you want coins or monsters in a level, then add that code here.
 
@@ -223,41 +208,24 @@ def setup_room_2():
     Create and return room 2.
     """
     room = Room()
-    room.width = SPRITE_SIZE * 20
-    room.height = SPRITE_SIZE * 20
-    """ Set up the game and initialize the variables. """
-    # Sprite lists
+    room.map_name = "assets\maps\main_room.tmx"
     room.wall_list = arcade.SpriteList()
+    layer_options = {
+        "walls": {
+            "use_spatial_hash": True,
+        },
+        
+    }
+    room.tile_map = arcade.load_tilemap(
+        room.map_name, SPRITE_SCALING, layer_options=layer_options)
+    room.scene = arcade.Scene.from_tilemap(room.tile_map)
+    room.wall_list = []
+    room.wall_list.append(room.scene["walls"])
+    
 
-    # -- Set up the walls
-    # Create bottom and top row of boxes
-    # This y loops a list of two, the coordinate 0, and just under the top of window
-    for y in (0, room.height - SPRITE_SIZE):
-        # Loop for each box going across
-        for x in range(0, room.width, SPRITE_SIZE):
-            wall = arcade.Sprite("assets\\assetpacks\\ninja\Backgrounds\Tilesets\TilesetLogic.png",
-                                 image_width=16, image_height=16, center_x=0, center_y=0, scale=SPRITE_SCALING)
-            wall.left = x
-            wall.bottom = y
-            room.wall_list.append(wall)
+    # If you want coins or monsters in a level, then add that code here.
 
-    # Create left and right column of boxes
-    for x in (0, room.width - SPRITE_SIZE):
-        # Loop for each box going across
-        for y in range(SPRITE_SIZE, room.height - SPRITE_SIZE, SPRITE_SIZE):
-            # Skip making a block 4 and 5 blocks up
-            if (y != SPRITE_SIZE * 4 and y != SPRITE_SIZE * 5) or x != 0:
-                wall = arcade.Sprite("assets\\assetpacks\\ninja\Backgrounds\Tilesets\TilesetLogic.png",
-                                     image_width=16, image_height=16, center_x=0, center_y=0, scale=SPRITE_SCALING)
-                wall.left = x
-                wall.bottom = y
-                room.wall_list.append(wall)
-
-    wall = arcade.Sprite("assets\\assetpacks\\ninja\Backgrounds\Tilesets\TilesetLogic.png",
-                         image_width=16, image_height=16, center_x=0, center_y=0, scale=SPRITE_SCALING)
-    wall.left = 5 * SPRITE_SIZE
-    wall.bottom = 6 * SPRITE_SIZE
-    room.wall_list.append(wall)
+    # Load the background image for this level.
     room.background = arcade.load_texture(
         "assets\\assetpacks\\ninja\Backgrounds\Tilesets\TilesetLogic.png")
 
@@ -302,7 +270,12 @@ class MyGame(arcade.Window):
         self.player_list = arcade.SpriteList()
         self.player_accessory_list = self.player_sprite.accessory_list
         self.player_list.append(self.player_sprite)
-
+        #message = arcade.gui.UIMessageBox(width = 20, height = 20, message_text = "hi",)
+        self.guiManager = arcade.gui.UIManager()
+        self.guiManager.enable()
+        sprite = arcade.Sprite(filename="assets/assetpacks/ninja/HUD/Dialog/DialogueBoxSimple.png",scale=SPRITE_SCALING)
+        message = arcade.gui.UISpriteWidget(x=200,y=100,width=500,height=100,sprite=sprite)
+        self.guiManager.add(message)
         # Our list of rooms
         self.rooms = []
 
@@ -318,11 +291,7 @@ class MyGame(arcade.Window):
         self.view_left = 0
         self.view_bottom = 0
         # Create a physics engine for this room
-        walls_list = []
-        walls_list.append(self.rooms[self.current_room].scene["walls"])
-        walls_list.append(self.rooms[self.current_room].scene["furniture"])
-        walls_list.append(self.rooms[self.current_room].scene["furniture 2"])
-        self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, walls=walls_list)
+        self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, walls=self.rooms[self.current_room].wall_list)
 
     def on_draw(self):
         """
@@ -339,11 +308,12 @@ class MyGame(arcade.Window):
 
         # Draw all the walls in this room
         self.rooms[self.current_room].scene.draw(pixelated=True)
-
         # If you have coins or monsters, then copy and modify the line
         # above for each list.
         self.player_list.draw(pixelated=True)
         self.player_accessory_list.draw(pixelated=True)
+        self.camera_gui.use()
+        self.guiManager.draw()
         # self.player_sprite.hair_sprite.draw(pixelated=True)
 
     def on_key_press(self, key, modifiers):
@@ -379,7 +349,7 @@ class MyGame(arcade.Window):
         if self.player_sprite.center_x > self.rooms[self.current_room].width and self.current_room == 0:
             self.current_room = 1
             self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite,
-                                                             self.rooms[self.current_room].wall_list)
+                                                            self.rooms[self.current_room].wall_list)
             self.player_sprite.center_x = 0
         elif self.player_sprite.center_x < 0 and self.current_room == 1:
             self.current_room = 0
