@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="1">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="2">
  <tileset firstgid="1" source="../../../../../../../../Downloads/-CS3305-Team-Software-Project-Group-3/assets/maps/Sources/TilesetElement.tsx"/>
+ <tileset firstgid="241" source="Sources/TilesetRelief.tsx"/>
  <layer id="2" name="floor" width="20" height="30">
   <data encoding="base64" compression="zlib">
    eJyLZ2BgiB/Fo3gUj+JRPIpH8SgexVTDALdr3qk=
@@ -11,4 +12,12 @@
    eJxbysDAsJTKmFpg1LxR80bNGzVvJJoXP2reoDSPiUrmMTBQN+3Ryjxq+5fa5tEi/2LDZXgwPn0AFWA7nw==
   </data>
  </layer>
+ <objectgroup id="3" name="interactables">
+  <object id="1" gid="265" x="128.082" y="160.36" width="16" height="16">
+   <properties>
+    <property name="item_id" value="placeholder_01"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

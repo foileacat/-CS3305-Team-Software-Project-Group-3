@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="2">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="44">
  <tileset firstgid="1" source="Sources/TilesetInteriorFloor.tsx"/>
  <tileset firstgid="375" source="Sources/TilesetWallSimple.tsx"/>
  <tileset firstgid="485" source="Sources/TilesetInterior.tsx"/>
@@ -10,6 +10,52 @@
  <tileset firstgid="2071" source="Sources/Basic Furniture.tsx"/>
  <tileset firstgid="2125" source="Sources/TopDownHouse_FurnitureState1.tsx"/>
  <tileset firstgid="2359" source="Sources/atlas_16x.tsx"/>
+ <tileset firstgid="3127" source="../../../../topdowngame2/-CS3305-Team-Software-Project-Group-3/assets/worldassets/Backgrounds/TilesetElement.tsx"/>
+ <tileset firstgid="3367" source="../../../../topdowngame/assets/worldassets/Backgrounds/atlas_16x.tsx"/>
+ <objectgroup id="6" name="interactables">
+  <object id="31" gid="3060" x="79.5" y="33" width="17.25" height="28">
+   <properties>
+    <property name="item_id" value="clock_01"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="33" gid="3060" x="30.75" y="32.75" width="35" height="32.75">
+   <properties>
+    <property name="item_id" value="bookshelf_01"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="34" gid="3060" x="15.5511" y="53.6542" width="23.7857" height="17.3848" rotation="89.3857">
+   <properties>
+    <property name="item_id" value="bed_01"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="35" gid="3060" x="126.767" y="31.4421" width="34.4466" height="16.4625" rotation="89.3857">
+   <properties>
+    <property name="item_id" value="couch_01"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="36" gid="3060" x="126.517" y="95.4421" width="16.9691" height="18.65" rotation="89.3857">
+   <properties>
+    <property name="item_id" value="soup_01"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="37" gid="3060" x="79.2667" y="110.942" width="15.9611" height="17.9108" rotation="89.3857">
+   <properties>
+    <property name="item_id" value="berries_01"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="38" gid="3060" x="14.508" y="127.132" width="18.7592" height="34.6304" rotation="89.3857">
+   <properties>
+    <property name="item_id" value="choppingboard_01"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+ </objectgroup>
  <layer id="1" name="floor" width="10" height="10">
   <data encoding="base64" compression="zlib">
    eJzbzs7gsIMA3gnEi9kZGBYSwEuBmJrqdhKpbiGV1dHCv9uBeAcBDPIvAEKbRn0=
@@ -20,7 +66,7 @@
    eJzbzs7gsIMA3gnEi9kZCIKlQDXUVLeTSHUgQE11tPDvdiDeQQCD/AsALOsbLQ==
   </data>
  </layer>
- <layer id="3" name="wall dec" width="10" height="10" locked="1">
+ <layer id="3" name="wall dec" width="10" height="10">
   <data encoding="base64" compression="zlib">
    eJxjYGBgkORggAMJKFscSWwU0A8AAJIMAGE=
   </data>
@@ -35,7 +81,4 @@
    eJxjYBj8gIuLgYGbi7A6K6AaayLUkQsE2IhTZ0ikOmwAAKQgAQA=
   </data>
  </layer>
- <objectgroup id="6" name="Object Layer 1">
-  <object id="1" x="81.5456" y="16.5223" width="13.3245" height="13.8574"/>
- </objectgroup>
 </map>

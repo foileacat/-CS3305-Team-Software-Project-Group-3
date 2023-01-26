@@ -2,7 +2,8 @@ import arcade
 import arcade.gui
 import os
 import character_lists
-SPRITE_SCALING = 4
+
+SPRITE_SCALING = 4 
 CHARACTER_SCALING = 4
 SPRITE_NATIVE_SIZE = 16
 CHARACTER_NATIVE_SIZE = 32
@@ -16,11 +17,13 @@ DEFAULT_SCREEN_HEIGHT = 800
 SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 800
 SCREEN_TITLE = "Fake Zelda"
+
 # setting arrow key controls
 UP_KEY = arcade.key.W
 DOWN_KEY = arcade.key.S
 LEFT_KEY = arcade.key.A
 RIGHT_KEY = arcade.key.D
+INTERACT_KEY = arcade.key.ENTER
 # How fast to move, and how fast to run the animation
 MOVEMENT_SPEED = 5
 UPDATES_PER_FRAME = 5
@@ -48,7 +51,9 @@ class Room:
 
 def load_texture_list(filename, row, frame, offset):
     """
-    Load a texture pair, with the second being a mirror image.
+    Load a texture list for character skin/hair/accesories. This loads their down,up,right and left facing positions.
+    Only loads a single frame.
+    Offset is used where multiple colors are in the same sheet - for clothes etc.
     """
     offset = offset*ACCESSORIES_OFFSET
     return [
@@ -64,24 +69,26 @@ def load_texture_list(filename, row, frame, offset):
 
 
 class PlayerAccessory(arcade.Sprite):
+    """
+    Creates Accesory for character - clothes,hair,eyes etc. 
+    These are added to the players accesory sprite list 
+    """
+
     def __init__(self, path, color_offset):
         super().__init__()
         self.file_path = path
         self.face_direction = RIGHT_FACING
         self.cur_texture = 0
         self.scale = CHARACTER_SCALING
-        self.points = [[6, -16], [6, 4], [6, 4], [6, -16]]
-        self.color_offset = color_offset
-        # main_path = ":resources:images/animated_characters/male_person/malePerson"
-        # main_path = ":resources:images/animated_characters/male_adventurer/maleAdventurer"
-        # main_path = ":resources:images/animated_characters/zombie/zombie"
-        # main_path = ":resources:images/animated_characters/robot/robot"
+        self.points = [[6, -16], [6, 4], [6, 4], [6, -16]]  # creates hitbox
+        self.color_offset = color_offset  # the offset to choose the color of the accesory
 
         # Load textures for idle standing
         self.idle_texture_list = load_texture_list(
             self.file_path, 0, 0, self.color_offset)
         # Load textures for walking
         self.walk_textures = []
+        # loads each frame
         for frame in range(8):
             texture = load_texture_list(
                 self.file_path, 0, frame, self.color_offset)
@@ -104,46 +111,41 @@ class PlayerAccessory(arcade.Sprite):
 
 
 class PlayerCharacter(arcade.Sprite):
+
+    """Creates our player"""
+
     def __init__(self):
-
-        # Set up parent class
         super().__init__()
+        #initialise starting position
+        self.center_x = 200
+        self.center_y = 200
         self.character_face_direction = RIGHT_FACING
-
         # Used for flipping between image sequences
         self.cur_texture = 0
-
         self.scale = CHARACTER_SCALING
-        # Adjust the collision box. Default includes too much empty space
-        # side-to-side. Box is centered at sprite center, (0, 0)
+        # creates hitbox
         self.points = [[8, -16], [8, -8], [-8, -8], [-8, -16]]
 
-        # --- Load Textures ---
-
-        # Images from Kenney.nl's Asset Pack 3
-        skintone = character_lists.skintones[2]
-        hairstyle = character_lists.hairstyles[7]
-        clothing = character_lists.clothing[3]
-
+        # Select the desired asset file from our character_lists file
+        skintone_file = character_lists.skintones[2]
+        hairstyle_file = character_lists.hairstyles[7]
+        clothing_file = character_lists.clothing[3]
+        # initialise accessory list and add PlayerAccesories to it
         self.accessory_list = arcade.SpriteList()
-        self.hair = PlayerAccessory(hairstyle, 4)
-        self.clothes = PlayerAccessory(clothing, 2)
+        self.hair = PlayerAccessory(hairstyle_file, 4)
+        self.clothes = PlayerAccessory(clothing_file, 2)
         self.accessory_list.append(self.clothes)
         self.accessory_list.append(self.hair)
-        
-
-        self.idle_texture_list = load_texture_list(skintone, 0, 0, 0)
+        # load textures for standing still and for walking animation
+        self.idle_texture_list = load_texture_list(skintone_file, 0, 0, 0)
 
         self.walk_textures = []
         for frame in range(8):
-            texture = load_texture_list(skintone, 0, frame, 0)
+            texture = load_texture_list(skintone_file, 0, frame, 0)
             self.walk_textures.append(texture)
 
-        # Load textures for idle standing
-        # Load textures for walking
-        #self.right_walk_textures = []
-        # for i in range(8):
-        #     arcade.load_texture(filename)
+        self.currently_inspecting = False
+    # runs constantly, animates character moving
 
     def update_animation(self, delta_time: float = 1 / 60):
 
@@ -173,8 +175,9 @@ class PlayerCharacter(arcade.Sprite):
 
 def setup_room_1():
     room = Room()
-    room.map_name = "assets\maps\starting_room.tmx"
+    room.map_file = "assets\maps\starting_room.tmx"
     room.wall_list = arcade.SpriteList()
+    # all layers that are spatially hashed are "solid" - aka we can give them collision
     layer_options = {
         "walls": {
             "use_spatial_hash": True,
@@ -186,48 +189,36 @@ def setup_room_1():
             "use_spatial_hash": True,
         },
     }
+
+    # create tilemap, and then a scene from that tilemap. the scene is what we use.
+
     room.tile_map = arcade.load_tilemap(
-        room.map_name, SPRITE_SCALING, layer_options=layer_options)
+        room.map_file, SPRITE_SCALING, layer_options=layer_options)
     room.scene = arcade.Scene.from_tilemap(room.tile_map)
+
+    # the rooms wall list is used for player collision.
     room.wall_list = []
     room.wall_list.append(room.scene["walls"])
     room.wall_list.append(room.scene["furniture"])
     room.wall_list.append(room.scene["furniture 2"])
 
-    # If you want coins or monsters in a level, then add that code here.
-
-    # Load the background image for this level.
-    room.background = arcade.load_texture(
-        "assets\\assetpacks\\ninja\Backgrounds\Tilesets\TilesetLogic.png")
-
     return room
 
 
 def setup_room_2():
-    """
-    Create and return room 2.
-    """
     room = Room()
-    room.map_name = "assets\maps\main_room.tmx"
+    room.map_file = "assets\maps\main_room.tmx"
     room.wall_list = arcade.SpriteList()
     layer_options = {
         "walls": {
             "use_spatial_hash": True,
         },
-        
     }
     room.tile_map = arcade.load_tilemap(
-        room.map_name, SPRITE_SCALING, layer_options=layer_options)
+        room.map_file, SPRITE_SCALING, layer_options=layer_options)
     room.scene = arcade.Scene.from_tilemap(room.tile_map)
     room.wall_list = []
     room.wall_list.append(room.scene["walls"])
-    
-
-    # If you want coins or monsters in a level, then add that code here.
-
-    # Load the background image for this level.
-    room.background = arcade.load_texture(
-        "assets\\assetpacks\\ninja\Backgrounds\Tilesets\TilesetLogic.png")
 
     return room
 
@@ -241,20 +232,13 @@ class MyGame(arcade.Window):
         """
         super().__init__(width, height, title)
 
-        # Set the working directory (where we expect to find files) to the same
-        # directory this .py file is in. You can leave this out of your own
-        # code, but it is needed to easily run the examples using "python -m"
-        # as mentioned at the top of this program.
+        # Set the working directory
         file_path = os.path.dirname(os.path.abspath(__file__))
         os.chdir(file_path)
 
-        # Sprite lists
         self.current_room = 0
-
-        # Set up the player
         self.rooms = None
         self.player_sprite = None
-        self.player_list = None
         self.physics_engine = None
         self.camera_sprites = arcade.Camera(
             DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT)
@@ -263,19 +247,32 @@ class MyGame(arcade.Window):
 
     def setup(self):
         """ Set up the game and initialize the variables. """
+        arcade.load_font("assets/assetpacks/ninja/HUD/Font/NormalFont.ttf") #imports game font
         self.player_sprite = PlayerCharacter()
         self.player_sprite.set_hit_box(self.player_sprite.points)
-        self.player_sprite.center_x = 200
-        self.player_sprite.center_y = 200
-        self.player_list = arcade.SpriteList()
         self.player_accessory_list = self.player_sprite.accessory_list
-        self.player_list.append(self.player_sprite)
-        #message = arcade.gui.UIMessageBox(width = 20, height = 20, message_text = "hi",)
-        self.guiManager = arcade.gui.UIManager()
-        self.guiManager.enable()
-        sprite = arcade.Sprite(filename="assets/assetpacks/ninja/HUD/Dialog/DialogueBoxSimple.png",scale=SPRITE_SCALING)
-        message = arcade.gui.UISpriteWidget(x=200,y=100,width=500,height=100,sprite=sprite)
-        self.guiManager.add(message)
+        self.gui_inspect_manager = arcade.gui.UIManager()
+        self.gui_inspect_manager.enable()
+        #setup GUI for inspecting objects
+
+        inspect_background_UI_sprite = arcade.gui.UISpriteWidget(x=0, y=0, width=500, height=100, sprite=arcade.Sprite(
+            filename="assets/assetpacks/ninja/HUD/Dialog/DialogueBoxSimple.png", scale=SPRITE_SCALING))
+
+        self.inspect_background_UI_anchor = arcade.gui.UIAnchorWidget(
+            child=inspect_background_UI_sprite, align_x=-50, align_y=-250)
+
+        self.inspect_message_UI = arcade.gui.UITextArea(
+            x=350, y=120, text_color=(0, 0, 0), text="")
+
+        self.gui_inspect_manager.add(self.inspect_background_UI_anchor)
+        self.gui_inspect_manager.add(self.inspect_message_UI)
+
+        self.inspect_item_hint_UI = arcade.Text(
+            "E to Inspect", 0, 0, (255, 255, 255), 15, font_name="NinjaAdventure")
+
+        self.inspect_item_symbol_UI = arcade.Sprite(
+            filename="assets/assetpacks/ninja/HUD/Arrow.png", scale=3, center_x=200, center_y=200)
+
         # Our list of rooms
         self.rooms = []
 
@@ -286,39 +283,50 @@ class MyGame(arcade.Window):
         room = setup_room_2()
         self.rooms.append(room)
 
-        # Our starting room number
         self.current_room = 0
+        #used for the scrolling camera
         self.view_left = 0
         self.view_bottom = 0
-        # Create a physics engine for this room
-        self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, walls=self.rooms[self.current_room].wall_list)
+        #create physics engine - adds collision
+        self.physics_engine = arcade.PhysicsEngineSimple(
+            self.player_sprite, walls=self.rooms[self.current_room].wall_list)
 
     def on_draw(self):
-        """
-        Render the screen.
-        """
 
         # This command has to happen before we start drawing
         self.clear()
+        #this camera is used for everything except the gui
         self.camera_sprites.use()
-        # Draw the background texture
-        arcade.draw_lrwh_rectangle_textured(0, 0,
-                                            self.rooms[self.current_room].width, self.rooms[self.current_room].height,
-                                            self.rooms[self.current_room].background)
 
-        # Draw all the walls in this room
         self.rooms[self.current_room].scene.draw(pixelated=True)
-        # If you have coins or monsters, then copy and modify the line
-        # above for each list.
-        self.player_list.draw(pixelated=True)
+        self.player_sprite.draw(pixelated=True)
         self.player_accessory_list.draw(pixelated=True)
-        self.camera_gui.use()
-        self.guiManager.draw()
-        # self.player_sprite.hair_sprite.draw(pixelated=True)
+
+        #returns interactable objects the player is touching - if we have any, the item has an arrow/text hint
+        interactableObjects = arcade.check_for_collision_with_list(
+            self.player_sprite, self.rooms[self.current_room].scene["interactables"])
+
+        #renders inspecting popup/interactable hint if applicable
+        if self.player_sprite.currently_inspecting:
+            self.camera_gui.use()
+            self.inspect_message_UI.text = self.inspect_text
+            self.gui_inspect_manager.draw()
+        elif interactableObjects:
+            interactable = interactableObjects[0]
+            """
+            Alternative hint is text based - currently unused but may be readded:
+
+            self.inspect_item_hint_UI = arcade.Text(
+                    "E to Inspect", self.player_sprite.center_x, self.player_sprite.center_y, (255, 255, 255), 15, font_name="NinjaAdventure")
+            self.inspect_item_hint_UI.draw()
+            """
+            self.inspect_item_symbol_UI = arcade.Sprite(filename="assets/assetpacks/ninja/HUD/Arrow.png", scale=3,
+                                                        center_x=interactable.center_x, center_y=interactable.center_y+(interactable.height//2)+20)
+            self.inspect_item_symbol_UI.draw(pixelated=True)
+            
 
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed. """
-
         if key == UP_KEY:
             self.player_sprite.change_y = MOVEMENT_SPEED
         elif key == DOWN_KEY:
@@ -327,6 +335,8 @@ class MyGame(arcade.Window):
             self.player_sprite.change_x = -MOVEMENT_SPEED
         elif key == RIGHT_KEY:
             self.player_sprite.change_x = MOVEMENT_SPEED
+        elif key == INTERACT_KEY:
+            self.handle_interact()
 
     def on_key_release(self, key, modifiers):
         """Called when the user releases a key. """
@@ -336,20 +346,41 @@ class MyGame(arcade.Window):
         elif key == LEFT_KEY or key == RIGHT_KEY:
             self.player_sprite.change_x = 0
 
-    def on_update(self, delta_time):
-        """ Movement and game logic """
+    def handle_interact(self):
+        """
+        Runs when a player presses the interact key next to an interactable object. 
+        It will run the function named in the interactable objects on_interact attribute, from the tmx file
+        """
+        interactables = arcade.check_for_collision_with_list(
+            self.player_sprite, self.rooms[self.current_room].scene["interactables"])
+        for interactable in interactables:
+            getattr(self, interactable.properties['on_interact'])(interactable)
+        return
 
-        # Call update on all sprites (The sprites don't do much in this
-        # example though.)
+    def show_message(self, interactable):
+        if self.player_sprite.currently_inspecting:
+            self.player_sprite.currently_inspecting = False
+            return
+        else:
+            self.player_sprite.currently_inspecting = True
+            self.inspect_text = interactable.properties["item_id"]
+
+    def on_update(self, delta_time):
+        """ Movement and game logic. Runs constantly when anything changes."""
+
         self.physics_engine.update()
-        self.player_list.update_animation()
+        self.player_sprite.update_animation()
         self.player_accessory_list.update_animation(self.player_sprite)
-        # Do some logic here to figure out what room we are in, and if we need to go
-        # to a different room.
+
+        """
+        Used for room changes ---- NEEDS REPLACING WITH INTERACTABLE OBJECTS
+        Only really works for two rooms
+        """
         if self.player_sprite.center_x > self.rooms[self.current_room].width and self.current_room == 0:
             self.current_room = 1
+            #adds current rooms walls to the physics engine
             self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite,
-                                                            self.rooms[self.current_room].wall_list)
+                                                             self.rooms[self.current_room].wall_list)
             self.player_sprite.center_x = 0
         elif self.player_sprite.center_x < 0 and self.current_room == 1:
             self.current_room = 0
@@ -360,8 +391,9 @@ class MyGame(arcade.Window):
         self.scroll_to_player()
 
     def scroll_to_player(self):
-        # --- Manage Scrolling ---
-
+        """
+        Manages scrolling camera. Runs constantly from the on_update function
+        """
         # Scroll left
         left_boundary = self.view_left + VIEWPORT_MARGIN
         if self.player_sprite.left < left_boundary:
