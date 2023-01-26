@@ -3,6 +3,7 @@ import arcade.gui
 import os
 import character_lists
 
+FONT_PATH = "assets/assetpacks/ninja/HUD/Font/NormalFont.ttf"
 SPRITE_SCALING = 4 
 CHARACTER_SCALING = 4
 SPRITE_NATIVE_SIZE = 16
@@ -246,8 +247,10 @@ class MyGame(arcade.Window):
             DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT)
 
     def setup(self):
-        """ Set up the game and initialize the variables. """
-        arcade.load_font("assets/assetpacks/ninja/HUD/Font/NormalFont.ttf") #imports game font
+        """ Set up the game and initialize variables. """
+
+        arcade.load_font(FONT_PATH) #imports game font. name of font is "Ninja Adventure"
+
         self.player_sprite = PlayerCharacter()
         self.player_sprite.set_hit_box(self.player_sprite.points)
         self.player_accessory_list = self.player_sprite.accessory_list
@@ -273,9 +276,8 @@ class MyGame(arcade.Window):
         self.inspect_item_symbol_UI = arcade.Sprite(
             filename="assets/assetpacks/ninja/HUD/Arrow.png", scale=3, center_x=200, center_y=200)
 
-        # Our list of rooms
+        # Our list of roomssdd
         self.rooms = []
-
         # Create the rooms. Extend the pattern for each room.
         room = setup_room_1()
         self.rooms.append(room)
@@ -317,7 +319,7 @@ class MyGame(arcade.Window):
             Alternative hint is text based - currently unused but may be readded:
 
             self.inspect_item_hint_UI = arcade.Text(
-                    "E to Inspect", self.player_sprite.center_x, self.player_sprite.center_y, (255, 255, 255), 15, font_name="NinjaAdventure")
+                    "Enter to Inspect", self.player_sprite.center_x, self.player_sprite.center_y, (255, 255, 255), 15, font_name="NinjaAdventure")
             self.inspect_item_hint_UI.draw()
             """
             self.inspect_item_symbol_UI = arcade.Sprite(filename="assets/assetpacks/ninja/HUD/Arrow.png", scale=3,
@@ -357,6 +359,24 @@ class MyGame(arcade.Window):
             getattr(self, interactable.properties['on_interact'])(interactable)
         return
 
+    def room_transition(self,interactable):
+        """
+        Currently unfinished. Runs when player interacts with a transitional interactable object .
+        Transitions player from one room to the next.
+
+        """
+        self.current_room = int(interactable.properties["destination_room"])
+        self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite,
+                                                            self.rooms[self.current_room].wall_list)
+        if interactable.properties["transition_type"] == "right":
+            self.player_sprite.center_x = 0
+        elif interactable.properties["transition_type"] == "left":
+            self.player_sprite.center_x = self.rooms[self.current_room].width
+        elif interactable.properties["transition_type"] == "up":
+            self.player_sprite.center_y = 0
+        elif interactable.properties["transition_type"] == "down":
+            self.player_sprite.center_y = self.rooms[self.current_room].height
+
     def show_message(self, interactable):
         if self.player_sprite.currently_inspecting:
             self.player_sprite.currently_inspecting = False
@@ -373,20 +393,22 @@ class MyGame(arcade.Window):
         self.player_accessory_list.update_animation(self.player_sprite)
 
         """
-        Used for room changes ---- NEEDS REPLACING WITH INTERACTABLE OBJECTS
+        Used for room changes ---- NEEDS REPLACING WITH INTERACTABLE OBJECTS (in progress)
         Only really works for two rooms
+
         """
-        if self.player_sprite.center_x > self.rooms[self.current_room].width and self.current_room == 0:
-            self.current_room = 1
-            #adds current rooms walls to the physics engine
-            self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite,
-                                                             self.rooms[self.current_room].wall_list)
-            self.player_sprite.center_x = 0
-        elif self.player_sprite.center_x < 0 and self.current_room == 1:
-            self.current_room = 0
-            self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite,
-                                                             self.rooms[self.current_room].wall_list)
-            self.player_sprite.center_x = self.rooms[self.current_room].width
+
+        # if self.player_sprite.center_x > self.rooms[self.current_room].width and self.current_room == 0:
+        #     self.current_room = 1
+        #     #adds current rooms walls to the physics engine
+        #     self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite,
+        #                                                      self.rooms[self.current_room].wall_list)
+        #     self.player_sprite.center_x = 0
+        # elif self.player_sprite.center_x < 0 and self.current_room == 1:
+        #     self.current_room = 0
+        #     self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite,
+        #                                                      self.rooms[self.current_room].wall_list)
+        #     self.player_sprite.center_x = self.rooms[self.current_room].width
 
         self.scroll_to_player()
 

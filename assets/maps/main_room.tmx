@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="2">
- <tileset firstgid="1" source="../../../../../../../../Downloads/-CS3305-Team-Software-Project-Group-3/assets/maps/Sources/TilesetElement.tsx"/>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="4">
+ <tileset firstgid="1" source="Sources/TilesetElement.tsx"/>
  <tileset firstgid="241" source="Sources/TilesetRelief.tsx"/>
+ <tileset firstgid="481" source="Sources/TilesetInteriorFloor.tsx"/>
+ <objectgroup id="3" name="interactables">
+  <object id="1" gid="265" x="128.082" y="160.36" width="16" height="16">
+   <properties>
+    <property name="item_id" value="placeholder_01"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="2" gid="508" x="-7" y="429.75" width="6.5" height="53">
+   <properties>
+    <property name="destination_room" type="int" value="0"/>
+    <property name="on_interact" value="room_transition"/>
+    <property name="source_room" type="int" value="1"/>
+    <property name="transition_id" value="starting_to_main"/>
+    <property name="transition_type" value="left"/>
+   </properties>
+  </object>
+ </objectgroup>
  <layer id="2" name="floor" width="20" height="30">
   <data encoding="base64" compression="zlib">
    eJyLZ2BgiB/Fo3gUj+JRPIpH8SgexVTDALdr3qk=
@@ -12,12 +30,4 @@
    eJxbysDAsJTKmFpg1LxR80bNGzVvJJoXP2reoDSPiUrmMTBQN+3Ryjxq+5fa5tEi/2LDZXgwPn0AFWA7nw==
   </data>
  </layer>
- <objectgroup id="3" name="interactables">
-  <object id="1" gid="265" x="128.082" y="160.36" width="16" height="16">
-   <properties>
-    <property name="item_id" value="placeholder_01"/>
-    <property name="on_interact" value="show_message"/>
-   </properties>
-  </object>
- </objectgroup>
 </map>

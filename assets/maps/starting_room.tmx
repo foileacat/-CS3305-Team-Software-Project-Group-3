@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="44">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="14" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="47">
  <tileset firstgid="1" source="Sources/TilesetInteriorFloor.tsx"/>
  <tileset firstgid="375" source="Sources/TilesetWallSimple.tsx"/>
  <tileset firstgid="485" source="Sources/TilesetInterior.tsx"/>
@@ -10,75 +10,82 @@
  <tileset firstgid="2071" source="Sources/Basic Furniture.tsx"/>
  <tileset firstgid="2125" source="Sources/TopDownHouse_FurnitureState1.tsx"/>
  <tileset firstgid="2359" source="Sources/atlas_16x.tsx"/>
- <tileset firstgid="3127" source="../../../../topdowngame2/-CS3305-Team-Software-Project-Group-3/assets/worldassets/Backgrounds/TilesetElement.tsx"/>
- <tileset firstgid="3367" source="../../../../topdowngame/assets/worldassets/Backgrounds/atlas_16x.tsx"/>
  <objectgroup id="6" name="interactables">
-  <object id="31" gid="3060" x="79.5" y="33" width="17.25" height="28">
+  <object id="31" gid="3060" x="79.5" y="49" width="17.25" height="28">
    <properties>
     <property name="item_id" value="clock_01"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="33" gid="3060" x="30.75" y="32.75" width="35" height="32.75">
+  <object id="33" gid="3060" x="30.75" y="48.75" width="35" height="32.75">
    <properties>
     <property name="item_id" value="bookshelf_01"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="34" gid="3060" x="15.5511" y="53.6542" width="23.7857" height="17.3848" rotation="89.3857">
+  <object id="34" gid="3060" x="15.5511" y="69.6542" width="23.7857" height="17.3848" rotation="89.3857">
    <properties>
     <property name="item_id" value="bed_01"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="35" gid="3060" x="126.767" y="31.4421" width="34.4466" height="16.4625" rotation="89.3857">
+  <object id="35" gid="3060" x="126.767" y="47.4421" width="34.4466" height="16.4625" rotation="89.3857">
    <properties>
     <property name="item_id" value="couch_01"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="36" gid="3060" x="126.517" y="95.4421" width="16.9691" height="18.65" rotation="89.3857">
+  <object id="36" gid="3060" x="126.517" y="111.442" width="16.9691" height="18.65" rotation="89.3857">
    <properties>
     <property name="item_id" value="soup_01"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="37" gid="3060" x="79.2667" y="110.942" width="15.9611" height="17.9108" rotation="89.3857">
+  <object id="37" gid="3060" x="79.2667" y="126.942" width="15.9611" height="17.9108" rotation="89.3857">
    <properties>
     <property name="item_id" value="berries_01"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="38" gid="3060" x="14.508" y="127.132" width="18.7592" height="34.6304" rotation="89.3857">
+  <object id="38" gid="3060" x="14.508" y="143.132" width="18.7592" height="34.6304" rotation="89.3857">
    <properties>
     <property name="item_id" value="choppingboard_01"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
+  <object id="45" gid="1953" x="158.811" y="168.354" width="6.34453" height="35.3092" rotation="89.3733">
+   <properties>
+    <property name="destination_room" type="int" value="1"/>
+    <property name="on_interact" value="room_transition"/>
+    <property name="source_room" type="int" value="0"/>
+    <property name="transition_id" value="starting_to_main"/>
+    <property name="transition_type" value="right"/>
+   </properties>
+  </object>
  </objectgroup>
- <layer id="1" name="floor" width="10" height="10">
+ <layer id="1" name="floor" width="14" height="11">
   <data encoding="base64" compression="zlib">
-   eJzbzs7gsIMA3gnEi9kZGBYSwEuBmJrqdhKpbiGV1dHCv9uBeAcBDPIvAEKbRn0=
+   eJxjYKA/WMiOHw8VfbjMGe768AFc+gAgkDpp
   </data>
  </layer>
- <layer id="5" name="walls" width="10" height="10">
+ <layer id="5" name="walls" width="14" height="11">
   <data encoding="base64" compression="zlib">
-   eJzbzs7gsIMA3gnEi9kZCIKlQDXUVLeTSHUgQE11tPDvdiDeQQCD/AsALOsbLQ==
+   eJzbzs7gsIMA3s7OcIABDSxmZ2BYQgAD1TRg00cIkKsPZCe6u4nRt4MdFS8mUh8WN9JUH3o8EKtvMRX1bWfHDC90vB0t/kB8ACH0Nj0=
   </data>
  </layer>
- <layer id="3" name="wall dec" width="10" height="10">
+ <layer id="3" name="wall dec" width="14" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYGBgkORggAMJKFscSWwU0A8AAJIMAGE=
+   eJxjYMAErpwMDG6cWCTQgCQHgi0BZJcC9ZQRoY+W4BHQ/sdA/IREdwhxMTAIA7EIF23cNdIBAOGbBPc=
   </data>
  </layer>
- <layer id="2" name="furniture" width="10" height="10">
+ <layer id="2" name="furniture" width="14" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYICAHcwMDDuBeAc3A8MRIN7AjBCDgQdA9ikgPg3EL4BqvgDxAajYSSR1+EALN4L9mBtVbhoXgr0FSU6YB8FOA6qZgKSO2mAmK3bxc0Dx91C5UCAdhqRuOpA9A4jfAvE7JPEyILsch3m4AAAbThc0
+   eJxjYKAM7GBmYNgJxDu4GRiOAPEGZoQYLvAAKHcKiE8D8Qugni9AfAAqdhKPPnyghRu33GM0uWlcCPYWPPqEeRDsNKCeCVyYapyAYs5A7IJFjppgJitx6s4B1b2Hqg0F0mF49E0Hys0A4rdA/A5JXRmQXU6kfcQCABCxGBs=
   </data>
  </layer>
- <layer id="4" name="furniture 2" width="10" height="10">
+ <layer id="4" name="furniture 2" width="14" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYBj8gIuLgYGbi7A6K6AaayLUkQsE2IhTZ0ikOmwAAKQgAQA=
+   eJxjYBgFuAAXFwMDNxfp+qyAeqzJ0EctIMBGnj5DMvURAwDqKAEA
   </data>
  </layer>
 </map>
