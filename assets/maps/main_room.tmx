@@ -6,6 +6,7 @@
  <tileset firstgid="855" source="Sources/TilesetHouse.tsx"/>
  <tileset firstgid="1614" source="Sources/fire_animation.tmx"/>
  <tileset firstgid="1620" source="Sources/Basic Furniture.tsx"/>
+ <tileset firstgid="1674" source="Sources/TilesetNature.tsx"/>
  <objectgroup id="3" name="interactables">
   <object id="1" gid="265" x="128.082" y="160.36" width="16" height="16">
    <properties>
@@ -38,7 +39,7 @@
  </layer>
  <layer id="1" name="walls" width="20" height="30">
   <data encoding="base64" compression="zlib">
-   eJxbysDAsJTKmFpg1LxR80bNGzVv1LxR88g1z5911LzBZB4T9YyjWfrDhsvwYHz6ANcNOmA=
+   eJxbysDAsJTKmFpg1LxR80bNGzVv1LxR88g1z5911LzBYl4BOwMDE/WMA5tHi/SHDZfhwfj0AQCNrzoE
   </data>
  </layer>
  <layer id="4" name="solids" width="20" height="30">

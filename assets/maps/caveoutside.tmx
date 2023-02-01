@@ -7,6 +7,61 @@
  <tileset firstgid="1489" source="Sources/TilesetHouse.tsx"/>
  <tileset firstgid="2248" source="Sources/TilesetElement.tsx"/>
  <tileset firstgid="2488" source="Sources/TilesetField.tsx"/>
+ <objectgroup id="10" name="interactables">
+  <object id="43" x="247.25" y="59.75"/>
+  <object id="44" x="248" y="41.75"/>
+  <object id="45" x="295.5" y="88.5"/>
+  <object id="46" x="378.5" y="89"/>
+  <object id="47" x="379" y="103.25"/>
+  <object id="48" x="392.25" y="73.5"/>
+  <object id="49" x="423.25" y="73.25"/>
+  <object id="50" x="437" y="87.75"/>
+  <object id="51" x="437.75" y="104.25"/>
+  <object id="52" x="407.5" y="92.25"/>
+  <object id="53" x="311" y="258"/>
+  <object id="54" x="87" y="125.5"/>
+  <object id="55" x="55.75" y="263.75"/>
+  <object id="56" x="455.5" y="263.75"/>
+  <object id="59" gid="22" x="318" y="192.667" width="16" height="16"/>
+  <object id="61" gid="1214" x="46.6667" y="274" width="22" height="21.3333"/>
+  <object id="62" gid="1214" x="76.6667" y="136.667" width="20.6667" height="22"/>
+  <object id="63" gid="1214" x="284.667" y="98" width="20.6667" height="20.6667">
+   <properties>
+    <property name="inspect_text" value="This flower is so so sooo cute"/>
+    <property name="item_id" value="caveoutside_flower02"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="65" gid="1214" x="241.333" y="68.6667" width="16" height="16"/>
+  <object id="66" gid="1214" x="242" y="47.3333" width="16" height="16"/>
+  <object id="67" gid="1214" x="3.83333" y="204" width="20.6667" height="38">
+   <properties>
+    <property name="destination_room" type="int" value="1"/>
+    <property name="on_interact" value="room_transition"/>
+    <property name="transition_direction" type="int" value="3"/>
+    <property name="transition_id" value="main_room"/>
+   </properties>
+  </object>
+  <object id="68" gid="1214" x="301.333" y="268.667" width="20" height="20">
+   <properties>
+    <property name="on_interact" value="room_transition"/>
+   </properties>
+  </object>
+  <object id="69" gid="1214" x="445.333" y="274" width="23.3333" height="21.3333">
+   <properties>
+    <property name="inspect_text" value="This flower is so cute"/>
+    <property name="item_id" value="caveoutside_flower01"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="70" gid="1214" x="383.333" y="80.6667" width="18.6667" height="18"/>
+  <object id="71" gid="1214" x="370.667" y="95.3333" width="16" height="16"/>
+  <object id="72" gid="1214" x="370" y="116.667" width="20" height="22.6667"/>
+  <object id="73" gid="1214" x="402" y="102.667" width="16" height="16"/>
+  <object id="74" gid="1214" x="416" y="82" width="16" height="16"/>
+  <object id="75" gid="1214" x="432" y="94.6667" width="16" height="16"/>
+  <object id="76" gid="1214" x="432.667" y="117.333" width="16" height="16"/>
+ </objectgroup>
  <objectgroup id="11" name="Animation">
   <object id="60" gid="62" x="202" y="151" width="16" height="16"/>
  </objectgroup>
@@ -130,59 +185,4 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="10" name="interactables">
-  <object id="43" x="247.25" y="59.75"/>
-  <object id="44" x="248" y="41.75"/>
-  <object id="45" x="295.5" y="88.5"/>
-  <object id="46" x="378.5" y="89"/>
-  <object id="47" x="379" y="103.25"/>
-  <object id="48" x="392.25" y="73.5"/>
-  <object id="49" x="423.25" y="73.25"/>
-  <object id="50" x="437" y="87.75"/>
-  <object id="51" x="437.75" y="104.25"/>
-  <object id="52" x="407.5" y="92.25"/>
-  <object id="53" x="311" y="258"/>
-  <object id="54" x="87" y="125.5"/>
-  <object id="55" x="55.75" y="263.75"/>
-  <object id="56" x="455.5" y="263.75"/>
-  <object id="59" gid="22" x="318" y="192.667" width="16" height="16"/>
-  <object id="61" gid="1214" x="46.6667" y="274" width="22" height="21.3333"/>
-  <object id="62" gid="1214" x="76.6667" y="136.667" width="20.6667" height="22"/>
-  <object id="63" gid="1214" x="284.667" y="98" width="20.6667" height="20.6667">
-   <properties>
-    <property name="inspect_text" value="This flower is so so sooo cute"/>
-    <property name="item_id" value="caveoutside_flower02"/>
-    <property name="on_interact" value="show_message"/>
-   </properties>
-  </object>
-  <object id="65" gid="1214" x="241.333" y="68.6667" width="16" height="16"/>
-  <object id="66" gid="1214" x="242" y="47.3333" width="16" height="16"/>
-  <object id="67" gid="1214" x="1.83333" y="193" width="20.6667" height="20">
-   <properties>
-    <property name="destination_room" type="int" value="1"/>
-    <property name="on_interact" value="room_transition"/>
-    <property name="transition_direction" type="int" value="3"/>
-    <property name="transition_id" value="main_room"/>
-   </properties>
-  </object>
-  <object id="68" gid="1214" x="301.333" y="268.667" width="20" height="20">
-   <properties>
-    <property name="on_interact" value="room_transition"/>
-   </properties>
-  </object>
-  <object id="69" gid="1214" x="445.333" y="274" width="23.3333" height="21.3333">
-   <properties>
-    <property name="inspect_text" value="This flower is so cute"/>
-    <property name="item_id" value="caveoutside_flower01"/>
-    <property name="on_interact" value="show_message"/>
-   </properties>
-  </object>
-  <object id="70" gid="1214" x="383.333" y="80.6667" width="18.6667" height="18"/>
-  <object id="71" gid="1214" x="370.667" y="95.3333" width="16" height="16"/>
-  <object id="72" gid="1214" x="370" y="116.667" width="20" height="22.6667"/>
-  <object id="73" gid="1214" x="402" y="102.667" width="16" height="16"/>
-  <object id="74" gid="1214" x="416" y="82" width="16" height="16"/>
-  <object id="75" gid="1214" x="432" y="94.6667" width="16" height="16"/>
-  <object id="76" gid="1214" x="432.667" y="117.333" width="16" height="16"/>
- </objectgroup>
 </map>
