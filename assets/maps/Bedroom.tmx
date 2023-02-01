@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="13">
+ <tileset firstgid="1" source="../../../../GitHub/-CS3305-Team-Software-Project-Group-3/assets/maps/Sources/atlas_16x.tsx"/>
+ <tileset firstgid="769" source="Sources/TilesetHouse.tsx"/>
+ <tileset firstgid="1528" source="Sources/TopDownHouse_SmallItems.tsx"/>
+ <objectgroup id="6" name="Interactables">
+  <object id="3" x="88.519" y="42.6928"/>
+  <object id="4" x="232.264" y="41.5177"/>
+  <object id="5" x="215.422" y="91.2607"/>
+  <object id="6" x="70.8935" y="137.479"/>
+  <object id="7" x="251.065" y="218.947"/>
+  <object id="8" x="277.307" y="278.091"/>
+  <object id="10" x="171.163" y="243.623" width="55.2264" height="41.1261"/>
+  <object id="11" x="159.412" y="39.951" width="31.7258" height="14.1004"/>
+  <object id="12" x="30.9425" y="192.705" width="36.4259" height="19.9755"/>
+ </objectgroup>
+ <layer id="2" name="Floor" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxrYmRgaBrFo3gUj+JRPIpJxABpn8yx
+  </data>
+ </layer>
+ <layer id="1" name="Walls" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYmBgYKIiNqIyBpqZAKQTGCgEQDMWMEHwqHmj5o2aN2reUDFvUJfPAHPhLqE=
+  </data>
+ </layer>
+ <layer id="3" name="Furniture" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYMAE7xixCJIJ1jAxMMgxYYqrAcXUgfgKkH2VBPPuYDELBMKA4uFAbAJ0uykV3T8KRsEoGJogFlgOxAFxPJXKg16gOX1A3E8l8/YCzdkHxPtJNG8lEK8C4tXUcQbDTSC+BcS3ydALAFsHD0U=
+  </data>
+ </layer>
+ <layer id="4" name="Furniture2" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYMAN+IFYAI88qcAeiB3QxJYCsTYbqlgTE35zBNnwy4PAIhYEexMB84Y6ECAiPCgBfVjC7zQjA8MZRvLM24fFvN9As/4AMRMbQwN5pg5OcAzop+NYwuklUOwVGeH3DajnOxZ9ksAwlRrgdM5M43RIK7CViSHhKRDD+EpMqDQMHAaG+2cgViYxnIOYUGlC4AkLYTWDBQAA3v8UkA==
+  </data>
+ </layer>
+ <layer id="5" name="Curtains" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYMANMoE4C488qWAmEM+ionmjYBSMglEwCgYOAAAPzAIH
+  </data>
+ </layer>
+</map>

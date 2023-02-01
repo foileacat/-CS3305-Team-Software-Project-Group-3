@@ -223,6 +223,37 @@ def setup_room_2():
 
     return room
 
+def setup_caveoutside():
+    room = Room()
+    room.map_file = "assets\maps\caveoutside.tmx"
+    room.wall_list = arcade.SpriteList()
+    # all layers that are spatially hashed are "solid" - aka we can give them collision
+    layer_options = {
+        "Walls": {
+            "use_spatial_hash": True,
+        },
+        "Furniture": {
+            "use_spatial_hash": True,
+        },
+        "Furniture 2": {
+            "use_spatial_hash": True,
+        },
+    }
+
+    # create tilemap, and then a scene from that tilemap. the scene is what we use.
+
+    room.tile_map = arcade.load_tilemap(
+        room.map_file, SPRITE_SCALING, layer_options=layer_options)
+    room.scene = arcade.Scene.from_tilemap(room.tile_map)
+
+    # the rooms wall list is used for player collision.
+    room.wall_list = []
+    room.wall_list.append(room.scene["Walls"])
+    room.wall_list.append(room.scene["Furniture"])
+    room.wall_list.append(room.scene["Furniture 2"])
+
+    return room
+
 
 class MyGame(arcade.Window):
     """ Main application class. """
@@ -279,10 +310,12 @@ class MyGame(arcade.Window):
         # Our list of roomssdd
         self.rooms = []
         # Create the rooms. Extend the pattern for each room.
-        room = setup_room_1()
-        self.rooms.append(room)
+        #room = setup_room_1()
+        #self.rooms.append(room)
 
-        room = setup_room_2()
+        #room = setup_room_2()
+        #self.rooms.append(room)
+        room = setup_caveoutside()
         self.rooms.append(room)
 
         self.current_room = 0
