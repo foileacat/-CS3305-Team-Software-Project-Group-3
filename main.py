@@ -44,7 +44,7 @@ class Room:
 
     def __init__(self):
         # You may want many lists. Lists for coins, monsters, etc.
-        self.multiple_entries = False
+        self.multiple_entrances = False
         self.wall_list = None
         self.width = SPRITE_SIZE * 10
         self.height = SPRITE_SIZE * 10
@@ -120,7 +120,7 @@ class PlayerCharacter(arcade.Sprite):
         super().__init__()
         #initialise starting position
         self.center_x = 200
-        self.center_y = 200
+        self.center_y = 500
         self.character_face_direction = RIGHT_FACING
         # Used for flipping between image sequences
         self.cur_texture = 0
@@ -175,12 +175,86 @@ class PlayerCharacter(arcade.Sprite):
         self.texture = self.walk_textures[frame][direction]
 
 
-def setup_room_1(player_sprite, player_accessory_list):
+def setup_starting_room(player_sprite, player_accessory_list):
 
     room = Room()
     room.starting_x = SPRITE_SIZE * 11.5
     room.starting_y = SPRITE_SIZE * 2.5
     room.map_file = "assets\maps\starting_room.tmx"
+
+    room.wall_list = arcade.SpriteList()
+    # all layers that are spatially hashed are "solid" - aka we can give them collision
+    layer_options = {
+        "walls": {
+            "use_spatial_hash": True,
+        },
+        "furniture": {
+            "use_spatial_hash": True,
+        },
+        "furniture 2": {
+            "use_spatial_hash": True,
+        },
+        "over layer": {
+            "use_spatial_hash": True,
+        }   
+    }
+
+    # create tilemap, and then a scene from that tilemap. the scene is what we use.
+
+    room.tile_map = arcade.load_tilemap(
+        room.map_file, SPRITE_SCALING, layer_options=layer_options)
+    
+    room.scene = arcade.Scene.from_tilemap(room.tile_map)
+    room.scene.add_sprite("Player", player_sprite)
+    room.scene.add_sprite_list("Player Stuff", sprite_list = player_accessory_list)
+    room.scene.move_sprite_list_after("over layer", "Player Stuff")
+    # the rooms wall list is used for player collision.
+    room.wall_list = []
+    
+    
+    room.wall_list.append(room.scene["walls"])
+    room.wall_list.append(room.scene["furniture"])
+    room.wall_list.append(room.scene["furniture 2"])
+
+    return room
+
+
+def setup_main_room(player_sprite, player_accessory_list):
+    room = Room()
+    room.multiple_entrances = True
+    room.entrances = {"starting_room" : [SPRITE_SIZE * 11.5,SPRITE_SIZE * 2.5], "cave_outside" : [200,600]}
+    room.starting_x = SPRITE_SIZE * 2.5
+    room.starting_y = SPRITE_SIZE * 7
+    room.map_file = "assets\maps\main_room.tmx"
+    room.wall_list = arcade.SpriteList()
+    layer_options = {
+        "walls": {
+            "use_spatial_hash": True,
+        },
+        "solids": {
+            "use_spatial_hash": True,
+        },
+    }
+    room.tile_map = arcade.load_tilemap(
+        room.map_file, SPRITE_SCALING, layer_options=layer_options)
+    room.scene = arcade.Scene.from_tilemap(room.tile_map)
+    room.scene.add_sprite("Player", player_sprite)
+    room.scene.add_sprite_list("Player Stuff", sprite_list = player_accessory_list)
+    room.scene.move_sprite_list_after("over layer", "Player Stuff")
+    room.wall_list = []
+    room.wall_list.append(room.scene["walls"])
+    room.wall_list.append(room.scene["solids"])
+    room.scene.update_animation
+    return room
+
+def setup_caveoutside(player_sprite, player_accessory_list):
+
+    room = Room()
+    room.multiple_entrances = True
+    room.entrances = {"main_room" : [17*SPRITE_SIZE,3*SPRITE_SIZE], "blah" : [20,600]}
+    room.starting_x = SPRITE_SIZE * 11.5
+    room.starting_y = SPRITE_SIZE * 2.5
+    room.map_file = "assets\maps\caveoutside.tmx"
 
     room.wall_list = arcade.SpriteList()
     # all layers that are spatially hashed are "solid" - aka we can give them collision
@@ -208,44 +282,18 @@ def setup_room_1(player_sprite, player_accessory_list):
         room.map_file, SPRITE_SCALING, layer_options=layer_options)
     
     room.scene = arcade.Scene.from_tilemap(room.tile_map)
+
     room.scene.add_sprite("Player", player_sprite)
     room.scene.add_sprite_list("Player Stuff", sprite_list = player_accessory_list)
+
     room.scene.move_sprite_list_after("over layer", "Player Stuff")
     # the rooms wall list is used for player collision.
+
     room.wall_list = []
-    
-    
     room.wall_list.append(room.scene["walls"])
     room.wall_list.append(room.scene["furniture"])
     room.wall_list.append(room.scene["furniture 2"])
 
-    return room
-
-
-def setup_room_2(player_sprite, player_accessory_list):
-    room = Room()
-    room.starting_x = SPRITE_SIZE * 2.5
-    room.starting_y = SPRITE_SIZE * 7
-    room.map_file = "assets\maps\main_room.tmx"
-    room.wall_list = arcade.SpriteList()
-    layer_options = {
-        "walls": {
-            "use_spatial_hash": True,
-        },
-        "solids": {
-            "use_spatial_hash": True,
-        },
-    }
-    room.tile_map = arcade.load_tilemap(
-        room.map_file, SPRITE_SCALING, layer_options=layer_options)
-    room.scene = arcade.Scene.from_tilemap(room.tile_map)
-    room.scene.add_sprite("Player", player_sprite)
-    room.scene.add_sprite_list("Player Stuff", sprite_list = player_accessory_list)
-    room.scene.move_sprite_list_after("over layer", "Player Stuff")
-    room.wall_list = []
-    room.wall_list.append(room.scene["walls"])
-    room.wall_list.append(room.scene["solids"])
-    room.scene.update_animation
     return room
 
 def setup_room_3(player_sprite, player_accessory_list):
@@ -268,7 +316,7 @@ class MyGame(arcade.Window):
         file_path = os.path.dirname(os.path.abspath(__file__))
         os.chdir(file_path)
 
-        self.current_room = 0
+        self.current_room_index = 0
         self.rooms = None
         self.player_sprite = None
         self.physics_engine = None
@@ -290,20 +338,25 @@ class MyGame(arcade.Window):
         self.setup_character_creator_gui()
         self.rooms = []
         # Create the rooms
-        room = setup_room_1(self.player_sprite,self.player_accessory_list)
+        room = setup_starting_room(self.player_sprite,self.player_accessory_list)
         self.rooms.append(room)
 
-        room = setup_room_2(self.player_sprite,self.player_accessory_list)
+        room = setup_main_room(self.player_sprite,self.player_accessory_list)
         self.rooms.append(room)
-        self.current_room = 0
-        self.scene = self.rooms[self.current_room].scene
+
+        room = setup_caveoutside(self.player_sprite,self.player_accessory_list)
+        self.rooms.append(room)
+
+        self.current_room_index = 0
+        self.current_room = self.rooms[self.current_room_index]
+        self.scene = self.current_room.scene
        
         #used for the scrolling camera
         self.view_left = 0
         self.view_bottom = 0
         # #create physics engine - adds collision
         self.physics_engine = arcade.PhysicsEngineSimple(
-            self.player_sprite, walls=self.rooms[self.current_room].wall_list)
+            self.player_sprite, walls=self.current_room.wall_list)
         
         """Preliminary Lighting Code - For later"""
         # self.light_layer = LightLayer(SCREEN_WIDTH, SCREEN_HEIGHT)
@@ -402,7 +455,7 @@ class MyGame(arcade.Window):
         #self.light_layer.draw(ambient_color=AMBIENT_COLOR)
         #returns interactable objects the player is touching - if we have any, the item has an arrow/text hint
         interactableObjects = arcade.check_for_collision_with_list(
-            self.player_sprite, self.rooms[self.current_room].scene["interactables"])
+            self.player_sprite, self.scene["interactables"])
         
        
         #renders inspecting popup/interactable hint if applicable
@@ -454,7 +507,7 @@ class MyGame(arcade.Window):
         It will run the function named in the interactable objects on_interact attribute, from the tmx file
         """
         interactables = arcade.check_for_collision_with_list(
-            self.player_sprite, self.rooms[self.current_room].scene["interactables"])
+            self.player_sprite, self.scene["interactables"])
         for interactable in interactables:
             getattr(self, interactable.properties['on_interact'])(interactable)
         return
@@ -465,12 +518,26 @@ class MyGame(arcade.Window):
         Transitions player from one room to the next.
 
         """
-        self.current_room = int(interactable.properties["destination_room"])
-        self.scene = self.rooms[self.current_room].scene
+        if  self.current_room.multiple_entrances:
+            entrance = interactable.properties["transition_id"]
+            print(entrance)
+            
+            entrance_coordinates = self.current_room.entrances[entrance]
+            print(entrance_coordinates)
+            self.player_sprite.center_x = entrance_coordinates[0]
+            self.player_sprite.center_y = entrance_coordinates[1]
+            self.current_room_index = int(interactable.properties["destination_room"])
+            self.current_room = self.rooms[self.current_room_index]
+        else:
+            self.current_room_index = int(interactable.properties["destination_room"])
+            self.current_room = self.rooms[self.current_room_index]
+            self.player_sprite.center_x = self.current_room.starting_x
+            self.player_sprite.center_y = self.current_room.starting_y
+
+        self.scene = self.current_room.scene
+        
         self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite,
-                                                            self.rooms[self.current_room].wall_list)
-        self.player_sprite.center_x = self.rooms[self.current_room].starting_x
-        self.player_sprite.center_y = self.rooms[self.current_room].starting_y
+                                                            self.current_room.wall_list)
         self.player_sprite.character_face_direction = int(interactable.properties["transition_direction"])
         
 
@@ -486,27 +553,8 @@ class MyGame(arcade.Window):
         """ Movement and game logic. Runs constantly when anything changes."""
         
         self.physics_engine.update()
-        #self.player_sprite.update_animation()
         self.player_accessory_list.update_animation(self.player_sprite)
         self.scene.update_animation(delta_time, ["Animation", "Player"])
-        """
-        Used for room changes ---- NEEDS REPLACING WITH INTERACTABLE OBJECTS (in progress)
-        Only really works for two rooms
-
-        """
-
-        # if self.player_sprite.center_x > self.rooms[self.current_room].width and self.current_room == 0:
-        #     self.current_room = 1
-        #     #adds current rooms walls to the physics engine
-        #     self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite,
-        #                                                      self.rooms[self.current_room].wall_list)
-        #     self.player_sprite.center_x = 0
-        # elif self.player_sprite.center_x < 0 and self.current_room == 1:
-        #     self.current_room = 0
-        #     self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite,
-        #                                                      self.rooms[self.current_room].wall_list)
-        #     self.player_sprite.center_x = self.rooms[self.current_room].width
-
         self.scroll_to_player()
 
     def scroll_to_player(self):

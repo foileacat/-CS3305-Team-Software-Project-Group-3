@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="62">
+ <tileset firstgid="1" source="Sources/TilesetRelief.tsx"/>
+ <tileset firstgid="241" source="Sources/TilesetReliefDetail.tsx"/>
+ <tileset firstgid="385" source="Sources/TilesetNature.tsx"/>
+ <tileset firstgid="721" source="Sources/TilesetElement.tsx"/>
+ <tileset firstgid="961" source="Sources/TilesetHouse.tsx"/>
+ <tileset firstgid="1720" source="Sources/atlas_16x.tsx"/>
+ <objectgroup id="6" name="aaa">
+  <object id="14" x="263.5" y="50.5"/>
+  <object id="16" x="327" y="88.5"/>
+  <object id="17" x="359" y="71.75"/>
+  <object id="18" x="406.5" y="57.25"/>
+  <object id="19" x="412" y="222" width="35.25" height="36.75"/>
+  <object id="20" x="423" y="279.5"/>
+  <object id="21" x="218.25" y="243" width="39.5" height="35.25"/>
+  <object id="22" x="278.75" y="167.5"/>
+  <object id="23" x="108" y="93.5" width="38.25" height="36.75"/>
+  <object id="24" x="56.25" y="72"/>
+  <object id="25" x="105" y="56.5"/>
+  <object id="26" x="55.25" y="247.75"/>
+  <object id="27" x="119.75" y="263.25"/>
+  <object id="28" x="527.333" y="8"/>
+ </objectgroup>
+ <objectgroup id="9" name="interactables">
+  <object id="57" gid="23" x="109.333" y="129.333" width="35.3333" height="33.3333"/>
+  <object id="59" gid="23" x="49.3333" y="80.6667" width="16" height="16"/>
+  <object id="60" gid="23" x="100.667" y="62" width="16" height="16"/>
+  <object id="61" gid="23" x="52.6667" y="258" width="16" height="16"/>
+ </objectgroup>
+ <layer id="1" name="Floor" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF9ABpQJyORbyBxrgKiKuhdlUjsUftHXh7CQFa2gtThwxICSts+kixt5oB1b3E2ksOHih7ke0ZKP+is+lhLzZMa3vxAVrZO4oheMogcMNg9R8ATcXgFQ==
+  </data>
+ </layer>
+ <layer id="5" name="Walls" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztlVEOgyAMhus1dro+OXU3MG47wXTiBTgKR9u/KQlrYiA66suafIFgyWehCTURNcpcwBXclLmDERhlprlmxsgl5ueFivIF6rQ1wHkz/oHb4FuX0Wtm59+b4A17QRLrjT1enyv9VcJe6X1g7VQQ9Rifid5WrHcbvJH0ryiXfG2vjwPq/UR4J36e0yvrDCOn913bsEKsJ39xv1viaC/eBh4VvXj7LN5Ai9EZZVCng9s1yuCM3QsNw87g
+  </data>
+ </layer>
+ <layer id="2" name="Furniture" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBh6wIORgcETiL0Y6WfnOQ4GhhCgfaFAHMYI4VMDFDLjl/8HtCcBaF8iECcxQvi4wGcmBoazbEC3sWGXL2XCb5coGwQTA6aimfUXqO8fkXrJsRPdPnJABtCMTCaEvfQCFUA7K6ng/lFAHfCfTnEvxciwgD424QdSdCwnhwroAObHThx5kpiyBlR+nAWWxVtZGRi2sULYhNSDwAyg2TOJLAu+oqmDmQGqA64B7bzOir8+oAYgt5yE6Wsd4eUeADjCHW8=
+  </data>
+ </layer>
+</map>

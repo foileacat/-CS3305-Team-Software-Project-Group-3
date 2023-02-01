@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="14">
+ <tileset firstgid="1" source="Sources/TilesetInteriorFloor.tsx"/>
+ <tileset firstgid="375" source="Sources/atlas_16x.tsx"/>
+ <tileset firstgid="1143" source="Sources/TilesetHouse.tsx"/>
+ <tileset firstgid="1902" source="Sources/TopDownHouse_SmallItems.tsx"/>
+ <objectgroup id="4" name="Interactables">
+  <object id="2" x="87.8335" y="29.6695"/>
+  <object id="4" x="40.8323" y="43.4761" width="45.8262" height="22.6193"/>
+  <object id="5" x="134.835" y="71.9706"/>
+  <object id="6" x="190.942" y="45.8262"/>
+  <object id="8" x="172.142" y="64.3329" width="36.1322" height="33.1946"/>
+  <object id="9" x="172.729" y="135.422" width="35.5447" height="62.2766"/>
+  <object id="10" x="41.4198" y="104.871"/>
+  <object id="12" x="40.8323" y="126.903"/>
+  <object id="13" x="-27.3195" y="130.135" width="1.46879"/>
+ </objectgroup>
+ <layer id="2" name="Floor" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzTZWZg0B3Fo3gUDxgGAIH3KjE=
+  </data>
+ </layer>
+ <layer id="1" name="Walls" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJy7xcjAcItMzMVEPgbqTwDSCQwkAKD6BUB9C0b1juqlkd4ByQsAwYlE7Q==
+  </data>
+ </layer>
+ <layer id="3" name="Furniture" width="15" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYMAEScxYBIkEk3DodWRjYHBiI9287UA9SUCcjENvK1C8jQxzcYFmJLPmsDIwzGUlz5y9QH37sOhtZyfPPBCopEAvMUAQ6HchMsPSCKjPmEy954HhdAFLWF0nwrwPQH0fsej9gUfvLxLStzwTA4MCECsyEa8HBvyBegKAOJCAXgBaMRD2
+  </data>
+ </layer>
+</map>

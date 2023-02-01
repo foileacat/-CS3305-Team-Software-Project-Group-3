@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="8">
+ <tileset firstgid="1" source="Sources/atlas_16x.tsx"/>
+ <tileset firstgid="769" source="Sources/TilesetHouse.tsx"/>
+ <tileset firstgid="1528" source="Sources/TopDownHouse_SmallItems.tsx"/>
+ <tileset firstgid="1592" source="Sources/TilesetElement.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzbxsjAsI1EHIwHk2rWqHmj5g1m80bxKB7FuDEAJca1hw==
+  </data>
+ </layer>
+ <layer id="2" name="Walls" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjZ2BgYKciNqcyBpqZAKQTGCgEQDMWsEPwqHmj5o2aN2reUDFvUJfPAEQIMXE=
+  </data>
+ </layer>
+ <layer id="3" name="Furniture" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYEAF/EAswEAcIEatPRA7YBE/xsjAcJwRwu5jwq8WBDJYGBgygfgJE0PDYyAGibGwMjA8Boo9AuJvQLO+Q83bx0SkB6gI6lioa94+KpunSUXzxBkYEtyBmFrmiQHNcqOieZQCJSqnn6ABSI/IIBaYLxKAOJ4Ruzwp/jUAmtELxH1A3A/EE7CYSap/9wLN2AfE+3G4b7CD4ZZeSAEA9m8WYw==
+  </data>
+ </layer>
+ <layer id="4" name="Furniture2" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAN3GMjTf0WJoaGzUBMip5WVtLsIASWUdm8UTAKSAU3GRgWrARiapl3C2jWKhLMi2PEL38baNZqIs2TYmNY0M0CphOItZ8QOEDAfSMB3CCxbB0MAACUvxCe
+  </data>
+ </layer>
+ <objectgroup id="5" name="Interactables">
+  <object id="1" x="108.494" y="34.0759" width="52.093" height="18.8005"/>
+  <object id="3" x="121.42" y="189.963" width="91.6524" height="53.6597"/>
+  <object id="5" x="32.9009" y="60.7099" width="21.1506" height="83.0355"/>
+  <object id="6" x="246.756" y="278.482"/>
+  <object id="7" x="277.307" y="41.5177"/>
+ </objectgroup>
+</map>
