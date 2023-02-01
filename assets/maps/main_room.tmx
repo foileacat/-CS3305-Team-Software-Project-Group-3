@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="4">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="19">
  <tileset firstgid="1" source="Sources/TilesetElement.tsx"/>
  <tileset firstgid="241" source="Sources/TilesetRelief.tsx"/>
  <tileset firstgid="481" source="Sources/TilesetInteriorFloor.tsx"/>
+ <tileset firstgid="855" source="Sources/TilesetHouse.tsx"/>
+ <tileset firstgid="1614" source="Sources/fire_animation.tmx"/>
+ <tileset firstgid="1620" source="Sources/Basic Furniture.tsx"/>
  <objectgroup id="3" name="interactables">
   <object id="1" gid="265" x="128.082" y="160.36" width="16" height="16">
    <properties>
@@ -10,15 +13,15 @@
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="2" gid="508" x="-7" y="429.75" width="6.5" height="53">
+  <object id="2" gid="508" x="24.2857" y="363.052" width="8.0782" height="32.0137" rotation="90.936">
    <properties>
     <property name="destination_room" type="int" value="0"/>
     <property name="on_interact" value="room_transition"/>
-    <property name="source_room" type="int" value="1"/>
-    <property name="transition_id" value="starting_to_main"/>
-    <property name="transition_type" value="left"/>
+    <property name="transition_direction" type="int" value="1"/>
+    <property name="transition_id" value="0"/>
    </properties>
   </object>
+  <object id="5" gid="889" x="191.333" y="192" width="16" height="16"/>
  </objectgroup>
  <layer id="2" name="floor" width="20" height="30">
   <data encoding="base64" compression="zlib">
@@ -27,7 +30,20 @@
  </layer>
  <layer id="1" name="walls" width="20" height="30">
   <data encoding="base64" compression="zlib">
-   eJxbysDAsJTKmFpg1LxR80bNGzVvJJoXP2reoDSPiUrmMTBQN+3Ryjxq+5fa5tEi/2LDZXgwPn0AFWA7nw==
+   eJxbysDAsJTKmFpg1LxR80bNGzVv1LxR88g1z5911LzBZB4T9YyjWfrDhsvwYHz6ANcNOmA=
   </data>
  </layer>
+ <layer id="4" name="solids" width="20" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztzMcNACAQA0F/rm9CJYRKCH3hEhDc0yPtdwEREZE3wYDIEsv2/yt8VNZYd/gNPiZbbDv8RG4dfj8H2w==
+  </data>
+ </layer>
+ <layer id="6" name="over layer" width="20" height="30">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMFiBHSsDgz0QOwCxIyvl5sUDzUgA4kQgTqKCeaNgFIwC7AAAZicCqQ==
+  </data>
+ </layer>
+ <objectgroup id="5" name="Animation">
+  <object id="18" gid="1624" x="224.667" y="375.333" width="16" height="16"/>
+ </objectgroup>
 </map>

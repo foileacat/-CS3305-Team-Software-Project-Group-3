@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="14" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="1">
+ <tileset firstgid="1" source="Sources/TilesetElement.tsx"/>
+ <tileset firstgid="241" source="Sources/TilesetRelief.tsx"/>
+ <tileset firstgid="481" source="Sources/TilesetHouse.tsx"/>
+ <tileset firstgid="1240" source="Sources/gui_free.tsx"/>
+ <layer id="1" name="floor" width="14" height="11" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJxjYBi6gImJgeEhIwQ/AuLHjMTpU2ZC6CVFnyqSfTBMDFCD2oeMiQEg80FuRcZDFQAAkRMLvw==
+  </data>
+ </layer>
+ <layer id="2" name="walls" width="14" height="11">
+  <data encoding="base64" compression="zlib">
+   eJxjYBi64AYLA8NNJHyLhTh9b4Dq3iLhd4NUHwMrAwMjEmZiJVLfIAQALD8Sjw==
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="14" height="11">
+  <data encoding="base64" compression="zlib">
+   eJxjYBj64B4LA8N9IH7AQpq+T0D1n4H4C530sbEyMLADMQcrafqGAwAA+jIImA==
+  </data>
+ </layer>
+</map>

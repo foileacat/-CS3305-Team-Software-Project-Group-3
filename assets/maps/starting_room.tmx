@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="14" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="47">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="14" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="71">
+ <editorsettings>
+  <export format="json"/>
+ </editorsettings>
  <tileset firstgid="1" source="Sources/TilesetInteriorFloor.tsx"/>
  <tileset firstgid="375" source="Sources/TilesetWallSimple.tsx"/>
  <tileset firstgid="485" source="Sources/TilesetInterior.tsx"/>
@@ -10,82 +13,179 @@
  <tileset firstgid="2071" source="Sources/Basic Furniture.tsx"/>
  <tileset firstgid="2125" source="Sources/TopDownHouse_FurnitureState1.tsx"/>
  <tileset firstgid="2359" source="Sources/atlas_16x.tsx"/>
+ <tileset firstgid="3127" source="Sources/fire_1.tsx"/>
+ <tileset firstgid="3133" name="animation_test" tilewidth="16" tileheight="16" tilecount="4" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <image width="16" height="16" source="../assetpacks/ninja/Items/Food/Beaf.png"/>
+   <animation>
+    <frame tileid="0" duration="500"/>
+    <frame tileid="1" duration="500"/>
+    <frame tileid="2" duration="500"/>
+    <frame tileid="3" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="1">
+   <image width="16" height="16" source="../assetpacks/ninja/Items/Food/Calamari.png"/>
+  </tile>
+  <tile id="2">
+   <image width="16" height="16" source="../assetpacks/ninja/Items/Food/FortuneCookie.png"/>
+  </tile>
+  <tile id="3">
+   <image width="16" height="16" source="../assetpacks/ninja/Items/Food/Fish.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="3137" source="Sources/fire_animation.tmx"/>
  <objectgroup id="6" name="interactables">
   <object id="31" gid="3060" x="79.5" y="49" width="17.25" height="28">
    <properties>
+    <property name="inspect_text" value="blahblah "/>
     <property name="item_id" value="clock_01"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
   <object id="33" gid="3060" x="30.75" y="48.75" width="35" height="32.75">
    <properties>
+    <property name="inspect_text" value="efjkfkjfskfrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr rrrrrrrrrrrrrrrr"/>
     <property name="item_id" value="bookshelf_01"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
   <object id="34" gid="3060" x="15.5511" y="69.6542" width="23.7857" height="17.3848" rotation="89.3857">
    <properties>
+    <property name="inspect_text" value="blahblah "/>
     <property name="item_id" value="bed_01"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
   <object id="35" gid="3060" x="126.767" y="47.4421" width="34.4466" height="16.4625" rotation="89.3857">
    <properties>
+    <property name="inspect_text" value="blahblah "/>
     <property name="item_id" value="couch_01"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
   <object id="36" gid="3060" x="126.517" y="111.442" width="16.9691" height="18.65" rotation="89.3857">
    <properties>
+    <property name="inspect_text" value="It's soup!"/>
     <property name="item_id" value="soup_01"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
   <object id="37" gid="3060" x="79.2667" y="126.942" width="15.9611" height="17.9108" rotation="89.3857">
    <properties>
+    <property name="inspect_text" value="blahblah "/>
     <property name="item_id" value="berries_01"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
   <object id="38" gid="3060" x="14.508" y="143.132" width="18.7592" height="34.6304" rotation="89.3857">
    <properties>
+    <property name="inspect_text" value="blahblah "/>
     <property name="item_id" value="choppingboard_01"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="45" gid="1953" x="158.811" y="168.354" width="6.34453" height="35.3092" rotation="89.3733">
+  <object id="45" gid="1953" x="160.691" y="156.356" width="6.77264" height="46.294" rotation="89.3733">
    <properties>
     <property name="destination_room" type="int" value="1"/>
     <property name="on_interact" value="room_transition"/>
-    <property name="source_room" type="int" value="0"/>
-    <property name="transition_id" value="starting_to_main"/>
-    <property name="transition_type" value="right"/>
+    <property name="transition_direction" type="int" value="0"/>
+    <property name="transition_id" value="0"/>
    </properties>
   </object>
  </objectgroup>
  <layer id="1" name="floor" width="14" height="11">
-  <data encoding="base64" compression="zlib">
-   eJxjYKA/WMiOHw8VfbjMGe768AFc+gAgkDpp
-  </data>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,1953,1953,1953,1953,1953,1953,1953,1953,0,0,0,0,0,
+0,1953,1953,1953,1953,1953,1953,1953,1953,0,0,0,0,0,
+0,1953,1953,1953,1953,1953,1953,1953,1953,0,0,0,0,0,
+0,1953,1953,1953,1953,1953,1953,1953,1953,1953,1953,1953,1953,0,
+0,1953,1953,1953,1953,1953,1953,1953,1953,1953,1953,1953,1953,0,
+0,1953,1953,1953,1953,1953,1953,1953,1953,1953,1953,1953,1953,0,
+0,1953,1953,1953,1953,1953,1953,1953,1953,1953,1953,1953,1953,0,
+0,1953,1953,1953,1953,1953,1953,1953,1953,1953,1953,1953,1953,0,
+0,0,0,0,0,0,0,0,1953,1953,1953,1953,1953,0
+</data>
  </layer>
  <layer id="5" name="walls" width="14" height="11">
-  <data encoding="base64" compression="zlib">
-   eJzbzs7gsIMA3s7OcIABDSxmZ2BYQgAD1TRg00cIkKsPZCe6u4nRt4MdFS8mUh8WN9JUH3o8EKtvMRX1bWfHDC90vB0t/kB8ACH0Nj0=
-  </data>
+  <data encoding="csv">
+1073743799,2684356521,2684356521,2684356521,2684356521,2684356521,2684356521,2684356521,2684356521,3221227447,0,0,0,0,
+1955,2684356521,2684356521,2684356521,2684356521,2684356521,2684356521,2684356521,2684356521,2147485603,0,0,0,0,
+1955,0,0,0,0,0,0,0,0,2147485603,0,0,0,0,
+1955,0,0,0,0,0,0,0,0,2684356521,2684356521,2684356521,2684356521,3221227432,
+1955,0,0,0,0,0,0,0,0,2684356521,2684356521,2684356521,2684356521,3221227432,
+1955,0,0,0,0,0,0,0,0,0,0,0,0,3221227432,
+1955,0,0,0,0,0,0,0,0,0,0,0,0,3221227432,
+1955,0,0,0,0,0,0,0,0,3221227452,0,0,0,3221227432,
+1955,0,0,0,0,0,0,0,0,3221227432,0,0,0,3221227432,
+1955,0,0,0,0,0,0,0,0,3221227432,0,0,0,3221227432,
+2684356521,2684356521,2684356521,2684356521,2684356521,2684356521,2684356521,2684356521,2684356521,2684356521,2684356521,2720,2684356521,2684356521
+</data>
  </layer>
  <layer id="3" name="wall dec" width="14" height="11">
-  <data encoding="base64" compression="zlib">
-   eJxjYMAErpwMDG6cWCTQgCQHgi0BZJcC9ZQRoY+W4BHQ/sdA/IREdwhxMTAIA7EIF23cNdIBAOGbBPc=
-  </data>
+  <data encoding="csv">
+0,0,0,0,0,2373,2374,0,0,0,0,0,0,0,
+0,2073,0,0,2072,2421,2422,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,2530,2531,2532,0,
+0,0,0,0,0,0,0,0,0,0,2578,2579,2580,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
  </layer>
  <layer id="2" name="furniture" width="14" height="11">
-  <data encoding="base64" compression="zlib">
-   eJxjYKAM7GBmYNgJxDu4GRiOAPEGZoQYLvAAKHcKiE8D8Qugni9AfAAqdhKPPnyghRu33GM0uWlcCPYWPPqEeRDsNKCeCVyYapyAYs5A7IJFjppgJitx6s4B1b2Hqg0F0mF49E0Hys0A4rdA/A5JXRmQXU6kfcQCABCxGBs=
-  </data>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,952,953,3000,3012,944,952,953,0,0,0,0,0,
+0,992,970,971,3048,3060,960,970,969,0,0,0,0,0,
+0,0,0,0,0,0,0,0,2948,0,0,0,0,0,
+0,3043,0,0,0,2710,0,0,2996,0,0,0,0,0,
+0,3091,0,0,2662,2704,0,0,0,0,2626,2627,2628,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,1433,0,0,0,0,0,
+0,0,0,0,1486,1519,0,1365,1366,0,0,0,0,0,
+0,1431,1432,1517,1518,0,0,1398,1399,0,3094,0,2856,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
  </layer>
  <layer id="4" name="furniture 2" width="14" height="11">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFuAAXFwMDNxfp+qyAeqzJ0EctIMBGnj5DMvURAwDqKAEA
-  </data>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,2570,2571,0,0,0,0,0,0,0,0,0,0,0,
+0,2618,2619,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,1552,0,0,0,0,0,0,0,0,
+0,0,0,0,0,1585,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
  </layer>
+ <layer id="13" name="over layer" width="14" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,1513,0,0,0,0,0,
+0,0,0,0,0,0,0,0,1513,0,0,0,0,0,
+0,0,2809,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,3046,0,2808,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="12" name="Animation">
+  <object id="68" gid="3137" x="175.667" y="88" width="16" height="32"/>
+ </objectgroup>
 </map>

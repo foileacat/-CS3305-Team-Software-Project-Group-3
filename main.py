@@ -1,5 +1,6 @@
 import arcade
 import arcade.gui
+from arcade.experimental.lights import Light, LightLayer
 import os
 import character_lists
 
@@ -12,13 +13,11 @@ ACCESSORIES_NATIVE_SIZE = 32
 ACCESSORIES_OFFSET = 32*8
 SPRITE_SIZE = int(SPRITE_NATIVE_SIZE * SPRITE_SCALING)
 VIEWPORT_MARGIN = 200
-CAMERA_SPEED = 0.1
-DEFAULT_SCREEN_WIDTH = 1200
-DEFAULT_SCREEN_HEIGHT = 800
+CAMERA_SPEED = 0.2
 SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 800
 SCREEN_TITLE = "Fake Zelda"
-
+AMBIENT_COLOR = (200,200,200)
 # setting arrow key controls
 UP_KEY = arcade.key.W
 DOWN_KEY = arcade.key.S
@@ -30,10 +29,11 @@ MOVEMENT_SPEED = 5
 UPDATES_PER_FRAME = 5
 
 # Constants used to track if the player is facing left or right
-RIGHT_FACING = 2
-LEFT_FACING = 3
 UP_FACING = 0
 DOWN_FACING = 1
+RIGHT_FACING = 2
+LEFT_FACING = 3
+
 
 
 class Room:
@@ -44,6 +44,7 @@ class Room:
 
     def __init__(self):
         # You may want many lists. Lists for coins, monsters, etc.
+        self.multiple_entries = False
         self.wall_list = None
         self.width = SPRITE_SIZE * 10
         self.height = SPRITE_SIZE * 10
@@ -125,7 +126,7 @@ class PlayerCharacter(arcade.Sprite):
         self.cur_texture = 0
         self.scale = CHARACTER_SCALING
         # creates hitbox
-        self.points = [[8, -16], [8, -8], [-8, -8], [-8, -16]]
+        self.points = [[7, -16], [7, -8], [-7, -8], [-7, -16]]
 
         # Select the desired asset file from our character_lists file
         skintone_file = character_lists.skintones[2]
@@ -174,9 +175,13 @@ class PlayerCharacter(arcade.Sprite):
         self.texture = self.walk_textures[frame][direction]
 
 
-def setup_room_1():
+def setup_room_1(player_sprite, player_accessory_list):
+
     room = Room()
+    room.starting_x = SPRITE_SIZE * 11.5
+    room.starting_y = SPRITE_SIZE * 2.5
     room.map_file = "assets\maps\starting_room.tmx"
+
     room.wall_list = arcade.SpriteList()
     # all layers that are spatially hashed are "solid" - aka we can give them collision
     layer_options = {
@@ -189,16 +194,27 @@ def setup_room_1():
         "furniture 2": {
             "use_spatial_hash": True,
         },
+        "over layer": {
+            "use_spatial_hash": True,
+        }
+        
+        
+        
     }
 
     # create tilemap, and then a scene from that tilemap. the scene is what we use.
 
     room.tile_map = arcade.load_tilemap(
         room.map_file, SPRITE_SCALING, layer_options=layer_options)
+    
     room.scene = arcade.Scene.from_tilemap(room.tile_map)
-
+    room.scene.add_sprite("Player", player_sprite)
+    room.scene.add_sprite_list("Player Stuff", sprite_list = player_accessory_list)
+    room.scene.move_sprite_list_after("over layer", "Player Stuff")
     # the rooms wall list is used for player collision.
     room.wall_list = []
+    
+    
     room.wall_list.append(room.scene["walls"])
     room.wall_list.append(room.scene["furniture"])
     room.wall_list.append(room.scene["furniture 2"])
@@ -206,22 +222,37 @@ def setup_room_1():
     return room
 
 
-def setup_room_2():
+def setup_room_2(player_sprite, player_accessory_list):
     room = Room()
+    room.starting_x = SPRITE_SIZE * 2.5
+    room.starting_y = SPRITE_SIZE * 7
     room.map_file = "assets\maps\main_room.tmx"
     room.wall_list = arcade.SpriteList()
     layer_options = {
         "walls": {
             "use_spatial_hash": True,
         },
+        "solids": {
+            "use_spatial_hash": True,
+        },
     }
     room.tile_map = arcade.load_tilemap(
         room.map_file, SPRITE_SCALING, layer_options=layer_options)
     room.scene = arcade.Scene.from_tilemap(room.tile_map)
+    room.scene.add_sprite("Player", player_sprite)
+    room.scene.add_sprite_list("Player Stuff", sprite_list = player_accessory_list)
+    room.scene.move_sprite_list_after("over layer", "Player Stuff")
     room.wall_list = []
     room.wall_list.append(room.scene["walls"])
-
+    room.wall_list.append(room.scene["solids"])
+    room.scene.update_animation
     return room
+
+def setup_room_3(player_sprite, player_accessory_list):
+    
+    
+    return
+    
 
 
 class MyGame(arcade.Window):
@@ -242,20 +273,50 @@ class MyGame(arcade.Window):
         self.player_sprite = None
         self.physics_engine = None
         self.camera_sprites = arcade.Camera(
-            DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT)
+            SCREEN_WIDTH, SCREEN_HEIGHT)
         self.camera_gui = arcade.Camera(
-            DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT)
+            SCREEN_WIDTH, SCREEN_HEIGHT)
 
     def setup(self):
         """ Set up the game and initialize variables. """
 
-        arcade.load_font(FONT_PATH) #imports game font. name of font is "Ninja Adventure"
+        arcade.load_font(FONT_PATH) #imports game font. name of font is "NinjaAdventure"
 
         self.player_sprite = PlayerCharacter()
         self.player_sprite.set_hit_box(self.player_sprite.points)
         self.player_accessory_list = self.player_sprite.accessory_list
+        
+        self.setup_inspect_gui()
+        self.setup_character_creator_gui()
+        self.rooms = []
+        # Create the rooms
+        room = setup_room_1(self.player_sprite,self.player_accessory_list)
+        self.rooms.append(room)
+
+        room = setup_room_2(self.player_sprite,self.player_accessory_list)
+        self.rooms.append(room)
+        self.current_room = 0
+        self.scene = self.rooms[self.current_room].scene
+       
+        #used for the scrolling camera
+        self.view_left = 0
+        self.view_bottom = 0
+        # #create physics engine - adds collision
+        self.physics_engine = arcade.PhysicsEngineSimple(
+            self.player_sprite, walls=self.rooms[self.current_room].wall_list)
+        
+        """Preliminary Lighting Code - For later"""
+        # self.light_layer = LightLayer(SCREEN_WIDTH, SCREEN_HEIGHT)
+        # light = Light(736, 400, 100, (120,30,0), "soft")
+        # light2 = Light(95*4, 650, 400, (80,80,100), "soft")
+        # self.light_layer.add(light)
+        # self.light_layer.add(light2)
+
+    def setup_inspect_gui(self):
+
         self.gui_inspect_manager = arcade.gui.UIManager()
         self.gui_inspect_manager.enable()
+
         #setup GUI for inspecting objects
 
         inspect_background_UI_sprite = arcade.gui.UISpriteWidget(x=0, y=0, width=500, height=100, sprite=arcade.Sprite(
@@ -265,7 +326,7 @@ class MyGame(arcade.Window):
             child=inspect_background_UI_sprite, align_x=-50, align_y=-250)
 
         self.inspect_message_UI = arcade.gui.UITextArea(
-            x=350, y=120, text_color=(0, 0, 0), text="")
+            x=350, y=130, text_color=(0, 0, 0), text="", font_name="NinjaAdventure")
 
         self.gui_inspect_manager.add(self.inspect_background_UI_anchor)
         self.gui_inspect_manager.add(self.inspect_message_UI)
@@ -276,38 +337,74 @@ class MyGame(arcade.Window):
         self.inspect_item_symbol_UI = arcade.Sprite(
             filename="assets/assetpacks/ninja/HUD/Arrow.png", scale=3, center_x=200, center_y=200)
 
-        # Our list of roomssdd
-        self.rooms = []
-        # Create the rooms. Extend the pattern for each room.
-        room = setup_room_1()
-        self.rooms.append(room)
+    def setup_character_creator_gui(self):
+        """
+        Future Code for the possible character Creator
+        """
+        self.gui_character_creator_manager = arcade.gui.UIManager()
+        self.gui_character_creator_manager.enable()
+        self.v_box = arcade.gui.UIBoxLayout()
 
-        room = setup_room_2()
-        self.rooms.append(room)
+        # Create a text label
+        ui_text_label = arcade.gui.UITextArea(text="This is a Text Widget",
+                                              width=450,
+                                              height=40,
+                                              font_size=24,
+                                              font_name="Kenney Future")
+        self.v_box.add(ui_text_label.with_space_around(bottom=0))
 
-        self.current_room = 0
-        #used for the scrolling camera
-        self.view_left = 0
-        self.view_bottom = 0
-        #create physics engine - adds collision
-        self.physics_engine = arcade.PhysicsEngineSimple(
-            self.player_sprite, walls=self.rooms[self.current_room].wall_list)
+        text = "The real danger is not that computers will begin to think like people, " \
+               "but that people will begin " \
+               "to think like computers. - Sydney Harris (Journalist)"
+        ui_text_label = arcade.gui.UITextArea(text=text,
+                                              width=450,
+                                              height=60,
+                                              font_size=12,
+                                              font_name="Arial")
+        self.v_box.add(ui_text_label.with_space_around(bottom=0))
+
+        # Create a UIFlatButton
+        ui_flatbutton = arcade.gui.UIFlatButton(text="Flat Button", width=200)
+        self.v_box.add(ui_flatbutton.with_space_around(bottom=20))
+
+        # Handle Clicks
+        @ui_flatbutton.event("on_click")
+        def on_click_flatbutton(event):
+            print("UIFlatButton pressed", event)
+
+        # Create a UITextureButton
+        texture = arcade.load_texture(":resources:onscreen_controls/flat_dark/play.png")
+        ui_texture_button = arcade.gui.UITextureButton(texture=texture)
+
+        # Handle Clicks
+        @ui_texture_button.event("on_click")
+        def on_click_texture_button(event):
+            print("UITextureButton pressed", event)
+
+        self.v_box.add(ui_texture_button.with_space_around(bottom=20))
+
+        # Create a widget to hold the v_box widget, that will center the buttons
+        self.gui_character_creator_manager.add(
+            arcade.gui.UIAnchorWidget(
+                anchor_x="center_x",
+                anchor_y="center_y",
+                child=self.v_box)
+        )
 
     def on_draw(self):
-
         # This command has to happen before we start drawing
         self.clear()
         #this camera is used for everything except the gui
         self.camera_sprites.use()
-
-        self.rooms[self.current_room].scene.draw(pixelated=True)
-        self.player_sprite.draw(pixelated=True)
-        self.player_accessory_list.draw(pixelated=True)
-
+        """More lighting Code"""
+        #with self.light_layer:
+        self.scene.draw(pixelated=True)
+        #self.light_layer.draw(ambient_color=AMBIENT_COLOR)
         #returns interactable objects the player is touching - if we have any, the item has an arrow/text hint
         interactableObjects = arcade.check_for_collision_with_list(
             self.player_sprite, self.rooms[self.current_room].scene["interactables"])
-
+        
+       
         #renders inspecting popup/interactable hint if applicable
         if self.player_sprite.currently_inspecting:
             self.camera_gui.use()
@@ -326,18 +423,21 @@ class MyGame(arcade.Window):
                                                         center_x=interactable.center_x, center_y=interactable.center_y+(interactable.height//2)+20)
             self.inspect_item_symbol_UI.draw(pixelated=True)
             
-
+        # self.camera_gui.use()
+        # self.gui_character_creator_manager.draw()
+        
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed. """
-        if key == UP_KEY:
-            self.player_sprite.change_y = MOVEMENT_SPEED
-        elif key == DOWN_KEY:
-            self.player_sprite.change_y = -MOVEMENT_SPEED
-        elif key == LEFT_KEY:
-            self.player_sprite.change_x = -MOVEMENT_SPEED
-        elif key == RIGHT_KEY:
-            self.player_sprite.change_x = MOVEMENT_SPEED
-        elif key == INTERACT_KEY:
+        if self.player_sprite.currently_inspecting == False:
+            if key == UP_KEY:
+                self.player_sprite.change_y = MOVEMENT_SPEED
+            elif key == DOWN_KEY:
+                self.player_sprite.change_y = -MOVEMENT_SPEED
+            elif key == LEFT_KEY:
+                self.player_sprite.change_x = -MOVEMENT_SPEED
+            elif key == RIGHT_KEY:
+                self.player_sprite.change_x = MOVEMENT_SPEED
+        if key == INTERACT_KEY:
             self.handle_interact()
 
     def on_key_release(self, key, modifiers):
@@ -366,16 +466,13 @@ class MyGame(arcade.Window):
 
         """
         self.current_room = int(interactable.properties["destination_room"])
+        self.scene = self.rooms[self.current_room].scene
         self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite,
                                                             self.rooms[self.current_room].wall_list)
-        if interactable.properties["transition_type"] == "right":
-            self.player_sprite.center_x = 0
-        elif interactable.properties["transition_type"] == "left":
-            self.player_sprite.center_x = self.rooms[self.current_room].width
-        elif interactable.properties["transition_type"] == "up":
-            self.player_sprite.center_y = 0
-        elif interactable.properties["transition_type"] == "down":
-            self.player_sprite.center_y = self.rooms[self.current_room].height
+        self.player_sprite.center_x = self.rooms[self.current_room].starting_x
+        self.player_sprite.center_y = self.rooms[self.current_room].starting_y
+        self.player_sprite.character_face_direction = int(interactable.properties["transition_direction"])
+        
 
     def show_message(self, interactable):
         if self.player_sprite.currently_inspecting:
@@ -383,15 +480,15 @@ class MyGame(arcade.Window):
             return
         else:
             self.player_sprite.currently_inspecting = True
-            self.inspect_text = interactable.properties["item_id"]
+            self.inspect_text = interactable.properties["inspect_text"]
 
     def on_update(self, delta_time):
         """ Movement and game logic. Runs constantly when anything changes."""
-
+        
         self.physics_engine.update()
-        self.player_sprite.update_animation()
+        #self.player_sprite.update_animation()
         self.player_accessory_list.update_animation(self.player_sprite)
-
+        self.scene.update_animation(delta_time, ["Animation", "Player"])
         """
         Used for room changes ---- NEEDS REPLACING WITH INTERACTABLE OBJECTS (in progress)
         Only really works for two rooms
