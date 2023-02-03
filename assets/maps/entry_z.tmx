@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="28" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="3">
+ <tileset firstgid="1" source="Sources/Grass tiles v.2.tsx"/>
+ <tileset firstgid="78" source="Sources/Tall Grass hill tiles v.2.tsx"/>
+ <tileset firstgid="126" source="Sources/TilesetNature.tsx"/>
+ <tileset firstgid="462" source="Sources/TilesetHouse.tsx"/>
+ <tileset firstgid="1221" source="Sources/Wooden House.tsx"/>
+ <tileset firstgid="1557" source="../assetpacks/ninja/Backgrounds/Tilesets/TilesetNature.tsx"/>
+ <layer id="6" name="floor" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJydlUsOwjAMRHtF2MAGNrCBDSh8Uj69C0dlKsWSNXKcuJFGlRLHz3HtZBj6RoJu0B16QE8oF0VGavjKzvpUxPaWD4lrdPx5ccycb/lq9kQMPV/jtTiaJfoYczzPOfVyK/vfxUfL/qVsNS+VM4qYXfOn7SM82SfroyErBtnTqjXmWXGwDyuG1vm4djxerU50HnpyzvUzj8sw/E7QAdpBG2gFcazMsvJtMTmfV/g+Q0doD22hNWSxErH0P+/ltXLJNcIs2buUJ3tqjAgrwrN6KQV51v3CvOzkJHo2q9+tfsgUo64LXTden08BHr8xwtD/cOn9aeVI8+S8bNfTexEev121983rvSivtsaq8azxBwt19yU=
+  </data>
+ </layer>
+ <layer id="1" name="walls" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJyrYGBgqKAhrgTiKiCuhvAXgDADnQDIrko621dFZ/uq6WxfDZ3tq6WifUVAXIxEl2Cxj1p2EQNG7Ru1j1T7RstP6to3nMvPSiqXn4RAFSR9otT5QP8y1NIIg+IOAFTgPzE=
+  </data>
+ </layer>
+ <objectgroup id="4" name="interactables">
+  <object id="1" name="mystuff" x="57.8313" y="15.6626" width="80.7229" height="69.2771">
+   <properties>
+    <property name="mypropname" value="yesyes"/>
+   </properties>
+  </object>
+  <object id="2" name="mything" gid="1738" x="257.662" y="22.4579" width="16" height="16">
+   <properties>
+    <property name="pleasework" value="please"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer id="2" name="furniture" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzd1E0OgjAURtFX/BmD4lxF2JeLNTFxBegiQHEEJHgdgUQaDDQIX3IGtOWVtqGFEhFLRMHCDHMs0JSQvitumjERdWPc8UCCJ7a8s8MeHg7wEWhqpfRlyDVjbPocrLCGi01l/GVZ6po+a/1DTgOu46g+vXOufU/9ues81TZT+VZ7jPM17f1U1mcqQ/5TY4rJffr13pjKfd42fe29iTNsexYvZwQhqw==
+  </data>
+ </layer>
+ <layer id="3" name="furniture 2" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztzrcRgDAAQ1GZc0mYhDAJYRbYmjADv6Shw6bRu/u1JNmbNUpb/PuFfWUP0kEnXSH9XllIFdXUFOn3WjY66mnIsDeyMdFMS4Y9M7OnG3bZBuw=
+  </data>
+ </layer>
+</map>

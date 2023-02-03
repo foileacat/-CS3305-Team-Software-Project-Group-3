@@ -176,7 +176,7 @@ class PlayerCharacter(arcade.Sprite):
 
 def setup_room_1():
     room = Room()
-    room.map_file = "assets\maps\starting_room.tmx"
+    room.map_file = "assets/maps/entry_z.tmx"
     room.wall_list = arcade.SpriteList()
     # all layers that are spatially hashed are "solid" - aka we can give them collision
     layer_options = {
@@ -208,7 +208,7 @@ def setup_room_1():
 
 def setup_room_2():
     room = Room()
-    room.map_file = "assets\maps\main_room.tmx"
+    room.map_file = "assets/maps/main_room.tmx"
     room.wall_list = arcade.SpriteList()
     layer_options = {
         "walls": {

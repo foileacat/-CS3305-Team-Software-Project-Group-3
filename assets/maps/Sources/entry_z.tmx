@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="28" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="2">
+ <tileset firstgid="1" source="../../assetpacks/sprout/Tilesets/ground tiles/new tiles/Grass tiles v.2.tsx"/>
+ <tileset firstgid="78" source="../../assetpacks/sprout/Tilesets/ground tiles/new tiles/Tall Grass hill tiles v.2.tsx"/>
+ <tileset firstgid="126" source="../../assetpacks/ninja/Backgrounds/Tilesets/TilesetNature.tsx"/>
+ <tileset firstgid="462" source="../../assetpacks/ninja/Backgrounds/Tilesets/TilesetHouse.tsx"/>
+ <tileset firstgid="1221" source="Wooden House.tsx"/>
+ <tileset firstgid="1557" source="../../../../../TilesetNature.tsx"/>
+ <layer id="1" name="walls" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJydlblOBDEQRP1ZHrwTLYdTSNgEEkggAXHtArv/wqdSSG6pVfQxEDx5xmNXdbePqaWUNTgGJ6ASEzgCDazArJ7rmKsRnVNwNvq0loypxvzIc0Ue1fHrSmtSz1Z868CP9TMvbi3NLEeOzfJrtD5e3Tt953lezt63KfF7As/gBbyCN7A18Hyt/vkffgciy8laI8tvB97BB/gE+6HP73ovL/GM1m+J/5I66veHUr7uwA24ApfgHHC/5yeafM6s8/rTPkLrHtyCa7ABF4D7M7951CLaK3rPSz2bqqeusee3pfizvRndQ/pMe36HMVbuU8+vjz5vvzSV/xT4SVyZl/Rnd8zs0Ad6XObVlI+0jfy60tM6HJcXG+fMd7yXZy+/Y7fGMJyz9X9sAZxn5GXl6v1Dojy1xl/XPtLN6it33pJxwje7BapY
+  </data>
+ </layer>
+ <objectgroup id="4" name="interactables">
+  <object id="1" x="50.6024" y="14.4578" width="80.7229" height="69.2771"/>
+ </objectgroup>
+ <layer id="2" name="furniture" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBjZIJuVgSGHFVWsmhW72jQc4ujAgJGBwZCRMnfR0ryhAnDFw0gEIzUN0BPMBqa3OVjSHC7x4QhGSjqDleXoZT82MFzChFrlKT5zsNWn+ACp6tHjAgAe/Qq/
+  </data>
+ </layer>
+ <layer id="3" name="furniture 2" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt0rkNwkAQheFZuwGOhNvgDsBUwlEVUBo+GgA6MJAA5vyRyHYDArMJ+6QvmVnpSR6LlJuTEjnjggJX3HDHQ+nvN8y22Bl236ThiTTRQhsddNFD4Onvn+8e5sqw+0X69AwQlti38EWWWPn6bs0sRmLY/Wtivn2CFJmFu+d07HHA0UJfhVtXUUPdwt2HdIwQYWyhb0LHFDPM3X/t4uLyyQsPyxqJ
+  </data>
+ </layer>
+</map>
