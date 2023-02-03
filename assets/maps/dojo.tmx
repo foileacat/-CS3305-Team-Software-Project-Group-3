@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="28" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="58">
+ <tileset firstgid="1" source="Sources/TilesetHouse.tsx"/>
+ <tileset firstgid="760" source="../../../../Elements.tsx"/>
+ <tileset firstgid="764" source="../assetpacks/ninja/Backgrounds/TilesetInteriorFloor.tsx"/>
+ <tileset firstgid="1138" source="../../../../Hills.tsx"/>
+ <tileset firstgid="1147" source="../assetpacks/ninja/Backgrounds/Elements.tsx"/>
+ <tileset firstgid="1174" source="Sources/Basic Furniture.tsx"/>
+ <layer id="2" name="floor" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt07sNwlAMhWGTbACExwZAQtiAN9MBQyQZIrAbAf6CK1m3yG1wAUrxVcdy4SNLLNJDhBiPSKTBEy/Il/MRxphgij4GGCIxyDMskWOFGeZYIDXI9zjgiBPW2GCLnUFu3Zef63ufccE10Ieea+tLz7lc37tAiSrQR/HJq0Bfep/L9b1r3HAP9KHn2vrScy637qv7v//9P4u+/Ny6Lz+37svPu//77f97A7b2nX0=
+  </data>
+ </layer>
+ <layer id="1" name="walls" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJwzYmJgMIJiMSAWB+IoII4GYmMgNgHiMCAOB2IYiACyI5H4MHmYeph+mHlGSFickYFuAGTXqH2j9g1m++gJ6G3fQIDhHKYjIT8Md/s+IGF08BEo9okE9+BSj2yHIBMCfwXyvwGxJZBtBcRCQCwMxKZAbIZUn5sD2RZIfJg8TD1MP8w8ZDuQ63p6tCcAWh0esA==
+  </data>
+ </layer>
+ <objectgroup id="3" name="interactables">
+  <object id="53" gid="930" x="63.1111" y="111.86" width="16" height="16"/>
+  <object id="55" gid="930" x="224.047" y="111.86" width="16" height="16"/>
+  <object id="56" gid="930" x="384.047" y="112.327" width="16" height="16"/>
+ </objectgroup>
+ <layer id="4" name="furniture" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt1ssJgEAMRdGQ7rUQFfxXoYL/irwFiA5DFiK5cBYDb5nFiISXIH14f70MOQqUKlKhRoMWHXqN2901YMSEmf2CFRt2HDg1buf9r7d7st6F3pP1zvM8z+I/cQGtzDMp
+  </data>
+ </layer>
+ <layer id="5" name="furniture 2" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4B6wJSJgcGMifpqcYEwoP5wIs0gRe0oGAWjYBSMgsENALSLAkE=
+  </data>
+ </layer>
+</map>
