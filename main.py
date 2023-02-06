@@ -222,7 +222,7 @@ def setup_starting_room(player_sprite, player_accessory_list):
 def setup_main_room(player_sprite, player_accessory_list):
     room = Room()
     room.multiple_entrances = True
-    room.entrances = {"starting_room" : [SPRITE_SIZE * 11.5,SPRITE_SIZE * 2.5], "cave_outside" : [200,600]}
+    room.entrances = {"starting_room" : [SPRITE_SIZE * 11.5,SPRITE_SIZE * 2.5], "cave_outside" : [200,600], "dojo_outside": [100,100]}
     room.starting_x = SPRITE_SIZE * 2.5
     room.starting_y = SPRITE_SIZE * 7
     room.map_file = "assets\maps\main_room.tmx"
@@ -296,6 +296,103 @@ def setup_caveoutside(player_sprite, player_accessory_list):
 
     return room
 
+def setup_dojooutside(player_sprite, player_accessory_list):
+
+    room = Room()
+    room.multiple_entrances = True
+    room.entrances = {"main_room" : [10*SPRITE_SIZE,20*SPRITE_SIZE], "dojo" : [4*SPRITE_SIZE,3*SPRITE_SIZE]}
+    room.starting_x = SPRITE_SIZE * 11.5
+    room.starting_y = SPRITE_SIZE * 2.5
+    room.map_file = "assets\maps\outside_dojo.tmx"
+
+    room.wall_list = arcade.SpriteList()
+    # all layers that are spatially hashed are "solid" - aka we can give them collision
+    layer_options = {
+        "walls": {
+            "use_spatial_hash": True,
+        },
+        "furniture": {
+            "use_spatial_hash": True,
+        },
+        "furniture 2": {
+            "use_spatial_hash": True,
+        },
+        "over layer": {
+            "use_spatial_hash": True,
+        }
+        
+        
+        
+    }
+
+    # create tilemap, and then a scene from that tilemap. the scene is what we use.
+
+    room.tile_map = arcade.load_tilemap(
+        room.map_file, SPRITE_SCALING, layer_options=layer_options)
+    
+    room.scene = arcade.Scene.from_tilemap(room.tile_map)
+
+    room.scene.add_sprite("Player", player_sprite)
+    room.scene.add_sprite_list("Player Stuff", sprite_list = player_accessory_list)
+
+    room.scene.move_sprite_list_after("over layer", "Player Stuff")
+    # the rooms wall list is used for player collision.
+
+    room.wall_list = []
+    room.wall_list.append(room.scene["walls"])
+    room.wall_list.append(room.scene["furniture"])
+    room.wall_list.append(room.scene["furniture 2"])
+
+    return room
+
+def setup_dojo(player_sprite, player_accessory_list):
+
+    room = Room()
+    room.multiple_entrances = True
+    room.entrances = {"dojo_outside" : [10*SPRITE_SIZE,5*SPRITE_SIZE]}
+    room.starting_x = SPRITE_SIZE * 11.5
+    room.starting_y = SPRITE_SIZE * 2.5
+    room.map_file = "assets\maps\dojo.tmx"
+
+    room.wall_list = arcade.SpriteList()
+    # all layers that are spatially hashed are "solid" - aka we can give them collision
+    layer_options = {
+        "walls": {
+            "use_spatial_hash": True,
+        },
+        "furniture": {
+            "use_spatial_hash": True,
+        },
+        "furniture 2": {
+            "use_spatial_hash": True,
+        },
+        "over layer": {
+            "use_spatial_hash": True,
+        }
+        
+        
+        
+    }
+
+    # create tilemap, and then a scene from that tilemap. the scene is what we use.
+
+    room.tile_map = arcade.load_tilemap(
+        room.map_file, SPRITE_SCALING, layer_options=layer_options)
+    
+    room.scene = arcade.Scene.from_tilemap(room.tile_map)
+
+    room.scene.add_sprite("Player", player_sprite)
+    room.scene.add_sprite_list("Player Stuff", sprite_list = player_accessory_list)
+
+    room.scene.move_sprite_list_after("over layer", "Player Stuff")
+    # the rooms wall list is used for player collision.
+
+    room.wall_list = []
+    room.wall_list.append(room.scene["walls"])
+    room.wall_list.append(room.scene["furniture"])
+    room.wall_list.append(room.scene["furniture 2"])
+
+    return room
 def setup_caveinside(player_sprite, player_accessory_list):
 
     room = Room()
@@ -397,6 +494,12 @@ class MyGame(arcade.Window):
         self.rooms.append(room)
 
         room = setup_caveinside(self.player_sprite,self.player_accessory_list)
+        self.rooms.append(room)
+
+        room = setup_dojooutside(self.player_sprite,self.player_accessory_list)
+        self.rooms.append(room)
+
+        room = setup_dojo(self.player_sprite,self.player_accessory_list)
         self.rooms.append(room)
 
         self.current_room_index = 0

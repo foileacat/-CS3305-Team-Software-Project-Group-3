@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="28" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="62">
+ <tileset firstgid="1" source="Sources/TilesetHouse.tsx"/>
+ <tileset firstgid="760" source="Sources/Elements.tsx"/>
+ <tileset firstgid="787" source="../assetpacks/ninja/Backgrounds/TilesetInteriorFloor.tsx"/>
+ <tileset firstgid="1161" source="Sources/Hills.tsx"/>
+ <tileset firstgid="1197" source="../assetpacks/ninja/Backgrounds/Elements.tsx"/>
+ <tileset firstgid="1224" source="Sources/Basic Furniture.tsx"/>
+ <tileset firstgid="1278" source="Sources/TilesetNature.tsx"/>
+ <tileset firstgid="1614" source="Sources/Frog SpriteSheet.tsx"/>
+ <tileset firstgid="1616" source="Sources/Wooden House.tsx"/>
+ <tileset firstgid="1838" source="Sources/TilesetRelief.tsx"/>
+ <objectgroup id="6" name="Animation">
+  <object id="58" gid="1482" x="384.047" y="320.515" width="16" height="16"/>
+ </objectgroup>
+ <layer id="2" name="floor" width="28" height="20" locked="1">
+  <data encoding="base64" compression="zlib">
+   eJzt00sSwVAUhOFUWUIQ7MAj2IG3HSDC6rAILAJL8k9uVdcd3DtxBlEZfKPu0ek6WSNJOuiihxRNtNBG9uM8xxgTTNHHAEOMDPIV1thgixnmWGBpkB9R4oQzdtjjgMIgt97Lz/XeF1xxi+yhvdBe2nO53vuOB56RPbQX2kt7Ltd7v/DGJ7KH9kJ7ac/l1nvV//e//2exl59b7+Xn1nv5ef1/1f6/L44wjIU=
+  </data>
+ </layer>
+ <layer id="1" name="walls" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJwzYmJgMIJiMSAWB+IoII4GYmMgNgHiMCAOB2IYiACyI5H4MHmYeph+mHlGSFickYFuAGTXqH2j9g1m++gJ6G3fQIDhHKYjIT8Md/s+IGF08BEo9okE9+BSj2yHIBMCfwXyvwGxJZBtBcRCQCwMxKZAbIZUn5sD2RZIfJg8TD1MP8w8ZDuQ63p6tCcAWh0esA==
+  </data>
+ </layer>
+ <layer id="5" name="furniture" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMJiAHxsDgz/bQLtiYMBI9vsoIA0AAIqhAVM=
+  </data>
+ </layer>
+ <layer id="4" name="furniture 2" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt1tsNQDAUgOGmOzEKMzEIEvcpkLhP5B+AqqYSxJ98D9KTPjTngRD6BQgV308vQowEqRQiQ44CJSrU0mxurwYtOvTMDxgxYcaCVZrN/X2vs32yPae7T7bn9nLYb1dePzPN4z7/4E7V2Ru74/1Ufe39/u7Jxv/EBlVMNok=
+  </data>
+ </layer>
+ <objectgroup id="3" name="interactables">
+  <object id="53" gid="953" x="58.9006" y="117.942" width="26.2924" height="28.6316"/>
+  <object id="55" gid="953" x="217.965" y="115.135" width="27.6959" height="23.4854"/>
+  <object id="56" gid="953" x="377.497" y="117.942" width="32.3743" height="26.2924"/>
+  <object id="61" gid="1963" x="172" y="281.333" width="100" height="16">
+   <properties>
+    <property name="destination_room" type="int" value="4"/>
+    <property name="on_interact" value="room_transition"/>
+    <property name="transition_direction" type="int" value="1"/>
+    <property name="transition_id" value="dojo_outside"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer id="7" name="over layer" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSgYWgAACMAAAQ==
+  </data>
+ </layer>
+</map>

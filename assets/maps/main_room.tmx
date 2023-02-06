@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="20">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="21">
  <tileset firstgid="1" source="Sources/TilesetElement.tsx"/>
  <tileset firstgid="241" source="Sources/TilesetRelief.tsx"/>
  <tileset firstgid="481" source="Sources/TilesetInteriorFloor.tsx"/>
@@ -30,11 +30,19 @@
     <property name="transition_id" value="cave_outside"/>
    </properties>
   </object>
+  <object id="20" gid="508" x="150.03" y="36.1943" width="10.6368" height="44.7026" rotation="270.488">
+   <properties>
+    <property name="destination_room" type="int" value="4"/>
+    <property name="on_interact" value="room_transition"/>
+    <property name="transition_direction" type="int" value="0"/>
+    <property name="transition_id" value="dojo_outside"/>
+   </properties>
+  </object>
   <object id="5" gid="889" x="191.333" y="192" width="16" height="16"/>
  </objectgroup>
  <layer id="2" name="floor" width="20" height="30">
   <data encoding="base64" compression="zlib">
-   eJyLZ2BgiB/Fo3gUj+JRPIpH8SgexVTDALdr3qk=
+   eJyLZ2BgiKcD5mRExfSwcxSP4lE8ikfxKB7Fo3ggMADVS91V
   </data>
  </layer>
  <layer id="1" name="walls" width="20" height="30">
