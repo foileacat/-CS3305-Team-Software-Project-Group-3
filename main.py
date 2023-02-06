@@ -176,7 +176,7 @@ class PlayerCharacter(arcade.Sprite):
 
 def setup_room_1():
     room = Room()
-    room.map_file = "assets/maps/dojo.tmx"
+    room.map_file = "assets/maps/entry_z.tmx"
     room.wall_list = arcade.SpriteList()
     # all layers that are spatially hashed are "solid" - aka we can give them collision
     layer_options = {
@@ -208,7 +208,7 @@ def setup_room_1():
 
 def setup_room_2():
     room = Room()
-    room.map_file = "assets/maps/main_room.tmx"
+    room.map_file = "assets/maps/dojo.tmx"
     room.wall_list = arcade.SpriteList()
     layer_options = {
         "walls": {
@@ -347,6 +347,8 @@ class MyGame(arcade.Window):
             self.player_sprite.change_y = 0
         elif key == LEFT_KEY or key == RIGHT_KEY:
             self.player_sprite.change_x = 0
+            print(self.player_sprite.center_x,self.player_sprite.center_y)
+            
 
     def handle_interact(self):
         """
@@ -397,18 +399,19 @@ class MyGame(arcade.Window):
         Only really works for two rooms
 
         """
-
-        # if self.player_sprite.center_x > self.rooms[self.current_room].width and self.current_room == 0:
-        #     self.current_room = 1
-        #     #adds current rooms walls to the physics engine
-        #     self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite,
-        #                                                      self.rooms[self.current_room].wall_list)
-        #     self.player_sprite.center_x = 0
-        # elif self.player_sprite.center_x < 0 and self.current_room == 1:
-        #     self.current_room = 0
-        #     self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite,
-        #                                                      self.rooms[self.current_room].wall_list)
-        #     self.player_sprite.center_x = self.rooms[self.current_room].width
+        #thinking maybe we should do a dictionary where its like dojo entry thing --> will explain for meeting
+        if (self.player_sprite.center_x <= 1385 and self.player_sprite.center_x >= 1295) and self.current_room == 0 and (self.player_sprite.center_y >= 670 and self.player_sprite.center_y <= 675):
+            self.current_room = 1
+            #adds current rooms walls to the physics engine
+            self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite,
+                                                             self.rooms[self.current_room].wall_list)
+            self.player_sprite.center_x = 0
+        elif self.player_sprite.center_x < 0 and self.current_room == 1:
+            self.current_room = 0
+            self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite,
+                                                             self.rooms[self.current_room].wall_list)
+            self.player_sprite.center_x = 1380
+            self.player_sprite.center_y = 665
 
         self.scroll_to_player()
 
@@ -446,7 +449,6 @@ def main():
     window = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
     window.setup()
     arcade.run()
-
 
 if __name__ == "__main__":
     main()

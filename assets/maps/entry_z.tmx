@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="28" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="3">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="28" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="5">
  <tileset firstgid="1" source="Sources/Grass tiles v.2.tsx"/>
  <tileset firstgid="78" source="Sources/Tall Grass hill tiles v.2.tsx"/>
  <tileset firstgid="126" source="Sources/TilesetNature.tsx"/>
@@ -8,7 +8,7 @@
  <tileset firstgid="1557" source="../assetpacks/ninja/Backgrounds/Tilesets/TilesetNature.tsx"/>
  <layer id="6" name="floor" width="28" height="20">
   <data encoding="base64" compression="zlib">
-   eJydlUsOwjAMRHtF2MAGNrCBDSh8Uj69C0dlKsWSNXKcuJFGlRLHz3HtZBj6RoJu0B16QE8oF0VGavjKzvpUxPaWD4lrdPx5ccycb/lq9kQMPV/jtTiaJfoYczzPOfVyK/vfxUfL/qVsNS+VM4qYXfOn7SM82SfroyErBtnTqjXmWXGwDyuG1vm4djxerU50HnpyzvUzj8sw/E7QAdpBG2gFcazMsvJtMTmfV/g+Q0doD22hNWSxErH0P+/ltXLJNcIs2buUJ3tqjAgrwrN6KQV51v3CvOzkJHo2q9+tfsgUo64LXTden08BHr8xwtD/cOn9aeVI8+S8bNfTexEev121983rvSivtsaq8azxBwt19yU=
+   eJydlb1uwzAMhPVardfWe7M0S7q0S7okUJrY/fG7hwZE4Hw4SnYFHAxIJD+KpqSU1o1supi+TFfTzTQUbRm5EWuorE9FbK9ieF5jJV4tj5nzV77InoiB8xGvxUGW61fM8TzXtFZb9/8pMVr232CLvFz26GJ2FA/tt/Dcz9dHIZWD+7R6jXkqD46hcmjtj3vHeQ+mR1MHvKhPsA5ras79M48n07OpJzbnyixVb8XkeiKjA7ZiZWLhP3fei2lX4eH+epEf9wizPJ7zXk37Co97xWsSMWqs2e9gektxf0Y8dZbyCt676QP+RYs3CJ6vt1izz9H0WfzUeVfnb0jLfsG+wL5RtTiZzml597V4/MY4A//hf+9PVSPk+X7Zbs3Z28Ljtyt632p32lZetMaKeGrcAUH563o=
   </data>
  </layer>
  <layer id="1" name="walls" width="28" height="20">
@@ -16,7 +16,7 @@
    eJyrYGBgqKAhrgTiKiCuhvAXgDADnQDIrko621dFZ/uq6WxfDZ3tq6WifUVAXIxEl2Cxj1p2EQNG7Ru1j1T7RstP6to3nMvPSiqXn4RAFSR9otT5QP8y1NIIg+IOAFTgPzE=
   </data>
  </layer>
- <objectgroup id="4" name="interactables">
+ <objectgroup id="4" name="interactables" visible="0">
   <object id="1" name="mystuff" x="57.8313" y="15.6626" width="80.7229" height="69.2771">
    <properties>
     <property name="mypropname" value="yesyes"/>
