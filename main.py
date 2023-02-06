@@ -189,16 +189,23 @@ def setup_room_1():
         "furniture 2": {
             "use_spatial_hash": True,
         },
+        "over layer": {
+            "use_spatial_hash": True,
+        },
     }
 
     # create tilemap, and then a scene from that tilemap. the scene is what we use.
-
     room.tile_map = arcade.load_tilemap(
         room.map_file, SPRITE_SCALING, layer_options=layer_options)
+    
     room.scene = arcade.Scene.from_tilemap(room.tile_map)
-
+    room.scene.add_sprite("Player", player_sprite)
+    room.scene.add_sprite_list("Player Stuff", sprite_list = player_accessory_list)
+    room.scene.move_sprite_list_after("over layer", "Player Stuff")
     # the rooms wall list is used for player collision.
     room.wall_list = []
+    
+    
     room.wall_list.append(room.scene["walls"])
     room.wall_list.append(room.scene["furniture"])
     room.wall_list.append(room.scene["furniture 2"])

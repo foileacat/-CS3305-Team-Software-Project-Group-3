@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="28" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="5">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="28" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="23">
  <tileset firstgid="1" source="Sources/Grass tiles v.2.tsx"/>
  <tileset firstgid="78" source="Sources/Tall Grass hill tiles v.2.tsx"/>
  <tileset firstgid="126" source="Sources/TilesetNature.tsx"/>
  <tileset firstgid="462" source="Sources/TilesetHouse.tsx"/>
  <tileset firstgid="1221" source="Sources/Wooden House.tsx"/>
  <tileset firstgid="1557" source="../assetpacks/ninja/Backgrounds/Tilesets/TilesetNature.tsx"/>
+ <objectgroup id="4" name="interactables" offsetx="-0.60241" offsety="0">
+  <object id="19" gid="1862" x="237.181" y="27.8795" width="16" height="16"/>
+  <object id="20" gid="1862" x="203.446" y="50.1687" width="60.5783" height="47.9277">
+   <properties>
+    <property name="custom_property" value="this is a hut, it looks cold"/>
+    <property name="inspect_text" value="this is a hut, it looks cold "/>
+    <property name="item_id" value="hut"/>
+   </properties>
+  </object>
+  <object id="21" gid="1862" x="255.253" y="184.506" width="32.8675" height="33.4699">
+   <properties>
+    <property name="dojo_sign" value="dojo"/>
+    <property name="inspect_text" value="entry to dojo, this way!"/>
+    <property name="item_id" value="dojo_entry"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="12" name="animation">
+  <object id="22" gid="1442" x="434.771" y="323.663" width="16" height="16"/>
+ </objectgroup>
  <layer id="6" name="floor" width="28" height="20">
   <data encoding="base64" compression="zlib">
    eJydlb1uwzAMhPVardfWe7M0S7q0S7okUJrY/fG7hwZE4Hw4SnYFHAxIJD+KpqSU1o1supi+TFfTzTQUbRm5EWuorE9FbK9ieF5jJV4tj5nzV77InoiB8xGvxUGW61fM8TzXtFZb9/8pMVr232CLvFz26GJ2FA/tt/Dcz9dHIZWD+7R6jXkqD46hcmjtj3vHeQ+mR1MHvKhPsA5ras79M48n07OpJzbnyixVb8XkeiKjA7ZiZWLhP3fei2lX4eH+epEf9wizPJ7zXk37Co97xWsSMWqs2e9gektxf0Y8dZbyCt676QP+RYs3CJ6vt1izz9H0WfzUeVfnb0jLfsG+wL5RtTiZzml597V4/MY4A//hf+9PVSPk+X7Zbs3Z28Ljtyt632p32lZetMaKeGrcAUH563o=
@@ -16,18 +36,6 @@
    eJyrYGBgqKAhrgTiKiCuhvAXgDADnQDIrko621dFZ/uq6WxfDZ3tq6WifUVAXIxEl2Cxj1p2EQNG7Ru1j1T7RstP6to3nMvPSiqXn4RAFSR9otT5QP8y1NIIg+IOAFTgPzE=
   </data>
  </layer>
- <objectgroup id="4" name="interactables" visible="0">
-  <object id="1" name="mystuff" x="57.8313" y="15.6626" width="80.7229" height="69.2771">
-   <properties>
-    <property name="mypropname" value="yesyes"/>
-   </properties>
-  </object>
-  <object id="2" name="mything" gid="1738" x="257.662" y="22.4579" width="16" height="16">
-   <properties>
-    <property name="pleasework" value="please"/>
-   </properties>
-  </object>
- </objectgroup>
  <layer id="2" name="furniture" width="28" height="20">
   <data encoding="base64" compression="zlib">
    eJzd1E0OgjAURtFX/BmD4lxF2JeLNTFxBegiQHEEJHgdgUQaDDQIX3IGtOWVtqGFEhFLRMHCDHMs0JSQvitumjERdWPc8UCCJ7a8s8MeHg7wEWhqpfRlyDVjbPocrLCGi01l/GVZ6po+a/1DTgOu46g+vXOufU/9ues81TZT+VZ7jPM17f1U1mcqQ/5TY4rJffr13pjKfd42fe29iTNsexYvZwQhqw==
@@ -35,7 +43,12 @@
  </layer>
  <layer id="3" name="furniture 2" width="28" height="20">
   <data encoding="base64" compression="zlib">
-   eJztzrcRgDAAQ1GZc0mYhDAJYRbYmjADv6Shw6bRu/u1JNmbNUpb/PuFfWUP0kEnXSH9XllIFdXUFOn3WjY66mnIsDeyMdFMS4Y9M7OnG3bZBuw=
+   eJxjYBgFuEAxCwNDCctAu2IUUAu8ZmRgeAPEb4H4HSPt7eNhYmDgBWI+IOZnor19ukA79IBYH4gN6GCfH9AOfyAOAOJAGtkXBjQ3nA5+GQWjYBQMPQAAT74HnQ==
+  </data>
+ </layer>
+ <layer id="9" name="over layer" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjALaAlV2BgY1IFZnp4/ZpkC2GRCb08A+bGa7AtluQOxOA/uwmR0KZIcBcTgN7KOl2aNgFFATAADOIwZ5
   </data>
  </layer>
 </map>

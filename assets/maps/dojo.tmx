@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="28" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="58">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="28" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="61">
  <tileset firstgid="1" source="Sources/TilesetHouse.tsx"/>
  <tileset firstgid="760" source="../../../../Elements.tsx"/>
  <tileset firstgid="764" source="../assetpacks/ninja/Backgrounds/TilesetInteriorFloor.tsx"/>
  <tileset firstgid="1138" source="../../../../Hills.tsx"/>
  <tileset firstgid="1147" source="../assetpacks/ninja/Backgrounds/Elements.tsx"/>
  <tileset firstgid="1174" source="Sources/Basic Furniture.tsx"/>
- <layer id="2" name="floor" width="28" height="20">
+ <tileset firstgid="1228" source="../assetpacks/ninja/Backgrounds/Tilesets/TilesetNature.tsx"/>
+ <tileset firstgid="1564" source="Sources/SpriteSheet.tsx"/>
+ <tileset firstgid="1566" source="Sources/Wooden House.tsx"/>
+ <objectgroup id="6" name="animation">
+  <object id="58" gid="1432" x="384.047" y="320.515" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="3" name="interactables">
+  <object id="53" gid="930" x="58.9006" y="117.942" width="26.2924" height="28.6316"/>
+  <object id="55" gid="930" x="217.965" y="115.135" width="27.6959" height="23.4854"/>
+  <object id="56" gid="930" x="377.497" y="117.942" width="32.3743" height="26.2924"/>
+  <object id="59" gid="1823" x="348.491" y="214.784" width="40.7953" height="31.4386"/>
+  <object id="60" gid="1823" x="10.2456" y="260.164" width="45.0058" height="20.6784"/>
+ </objectgroup>
+ <layer id="2" name="floor" width="28" height="20" locked="1">
   <data encoding="base64" compression="zlib">
-   eJzt07sNwlAMhWGTbACExwZAQtiAN9MBQyQZIrAbAf6CK1m3yG1wAUrxVcdy4SNLLNJDhBiPSKTBEy/Il/MRxphgij4GGCIxyDMskWOFGeZYIDXI9zjgiBPW2GCLnUFu3Zef63ufccE10Ieea+tLz7lc37tAiSrQR/HJq0Bfep/L9b1r3HAP9KHn2vrScy637qv7v//9P4u+/Ny6Lz+37svPu//77f97A7b2nX0=
+   eJzt07kNAkEQRNFmNwNuMuAmA26iA4IAggBy4/rOSKUxZhzaAK3xrCqrS22lWQ0FSjwKsydeeMO+nLfRQRc91NFAEy2HfIwJppihjwGGGDnka2ywxQ5zLLDEyiH33ivO9d57HHDM7KG91F7aC7ne+4QzLpk9tJfaS3sh13tfccM9s4f2UntpL+Tee1X/97//57FXnHvvFefee8V59X+//X8fZEOd8Q==
   </data>
  </layer>
  <layer id="1" name="walls" width="28" height="20">
@@ -16,19 +29,19 @@
    eJwzYmJgMIJiMSAWB+IoII4GYmMgNgHiMCAOB2IYiACyI5H4MHmYeph+mHlGSFickYFuAGTXqH2j9g1m++gJ6G3fQIDhHKYjIT8Md/s+IGF08BEo9okE9+BSj2yHIBMCfwXyvwGxJZBtBcRCQCwMxKZAbIZUn5sD2RZIfJg8TD1MP8w8ZDuQ63p6tCcAWh0esA==
   </data>
  </layer>
- <objectgroup id="3" name="interactables">
-  <object id="53" gid="930" x="63.1111" y="111.86" width="16" height="16"/>
-  <object id="55" gid="930" x="224.047" y="111.86" width="16" height="16"/>
-  <object id="56" gid="930" x="384.047" y="112.327" width="16" height="16"/>
- </objectgroup>
- <layer id="4" name="furniture" width="28" height="20">
+ <layer id="5" name="furniture" width="28" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt1ssJgEAMRdGQ7rUQFfxXoYL/irwFiA5DFiK5cBYDb5nFiISXIH14f70MOQqUKlKhRoMWHXqN2901YMSEmf2CFRt2HDg1buf9r7d7st6F3pP1zvM8z+I/cQGtzDMp
+   eJxjYBgFo2AUjIJRMJiADBsDgyzbQLtiYMBI9vsoIA0AAHdDAIs=
   </data>
  </layer>
- <layer id="5" name="furniture 2" width="28" height="20">
+ <layer id="4" name="furniture 2" width="28" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo4B6wJSJgcGMifpqcYEwoP5wIs0gRe0oGAWjYBSMgsENALSLAkE=
+   eJzt1tsNQDAUgOGmOzEKMzEIEvcpkLhP5B+AqqYSxJ98D9KTPjTngRD6BQgV308vQowEqRQiQ44CJSrU0mxurwYtOvTMDxgxYcaCVZrN/X2vs32yPae7T7bn9nLYb1dePzPN4z7/4E7V2Ru74/1Ufe39/u7Jxv/EBlVMNok=
+  </data>
+ </layer>
+ <layer id="7" name="over layer" width="28" height="20" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSgYWgAACMAAAQ==
   </data>
  </layer>
 </map>
