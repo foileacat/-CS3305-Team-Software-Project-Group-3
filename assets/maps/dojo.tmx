@@ -34,9 +34,27 @@
   </data>
  </layer>
  <objectgroup id="3" name="interactables">
-  <object id="53" gid="953" x="58.9006" y="117.942" width="26.2924" height="28.6316"/>
-  <object id="55" gid="953" x="217.965" y="115.135" width="27.6959" height="23.4854"/>
-  <object id="56" gid="953" x="377.497" y="117.942" width="32.3743" height="26.2924"/>
+  <object id="53" gid="953" x="58.9006" y="117.942" width="26.2924" height="28.6316">
+    <properties>
+    <property name="inspect_text" value="the    battle    of    wisdom"/>
+    <property name="on_interact" value="show_message"/>
+    <property name="item_id" value="5"/>
+   </properties>
+   </object>
+  <object id="55" gid="953" x="217.965" y="115.135" width="27.6959" height="23.4854">
+    <properties>
+    <property name="inspect_text" value="the    battle    of    strength"/>
+    <property name="on_interact" value="show_message"/>
+    <property name="item_id" value="5"/>
+   </properties>
+   </object>
+  <object id="56" gid="953" x="377.497" y="117.942" width="32.3743" height="26.2924">
+    <properties>
+    <property name="inspect_text" value="the    battle    of    courage"/>
+    <property name="on_interact" value="show_message"/>
+    <property name="item_id" value="5"/>
+   </properties>
+   </object>
   <object id="61" gid="1963" x="172" y="281.333" width="100" height="16">
    <properties>
     <property name="destination_room" type="int" value="4"/>

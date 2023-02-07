@@ -10,16 +10,16 @@
   <object id="19" gid="431" x="237.181" y="27.8795" width="16" height="16"/>
   <object id="20" gid="431" x="203.446" y="50.1687" width="60.5783" height="47.9277">
    <properties>
-    <property name="custom_property" value="this is a hut, it looks cold"/>
-    <property name="inspect_text" value="this is a hut, it looks cold "/>
-    <property name="item_id" value="hut"/>
+    <property name="inspect_text" value="this   hut   looks    cold,    i    wonder    who    lives    here"/>
+    <property name="on_interact" value="show_message"/>
+    <property name="item_id" value="5"/>
    </properties>
   </object>
   <object id="21" gid="431" x="255.253" y="184.506" width="32.8675" height="33.4699">
    <properties>
-    <property name="dojo_sign" value="dojo"/>
-    <property name="inspect_text" value="entry to dojo, this way!"/>
-    <property name="item_id" value="dojo_entry"/>
+    <property name="inspect_text" value="dojo   this   way"/>
+    <property name="on_interact" value="show_message"/>
+    <property name="item_id" value="5"/>
    </properties>
   </object>
   <object id="25" gid="1569" x="306.602" y="175.333" width="69" height="16">
