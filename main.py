@@ -180,7 +180,7 @@ def setup_starting_room(player_sprite, player_accessory_list):
     room = Room()
     room.starting_x = SPRITE_SIZE * 11.5
     room.starting_y = SPRITE_SIZE * 2.5
-    room.map_file = "assets\maps\starting_room.tmx"
+    room.map_file = "assets/maps/starting_room.tmx"
 
     room.wall_list = arcade.SpriteList()
     # all layers that are spatially hashed are "solid" - aka we can give them collision
@@ -225,7 +225,7 @@ def setup_main_room(player_sprite, player_accessory_list):
     room.entrances = {"starting_room" : [SPRITE_SIZE * 11.5,SPRITE_SIZE * 2.5], "cave_outside" : [200,600], "dojo_outside": [100,100]}
     room.starting_x = SPRITE_SIZE * 2.5
     room.starting_y = SPRITE_SIZE * 7
-    room.map_file = "assets\maps\main_room.tmx"
+    room.map_file = "assets/maps/main_room.tmx"
     room.wall_list = arcade.SpriteList()
     layer_options = {
         "walls": {
@@ -254,7 +254,7 @@ def setup_caveoutside(player_sprite, player_accessory_list):
     room.entrances = {"main_room" : [17*SPRITE_SIZE,3*SPRITE_SIZE], "cave_inside" : [20*SPRITE_SIZE,3*SPRITE_SIZE], "blah" : [20,600]}
     room.starting_x = SPRITE_SIZE * 11.5
     room.starting_y = SPRITE_SIZE * 2.5
-    room.map_file = "assets\maps\caveoutside.tmx"
+    room.map_file = "assets/maps/caveoutside.tmx"
 
     room.wall_list = arcade.SpriteList()
     # all layers that are spatially hashed are "solid" - aka we can give them collision
@@ -300,10 +300,10 @@ def setup_dojooutside(player_sprite, player_accessory_list):
 
     room = Room()
     room.multiple_entrances = True
-    room.entrances = {"main_room" : [10*SPRITE_SIZE,20*SPRITE_SIZE], "dojo" : [4*SPRITE_SIZE,3*SPRITE_SIZE]}
+    room.entrances = {"main_room" : [10*SPRITE_SIZE,20*SPRITE_SIZE], "dojo" : [100,700]}
     room.starting_x = SPRITE_SIZE * 11.5
     room.starting_y = SPRITE_SIZE * 2.5
-    room.map_file = "assets\maps\outside_dojo.tmx"
+    room.map_file = "assets/maps/outside_dojo.tmx"
 
     room.wall_list = arcade.SpriteList()
     # all layers that are spatially hashed are "solid" - aka we can give them collision
@@ -349,10 +349,10 @@ def setup_dojo(player_sprite, player_accessory_list):
 
     room = Room()
     room.multiple_entrances = True
-    room.entrances = {"dojo_outside" : [10*SPRITE_SIZE,5*SPRITE_SIZE]}
+    room.entrances = {"dojo_outside" : [1300,610]}
     room.starting_x = SPRITE_SIZE * 11.5
     room.starting_y = SPRITE_SIZE * 2.5
-    room.map_file = "assets\maps\dojo.tmx"
+    room.map_file = "assets/maps/dojo.tmx"
 
     room.wall_list = arcade.SpriteList()
     # all layers that are spatially hashed are "solid" - aka we can give them collision
@@ -400,7 +400,7 @@ def setup_caveinside(player_sprite, player_accessory_list):
     room.entrances = { "cave_outside" : [15*SPRITE_SIZE,16*SPRITE_SIZE],}
     room.starting_x = SPRITE_SIZE * 11.5
     room.starting_y = SPRITE_SIZE * 2.5
-    room.map_file = "assets\maps\caveinside.tmx"
+    room.map_file = "assets/maps/caveinside.tmx"
 
     room.wall_list = arcade.SpriteList()
     # all layers that are spatially hashed are "solid" - aka we can give them collision
