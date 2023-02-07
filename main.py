@@ -551,15 +551,17 @@ class MyGame(arcade.Window):
         """
         self.gui_character_creator_manager = arcade.gui.UIManager()
         self.gui_character_creator_manager.enable()
+        texture = arcade.load_texture("assets/assetpacks/ninja/HUD/Dialog/DialogueBoxSimple.png")
         self.v_box = arcade.gui.UIBoxLayout()
-
+        
         # Create a text label
         ui_text_label = arcade.gui.UITextArea(text="This is a Text Widget",
                                               width=450,
                                               height=40,
                                               font_size=24,
                                               font_name="Kenney Future")
-        self.v_box.add(ui_text_label.with_space_around(bottom=0))
+        self.background = arcade.gui.UITexturePane(child=ui_text_label, tex=texture)
+        self.v_box.add(ui_text_label.with_space_around(bottom=20))
 
         text = "The real danger is not that computers will begin to think like people, " \
                "but that people will begin " \
@@ -568,8 +570,12 @@ class MyGame(arcade.Window):
                                               width=450,
                                               height=60,
                                               font_size=12,
-                                              font_name="Arial")
-        self.v_box.add(ui_text_label.with_space_around(bottom=0))
+                                              font_name="Arial",
+                                              text_color=arcade.csscolor.BLACK)
+        blah = arcade.gui.UIWidget(children=[ui_text_label])
+        blah.with_background(texture=texture)
+        horse = ui_text_label.with_background(texture=texture, bottom=20, top=20, left=20,right=20)
+        self.v_box.add(horse.with_space_around(bottom=0))
 
         # Create a UIFlatButton
         ui_flatbutton = arcade.gui.UIFlatButton(text="Flat Button", width=200)
@@ -583,20 +589,20 @@ class MyGame(arcade.Window):
         # Create a UITextureButton
         texture = arcade.load_texture(":resources:onscreen_controls/flat_dark/play.png")
         ui_texture_button = arcade.gui.UITextureButton(texture=texture)
-
+        
         # Handle Clicks
         @ui_texture_button.event("on_click")
         def on_click_texture_button(event):
             print("UITextureButton pressed", event)
 
         self.v_box.add(ui_texture_button.with_space_around(bottom=20))
-
+        
         # Create a widget to hold the v_box widget, that will center the buttons
         self.gui_character_creator_manager.add(
             arcade.gui.UIAnchorWidget(
                 anchor_x="center_x",
                 anchor_y="center_y",
-                child=self.v_box)
+                child=self.v_box.with_background(texture=texture, bottom=20, top=20, left=20,right=20))
         )
 
     def on_draw(self):
@@ -620,6 +626,7 @@ class MyGame(arcade.Window):
             self.gui_inspect_manager.draw()
         elif interactableObjects:
             interactable = interactableObjects[0]
+        
             """
             Alternative hint is text based - currently unused but may be readded:
 
@@ -629,10 +636,12 @@ class MyGame(arcade.Window):
             """
             self.inspect_item_symbol_UI = arcade.Sprite(filename="assets/assetpacks/ninja/HUD/Arrow.png", scale=3,
                                                         center_x=interactable.center_x, center_y=interactable.center_y+(interactable.height//2)+20)
+            if interactable.properties["on_interact"] == "room_transition":
+                self.inspect_item_symbol_UI.color = arcade.csscolor.INDIANRED
             self.inspect_item_symbol_UI.draw(pixelated=True)
             
-        # self.camera_gui.use()
-        # self.gui_character_creator_manager.draw()
+        #self.camera_gui.use()
+        #self.gui_character_creator_manager.draw()
         
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed. """
