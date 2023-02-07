@@ -2,9 +2,9 @@
 <map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="28" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="62">
  <tileset firstgid="1" source="Sources/TilesetHouse.tsx"/>
  <tileset firstgid="760" source="Sources/Elements.tsx"/>
- <tileset firstgid="787" source="../assetpacks/ninja/Backgrounds/TilesetInteriorFloor.tsx"/>
+ <tileset firstgid="787" source="Sources/TilesetInteriorFloor.tsx"/>
  <tileset firstgid="1161" source="Sources/Hills.tsx"/>
- <tileset firstgid="1197" source="../assetpacks/ninja/Backgrounds/Elements.tsx"/>
+ <tileset firstgid="1197" source="Sources/Elements.tsx"/>
  <tileset firstgid="1224" source="Sources/Basic Furniture.tsx"/>
  <tileset firstgid="1278" source="Sources/TilesetNature.tsx"/>
  <tileset firstgid="1614" source="Sources/Frog SpriteSheet.tsx"/>
