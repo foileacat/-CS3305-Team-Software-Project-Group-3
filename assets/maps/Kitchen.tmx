@@ -1,34 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="8">
- <tileset firstgid="1" source="../../../../GitHub/-CS3305-Team-Software-Project-Group-3/assets/maps/Sources/atlas_16x.tsx"/>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="17">
+ <tileset firstgid="1" source="Sources/atlas_16x.tsx"/>
  <tileset firstgid="769" source="Sources/TilesetHouse.tsx"/>
  <tileset firstgid="1528" source="Sources/TopDownHouse_SmallItems.tsx"/>
  <tileset firstgid="1592" source="Sources/TilesetElement.tsx"/>
- <layer id="1" name="Tile Layer 1" width="20" height="20">
+ <tileset firstgid="1832" source="../assetpacks/ninja/Backgrounds/atlas_16x.tsx"/>
+ <objectgroup id="6" name="interactables">
+  <object id="8" gid="2367" x="162.771" y="51.4761" width="26.1836" height="19.5251">
+   <properties>
+    <property name="inspect_text" value="There are 2 of everything to set the table here."/>
+    <property name="item_id" value="kitchen_shelf"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="9" gid="2367" x="112.245" y="52.2595" width="49.2925" height="19.5251">
+   <properties>
+    <property name="inspect_text" value="A lot of food."/>
+    <property name="item_id" value="food_baskets"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="10" gid="2367" x="33.1261" y="112.578" width="19.1334" height="51.6426">
+   <properties>
+    <property name="inspect_text" value="Even more food."/>
+    <property name="item_id" value="food_baskets"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="11" gid="2367" x="46.4431" y="55.0012" width="18.3501" height="19.9168">
+   <properties>
+    <property name="inspect_text" value="Mmmm... they wouldn't notice if i sneak a couple bites would they?"/>
+    <property name="item_id" value="kitchen_stove"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="12" gid="2367" x="142.404" y="234.389" width="50.4676" height="33.6255">
+   <properties>
+    <property name="inspect_text" value="The food looks so good and smells so good too."/>
+    <property name="item_id" value="kitchen_table"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="13" gid="2367" x="236.406" y="288.441" width="25.4002" height="21.0918">
+   <properties>
+    <property name="inspect_text" value="Is that? wtf?"/>
+    <property name="item_id" value="kitchen_pot"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="14" gid="2367" x="268.132" y="49.5177" width="21.4835" height="18.7417">
+   <properties>
+    <property name="inspect_text" value="wtf is in here?"/>
+    <property name="item_id" value="weird_pot"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="15" gid="2367" x="202.722" y="51.8678" width="25.7919" height="19.1334">
+   <properties>
+    <property name="inspect_text" value="An old grandfather clock."/>
+    <property name="item_id" value="kitchen_clock"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="16" gid="2367" x="279.882" y="193.263" width="16" height="16">
+   <properties>
+    <property name="destination_room" type="int" value="4"/>
+    <property name="on_interact" value="room_transition"/>
+    <property name="transition_direction" type="int" value="3"/>
+    <property name="transition_id" value="livingroom"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer id="1" name="floor" width="20" height="20">
   <data encoding="base64" compression="zlib">
    eJzbxsjAsI1EHIwHk2rWqHmj5g1m80bxKB7FuDEAJca1hw==
   </data>
  </layer>
- <layer id="2" name="Walls" width="20" height="20">
+ <layer id="2" name="walls" width="20" height="20">
   <data encoding="base64" compression="zlib">
    eJxjZ2BgYKciNqcyBpqZAKQTGCgEQDMWsEPwqHmj5o2aN2reUDFvUJfPAEQIMXE=
   </data>
  </layer>
- <layer id="3" name="Furniture" width="20" height="20">
+ <layer id="3" name="furniture" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYEAF/EAswEAcIEatPRA7YBE/xsjAcJwRwu5jwq8WBDJYGBgygfgJE0PDYyAGibGwMjA8Boo9AuJvQLO+Q83bx0SkB6gI6lioa94+KpunSUXzxBkYEtyBmFrmiQHNcqOieZQCJSqnn6ABSI/IIBaYLxKAOJ4Ruzwp/jUAmtELxH1A3A/EE7CYSap/9wLN2AfE+3G4b7CD4ZZeSAEA9m8WYw==
+   eJxjYEAF/EAswEAcIEatPRA7YBE/xsjAcJwRwu5jwq8WBDJYGBgygfgJE0PDYyAGibGwMjA8Boo9AuJvQLO+Q83bx0SkB6gI6lioa94+KpunSUXzxBkYEtyBmFrmiQHNcqOieYMNBA1AekQHCYzUMccAaE4vEPcBcT8QT8BiLqn+3Qs0Yx8Q76eSG4c6GAzphVgAAFMBFTk=
   </data>
  </layer>
- <layer id="4" name="Furniture2" width="20" height="20">
+ <layer id="4" name="furniture2" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYCAN3GMjTf0WJoaGzUBMip5WVtLsIASWUdm8UTAKSAU3GRgWrARiapl3C2jWKhLMi2PEL38baNZqIs2TYmNY0M0CphOItZ8QOEDAfSMB3CCxbB0MAACUvxCe
+   eJxjYCAN3GMjTf0WJoaGzUBMip5WVtLsIASWUdm8UTAKSAU3GRgWrARiapl3C2jWKiqadxto1moizZNiY1jQzQKmE6hl/wFGapk0dMENEsvWwQAAtgkQPw==
   </data>
  </layer>
- <objectgroup id="5" name="Interactables">
-  <object id="1" x="108.494" y="34.0759" width="52.093" height="18.8005"/>
-  <object id="3" x="121.42" y="189.963" width="91.6524" height="53.6597"/>
-  <object id="5" x="32.9009" y="60.7099" width="21.1506" height="83.0355"/>
-  <object id="6" x="246.756" y="278.482"/>
-  <object id="7" x="277.307" y="41.5177"/>
- </objectgroup>
+ <layer id="7" name="over layer" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUIANPzoF2AXVBCwcDQysQt3Fglx9u/qU3GMnhBwDxwAKe
+  </data>
+ </layer>
 </map>

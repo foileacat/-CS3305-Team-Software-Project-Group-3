@@ -1,47 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="62">
- <tileset firstgid="1" source="../../../../Computer Science/Year 3/Semester 2/mapstuff/Sources/TilesetRelief.tsx"/>
- <tileset firstgid="241" source="../../../../Computer Science/Year 3/Semester 2/mapstuff/Sources/TilesetReliefDetail.tsx"/>
- <tileset firstgid="385" source="../../../../Computer Science/Year 3/Semester 2/mapstuff/Sources/TilesetNature.tsx"/>
- <tileset firstgid="721" source="../../../../Computer Science/Year 3/Semester 2/mapstuff/Sources/atlas_16x.tsx"/>
- <tileset firstgid="1489" source="../../../../Computer Science/Year 3/Semester 2/mapstuff/Sources/TilesetElement.tsx"/>
- <tileset firstgid="1729" source="../../../../Computer Science/Year 3/Semester 2/mapstuff/Sources/TilesetHouse.tsx"/>
- <tileset firstgid="2488" source="Sources/atlas_16x.tsx"/>
- <objectgroup id="6" name="aaa">
-  <object id="14" x="263.5" y="50.5"/>
-  <object id="16" x="327" y="88.5"/>
-  <object id="17" x="359" y="71.75"/>
-  <object id="18" x="406.5" y="57.25"/>
-  <object id="19" x="412" y="222" width="35.25" height="36.75"/>
-  <object id="20" x="423" y="279.5"/>
-  <object id="21" x="218.25" y="243" width="39.5" height="35.25"/>
-  <object id="22" x="278.75" y="167.5"/>
-  <object id="23" x="108" y="93.5" width="38.25" height="36.75"/>
-  <object id="24" x="56.25" y="72"/>
-  <object id="25" x="105" y="56.5"/>
-  <object id="26" x="55.25" y="247.75"/>
-  <object id="27" x="119.75" y="263.25"/>
-  <object id="28" x="527.333" y="8"/>
- </objectgroup>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="71">
+ <tileset firstgid="1" source="Sources/TilesetRelief.tsx"/>
+ <tileset firstgid="241" source="Sources/TilesetReliefDetail.tsx"/>
+ <tileset firstgid="385" source="Sources/TilesetNature.tsx"/>
+ <tileset firstgid="721" source="Sources/TilesetElement.tsx"/>
+ <tileset firstgid="961" source="Sources/TilesetHouse.tsx"/>
+ <tileset firstgid="1720" source="Sources/atlas_16x.tsx"/>
  <objectgroup id="9" name="interactables">
-  <object id="57" gid="23" x="109.333" y="129.333" width="35.3333" height="33.3333"/>
-  <object id="59" gid="23" x="49.3333" y="80.6667" width="16" height="16"/>
-  <object id="60" gid="23" x="100.667" y="62" width="16" height="16"/>
-  <object id="61" gid="23" x="52.6667" y="258" width="16" height="16"/>
+  <object id="57" gid="23" x="109.333" y="129.333" width="37.6666" height="35.3333">
+   <properties>
+    <property name="inspect_text" value="Large cave rock orange"/>
+    <property name="item_id" value="large_cave_rock-orange"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="59" gid="23" x="46.6666" y="84" width="21.3333" height="21.6667">
+   <properties>
+    <property name="inspect_text" value="Small cave rock blue"/>
+    <property name="item_id" value="small_cave_rock_blue"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="60" gid="23" x="94.667" y="66" width="19.6667" height="18.6667">
+   <properties>
+    <property name="inspect_text" value="This flower is so so sooo cute"/>
+    <property name="item_id" value="caveoutside_flower02"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="61" gid="23" x="43.6667" y="261.333" width="24.6667" height="24">
+   <properties>
+    <property name="inspect_text" value="Small green cave rock"/>
+    <property name="item_id" value="small_cave_rock_green"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="62" gid="23" x="109.667" y="274.333" width="21.3333" height="21">
+   <properties>
+    <property name="inspect_text" value="poor fucker"/>
+    <property name="item_id" value="cave_grave"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="63" gid="23" x="222.667" y="259.667" width="34.6667" height="18.3333">
+   <properties>
+    <property name="inspect_text" value="Achievement-from chest"/>
+    <property name="item_id" value="cave_shrine"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="64" gid="23" x="268.667" y="177.667" width="22.6667" height="19">
+   <properties>
+    <property name="inspect_text" value="Shrine-achievement-chest?"/>
+    <property name="item_id" value="cave_chest"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="65" gid="23" x="412.667" y="288.333" width="22.6667" height="18">
+   <properties>
+    <property name="inspect_text" value="Small purple cave rock"/>
+    <property name="item_id" value="small_cave_rock_purple"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="66" gid="23" x="412.333" y="259" width="35.3333" height="36.6667">
+   <properties>
+    <property name="inspect_text" value="Large cave rock purple"/>
+    <property name="item_id" value="large_cave_rock-purple"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="67" gid="23" x="317.333" y="97.6667" width="21.6667" height="19.3333">
+   <properties>
+    <property name="inspect_text" value="Small green cave rock"/>
+    <property name="item_id" value="small_cave_rock_green"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="68" gid="23" x="350.333" y="84" width="20" height="22">
+   <properties>
+    <property name="inspect_text" value="Small green cave rock"/>
+    <property name="item_id" value="small_cave_rock_green"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="69" gid="23" x="397" y="68" width="22.3333" height="21.6667">
+   <properties>
+    <property name="inspect_text" value="fucking racoon thing"/>
+    <property name="item_id" value="Raccon_thing"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="70" gid="23" x="255.667" y="63.6667" width="16" height="21">
+   <properties>
+    <property name="destination_room" type="int" value="2"/>
+    <property name="on_interact" value="room_transition"/>
+    <property name="transition_direction" type="int" value="1"/>
+    <property name="transition_id" value="caveoutside"/>
+   </properties>
+  </object>
  </objectgroup>
- <layer id="1" name="Floor" width="30" height="20" visible="0">
+ <layer id="1" name="floor" width="30" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgF9ABpQJyORbyBxrgKiKuhdlUjsUftHXh7CQFa2gtThwxICSts+kixt5oB1b3E2ksOHih7ke0ZKP+is+lhLzZMa3vxAVrZO4oheMogcMNg9R8ATcXgFQ==
+   eJxjYBgF9ABpQJwOxA1IYg10wFVAXA21rxqJPWrv4LAXF6ClvTC16PaTElakuhPZXmS3wvikmkUqHgh7ke0ZCP9iE6elvej+RPczLf2LC9DSzlE8MvAUCvQCAAbH6As=
   </data>
  </layer>
- <layer id="5" name="Walls" width="30" height="20" visible="0">
+ <layer id="5" name="walls" width="30" height="20">
   <data encoding="base64" compression="zlib">
-   eJztlVEOgyAMhus1dro+OXU3MG47wXTiBTgKR9u/KQlrYiA66suafIFgyWehCTURNcpcwBXclLmDERhlprlmxsgl5ueFivIF6rQ1wHkz/oHb4FuX0Wtm59+b4A17QRLrjT1enyv9VcJe6X1g7VQQ9Rifid5WrHcbvJH0ryiXfG2vjwPq/UR4J36e0yvrDCOn913bsEKsJ39xv1viaC/eBh4VvXj7LN5Ai9EZZVCng9s1yuCM3QsNw87g
+   eJztldEJwjAQhs81nC5P1dYNStUJtDYukFEymp+2gRiQlGKuPvjDz4X0wtdLDq4WkUbZB3zEJ2Wf8YCtsu9jzYZoKta7yXspJ+p0Nea+Df9g2uhbV5BrR+af+8PckBv3YujH3NmUe2FvuxG5Em8zuW2y3y3gZtLfVE352tygFep9KX6TsC7JTeuMVZL7rK3/4FxPfuN9l2htLrPBDIpcZp9jBjqit8qmTg/bN8rmjv0DQ/LLqA==
   </data>
  </layer>
- <layer id="2" name="Furniture" width="30" height="20" visible="0">
+ <layer id="2" name="furniture" width="30" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBh6wIORgcETiL0Y6WfnOW4GhhCgfaFAHMYI4VMDFLLhl/8HtCcBaF8iECcxQvi4wGdWBoZnTAwMz5mwy5fiEIcBUU4IJgZMRTNLjJmBQZyZOL3k2IluHzkgA2hGJhPCXnqBCqCdlVRw/yigDpAgI52SA6QYGRbQxyb8QIqO5eRQAR3A/NiJI08SU9aAyo9nLAwMWzkYGLZxQNiE1IPADKDZM4ksC76yYjdDHCh+DWjndQ4Im5aA3HISpq91hJd7APXAGXA=
+   eJxjYBh6wIORgcETiL0Y6WfnOQ4GhhCgfaFAHMYI4VMDFDLjl/8HtCcBaF8iECcxQvi4wGcmBoazbEC3sWGXL2XCb5coGwQTA6aimfUXqO8fkXrJsRPdPnJABtCMTCaEvfQCFUA7K6ng/lFAHfCfTnEvxciwgD424QdSdCwnBwKcBZaJW1kZGLaxQtjEgA5gfuzEkSeJKWtA5cdfoF3XgHZeZ4WwCakHgRlAs2cSWRZ8RVNHzzKLUjth+lpHeLkHAG6jHW0=
+  </data>
+ </layer>
+ <layer id="10" name="over layer" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUDARIA+J0HDhjAN01CkbBKBgFo4ByAADTIgM5
   </data>
  </layer>
 </map>
