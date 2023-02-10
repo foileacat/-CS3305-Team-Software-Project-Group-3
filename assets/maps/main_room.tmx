@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="22">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="23">
  <tileset firstgid="1" source="Sources/TilesetElement.tsx"/>
  <tileset firstgid="241" source="Sources/TilesetRelief.tsx"/>
  <tileset firstgid="481" source="Sources/TilesetInteriorFloor.tsx"/>
@@ -36,6 +36,14 @@
     <property name="on_interact" value="room_transition"/>
     <property name="transition_direction" type="int" value="0"/>
     <property name="transition_id" value="dojo_outside"/>
+   </properties>
+  </object>
+  <object id="22" gid="265" x="127" y="473" width="45.5" height="16">
+   <properties>
+    <property name="destination_room" type="int" value="10"/>
+    <property name="on_interact" value="room_transition"/>
+    <property name="transition_direction" type="int" value="2"/>
+    <property name="transition_id" value="forest"/>
    </properties>
   </object>
  </objectgroup>

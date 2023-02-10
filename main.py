@@ -66,7 +66,6 @@ class RoomA:
         self.entrances = {}
         self.multiple_entrances = False
         self.map_file = map_file
-        self.layer_options = {}
         self.width = SPRITE_SIZE * 10
         self.height = SPRITE_SIZE * 10
         self.background = None
@@ -254,7 +253,7 @@ def setup_starting_room( player_sprite, player_accessory_list):
 def setup_main_room(player_sprite, player_accessory_list):
     room = Room()
     room.multiple_entrances = True
-    room.entrances = {"starting_room" : [SPRITE_SIZE * 11.5,SPRITE_SIZE * 2.5], "cave_outside" : [200,600], "dojo_outside": [100,100]}
+    room.entrances = {"starting_room" : [SPRITE_SIZE * 11.5,SPRITE_SIZE * 2.5], "cave_outside" : [200,600], "dojo_outside": [100,100],"forest": [SPRITE_SIZE*12.5,SPRITE_SIZE*2]}
     room.starting_x = SPRITE_SIZE * 2.5
     room.starting_y = SPRITE_SIZE * 7
     room.map_file = "assets/maps/main_room.tmx"
@@ -641,6 +640,79 @@ def setup_kitchen(player_sprite, player_accessory_list):
 
     return room
 
+def setup_forest(player_sprite, player_accessory_list):
+
+    room = Room()
+    room.starting_x = SPRITE_SIZE * 11.5
+    room.starting_y = SPRITE_SIZE * 2.5
+    room.map_file = "assets/maps/forest.tmx"
+    room.entrances = {"main_room" : [SPRITE_SIZE*9,SPRITE_SIZE*2],"enemy_house" : [SPRITE_SIZE*9,SPRITE_SIZE*7.5]}
+    room.wall_list = arcade.SpriteList()
+    # all layers that are spatially hashed are "solid" - aka we can give them collision
+    layer_options = {
+        "walls": {
+            "use_spatial_hash": True,
+        },
+        "over layer": {
+            "use_spatial_hash": True,
+        }   
+    }
+
+    # create tilemap, and then a scene from that tilemap. the scene is what we use.
+
+    room.tile_map = arcade.load_tilemap(
+        room.map_file, SPRITE_SCALING, layer_options=layer_options)
+    
+    room.scene = arcade.Scene.from_tilemap(room.tile_map)
+    room.scene.add_sprite("Player", player_sprite)
+    room.scene.add_sprite_list("Player Stuff", sprite_list = player_accessory_list)
+    room.scene.move_sprite_list_after("over layer", "Player Stuff")
+    # the rooms wall list is used for player collision.
+    room.wall_list = []
+    
+    room.wall_list.append(room.scene["walls"])
+    #room.wall_list.append(room.scene["Trees 1"])
+    #room.wall_list.append(room.scene["Trees 2"])
+    #room.wall_list.append(room.scene["House"])
+
+    return room
+
+def setup_enemy_house(player_sprite, player_accessory_list):
+    room = Room()
+    room.entrances = {"forest" : [SPRITE_SIZE*14.5,SPRITE_SIZE*14]}
+    room.starting_x = SPRITE_SIZE * 11.5
+    room.starting_y = SPRITE_SIZE * 2.5
+    room.map_file = "assets/maps/enemy_house.tmx"
+
+    room.wall_list = arcade.SpriteList()
+    # all layers that are spatially hashed are "solid" - aka we can give them collision
+    layer_options = {
+        "walls": {
+            "use_spatial_hash": True,
+        },
+        
+       
+    }
+
+    # create tilemap, and then a scene from that tilemap. the scene is what we use.
+
+    room.tile_map = arcade.load_tilemap(
+        room.map_file, SPRITE_SCALING, layer_options=layer_options)
+    
+    room.scene = arcade.Scene.from_tilemap(room.tile_map)
+    room.scene.add_sprite("Player", player_sprite)
+    room.scene.add_sprite_list("Player Stuff", sprite_list = player_accessory_list)
+    room.scene.move_sprite_list_after("over layer", "Player Stuff")
+    # the rooms wall list is used for player collision.
+    room.wall_list = []
+    
+    room.wall_list.append(room.scene["walls"])
+    #room.wall_list.append(room.scene["Trees 1"])
+    #room.wall_list.append(room.scene["Trees 2"])
+
+    return room
+
+
 class MyGame(arcade.Window):
     """ Main application class. """
 
@@ -706,7 +778,13 @@ class MyGame(arcade.Window):
         room = setup_kitchen(self.player_sprite,self.player_accessory_list)
         self.rooms.append(room)
 
-        self.current_room_index = 0
+        room = setup_forest(self.player_sprite,self.player_accessory_list)
+        self.rooms.append(room)
+
+        room = setup_enemy_house(self.player_sprite,self.player_accessory_list)
+        self.rooms.append(room)
+        
+        self.current_room_index = 11
         self.current_room = self.rooms[self.current_room_index]
         self.scene = self.current_room.scene
        

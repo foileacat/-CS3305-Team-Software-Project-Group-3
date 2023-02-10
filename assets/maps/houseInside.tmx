@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="18" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="3">
+ <tileset firstgid="1" source="Sources/TilesetInteriorFloor.tsx"/>
+ <tileset firstgid="375" source="Sources/fire_1.tsx"/>
+ <tileset firstgid="381" source="Sources/fire_animation.tmx"/>
+ <tileset firstgid="387" source="Sources/TilesetRelief.tsx"/>
+ <tileset firstgid="627" source="Sources/TilesetReliefDetail.tsx"/>
+ <tileset firstgid="771" source="Sources/TilesetHouse.tsx"/>
+ <tileset firstgid="1530" source="../../../-CS3305-Team-Software-Project-Group-3/assets/maps/Sources/TilesetNature.tsx"/>
+ <objectgroup id="4" name="interactables">
+  <object id="2" gid="1567" x="236.987" y="62.2552" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="5" name="Animation">
+  <object id="1" gid="1567" x="181.614" y="89.1031" width="16" height="16"/>
+ </objectgroup>
+ <layer id="1" name="floor" width="18" height="13">
+  <data encoding="base64" compression="zlib">
+   eJwTYGBg4KUQCwOxEhArU4hVRs0ZNWeYmRMExJYU4lAgBgCucyA9
+  </data>
+ </layer>
+ <layer id="6" name="over layer" width="18" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgYIMA2QBaPglEwBAEAScIAFw==
+  </data>
+ </layer>
+ <layer id="7" name="walls" width="18" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFIMDPNtAuGAWjADcAADrCABY=
+  </data>
+ </layer>
+ <layer id="2" name="furniture" width="18" height="13">
+  <data encoding="base64" compression="zlib">
+   eJyzZGVgsAJibGAFEyrGBiyh+qOAOBqHOcQASvUPdvCJEbfcC6DcSyh+hUcdyAw2HPEAAn+A8n+h+B8ec0BmSOExRwAoJwjFQnjU4TNjqANLPPmCFP340jUx+QumHwCoIBRb
+  </data>
+ </layer>
+ <layer id="3" name="furniture 2" width="18" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYGBgqGVkwAp6mRkY+pgRNC6AS/8oGLrgLwsEj2RAabompJ/Y/AUCAE4RCH8=
+  </data>
+ </layer>
+</map>
