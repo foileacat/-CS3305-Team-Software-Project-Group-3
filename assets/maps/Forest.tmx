@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="25" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="3">
+ <tileset firstgid="1" source="Sources/TilesetExteriorFloor.tsx"/>
+ <tileset firstgid="573" source="Sources/TilesetNature.tsx"/>
+ <tileset firstgid="909" source="Sources/TilesetField.tsx"/>
+ <tileset firstgid="939" source="Sources/Tall Grass hill tiles v.2.tsx"/>
+ <tileset firstgid="987" source="Sources/TilesetHouse.tsx"/>
+ <objectgroup id="6" name="Animation">
+  <object id="1" gid="1026" x="300" y="152" width="16" height="16"/>
+ </objectgroup>
+ <layer id="1" name="floor" width="25" height="18">
+  <data encoding="base64" compression="zlib">
+   eJzNlEsKwCAMRPUOWu+/sT2E9hDS80iVKgQx9ddAF4MbnZdMgoIzJhZ0sLX3mFzwtUE+6BxgyCDVeVcnhh1k9HJ1qh8yemvrlQH+URfSR60+OcFYzak1BwpG6f+WU0tbkVv03gtvbGexvGXybeXvP+qhJjeZkRrYI8jh/Dmp/g8D8qLY2czIfVAxHNG8MQ7VPKI02OO/zf0GbS9bEg==
+  </data>
+ </layer>
+ <objectgroup id="8" name="interactables"/>
+ <layer id="2" name="Trees 1" width="25" height="18">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAf2MvEwLCPibZ2nAWaf47GdoyCUTAKqAtigXk2DojjgTgBT/7Fpc4eyHYgkO9zgfJ5QJwPxAVMmGbBzEBXBxP3B+IAJvx21QLF64C4HogbsJgFMwNdHUwcBD6i8fGBj1jMwqYGHeALY0L2DRSgpt3oZgEAklwdnQ==
+  </data>
+ </layer>
+ <layer id="3" name="Trees 2" width="25" height="18">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRQCmIZWJgiAPieCBOYMIvj6zOHogdkGh85uQC+XlAnA/EBVjUIssjq/MH4gAkGt0cZFAL5NcBcT0QN2BRiyyPrA4doJuDD5CilhYAAGzYGgg=
+  </data>
+ </layer>
+ <layer id="4" name="House" width="25" height="18">
+  <data encoding="base64" compression="zlib">
+   eJxjYICAt0wMRIPbzAwMd4D4LhDfYyZeHz6AbH86CwPDH6C5f4H4HxD/B+IMFsL6SAFZQPNkgVgOiOWBWIEFIkauedhAB9C8biDuBeJsKLsThz+QwXskN1DqHmr6hxp2k+KegXL7YAuzwWYfvd34fgDjY7iAWGAYxgFxPBAnEBGe+NQjy9kDsQNUPhdI5wFxPhAXMBG2E109LrP8gTgAKl4LpOuAuB6IG5gwzUAH6OpxmQUA6T8vBg==
+  </data>
+ </layer>
+ <layer id="5" name="over layer" width="25" height="18">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGLgAABwgAAQ==
+  </data>
+ </layer>
+</map>
