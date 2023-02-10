@@ -551,7 +551,7 @@ class MyGame(arcade.Window):
         """
         self.gui_character_creator_manager = arcade.gui.UIManager()
         self.gui_character_creator_manager.enable()
-        texture = arcade.load_texture("assets/assetpacks/ninja/HUD/Dialog/DialogueBoxSimple.png")
+        texture = arcade.load_texture("assets/assetpacks/ninja/HUD/Dialog/DialogueBoxSimple.png") 
         self.v_box = arcade.gui.UIBoxLayout()
         
         # Create a text label
@@ -574,6 +574,7 @@ class MyGame(arcade.Window):
                                               text_color=arcade.csscolor.BLACK)
         blah = arcade.gui.UIWidget(children=[ui_text_label])
         blah.with_background(texture=texture)
+
         horse = ui_text_label.with_background(texture=texture, bottom=20, top=20, left=20,right=20)
         self.v_box.add(horse.with_space_around(bottom=0))
 
@@ -596,7 +597,7 @@ class MyGame(arcade.Window):
             print("UITextureButton pressed", event)
 
         self.v_box.add(ui_texture_button.with_space_around(bottom=20))
-        
+        texture = arcade.load_texture("assets/assetpacks/ninja/HUD/Dialog/DialogueBoxSimple.png") 
         # Create a widget to hold the v_box widget, that will center the buttons
         self.gui_character_creator_manager.add(
             arcade.gui.UIAnchorWidget(
