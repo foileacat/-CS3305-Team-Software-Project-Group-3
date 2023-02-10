@@ -1,41 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="12">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="27">
  <tileset firstgid="1" source="Sources/atlas_16x.tsx"/>
- <objectgroup id="8" name="Interactables">
-  <object id="1" x="101.444" y="89.694"/>
-  <object id="3" x="251.848" y="64.6267" width="38.3843" height="18.4088"/>
-  <object id="4" x="253.807" y="111.628" width="36.4259" height="19.5838"/>
-  <object id="5" x="251.065" y="160.196" width="40.3427" height="20.3672"/>
-  <object id="6" x="253.023" y="208.764" width="38.3843" height="18.8005"/>
-  <object id="7" x="251.065" y="258.115" width="42.3011" height="16.8421"/>
-  <object id="8" x="25.8507" y="142.962" width="9.40024" height="18.4088"/>
-  <object id="9" x="176.646" y="281.224" width="15.2754" height="37.601"/>
-  <object id="10" x="237.356" y="27.8091" width="19.1922" height="8.61689"/>
-  <object id="11" x="176.255" y="31.3341" width="30.9425" height="5.48348"/>
+ <tileset firstgid="769" source="Sources/TilesetHouse.tsx"/>
+ <tileset firstgid="1528" source="Sources/TilesetRelief.tsx"/>
+ <objectgroup id="9" name="interactables">
+  <object id="12" gid="1550" x="140.167" y="212.333" width="39.3333" height="39">
+   <properties>
+    <property name="inspect_text" value="hint_system?"/>
+    <property name="item_id" value="giant_frog_statue"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="13" gid="1550" x="186.667" y="287.667" width="102" height="38">
+   <properties>
+    <property name="inspect_text" value="Wow, that's a lot of books."/>
+    <property name="item_id" value="bookshelves"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="15" gid="1550" x="103" y="49.3333" width="36.6667" height="21.3333">
+   <properties>
+    <property name="inspect_text" value="A big fireplace"/>
+    <property name="item_id" value="fireplace"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="16" gid="1550" x="239.833" y="37.3333" width="16" height="16">
+   <properties>
+    <property name="destination_room" type="int" value="8"/>
+    <property name="on_interact" value="room_transition"/>
+    <property name="transition_direction" type="int" value="1"/>
+    <property name="transition_id" value="bedroom"/>
+   </properties>
+  </object>
+  <object id="17" gid="1550" x="20" y="170.667" width="19.25" height="38.5">
+   <properties>
+    <property name="destination_room" type="int" value="9"/>
+    <property name="on_interact" value="room_transition"/>
+    <property name="transition_direction" type="int" value="2"/>
+    <property name="transition_id" value="kitchen"/>
+   </properties>
+  </object>
+  <object id="18" gid="1550" x="280.288" y="184.909" width="16" height="31.0909">
+   <properties>
+    <property name="destination_room" type="int" value="2"/>
+    <property name="on_interact" value="room_transition"/>
+    <property name="transition_direction" type="int" value="3"/>
+    <property name="transition_id" value="cave_outside"/>
+   </properties>
+  </object>
+  <object id="19" gid="1550" x="87.6667" y="100.667" width="32" height="35.3333">
+   <properties>
+    <property name="inspect_text" value="It's huge. that's what she said"/>
+    <property name="item_id" value="Big_tv"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="22" gid="1550" x="93" y="126" width="16" height="16">
+   <properties>
+    <property name="inspect_text" value="ooo fancy"/>
+    <property name="item_id" value="wine"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="23" gid="1550" x="34" y="54.6667" width="32.6667" height="24">
+   <properties>
+    <property name="inspect_text" value="It's filled with books."/>
+    <property name="item_id" value="livingroom_small_bookshelf"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="24" gid="1550" x="75.8333" y="51.1667" width="22" height="20.6667">
+   <properties>
+    <property name="inspect_text" value="Logs for the fireplace."/>
+    <property name="item_id" value="fireplace_logs"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="25" gid="1550" x="174" y="42" width="36.3333" height="16">
+   <properties>
+    <property name="inspect_text" value="A beautiful painting of a beach."/>
+    <property name="item_id" value="painting"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
  </objectgroup>
- <layer id="1" name="Floor" width="20" height="20">
+ <objectgroup id="11" name="Animation">
+  <object id="26" gid="1634" x="244.321" y="129.189" width="16" height="16"/>
+ </objectgroup>
+ <layer id="1" name="floor" width="20" height="20">
   <data encoding="base64" compression="zlib">
    eJwLZmRgCB7Fo3gUj+JRPIpJxABLRYNB
   </data>
  </layer>
- <layer id="7" name="Carpet" width="20" height="20">
+ <layer id="7" name="carpet" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBi5QBCIhUjEwnjMcwRiJxKx86h5o+aNmjcozCsE4iIScTEe80YCAACwFTKJ
+   eJxjYBi5QBCIhUjEwnjMcwRiJxKx86h5VDdPkG1wu2/UvMFpXiEQF5GIi/GYNxIAAP7DMqA=
   </data>
  </layer>
- <layer id="2" name="Walls" width="20" height="20">
+ <layer id="2" name="walls" width="20" height="20">
   <data encoding="base64" compression="zlib">
    eJxjYWBgYKEiNqEyBpqZAKQTGCgEQDMWsEDwqHmj5o2aN2reUDFvUJfPAPpOL8E=
   </data>
  </layer>
- <layer id="5" name="Furniture" width="20" height="20">
+ <layer id="5" name="furniture" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYKAPyGFkYMgF4jxG6pg3B2jOXCCeRyXzBjtwGmgHEADawHjQoWJcRAPNihkhcTsKRsFQBQDzyAR5
+   eJxjYKAPyGFkYMgF4jxGys0KZGVgmAM0Zy4Qz6OCeUMBOA20AwgAbWA86FAxLqKBZsWMkLgdBaNgqAIA0OkEzw==
   </data>
  </layer>
- <layer id="6" name="Furniture2" width="20" height="20">
+ <layer id="6" name="furniture 2" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYMAN1qLxvZkYGHyYIOyVQLwKiFfj0HsFiK/iMRsEqoFm1UDNuwnEt4D4Ng61JowMDKaMEDY/IwGDaQheAu1+RYT9XkzEmScJVCdFhNoqoJp7RJpJTUDIv75QN50AqjkMVeeHx53o/gWmnwRgnCfA+LVQOQ4kO+tI8DcwTSbcQjKPVIDuX2A6T7hJgXnExu9AAWLTM7GAXv7dSqYduPz7FId5B7GoRRYj1b8fsZiHTYxUQKg8JhUQKo9hAACpBChq
+   eJxjYMAN1qLxvZkYGHyYIOyVQLwKiFfj0HsFiK/iMRsEqoFm1UDNuwnEt4D4Ng61JowMDKaMBAwcxqAKGE73mAbaFbjBCWDcHCYjfoDpJwEY5wkwfi3UjxxIZtWR4G9gmky4hWQeOeAjIzg9LlgJwQk3KTQPBIBuWgB02wJKzYEBYJgtWE2keWGsDAzhrLjlP47gfAUDTwcob0kC7ZViwqSHCgAAdXogFA==
+  </data>
+ </layer>
+ <layer id="10" name="over layer" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFtABeTAPtAvoAXyz+9KOz3w8y0tc+WgNTVgYGM1bc8sPNv+SArQOUv14Cw/4VIyY9UgEAc6IJGw==
   </data>
  </layer>
 </map>

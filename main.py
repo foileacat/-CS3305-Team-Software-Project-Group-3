@@ -43,12 +43,18 @@ class Room:
     """
 
     def __init__(self):
-        # You may want many lists. Lists for coins, monsters, etc.
+        # You may want many lists. 
+       #Lists for coins, monsters, etc.
+        self.entrances = []
         self.multiple_entrances = False
+        self.map_file = ""
         self.wall_list = None
+        self.wall_list = None
+        self.layer_options = {}
         self.width = SPRITE_SIZE * 10
         self.height = SPRITE_SIZE * 10
         self.background = None
+        
 
 
 def load_texture_list(filename, row, frame, offset):
@@ -191,9 +197,6 @@ def setup_starting_room(player_sprite, player_accessory_list):
         "furniture": {
             "use_spatial_hash": True,
         },
-        "furniture 2": {
-            "use_spatial_hash": True,
-        },
         "over layer": {
             "use_spatial_hash": True,
         }   
@@ -249,9 +252,11 @@ def setup_main_room(player_sprite, player_accessory_list):
 
 def setup_caveoutside(player_sprite, player_accessory_list):
 
+
     room = Room()
     room.multiple_entrances = True
-    room.entrances = {"main_room" : [17*SPRITE_SIZE,3*SPRITE_SIZE], "cave_inside" : [20*SPRITE_SIZE,3*SPRITE_SIZE], "blah" : [20,600]}
+    room.entrances = {"main_room" : [17*SPRITE_SIZE,3*SPRITE_SIZE], "cave_inside" : [20*SPRITE_SIZE,3*SPRITE_SIZE], "blacksmith" : [7*SPRITE_SIZE,13*SPRITE_SIZE],
+                      "living_room" : [17*SPRITE_SIZE,10*SPRITE_SIZE]}
     room.starting_x = SPRITE_SIZE * 11.5
     room.starting_y = SPRITE_SIZE * 2.5
     room.map_file = "assets/maps/caveoutside.tmx"
@@ -265,9 +270,7 @@ def setup_caveoutside(player_sprite, player_accessory_list):
         "furniture": {
             "use_spatial_hash": True,
         },
-        "furniture 2": {
-            "use_spatial_hash": True,
-        },
+        
         "over layer": {
             "use_spatial_hash": True,
         }
@@ -292,7 +295,6 @@ def setup_caveoutside(player_sprite, player_accessory_list):
     room.wall_list = []
     room.wall_list.append(room.scene["walls"])
     room.wall_list.append(room.scene["furniture"])
-    room.wall_list.append(room.scene["furniture 2"])
 
     return room
 
@@ -314,9 +316,6 @@ def setup_dojooutside(player_sprite, player_accessory_list):
         "furniture": {
             "use_spatial_hash": True,
         },
-        "furniture 2": {
-            "use_spatial_hash": True,
-        },
         "over layer": {
             "use_spatial_hash": True,
         }
@@ -341,7 +340,6 @@ def setup_dojooutside(player_sprite, player_accessory_list):
     room.wall_list = []
     room.wall_list.append(room.scene["walls"])
     room.wall_list.append(room.scene["furniture"])
-    room.wall_list.append(room.scene["furniture 2"])
 
     return room
 
@@ -390,7 +388,6 @@ def setup_dojo(player_sprite, player_accessory_list):
     room.wall_list = []
     room.wall_list.append(room.scene["walls"])
     room.wall_list.append(room.scene["furniture"])
-    room.wall_list.append(room.scene["furniture 2"])
 
     return room
 def setup_caveinside(player_sprite, player_accessory_list):
@@ -409,9 +406,6 @@ def setup_caveinside(player_sprite, player_accessory_list):
             "use_spatial_hash": True,
         },
         "furniture": {
-            "use_spatial_hash": True,
-        },
-        "furniture 2": {
             "use_spatial_hash": True,
         },
         "over layer": {
@@ -438,16 +432,185 @@ def setup_caveinside(player_sprite, player_accessory_list):
     room.wall_list = []
     room.wall_list.append(room.scene["walls"])
     room.wall_list.append(room.scene["furniture"])
-    room.wall_list.append(room.scene["furniture 2"])
 
     return room
 
-def setup_room_3(player_sprite, player_accessory_list):
-    
-    
-    return
-    
+def setup_blacksmith(player_sprite, player_accessory_list):
 
+    room = Room()
+    room.multiple_entrances = True
+    room.entrances = { "cave_outside" : [5*SPRITE_SIZE,12*SPRITE_SIZE],}
+    room.map_file = "assets/maps/blacksmith.tmx"
+
+    room.wall_list = arcade.SpriteList()
+    # all layers that are spatially hashed are "solid" - aka we can give them collision
+    layer_options = {
+        "walls": {
+            "use_spatial_hash": True,
+        },
+        "furniture": {
+            "use_spatial_hash": True,
+        },
+        "over layer": {
+            "use_spatial_hash": True,
+        }
+        
+        
+        
+    }
+    # create tilemap, and then a scene from that tilemap. the scene is what we use.
+
+    room.tile_map = arcade.load_tilemap(
+        room.map_file, SPRITE_SCALING, layer_options=layer_options)
+    
+    room.scene = arcade.Scene.from_tilemap(room.tile_map)
+
+    room.scene.add_sprite("Player", player_sprite)
+    room.scene.add_sprite_list("Player Stuff", sprite_list = player_accessory_list)
+
+    room.scene.move_sprite_list_after("over layer", "Player Stuff")
+    # the rooms wall list is used for player collision.
+
+    room.wall_list = []
+    room.wall_list.append(room.scene["walls"])
+    room.wall_list.append(room.scene["furniture"])
+
+    return room
+
+def setup_livingroom(player_sprite, player_accessory_list):
+
+    room = Room()
+    room.multiple_entrances = True
+    room.entrances = {"cave_outside" : [19.5*SPRITE_SIZE,4*SPRITE_SIZE], "kitchen" : [16*SPRITE_SIZE,10*SPRITE_SIZE], "bedroom" : [16*SPRITE_SIZE,17*SPRITE_SIZE]}
+    room.starting_x = SPRITE_SIZE * 11.5
+    room.starting_y = SPRITE_SIZE * 2.5
+    room.map_file = "assets/maps/living room.tmx"
+
+    room.wall_list = arcade.SpriteList()
+    # all layers that are spatially hashed are "solid" - aka we can give them collision
+    layer_options = {
+        "walls": {
+            "use_spatial_hash": True,
+        },
+        "furniture": {
+            "use_spatial_hash": True,
+        },
+        "over layer": {
+            "use_spatial_hash": True,
+        }
+        
+        
+        
+    }
+
+    # create tilemap, and then a scene from that tilemap. the scene is what we use.
+
+    room.tile_map = arcade.load_tilemap(
+        room.map_file, SPRITE_SCALING, layer_options=layer_options)
+    
+    room.scene = arcade.Scene.from_tilemap(room.tile_map)
+
+    room.scene.add_sprite("Player", player_sprite)
+    room.scene.add_sprite_list("Player Stuff", sprite_list = player_accessory_list)
+
+    room.scene.move_sprite_list_after("over layer", "Player Stuff")
+    # the rooms wall list is used for player collision.
+
+    room.wall_list = []
+    room.wall_list.append(room.scene["walls"])
+    room.wall_list.append(room.scene["furniture"])
+
+    return room
+
+def setup_bedroom(player_sprite, player_accessory_list):
+
+    room = Room()
+    room.multiple_entrances = True
+    room.entrances = {"living_room" : [15*SPRITE_SIZE,17*SPRITE_SIZE]}
+    room.starting_x = SPRITE_SIZE * 11.5
+    room.starting_y = SPRITE_SIZE * 2.5
+    room.map_file = "assets/maps/bedroom.tmx"
+
+    room.wall_list = arcade.SpriteList()
+    # all layers that are spatially hashed are "solid" - aka we can give them collision
+    layer_options = {
+        "walls": {
+            "use_spatial_hash": True,
+        },
+        "furniture": {
+            "use_spatial_hash": True,
+        },
+        "over layer": {
+            "use_spatial_hash": True,
+        }
+        
+        
+        
+    }
+
+    # create tilemap, and then a scene from that tilemap. the scene is what we use.
+
+    room.tile_map = arcade.load_tilemap(
+        room.map_file, SPRITE_SCALING, layer_options=layer_options)
+    
+    room.scene = arcade.Scene.from_tilemap(room.tile_map)
+
+    room.scene.add_sprite("Player", player_sprite)
+    room.scene.add_sprite_list("Player Stuff", sprite_list = player_accessory_list)
+
+    room.scene.move_sprite_list_after("over layer", "Player Stuff")
+    # the rooms wall list is used for player collision.
+
+    room.wall_list = []
+    room.wall_list.append(room.scene["walls"])
+    room.wall_list.append(room.scene["furniture"])
+
+    return room
+
+def setup_kitchen(player_sprite, player_accessory_list):
+
+    room = Room()
+    room.multiple_entrances = True
+    room.entrances = {"living_room" : [3*SPRITE_SIZE,10*SPRITE_SIZE]}
+    room.starting_x = SPRITE_SIZE * 11.5
+    room.starting_y = SPRITE_SIZE * 2.5
+    room.map_file = "assets/maps/kitchen.tmx"
+
+    room.wall_list = arcade.SpriteList()
+    # all layers that are spatially hashed are "solid" - aka we can give them collision
+    layer_options = {
+        "walls": {
+            "use_spatial_hash": True,
+        },
+        "furniture": {
+            "use_spatial_hash": True,
+        },
+        "over layer": {
+            "use_spatial_hash": True,
+        }
+        
+        
+        
+    }
+
+    # create tilemap, and then a scene from that tilemap. the scene is what we use.
+
+    room.tile_map = arcade.load_tilemap(
+        room.map_file, SPRITE_SCALING, layer_options=layer_options)
+    
+    room.scene = arcade.Scene.from_tilemap(room.tile_map)
+
+    room.scene.add_sprite("Player", player_sprite)
+    room.scene.add_sprite_list("Player Stuff", sprite_list = player_accessory_list)
+
+    room.scene.move_sprite_list_after("over layer", "Player Stuff")
+    # the rooms wall list is used for player collision.
+
+    room.wall_list = []
+    room.wall_list.append(room.scene["walls"])
+    room.wall_list.append(room.scene["furniture"])
+
+    return room
 
 class MyGame(arcade.Window):
     """ Main application class. """
@@ -500,6 +663,18 @@ class MyGame(arcade.Window):
         self.rooms.append(room)
 
         room = setup_dojo(self.player_sprite,self.player_accessory_list)
+        self.rooms.append(room)
+
+        room = setup_blacksmith(self.player_sprite,self.player_accessory_list)
+        self.rooms.append(room)
+
+        room = setup_livingroom(self.player_sprite,self.player_accessory_list)
+        self.rooms.append(room)
+
+        room = setup_bedroom(self.player_sprite,self.player_accessory_list)
+        self.rooms.append(room)
+
+        room = setup_kitchen(self.player_sprite,self.player_accessory_list)
         self.rooms.append(room)
 
         self.current_room_index = 0
