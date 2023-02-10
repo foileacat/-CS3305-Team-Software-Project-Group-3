@@ -34,8 +34,6 @@ DOWN_FACING = 1
 RIGHT_FACING = 2
 LEFT_FACING = 3
 
-
-
 class Room:
     """
     This class holds all the information about the
@@ -54,6 +52,54 @@ class Room:
         self.width = SPRITE_SIZE * 10
         self.height = SPRITE_SIZE * 10
         self.background = None
+
+
+class RoomA:
+    """
+    This class holds all the information about the
+    different rooms.
+    """
+
+    def __init__(self, map_file, player_sprite, player_accessory_list):
+        # You may want many lists. 
+       #Lists for coins, monsters, etc.
+        self.entrances = {}
+        self.multiple_entrances = False
+        self.map_file = map_file
+        self.layer_options = {}
+        self.width = SPRITE_SIZE * 10
+        self.height = SPRITE_SIZE * 10
+        self.background = None
+        self.wall_list = arcade.SpriteList()
+        self.wall_list = []
+        layer_options = {
+        "walls": {
+            "use_spatial_hash": True,
+        },
+        "furniture": {
+            "use_spatial_hash": True,
+        },
+        "over layer": {
+            "use_spatial_hash": True,
+        }   
+        }
+
+    # create tilemap, and then a scene from that tilemap. the scene is what we use.
+        
+        self.tile_map = arcade.load_tilemap(
+        self.map_file, SPRITE_SCALING, layer_options=layer_options)
+            
+        self.scene = arcade.Scene.from_tilemap(self.tile_map)
+        self.scene.add_sprite("Player", player_sprite)
+        self.scene.add_sprite_list("Player Stuff", sprite_list = player_accessory_list)
+        self.scene.move_sprite_list_after("over layer", "Player Stuff")
+        # the rooms wall list is used for player collision.
+        
+
+        
+        self.wall_list.append(self.scene["walls"])
+        self.wall_list.append(self.scene["furniture"])
+
         
 
 
@@ -181,14 +227,12 @@ class PlayerCharacter(arcade.Sprite):
         self.texture = self.walk_textures[frame][direction]
 
 
-def setup_starting_room(player_sprite, player_accessory_list):
+def setup_starting_room( player_sprite, player_accessory_list):
 
-    room = Room()
+    room = RoomA("assets/maps/starting_room.tmx",player_sprite,player_accessory_list)
     room.starting_x = SPRITE_SIZE * 11.5
     room.starting_y = SPRITE_SIZE * 2.5
-    room.map_file = "assets/maps/starting_room.tmx"
-
-    room.wall_list = arcade.SpriteList()
+    room.entrances = {"main_room" : [2.5*SPRITE_SIZE,7*SPRITE_SIZE]}
     # all layers that are spatially hashed are "solid" - aka we can give them collision
     layer_options = {
         "walls": {
@@ -202,22 +246,7 @@ def setup_starting_room(player_sprite, player_accessory_list):
         }   
     }
 
-    # create tilemap, and then a scene from that tilemap. the scene is what we use.
-
-    room.tile_map = arcade.load_tilemap(
-        room.map_file, SPRITE_SCALING, layer_options=layer_options)
-    
-    room.scene = arcade.Scene.from_tilemap(room.tile_map)
-    room.scene.add_sprite("Player", player_sprite)
-    room.scene.add_sprite_list("Player Stuff", sprite_list = player_accessory_list)
-    room.scene.move_sprite_list_after("over layer", "Player Stuff")
-    # the rooms wall list is used for player collision.
-    room.wall_list = []
-    
-    
-    room.wall_list.append(room.scene["walls"])
-    room.wall_list.append(room.scene["furniture"])
-    room.wall_list.append(room.scene["furniture 2"])
+   
 
     return room
 
@@ -858,21 +887,17 @@ class MyGame(arcade.Window):
         Transitions player from one room to the next.
 
         """
-        if  self.current_room.multiple_entrances:
-            entrance = interactable.properties["transition_id"]
-            print(entrance)
-            
-            entrance_coordinates = self.current_room.entrances[entrance]
-            print(entrance_coordinates)
-            self.player_sprite.center_x = entrance_coordinates[0]
-            self.player_sprite.center_y = entrance_coordinates[1]
-            self.current_room_index = int(interactable.properties["destination_room"])
-            self.current_room = self.rooms[self.current_room_index]
-        else:
-            self.current_room_index = int(interactable.properties["destination_room"])
-            self.current_room = self.rooms[self.current_room_index]
-            self.player_sprite.center_x = self.current_room.starting_x
-            self.player_sprite.center_y = self.current_room.starting_y
+        
+        entrance = interactable.properties["transition_id"]
+        print(entrance)
+        
+        entrance_coordinates = self.current_room.entrances[entrance]
+        print(entrance_coordinates)
+        self.player_sprite.center_x = entrance_coordinates[0]
+        self.player_sprite.center_y = entrance_coordinates[1]
+        self.current_room_index = int(interactable.properties["destination_room"])
+        self.current_room = self.rooms[self.current_room_index]
+    
 
         self.scene = self.current_room.scene
         

@@ -91,7 +91,7 @@
     <property name="destination_room" type="int" value="1"/>
     <property name="on_interact" value="room_transition"/>
     <property name="transition_direction" type="int" value="0"/>
-    <property name="transition_id" value="0"/>
+    <property name="transition_id" value="main_room"/>
    </properties>
   </object>
  </objectgroup>
