@@ -31,7 +31,7 @@ class MyGame(arcade.Window):
 
     def setup(self):
         """ Set up the game and initialize variables. """
-
+        self.character_creator_open = False
         arcade.load_font(FONT_PATH) #imports game font. name of font is "NinjaAdventure"
         self.player_sprite = PlayerCharacter()
         self.player_sprite.set_hit_box(self.player_sprite.points)
@@ -46,7 +46,7 @@ class MyGame(arcade.Window):
 
         room = main_room.setup(self.player_sprite,self.player_accessory_list)
         self.rooms.append(room)
-        
+
         room = cave_outside.setup(self.player_sprite,self.player_accessory_list)
         self.rooms.append(room)
 
@@ -130,17 +130,16 @@ class MyGame(arcade.Window):
         self.v_box = arcade.gui.UIBoxLayout()
         
         # Create a text label
-        ui_text_label = arcade.gui.UITextArea(text="This is a Text Widget",
+        ui_text_label = arcade.gui.UITextArea(text="Character Customiser",
+                                              text_color=arcade.csscolor.WHITE,
                                               width=450,
                                               height=40,
-                                              font_size=24,
-                                              font_name="Kenney Future")
+                                              font_size=20,
+                                              font_name="NinjaAdventure")
         self.background = arcade.gui.UITexturePane(child=ui_text_label, tex=texture)
         self.v_box.add(ui_text_label.with_space_around(bottom=20))
 
-        text = "The real danger is not that computers will begin to think like people, " \
-               "but that people will begin " \
-               "to think like computers. - Sydney Harris (Journalist)"
+        text = "Poo Poo Pee Pee"
         ui_text_label = arcade.gui.UITextArea(text=text,
                                               width=450,
                                               height=60,
@@ -152,26 +151,45 @@ class MyGame(arcade.Window):
 
         horse = ui_text_label.with_background(texture=texture, bottom=20, top=20, left=20,right=20)
         self.v_box.add(horse.with_space_around(bottom=0))
-
+        #HAIR#####################
         # Create a UIFlatButton
-        ui_flatbutton = arcade.gui.UIFlatButton(text="Flat Button", width=200)
-        self.v_box.add(ui_flatbutton.with_space_around(bottom=20))
+        ui_flatbutton_hair = arcade.gui.UIFlatButton(text="Hair", width=200)
+        self.v_box.add(ui_flatbutton_hair.with_space_around(bottom=20))
 
         # Handle Clicks
-        @ui_flatbutton.event("on_click")
+        @ui_flatbutton_hair.event("on_click")
         def on_click_flatbutton(event):
-            print("UIFlatButton pressed", event)
-
+            self.player_sprite.hair.change_style()
         # Create a UITextureButton
-        texture = arcade.load_texture(":resources:onscreen_controls/flat_dark/play.png")
-        ui_texture_button = arcade.gui.UITextureButton(texture=texture)
-        
-        # Handle Clicks
-        @ui_texture_button.event("on_click")
-        def on_click_texture_button(event):
-            print("UITextureButton pressed", event)
 
-        self.v_box.add(ui_texture_button.with_space_around(bottom=20))
+        texture = arcade.load_texture(":resources:onscreen_controls/flat_dark/play.png")
+        ui_texture_button_hair = arcade.gui.UITextureButton(texture=texture)
+        self.v_box.add(ui_texture_button_hair.with_space_around(bottom=20))
+        # Handle Clicks
+        @ui_texture_button_hair.event("on_click")
+        def on_click_texture_button(event):
+            self.player_sprite.hair.change_color()
+        
+        #CLOTHES#######################
+
+        ui_flatbutton_clothes = arcade.gui.UIFlatButton(text="Clothes", width=200)
+        self.v_box.add(ui_flatbutton_clothes.with_space_around(bottom=20))
+
+        # Handle Clicks
+        @ui_flatbutton_clothes.event("on_click")
+        def on_click_flatbutton(event):
+            self.player_sprite.clothes.change_style()
+        # Create a UITextureButton
+        
+        texture = arcade.load_texture(":resources:onscreen_controls/flat_dark/play.png")
+        ui_texture_button_clothes = arcade.gui.UITextureButton(texture=texture)
+        self.v_box.add(ui_texture_button_clothes.with_space_around(bottom=20))
+        # Handle Clicks
+        @ui_texture_button_clothes.event("on_click")
+        def on_click_texture_button(event):
+            self.player_sprite.clothes.change_color()
+
+        
         texture = arcade.load_texture("assets/assetpacks/ninja/HUD/Dialog/DialogueBoxSimple.png") 
         # Create a widget to hold the v_box widget, that will center the buttons
         self.gui_character_creator_manager.add(
@@ -200,6 +218,9 @@ class MyGame(arcade.Window):
             self.camera_gui.use()
             self.inspect_message_UI.text = self.inspect_text
             self.gui_inspect_manager.draw()
+        elif self.character_creator_open == True:
+            self.camera_gui.use()
+            self.gui_character_creator_manager.draw()
         elif interactableObjects:
             interactable = interactableObjects[0]
         
@@ -214,14 +235,16 @@ class MyGame(arcade.Window):
                                                         center_x=interactable.center_x, center_y=interactable.center_y+(interactable.height//2)+20)
             if interactable.properties["on_interact"] == "room_transition":
                 self.inspect_item_symbol_UI.color = arcade.csscolor.INDIANRED
+            elif interactable.properties["on_interact"] == "character_creator":
+                self.inspect_item_symbol_UI.color = arcade.csscolor.INDIGO
             self.inspect_item_symbol_UI.draw(pixelated=True)
             
-        #self.camera_gui.use()
-        #self.gui_character_creator_manager.draw()
+   
+
         
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed. """
-        if self.player_sprite.currently_inspecting == False:
+        if self.player_sprite.currently_inspecting == False and self.character_creator_open == False:
             if key == UP_KEY:
                 self.player_sprite.change_y = MOVEMENT_SPEED
             elif key == DOWN_KEY:
@@ -251,7 +274,14 @@ class MyGame(arcade.Window):
         for interactable in interactables:
             getattr(self, interactable.properties['on_interact'])(interactable)
         return
-
+    
+    def character_creator(self,interactable):
+        if self.character_creator_open == True:
+            self.character_creator_open = False
+            return
+        else:
+            self.player_sprite.character_face_direction = UP_FACING
+            self.character_creator_open = True
     def room_transition(self,interactable):
         """
         Currently unfinished. Runs when player interacts with a transitional interactable object .
@@ -260,10 +290,7 @@ class MyGame(arcade.Window):
         """
         
         entrance = interactable.properties["transition_id"]
-        print(entrance)
-        
         entrance_coordinates = self.current_room.entrances[entrance]
-        print(entrance_coordinates)
         self.player_sprite.center_x = entrance_coordinates[0]
         self.player_sprite.center_y = entrance_coordinates[1]
         self.current_room_index = int(interactable.properties["destination_room"])

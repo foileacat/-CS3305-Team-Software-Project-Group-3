@@ -1,22 +1,27 @@
 import arcade
 from constants import *
-
+from character_lists import clothing
 class PlayerAccessory(arcade.Sprite):
+
     """
     Creates Accesory for character - clothes,hair,eyes etc. 
     These are added to the players accesory sprite list 
     """
 
-    def __init__(self, path, color_offset):
+    def __init__(self, asset_list,asset_index,color_offset):
         super().__init__()
-        self.file_path = path
+        self.asset_list = asset_list
+        self.asset_index = asset_index
+        self.file_path = self.asset_list[self.asset_index]
         self.face_direction = RIGHT_FACING
         self.cur_texture = 0
         self.scale = CHARACTER_SCALING
         self.points = [[6, -16], [6, 4], [6, 4], [6, -16]]  # creates hitbox
         self.color_offset = color_offset  # the offset to choose the color of the accesory
-
+        self.load_textures()
         # Load textures for idle standing
+
+    def load_textures(self):
         self.idle_texture_list = load_texture_list(
             self.file_path, 0, 0, self.color_offset)
         # Load textures for walking
@@ -26,6 +31,32 @@ class PlayerAccessory(arcade.Sprite):
             texture = load_texture_list(
                 self.file_path, 0, frame, self.color_offset)
             self.walk_textures.append(texture)
+
+    def change_color(self):
+        if self.asset_list == clothing:
+            if self.asset_index <= 1:
+                print("witch!!")
+                overflow = 0
+            elif self.asset_index <=3:
+                overflow = 1
+            else:
+                overflow = 7
+        else:
+            overflow = 7
+        self.color_offset+=1
+        if self.color_offset > overflow:
+            self.color_offset = 0
+        self.load_textures()
+
+    def change_style(self):
+        self.asset_index+=1
+        if self.asset_index >= len(self.asset_list):
+            self.asset_index = 0
+            if self.asset_list == clothing:
+                self.color_offset = 0
+        print(self.asset_index)
+        self.file_path = self.asset_list[self.asset_index]
+        self.load_textures()
 
     def update_animation(self, player_sprite, delta_time: float = 1 / 60):
         self.face_direction = player_sprite.character_face_direction
@@ -41,7 +72,6 @@ class PlayerAccessory(arcade.Sprite):
         frame = self.cur_texture // UPDATES_PER_FRAME
         direction = self.face_direction
         self.texture = self.walk_textures[frame][direction]
-
 
 def load_texture_list(filename, row, frame, offset):
     """

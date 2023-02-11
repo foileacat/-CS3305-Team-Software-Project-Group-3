@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="14" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="71">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="14" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="72">
  <editorsettings>
   <export format="json"/>
  </editorsettings>
@@ -94,6 +94,11 @@
     <property name="transition_id" value="main_room"/>
    </properties>
   </object>
+  <object id="71" gid="1585" x="16.797" y="114.149" width="30.7912" height="19.4803">
+   <properties>
+    <property name="on_interact" value="character_creator"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer id="1" name="floor" width="14" height="11">
   <data encoding="csv">
@@ -147,11 +152,11 @@
 0,992,970,971,3048,3060,960,970,969,0,0,0,0,0,
 0,0,0,0,0,0,0,0,2948,0,0,0,0,0,
 0,3043,0,0,0,2710,0,0,2996,0,0,0,0,0,
-0,3091,0,0,2662,2704,0,0,0,0,2626,2627,2628,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,3091,2571,0,2662,2704,0,0,0,0,2626,2627,2628,0,
+0,2618,2619,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,1433,0,0,0,0,0,
 0,0,0,0,1486,1519,0,1365,1366,0,0,0,0,0,
-0,1431,1432,1517,1518,0,0,1398,1399,0,3094,0,2856,0,
+0,1431,1432,1517,1518,1585,0,1398,1399,0,3094,0,2856,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
@@ -162,11 +167,11 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,2570,2571,0,0,0,0,0,0,0,0,0,0,0,
-0,2618,2619,0,0,0,0,0,0,0,0,0,0,0,
+0,2570,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,1552,0,0,0,0,0,0,0,0,
-0,0,0,0,0,1585,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>

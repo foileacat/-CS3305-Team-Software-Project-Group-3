@@ -25,8 +25,11 @@ class PlayerCharacter(arcade.Sprite):
         clothing_file = character_lists.clothing[3]
         # initialise accessory list and add PlayerAccesories to it
         self.accessory_list = arcade.SpriteList()
-        self.hair = PlayerAccessory(hairstyle_file, 4)
-        self.clothes = PlayerAccessory(clothing_file, 2)
+        self.hair = PlayerAccessory(character_lists.hairstyles,7,2)
+        self.clothes = PlayerAccessory(character_lists.clothing,7,3)
+        #self.bottoms
+        #self.shoes
+        #self.fullbody
         self.accessory_list.append(self.clothes)
         self.accessory_list.append(self.hair)
         # load textures for standing still and for walking animation
