@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="14" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="79">
+ <editorsettings>
+  <export format="json"/>
+ </editorsettings>
+ <tileset firstgid="1" source="Sources/TilesetInteriorFloor.tsx"/>
+ <tileset firstgid="375" source="Sources/TilesetWallSimple.tsx"/>
+ <tileset firstgid="485" source="Sources/TilesetInterior.tsx"/>
+ <tileset firstgid="805" source="Sources/Elements.tsx"/>
+ <tileset firstgid="832" source="Sources/TilesetElement.tsx"/>
+ <tileset firstgid="1072" source="Sources/TilesetHouse.tsx"/>
+ <tileset firstgid="1831" source="Sources/TilesetRelief.tsx"/>
+ <tileset firstgid="2071" source="Sources/Basic Furniture.tsx"/>
+ <tileset firstgid="2125" source="Sources/TopDownHouse_FurnitureState1.tsx"/>
+ <tileset firstgid="2359" source="Sources/atlas_16x.tsx"/>
+ <tileset firstgid="3127" source="Sources/fire_1.tsx"/>
+ <tileset firstgid="3133" name="animation_test" tilewidth="16" tileheight="16" tilecount="4" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <image width="16" height="16" source="../assetpacks/ninja/Items/Food/Beaf.png"/>
+   <animation>
+    <frame tileid="0" duration="500"/>
+    <frame tileid="1" duration="500"/>
+    <frame tileid="2" duration="500"/>
+    <frame tileid="3" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="1">
+   <image width="16" height="16" source="../assetpacks/ninja/Items/Food/Calamari.png"/>
+  </tile>
+  <tile id="2">
+   <image width="16" height="16" source="../assetpacks/ninja/Items/Food/FortuneCookie.png"/>
+  </tile>
+  <tile id="3">
+   <image width="16" height="16" source="../assetpacks/ninja/Items/Food/Fish.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="3137" source="Sources/fire_animation.tmx"/>
+ <tileset firstgid="3143" source="Sources/TilesetExteriorFloor.tsx"/>
+ <tileset firstgid="3715" source="Sources/TilesetNature.tsx"/>
+ <objectgroup id="6" name="interactables">
+  <object id="77" x="0" y="71.034" width="10.6112" height="35.0512" rotation="359.368">
+   <properties>
+    <property name="destination_room" type="int" value="1"/>
+    <property name="on_interact" value="room_transition"/>
+    <property name="transition_direction" type="int" value="0"/>
+    <property name="transition_id" value="main_room"/>
+   </properties>
+  </object>
+  <object id="78" x="212.667" y="52.6667" width="11" height="71.3333">
+   <properties>
+    <property name="destination_room" type="int" value="23"/>
+    <property name="on_interact" value="room_transition"/>
+    <property name="transition_direction" type="int" value="0"/>
+    <property name="transition_id" value="forest_hideout"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer id="1" name="floor" width="14" height="11">
+  <data encoding="csv">
+3418,3418,3418,3418,3418,3418,3418,3418,3418,3418,3418,3572,3572,3572,
+3418,3418,3418,3418,3418,3418,3418,3418,3418,3418,3418,3572,3572,3572,
+3418,3418,3418,3418,3418,3418,3418,3418,3418,3418,3572,3572,3572,3572,
+3418,3418,3418,3418,3418,3418,3308,3309,3309,3310,3572,3572,3462,3463,
+3309,3309,3310,3418,3418,3308,3331,3331,3331,3331,3463,3463,3485,3485,
+3331,3331,3331,3309,3309,3331,3331,3331,3331,3331,3485,3485,3485,3485,
+3353,3331,3331,3331,3331,3331,3331,3354,3352,3353,3507,3485,3485,3485,
+3418,3352,3353,3353,3331,3331,3332,3418,3418,3418,3572,3572,3506,3507,
+3418,3418,3418,3418,3352,3353,3354,3418,3418,3422,3572,3572,3572,3572,
+3418,3418,3418,3418,3418,3418,3418,3418,3418,3418,3421,3572,3572,3572,
+3418,3418,3418,3418,3418,3418,3418,3418,3418,3418,3419,3572,3572,3572
+</data>
+ </layer>
+ <layer id="5" name="walls" width="14" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="3" name="wall dec" width="14" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,2530,0,2532,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="4" name="trees2" width="14" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,3719,3720,0,0,
+0,0,0,0,0,0,0,0,0,0,3735,3736,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+3717,3718,3717,3718,0,0,0,0,0,0,0,0,0,0,
+3733,3734,3733,3734,0,0,3717,3718,0,0,0,0,3719,3720,
+0,0,0,0,0,0,3733,3734,0,0,0,0,3735,3736,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="2" name="trees" width="14" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,3795,3796,3797,3798,
+3747,3748,3749,3750,0,0,0,0,0,0,0,3735,3813,3814,
+3763,3764,3765,3766,0,0,0,0,0,0,0,0,3829,3830,
+3779,3780,3781,3782,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,3795,3719,3720,3798,0,
+3747,3748,3749,3750,0,0,0,0,0,0,3735,3736,0,0,
+3763,3764,3765,3766,0,0,0,0,0,0,0,3719,3720,0,
+3779,3780,3781,3782,0,0,0,0,0,0,0,3735,3736,0
+</data>
+ </layer>
+ <layer id="13" name="over layer" width="14" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="12" name="Animation"/>
+</map>

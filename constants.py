@@ -25,7 +25,7 @@ MOVEMENT_SPEED = 5
 UPDATES_PER_FRAME = 5
 
 # Constants used to track if the player is facing left or right
-UP_FACING = 0
-DOWN_FACING = 1
+FORWARD_FACING = 0
+BACKWARD_FACING = 1
 RIGHT_FACING = 2
 LEFT_FACING = 3

@@ -1,6 +1,6 @@
 import arcade
 from constants import *
-from character_lists import clothing
+from character_lists import full_body
 class PlayerAccessory(arcade.Sprite):
 
     """
@@ -21,6 +21,9 @@ class PlayerAccessory(arcade.Sprite):
         self.load_textures()
         # Load textures for idle standing
 
+    def __str__(self):
+        return f"Type is {self.asset_list}, style is {self.asset_index} and color is {self.color_offset}"
+    
     def load_textures(self):
         self.idle_texture_list = load_texture_list(
             self.file_path, 0, 0, self.color_offset)
@@ -33,9 +36,8 @@ class PlayerAccessory(arcade.Sprite):
             self.walk_textures.append(texture)
 
     def change_color(self):
-        if self.asset_list == clothing:
+        if self.asset_list == full_body:
             if self.asset_index <= 1:
-                print("witch!!")
                 overflow = 0
             elif self.asset_index <=3:
                 overflow = 1
@@ -49,14 +51,22 @@ class PlayerAccessory(arcade.Sprite):
         self.load_textures()
 
     def change_style(self):
-        self.asset_index+=1
-        if self.asset_index >= len(self.asset_list):
-            self.asset_index = 0
-            if self.asset_list == clothing:
-                self.color_offset = 0
-        print(self.asset_index)
-        self.file_path = self.asset_list[self.asset_index]
-        self.load_textures()
+        if self.alpha == 0:
+            self.alpha = 255
+            self.file_path = self.asset_list[self.asset_index]
+            self.load_textures()
+            print(self.asset_index)
+            return
+        else:
+            self.asset_index+=1
+            if self.asset_index >= len(self.asset_list):
+                self.alpha = 0
+                self.asset_index = 0
+                if self.asset_list == full_body:
+                    self.color_offset = 0
+            print(self.asset_index)
+            self.file_path = self.asset_list[self.asset_index]
+            self.load_textures()
 
     def update_animation(self, player_sprite, delta_time: float = 1 / 60):
         self.face_direction = player_sprite.character_face_direction
