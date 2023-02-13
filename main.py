@@ -85,7 +85,7 @@ class MyGame(arcade.Window):
             self.player_sprite, self.player_accessory_list)
         self.rooms.append(room)
 
-        self.current_room_index = 0
+        self.current_room_index = 1
         self.current_room = self.rooms[self.current_room_index]
         self.scene = self.current_room.scene
 
@@ -396,9 +396,8 @@ class MyGame(arcade.Window):
 
     def handle_npc_interaction(self, npc):
         x_diff = self.player_sprite.center_x - npc.center_x
-        print(x_diff)
         y_diff = self.player_sprite.center_y - npc.center_y
-        print(y_diff)
+        
         if x_diff < 0 and abs(x_diff) > abs(y_diff):
             self.player_sprite.character_face_direction = RIGHT_FACING
             npc.character_face_direction = LEFT_FACING

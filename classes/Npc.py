@@ -69,8 +69,6 @@ class Npc(Character):
             start_y = self.center_y
             x_diff = dest_x - start_x
             y_diff = dest_y - start_y
-            print("X diff is",x_diff)
-            print("WHYYYY diff is",y_diff)
             if x_diff > 0:
                 self.change_x = self.speed
                 self.change_y = 0
