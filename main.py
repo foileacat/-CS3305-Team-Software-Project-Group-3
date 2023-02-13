@@ -85,7 +85,7 @@ class MyGame(arcade.Window):
             self.player_sprite, self.player_accessory_list)
         self.rooms.append(room)
 
-        self.current_room_index = 1
+        self.current_room_index = 0
         self.current_room = self.rooms[self.current_room_index]
         self.scene = self.current_room.scene
 
