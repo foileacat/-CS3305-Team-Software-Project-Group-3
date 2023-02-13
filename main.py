@@ -329,6 +329,12 @@ class MyGame(arcade.Window):
                 self.player_sprite.change_x = -MOVEMENT_SPEED
             elif key == RIGHT_KEY:
                 self.player_sprite.change_x = MOVEMENT_SPEED
+        if key == arcade.key.C:
+                self.player_sprite.attacking = True
+                self.player_sprite.cur_texture = 0
+        if key == arcade.key.P:
+                self.player_sprite.pickaxing = True
+                self.player_sprite.cur_texture = 0
         if key == INTERACT_KEY:
             self.handle_interact()
 

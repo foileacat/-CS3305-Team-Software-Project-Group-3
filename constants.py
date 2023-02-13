@@ -23,7 +23,9 @@ INTERACT_KEY = arcade.key.ENTER
 # How fast to move, and how fast to run the animation
 MOVEMENT_SPEED = 5
 UPDATES_PER_FRAME = 5
-
+WALK = [0,7]
+CARRY = [12,7]
+SWORD = [16,3]
 # Constants used to track if the player is facing left or right
 FORWARD_FACING = 0
 BACKWARD_FACING = 1

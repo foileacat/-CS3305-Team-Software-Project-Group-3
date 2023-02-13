@@ -34,7 +34,22 @@ class PlayerAccessory(arcade.Sprite):
             texture = load_texture_list(
                 self.file_path, 0, frame, self.color_offset)
             self.walk_textures.append(texture)
-
+        self.carry_textures = []
+        for frame in range(8):
+            texture = load_texture_list(
+                self.file_path, 12, frame, self.color_offset)
+            self.carry_textures.append(texture)
+        self.sword_textures = []
+        for frame in range(4):
+            texture = load_texture_list(
+                self.file_path, 16, frame, self.color_offset)
+            self.sword_textures.append(texture)
+        self.pickaxe_textures = []
+        for frame in range(5):
+            texture = load_texture_list(
+                self.file_path, 29, frame, self.color_offset)
+            self.pickaxe_textures.append(texture)
+        
     def change_color(self):
         if self.asset_list == full_body:
             if self.asset_index <= 1:
@@ -72,10 +87,30 @@ class PlayerAccessory(arcade.Sprite):
         self.face_direction = player_sprite.character_face_direction
         self.center_x = player_sprite.center_x
         self.center_y = player_sprite.center_y
+        self.cur_texture = player_sprite.cur_texture
         # Walking animation
+        if player_sprite.pickaxing == True:
+            self.cur_texture += 1
+            if self.cur_texture > 4 * UPDATES_PER_FRAME:
+                self.cur_texture = 0
+                self.pickaxing = False
+            frame = self.cur_texture // UPDATES_PER_FRAME
+            direction = self.face_direction
+            self.texture = self.pickaxe_textures[frame][direction]
+            return
+        if player_sprite.attacking == True:
+            self.cur_texture += 1
+            if self.cur_texture > 3 * UPDATES_PER_FRAME:
+                self.cur_texture = 0
+                self.attacking = False
+            frame = self.cur_texture // UPDATES_PER_FRAME
+            direction = self.face_direction
+            self.texture = self.sword_textures[frame][direction]
+            return
         if player_sprite.change_x == 0 and player_sprite.change_y == 0:
             self.texture = self.idle_texture_list[self.face_direction]
             return
+        
         self.cur_texture += 1
         if self.cur_texture > 7 * UPDATES_PER_FRAME:
             self.cur_texture = 0
