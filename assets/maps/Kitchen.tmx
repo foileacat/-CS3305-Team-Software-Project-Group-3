@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="19">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="19">
  <tileset firstgid="1" source="Sources/atlas_16x.tsx"/>
  <tileset firstgid="769" source="Sources/TilesetHouse.tsx"/>
  <tileset firstgid="1528" source="Sources/TopDownHouse_SmallItems.tsx"/>
@@ -85,19 +85,19 @@
    eJxjZ2BgYKciNqcyBpqZAKQTGCgEQDMWsEPwqHmj5o2aN2reUDFvUJfPAEQIMXE=
   </data>
  </layer>
- <layer id="3" name="furniture" width="20" height="20">
+ <layer id="9" name="wall dec" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYEAF/EAswEAcIEatPRA7YBE/xsjAcJwRwu5jwq8WBDJYGBgygfgJE0PDYyAGibGwMjA8Boo9AuJvQLO+Q83bx0SkB6gI6lioa94+KpunSUXzxBkYEtyBmFrmiQHNcqOieYMNBA1AekQHCYzUMccAaE4vEPcBcT8QT8BiLqn+3Qs0Yx8Q76eSG4c6GAzphVgAAFMBFTk=
+   eJxjYEAF/EAswIAbvGYkXi0I2AOxAxbxY0BzjgOxNBMDQx8TqtpWVgKGjoJRMMTATQaGBSuBmFrm3QKatYqK5t0GmrWaiuaNgpEBAKlDDTs=
   </data>
  </layer>
- <layer id="4" name="furniture 2" width="20" height="20">
+ <layer id="3" name="furniture" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYCAN3GMjTf0WJoaGzUBMip5WVtLsIASWUdm8UTAKSAU3GRgWrARiapl3C2jWKiqadxto1moizZNiY1jQzQKmE6hl/wFGapk0dMENEsvWwQAAtgkQPw==
+   eJxjYBgaIIOFgSETiJ8wMTQ8BmKQGAsrA8NjoNgjIP7GyMDwnRGidh8Tqt5lrLR3Xx0Ldc3bR2XzNKlonjgDQ4I7EFPLPDGgWW5UNG+wgSAmwmqGCjAA5rFeIO4D4n4gnsCIqYZU/+4FmrEPiPdjMWskgRtsEHoopRcAL68TBg==
   </data>
  </layer>
  <layer id="7" name="over layer" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUIAMlpoF2AXVBLCMDQxwQxzNilx9u/qU3GMnhBwCIZAGK
+   eJxjYKAt2MLE0LAZiGlszSgYBVQDSkwD7QLqglhGBoY4II5nxC5Pqn+l2BgWdLOA6QSKHTcMwHBLL6QAAGCiBcQ=
   </data>
  </layer>
 </map>
