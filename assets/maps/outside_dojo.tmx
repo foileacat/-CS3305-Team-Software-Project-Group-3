@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="28" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="27">
+ <tileset firstgid="1" source="Sources/Grass tiles v.2.tsx"/>
+ <tileset firstgid="78" source="Sources/Tall Grass hill tiles v.2.tsx"/>
+ <tileset firstgid="126" source="Sources/TilesetNature.tsx"/>
+ <tileset firstgid="462" source="Sources/TilesetHouse.tsx"/>
+ <tileset firstgid="1221" source="Sources/Wooden House.tsx"/>
+ <tileset firstgid="1443" source="Sources/TilesetRelief.tsx"/>
+ <objectgroup id="4" name="interactables" offsetx="-0.60241" offsety="0">
+  <object id="19" gid="431" x="237.181" y="27.8795" width="16" height="16"/>
+  <object id="20" gid="431" x="203.446" y="50.1687" width="60.5783" height="47.9277">
+   <properties>
+    <property name="inspect_text" value="this   hut   looks    cold,    i    wonder    who    lives    here"/>
+    <property name="on_interact" value="show_message"/>
+    <property name="item_id" value="5"/>
+   </properties>
+  </object>
+  <object id="21" gid="431" x="255.253" y="184.506" width="32.8675" height="33.4699">
+   <properties>
+    <property name="inspect_text" value="dojo   this   way"/>
+    <property name="on_interact" value="show_message"/>
+    <property name="item_id" value="5"/>
+   </properties>
+  </object>
+  <object id="25" gid="1569" x="306.602" y="175.333" width="69" height="16">
+   <properties>
+    <property name="destination_room" type="int" value="5"/>
+    <property name="on_interact" value="room_transition"/>
+    <property name="transition_direction" type="int" value="0"/>
+    <property name="transition_id" value="dojo"/>
+   </properties>
+  </object>
+  <object id="26" gid="1569" x="198.602" y="301.333" width="69" height="16">
+   <properties>
+    <property name="destination_room" type="int" value="1"/>
+    <property name="on_interact" value="room_transition"/>
+    <property name="transition_direction" type="int" value="1"/>
+    <property name="transition_id" value="main_room"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="12" name="Animation">
+  <object id="23" gid="1471" x="124.5" y="194" width="100.5" height="124"/>
+ </objectgroup>
+ <layer id="6" name="floor" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJydlb1uwzAMhPVardfWe7M0S7q0S7okUJrY/fG7hwZE4Hw4SnYFHAxIJD+KpqSU1o1supi+TFfTzTQUbRm5EWuorE9FbK9ieF5jJV4tj5nzV77InoiB8xGvxUGW61fM8TzXtFZb9/8pMVr232CLvFz26GJ2FA/tt/Dcz9dHIZWD+7R6jXkqD46hcmjtj3vHeQ+mR1MHvKhPsA5ras79M48n07OpJzbnyixVb8XkeiKjA7ZiZWLhP3fei2lX4eH+epEf9wizPJ7zXk37Co97xWsSMWqs2e9gektxf0Y8dZbyCt676QP+RYs3CJ6vt1izz9H0WfzUeVfnb0jLfsG+wL5RtTiZzml597V4/MY4A//hf+9PVSPk+X7Zbs3Z28Ljtyt632p32lZetMaKeGrcAUH563o=
+  </data>
+ </layer>
+ <layer id="1" name="walls" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJyrYGBgqKAhrgTiKiCuhvAXgDADnQDIrko621dFZ/uq6WxfDZ3tq6WifUVAXIxEl2Cxj1p2EQNG7Ru1j1T7RstP6to3nMvPSiqXn4RAFSR9otT5QP8y1NIIg+IOAFTgPzE=
+  </data>
+ </layer>
+ <layer id="2" name="furniture" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzd1L0OgjAUhuFTlF1UdhB1NDHxhrxs8CIEZQITfJ1EIg0EGn6+5BloyyltQwslIpaIgoUFlrBRl5C+CDfNmDt1YyR44IkUHu/42CHAHgccNbUy+nK8NGNW9DlYY4Mt3NL4i/rqmj5rjSGnAddxVb8+OVe+p/rcdZ5ym6n8qz3F+er2fi7rM5Uh/6kpxeQ+tb035nKfN01fe2/iDJuexRtp+hdP
+  </data>
+ </layer>
+ <layer id="3" name="furniture 2" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFuEAxCwNDCctAu2IUUAu8ZmRgeAPEb4H4HSPt7eNhYmDgBWI+IOZnor19ukA79IBYH4gN6GCfH9AOfyAOAOJAGtkXBjQ3nA5+GQWjYBQMPQAAT74HnQ==
+  </data>
+ </layer>
+ <layer id="9" name="over layer" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjALagj5GBoZ+IJ7ASB+z5wHZ84F4AQ3sw2b2OiB7PRBvoIF92MzeB2TvB+IDNLCPlmaPglFATQAAOhIPwQ==
+  </data>
+ </layer>
+</map>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="25" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="6">
+ <tileset firstgid="1" source="Sources/TilesetExteriorFloor.tsx"/>
+ <tileset firstgid="573" source="Sources/TilesetNature.tsx"/>
+ <tileset firstgid="909" source="Sources/TilesetField.tsx"/>
+ <tileset firstgid="939" source="Sources/Tall Grass hill tiles v.2.tsx"/>
+ <tileset firstgid="987" source="Sources/TilesetHouse.tsx"/>
+ <tileset firstgid="1746" source="Sources/TilesetRelief.tsx"/>
+ <objectgroup id="6" name="Animation">
+  <object id="1" gid="1026" x="300" y="152" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="8" name="interactables">
+  <object id="4" gid="592" x="215.881" y="58.9714" width="33.5" height="16">
+   <properties>
+    <property name="destination_room" value="11"/>
+    <property name="on_interact" value="room_transition"/>
+    <property name="transition_direction" value="0"/>
+    <property name="transition_id" value="enemy_house"/>
+   </properties>
+  </object>
+  <object id="5" gid="1772" x="185" y="287" width="49" height="26">
+   <properties>
+    <property name="destination_room" value="1"/>
+    <property name="on_interact" value="room_transition"/>
+    <property name="transition_direction" value="0"/>
+    <property name="transition_id" value="main_room"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer id="1" name="floor" width="25" height="18">
+  <data encoding="base64" compression="zlib">
+   eJzNlEsKwCAMRPUOWu+/sT2E9hDS80iVKgQx9ddAF4MbnZdMgoIzJhZ0sLX3mFzwtUE+6BxgyCDVeVcnhh1k9HJ1qh8yemvrlQH+URfSR60+OcFYzak1BwpG6f+WU0tbkVv03gtvbGexvGXybeXvP+qhJjeZkRrYI8jh/Dmp/g8D8qLY2czIfVAxHNG8MQ7VPKI02OO/zf0GbS9bEg==
+  </data>
+ </layer>
+ <layer id="11" name="trees" width="25" height="18">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAf2MvEwLCPibZ2nAWaf47GdoyCUTAKqAtigXk2DojjgTgBT/7Fpc4eyHYgkO9zgfJ5QJwPxAVMmGbBzEBXBxP3B+IAJvx21QLF64C4HogbsJgFMwNdHUwcpOYjEh89LNDNQ1YLo2HyMPojFvvs0cwhxQ/I8sSqa8ASXsjq8dnpDxXD5g90OwnFByyM0M0CADCiO2M=
+  </data>
+ </layer>
+ <layer id="12" name="trees 2" width="25" height="18">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRQA0Qx8TAEM9EWB5ZnT2QdmCC0MSag8vOOCx6HNDsIRbgU4/sZnxmEmsnMWbREgAAJ8oIgA==
+  </data>
+ </layer>
+ <layer id="9" name="walls" width="25" height="18">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIKBB3FMDAzxTOSpswfyHQjotUeSh6lFNgtmBro6mLg/EAcw4bcrDkk8AItZcUT4DwawhUUuCfqJBeh+qQXy66hsTwAd/IItTmqJtAMA+PsLIQ==
+  </data>
+ </layer>
+ <layer id="5" name="over layer" width="25" height="18">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGLgAABwgAAQ==
+  </data>
+ </layer>
+ <layer id="4" name="house" width="25" height="18">
+  <data encoding="base64" compression="zlib">
+   eJxjYICAt0wMRIPbzAwMd4D4LhDfYyZeHz6AbH86CwPDH6C5f4H4HxD/B+IMFsL6SAFZQPNkgVgOiOWBWIEFIkauedhAB9C8ThYEuxuJjw+8R3IDpe6hpn+oYTcp7hkotw+2MBts9tHbje8HMD5GKohFCvMEJtxyxAJ0MwYbAACLSBwG
+  </data>
+ </layer>
+</map>
