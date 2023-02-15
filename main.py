@@ -8,9 +8,8 @@ from gui.character_creator_gui import setup_character_creator_gui
 from classes.PlayerCharacter import PlayerCharacter
 from maps import *
 from constants import *
-
+from gui.TypewriterText import TypewriterTextWidget
 arcade.enable_timings()
-
 
 class MyGame(arcade.Window):
     """ Main application class. """
@@ -39,7 +38,8 @@ class MyGame(arcade.Window):
     def setup(self):
         """ Set up the game and initialize variables. """
         self.character_creator_open = False
-
+        
+        a = TypewriterTextWidget(x=350, y=130, text_color=(0, 0, 0), text="")
         # imports game font. name of font is "NinjaAdventure"
         arcade.load_font(FONT_PATH)
 
@@ -115,7 +115,7 @@ class MyGame(arcade.Window):
         # renders inspecting popup/interactable hint if applicable
         if self.player_sprite.currently_inspecting:
             self.camera_gui.use()
-            self.inspect_message_UI.text = self.inspect_text
+            self.inspect_message_UI.display_text(self.inspect_text)
             self.gui_inspect_manager.draw()
         elif self.character_creator_open == True:
             self.camera_gui.use()
@@ -234,6 +234,7 @@ class MyGame(arcade.Window):
             return
         else:
             self.player_sprite.currently_inspecting = True
+            self.inspect_message_UI.reset()
             self.inspect_text = interactable.properties["inspect_text"]
 
     def handle_npc_interaction(self, npc):

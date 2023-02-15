@@ -1,5 +1,6 @@
 import arcade
 from constants import *
+from gui.TypewriterText import TypewriterTextWidget
 
 def setup_inspect_gui(self):
 
@@ -14,8 +15,8 @@ def setup_inspect_gui(self):
         self.inspect_background_UI_anchor = arcade.gui.UIAnchorWidget(
             child=inspect_background_UI_sprite, align_x=-50, align_y=-250)
 
-        self.inspect_message_UI = arcade.gui.UITextArea(
-            x=350, y=130, text_color=(0, 0, 0), text="", font_name="NinjaAdventure")
+        self.inspect_message_UI = TypewriterTextWidget(
+            x=350, y=130, font_name="NinjaAdventure")
 
         self.gui_inspect_manager.add(self.inspect_background_UI_anchor)
         self.gui_inspect_manager.add(self.inspect_message_UI)
