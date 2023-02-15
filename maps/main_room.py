@@ -2,7 +2,7 @@ from classes.Rooms import Room
 from constants import *
 from classes.Npc import Npc
 
-def setup(player_sprite, player_accessory_list):
+def setup(self):
     room = Room()
     room.has_npcs = True
     room.multiple_entrances = True
@@ -28,8 +28,8 @@ def setup(player_sprite, player_accessory_list):
     room.npc = Npc(500,500,"boberta",12)
     room.scene.add_sprite("NPC", room.npc)
     room.scene.add_sprite_list("NPC Stuff", sprite_list = room.npc.accessory_list)
-    room.scene.add_sprite("Player", player_sprite)
-    room.scene.add_sprite_list("Player Stuff", sprite_list = player_accessory_list)
+    room.scene.add_sprite("Player", self.player_sprite)
+    room.scene.add_sprite_list("Player Stuff", sprite_list = self.player_accessory_list)
     room.scene.move_sprite_list_after("over layer", "Player Stuff")
     room.wall_list = []
     room.wall_list.append(room.scene["walls"])
