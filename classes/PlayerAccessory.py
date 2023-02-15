@@ -70,7 +70,6 @@ class PlayerAccessory(arcade.Sprite):
             self.alpha = 255
             self.file_path = self.asset_list[self.asset_index]
             self.load_textures()
-            print(self.asset_index)
             return
         else:
             self.asset_index+=1
@@ -79,7 +78,6 @@ class PlayerAccessory(arcade.Sprite):
                 self.asset_index = 0
                 if self.asset_list == full_body:
                     self.color_offset = 0
-            print(self.asset_index)
             self.file_path = self.asset_list[self.asset_index]
             self.load_textures()
 

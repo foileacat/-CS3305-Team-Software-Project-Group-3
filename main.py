@@ -149,7 +149,7 @@ class MyGame(arcade.Window):
             child=ui_text_label, tex=texture)
         self.v_box.add(ui_text_label.with_space_around(bottom=20))
 
-        text = "Poo Poo Pee Pee"
+        text = "Balh"
         ui_text_label = arcade.gui.UITextArea(text=text,
                                               width=450,
                                               height=60,
@@ -415,11 +415,7 @@ class MyGame(arcade.Window):
             npc.character_face_direction = BACKWARD_FACING
         elif y_diff < 0 and abs(x_diff) < abs(y_diff):
             self.player_sprite.character_face_direction = BACKWARD_FACING
-            npc.character_face_direction = FORWARD_FACING       
-        # if self.player_sprite.character_face_direction == 0 or self.player_sprite.character_face_direction == 2:
-        #     npc.character_face_direction = self.player_sprite.character_face_direction + 1
-        # else:
-        #     npc.character_face_direction = self.player_sprite.character_face_direction - 1
+            npc.character_face_direction = FORWARD_FACING 
         return
 
     def on_update(self, delta_time):

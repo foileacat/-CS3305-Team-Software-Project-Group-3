@@ -25,7 +25,7 @@ def setup(player_sprite, player_accessory_list):
     room.tile_map = arcade.load_tilemap(
         room.map_file, SPRITE_SCALING, layer_options=layer_options)
     room.scene = arcade.Scene.from_tilemap(room.tile_map)
-    room.npc = Npc(500,500,"bob",12)
+    room.npc = Npc(500,500,"boberta",12)
     room.scene.add_sprite("NPC", room.npc)
     room.scene.add_sprite_list("NPC Stuff", sprite_list = room.npc.accessory_list)
     room.scene.add_sprite("Player", player_sprite)

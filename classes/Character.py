@@ -22,7 +22,7 @@ class Character(arcade.Sprite):
         self.points = [[7, -16], [7, -8], [-7, -8], [-7, -16]]
         
         # Select the desired asset file from our character_lists file
-        skintone_file = character_lists.skintones[0]
+        skintone_file = character_lists.skintones[2]
         self.accessory_list = arcade.SpriteList()
         self.idle_texture_list = self.load_texture_list(skintone_file, 0, 0, 0)
 
