@@ -2,7 +2,7 @@ from classes.Rooms import Room
 from constants import *
 
 
-def setup(player_sprite, player_accessory_list):
+def setup(self):
     room = Room()
     room.multiple_entrances = True
     room.entrances = {"main_room" : [17*SPRITE_SIZE,3*SPRITE_SIZE], "cave_inside" : [20*SPRITE_SIZE,3*SPRITE_SIZE], "blacksmith" : [7*SPRITE_SIZE,13*SPRITE_SIZE],
@@ -36,8 +36,8 @@ def setup(player_sprite, player_accessory_list):
     
     room.scene = arcade.Scene.from_tilemap(room.tile_map)
 
-    room.scene.add_sprite("Player", player_sprite)
-    room.scene.add_sprite_list("Player Stuff", sprite_list = player_accessory_list)
+    room.scene.add_sprite("Player", self.player_sprite)
+    room.scene.add_sprite_list("Player Stuff", sprite_list = self.player_accessory_list)
 
     room.scene.move_sprite_list_after("over layer", "Player Stuff")
     # the rooms wall list is used for player collision.

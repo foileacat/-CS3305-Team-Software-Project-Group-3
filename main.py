@@ -51,55 +51,9 @@ class MyGame(arcade.Window):
         setup_character_creator_gui(self)
 
         #self.rooms = []
-        self.rooms = [starting_room.setup(self), main_room.setup(self), cave_outside.setup(self.player_sprite, self.player_accessory_list), cave_inside.setup(
-            self.player_sprite, self.player_accessory_list), dojo_outside.setup(
-            self.player_sprite, self.player_accessory_list), dojo.setup(self.player_sprite, self.player_accessory_list),
-            blacksmith.setup(self.player_sprite, self.player_accessory_list), living_room.setup(
-            self.player_sprite, self.player_accessory_list), bedroom.setup(self.player_sprite, self.player_accessory_list),
-            kitchen.setup(self.player_sprite, self.player_accessory_list), forest.setup(self.player_sprite, self.player_accessory_list), enemy_house.setup(
-            self.player_sprite, self.player_accessory_list)]
-        # Create the rooms
-        #room = setup_starting_room(self.player_sprite,self.player_accessory_list)
-        # self.rooms.append(starting_room.setup(self))
-
-        # room = main_room.setup(self.player_sprite, self.player_accessory_list)
-        # self.rooms.append(room)
-
-        # room = cave_outside.setup(
-        #     self.player_sprite, self.player_accessory_list)
-        # self.rooms.append(room)
-
-        # room = cave_inside.setup(
-        #     self.player_sprite, self.player_accessory_list)
-        # self.rooms.append(room)
-
-        # room = dojo_outside.setup(
-        #     self.player_sprite, self.player_accessory_list)
-        # self.rooms.append(room)
-
-        # room = dojo.setup(self.player_sprite, self.player_accessory_list)
-        # self.rooms.append(room)
-
-        # room = blacksmith.setup(self.player_sprite, self.player_accessory_list)
-        # self.rooms.append(room)
-
-        # room = living_room.setup(
-        #     self.player_sprite, self.player_accessory_list)
-        # self.rooms.append(room)
-
-        # room = bedroom.setup(self.player_sprite, self.player_accessory_list)
-        # self.rooms.append(room)
-
-        # room = kitchen.setup(self.player_sprite, self.player_accessory_list)
-        # self.rooms.append(room)
-
-        # room = forest.setup(self.player_sprite, self.player_accessory_list)
-        # self.rooms.append(room)
-
-        # room = enemy_house.setup(
-        #     self.player_sprite, self.player_accessory_list)
-        # self.rooms.append(room)
-
+        self.rooms = [starting_room.setup(self), main_room.setup(self), cave_outside.setup(self), cave_inside.setup(self), dojo_outside.setup(self), dojo.setup(
+            self), blacksmith.setup(self), living_room.setup(self), bedroom.setup(self), kitchen.setup(self), forest.setup(self), enemy_house.setup(self)]
+        
         self.current_room_index = 1
         self.current_room = self.rooms[self.current_room_index]
         self.scene = self.current_room.scene
@@ -107,9 +61,11 @@ class MyGame(arcade.Window):
         # used for the scrolling camera
         self.view_left = 0
         self.view_bottom = 0
+
         # #create physics engine - adds collision
         self.physics_engine = arcade.PhysicsEngineSimple(
             self.player_sprite, walls=self.current_room.wall_list)
+        
         '''''Performance Metrics'''
         self.perf_graph_list = arcade.SpriteList()
 
@@ -145,6 +101,7 @@ class MyGame(arcade.Window):
         self.clear()
         # this camera is used for everything except the gui
         self.camera_sprites.use()
+        
         """More lighting Code"""
         # with self.light_layer:
         self.scene.draw(pixelated=True)

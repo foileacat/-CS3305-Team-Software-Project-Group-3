@@ -1,7 +1,7 @@
 from classes.Rooms import Room
 from constants import *
 
-def setup(player_sprite, player_accessory_list):
+def setup(self):
     room = Room()
     room.starting_x = SPRITE_SIZE * 11.5
     room.starting_y = SPRITE_SIZE * 2.5
@@ -24,8 +24,8 @@ def setup(player_sprite, player_accessory_list):
         room.map_file, SPRITE_SCALING, layer_options=layer_options)
     
     room.scene = arcade.Scene.from_tilemap(room.tile_map)
-    room.scene.add_sprite("Player", player_sprite)
-    room.scene.add_sprite_list("Player Stuff", sprite_list = player_accessory_list)
+    room.scene.add_sprite("Player", self.player_sprite)
+    room.scene.add_sprite_list("Player Stuff", sprite_list = self.player_accessory_list)
     room.scene.move_sprite_list_after("over layer", "Player Stuff")
     # the rooms wall list is used for player collision.
     room.wall_list = []
