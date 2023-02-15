@@ -1,17 +1,16 @@
 import arcade
 import arcade.gui
 
-
 class TypewriterTextWidget(arcade.gui.UITextArea):
     def __init__(self,*,
                  x: float = 0,
                  y: float = 0,
                  width: float = 400,
                  height: float = 40,
-                 text: str = "",
+                 text: str = "Empty Text",
                  font_name=('Arial',),
                  font_size: float = 12,
-                 text_color: arcade.Color = arcade.color.NEON_FUCHSIA,
+                 text_color: arcade.Color = arcade.color.BLACK,
                  multiline: bool = True,
                  scroll_speed: float = None,
                  size_hint=None,

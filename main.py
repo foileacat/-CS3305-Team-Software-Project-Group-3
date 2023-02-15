@@ -39,7 +39,7 @@ class MyGame(arcade.Window):
         """ Set up the game and initialize variables. """
         self.character_creator_open = False
         
-        a = TypewriterTextWidget(x=350, y=130, text_color=(0, 0, 0), text="")
+        
         # imports game font. name of font is "NinjaAdventure"
         arcade.load_font(FONT_PATH)
 
@@ -50,11 +50,10 @@ class MyGame(arcade.Window):
         setup_inspect_gui(self)
         setup_character_creator_gui(self)
 
-        #self.rooms = []
         self.rooms = [starting_room.setup(self), main_room.setup(self), cave_outside.setup(self), cave_inside.setup(self), dojo_outside.setup(self), dojo.setup(
             self), blacksmith.setup(self), living_room.setup(self), bedroom.setup(self), kitchen.setup(self), forest.setup(self), enemy_house.setup(self)]
         
-        self.current_room_index = 1
+        self.current_room_index = 0
         self.current_room = self.rooms[self.current_room_index]
         self.scene = self.current_room.scene
 
@@ -107,19 +106,29 @@ class MyGame(arcade.Window):
         self.scene.draw(pixelated=True)
         # self.current_room.npc.draw_hit_box()
         # self.light_layer.draw(ambient_color=AMBIENT_COLOR)
-
         # returns interactable objects the player is touching - if we have any, the item has an arrow/text hint
         interactableObjects = arcade.check_for_collision_with_list(
             self.player_sprite, self.scene["interactables"])
-
+        #arcade.gui.UITextArea.w
         # renders inspecting popup/interactable hint if applicable
         if self.player_sprite.currently_inspecting:
             self.camera_gui.use()
+            #self.inspect_message_UI.text=self.inspect_text
+            #self.inspect_message_UI.fit_content()
             self.inspect_message_UI.display_text(self.inspect_text)
             self.gui_inspect_manager.draw()
+
+        elif self.player_sprite.currently_npc_interacting:
+            self.camera_gui.use()
+            #self.inspect_message_UI.text=self.inspect_text
+            #self.inspect_message_UI.fit_content()
+            self.inspect_message_UI.display_text("hi, my name is bob")
+            self.gui_inspect_manager.draw()
+
         elif self.character_creator_open == True:
             self.camera_gui.use()
             self.gui_character_creator_manager.draw()
+            
         elif interactableObjects:
             interactable = interactableObjects[0]
 
@@ -238,22 +247,29 @@ class MyGame(arcade.Window):
             self.inspect_text = interactable.properties["inspect_text"]
 
     def handle_npc_interaction(self, npc):
-        x_diff = self.player_sprite.center_x - npc.center_x
-        y_diff = self.player_sprite.center_y - npc.center_y
-
-        if x_diff < 0 and abs(x_diff) > abs(y_diff):
-            self.player_sprite.character_face_direction = RIGHT_FACING
-            npc.character_face_direction = LEFT_FACING
-        elif x_diff > 0 and abs(x_diff) > abs(y_diff):
-            self.player_sprite.character_face_direction = LEFT_FACING
-            npc.character_face_direction = RIGHT_FACING
-        elif y_diff > 0 and abs(x_diff) < abs(y_diff):
-            self.player_sprite.character_face_direction = FORWARD_FACING
-            npc.character_face_direction = BACKWARD_FACING
-        elif y_diff < 0 and abs(x_diff) < abs(y_diff):
-            self.player_sprite.character_face_direction = BACKWARD_FACING
-            npc.character_face_direction = FORWARD_FACING
-        return
+        if self.player_sprite.currently_npc_interacting:
+            #next line
+            #if no more line
+            self.player_sprite.currently_npc_interacting=False
+            return
+        else:
+            self.player_sprite.currently_npc_interacting = True
+            x_diff = self.player_sprite.center_x - npc.center_x
+            y_diff = self.player_sprite.center_y - npc.center_y
+            self.player_sprite.currently_npc_interacting
+            if x_diff < 0 and abs(x_diff) > abs(y_diff):
+                self.player_sprite.character_face_direction = RIGHT_FACING
+                npc.character_face_direction = LEFT_FACING
+            elif x_diff > 0 and abs(x_diff) > abs(y_diff):
+                self.player_sprite.character_face_direction = LEFT_FACING
+                npc.character_face_direction = RIGHT_FACING
+            elif y_diff > 0 and abs(x_diff) < abs(y_diff):
+                self.player_sprite.character_face_direction = FORWARD_FACING
+                npc.character_face_direction = BACKWARD_FACING
+            elif y_diff < 0 and abs(x_diff) < abs(y_diff):
+                self.player_sprite.character_face_direction = BACKWARD_FACING
+                npc.character_face_direction = FORWARD_FACING
+            return
 
     def on_update(self, delta_time):
         """ Movement and game logic. Runs constantly when anything changes."""

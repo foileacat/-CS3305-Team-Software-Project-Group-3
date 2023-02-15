@@ -25,5 +25,6 @@ class PlayerCharacter(Character):
         self.full_body.alpha = 0
         self.populate_accessory_list()
         self.currently_inspecting = False
+        self.currently_npc_interacting = False
    
     
