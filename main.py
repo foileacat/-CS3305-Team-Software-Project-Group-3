@@ -34,6 +34,8 @@ class MyGame(arcade.Window):
             SCREEN_WIDTH, SCREEN_HEIGHT)
         self.camera_gui = arcade.Camera(
             SCREEN_WIDTH, SCREEN_HEIGHT)
+        self.next_paragraph = False
+        self.count = 0 
 
     def setup(self):
         """ Set up the game and initialize variables. """
@@ -122,9 +124,9 @@ class MyGame(arcade.Window):
             self.camera_gui.use()
             #self.inspect_message_UI.text=self.inspect_text
             #self.inspect_message_UI.fit_content()
-            self.inspect_message_UI.display_text("hi, my name is bob")
+            self.npc_conversation(["a","b", "c", "d", "e"])
             self.gui_inspect_manager.draw()
-
+            
         elif self.character_creator_open == True:
             self.camera_gui.use()
             self.gui_character_creator_manager.draw()
@@ -183,6 +185,9 @@ class MyGame(arcade.Window):
             self.player_sprite.cur_texture = 0
         if key == INTERACT_KEY:
             self.handle_interact()
+        if key == arcade.key.G:
+            self.next_paragraph = True 
+            self.count+=1
 
     def on_key_release(self, key, modifiers):
         """Called when the user releases a key. """
@@ -281,6 +286,18 @@ class MyGame(arcade.Window):
                 self.player_sprite.character_face_direction = BACKWARD_FACING
                 npc.character_face_direction = FORWARD_FACING
             return
+    
+    
+    def npc_conversation(self, conversation_list):
+        if self.count == len(conversation_list) - 1:
+            self.next_paragraph = False
+        if self.next_paragraph == True:
+            self.inspect_message_UI.display_text(conversation_list[self.count])
+        print(self.count)
+
+
+
+                  
 
     def on_update(self, delta_time):
         """ Movement and game logic. Runs constantly when anything changes."""
