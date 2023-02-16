@@ -36,6 +36,7 @@ class Npc(Character):
         self.name = name
         self.id = id
         self.speed = 3.0
+        self.interacting = False
 
     def wander(self):
         if self.wandering == False:
@@ -59,7 +60,7 @@ class Npc(Character):
         return
     
     def on_update(self, delta_time: float = 1 / 60):
-        if self.wanders:
+        if self.wanders and self.interacting==False:
             self.wander()
         self.think()
         return super().on_update(delta_time)

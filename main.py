@@ -38,7 +38,7 @@ class MyGame(arcade.Window):
     def setup(self):
         """ Set up the game and initialize variables. """
         self.character_creator_open = False
-        
+        self.inspect_text = "ok"
         
         # imports game font. name of font is "NinjaAdventure"
         arcade.load_font(FONT_PATH)
@@ -128,7 +128,7 @@ class MyGame(arcade.Window):
         elif self.character_creator_open == True:
             self.camera_gui.use()
             self.gui_character_creator_manager.draw()
-            
+
         elif interactableObjects:
             interactable = interactableObjects[0]
 
@@ -139,6 +139,7 @@ class MyGame(arcade.Window):
                     "Enter to Inspect", self.player_sprite.center_x, self.player_sprite.center_y, (255, 255, 255), 15, font_name="NinjaAdventure")
             self.inspect_item_hint_UI.draw()
             """
+
             self.inspect_item_symbol_UI = arcade.Sprite(filename="assets/assetpacks/ninja/HUD/Arrow.png", scale=3,
                                                         center_x=interactable.center_x, center_y=interactable.center_y+(interactable.height//2)+20)
             if interactable.properties["on_interact"] == "room_transition":
@@ -165,7 +166,7 @@ class MyGame(arcade.Window):
 
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed. """
-        if self.player_sprite.currently_inspecting == False and self.character_creator_open == False:
+        if self.player_unpaused():
             if key == UP_KEY:
                 self.player_sprite.change_y = MOVEMENT_SPEED
             elif key == DOWN_KEY:
@@ -236,6 +237,16 @@ class MyGame(arcade.Window):
                                                          self.current_room.wall_list)
         self.player_sprite.character_face_direction = int(
             interactable.properties["transition_direction"])
+        
+    def player_unpaused(self):
+        if self.player_sprite.currently_inspecting:
+            return False
+        if self.character_creator_open:
+            return False 
+        if self.player_sprite.currently_npc_interacting:
+            return False
+        return True
+    
 
     def show_message(self, interactable):
         if self.player_sprite.currently_inspecting:
@@ -248,12 +259,12 @@ class MyGame(arcade.Window):
 
     def handle_npc_interaction(self, npc):
         if self.player_sprite.currently_npc_interacting:
-            #next line
-            #if no more line
             self.player_sprite.currently_npc_interacting=False
+            npc.interacting = False
             return
         else:
             self.player_sprite.currently_npc_interacting = True
+            npc.interacting = True
             x_diff = self.player_sprite.center_x - npc.center_x
             y_diff = self.player_sprite.center_y - npc.center_y
             self.player_sprite.currently_npc_interacting
