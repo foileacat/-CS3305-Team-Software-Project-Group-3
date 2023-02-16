@@ -24,7 +24,7 @@ class MyGame(arcade.Window):
         file_path = os.path.dirname(os.path.abspath(__file__))
         os.chdir(file_path)
         self.perf_graph_list = None
-
+        self.conversation_list = ["sdsdd","bijfjkdfkj kfjdkjfj", "ckdjfdkjfjk dfjkdjfk", "dksdsjkdjk dkjsdjk", "eskjdsjkd sdkjsdjk"]
         self.frame_count = 0
         self.current_room_index = 0
         self.rooms = None
@@ -34,6 +34,7 @@ class MyGame(arcade.Window):
             SCREEN_WIDTH, SCREEN_HEIGHT)
         self.camera_gui = arcade.Camera(
             SCREEN_WIDTH, SCREEN_HEIGHT)
+        self.count = 0 
 
     def setup(self):
         """ Set up the game and initialize variables. """
@@ -122,9 +123,9 @@ class MyGame(arcade.Window):
             self.camera_gui.use()
             #self.inspect_message_UI.text=self.inspect_text
             #self.inspect_message_UI.fit_content()
-            self.inspect_message_UI.display_text("hi, my name is bob")
+            self.inspect_message_UI.display_text(self.conversation_list[self.count])
             self.gui_inspect_manager.draw()
-
+            
         elif self.character_creator_open == True:
             self.camera_gui.use()
             self.gui_character_creator_manager.draw()
@@ -147,9 +148,11 @@ class MyGame(arcade.Window):
             elif interactable.properties["on_interact"] == "character_creator":
                 self.inspect_item_symbol_UI.color = arcade.csscolor.INDIGO
             self.inspect_item_symbol_UI.draw(pixelated=True)
+
         elif self.current_room.has_npcs:
             npcs = arcade.check_for_collision_with_list(
                 self.player_sprite, self.scene["NPC"])
+            
             if npcs:
                 npc = npcs[0]
                 self.inspect_npc_symbol_UI = arcade.Sprite(filename="assets/assetpacks/ninja/HUD/Arrow.png", scale=3,
@@ -257,13 +260,22 @@ class MyGame(arcade.Window):
             self.inspect_message_UI.reset()
             self.inspect_text = interactable.properties["inspect_text"]
 
+    
+
     def handle_npc_interaction(self, npc):
         if self.player_sprite.currently_npc_interacting:
-            self.player_sprite.currently_npc_interacting=False
-            npc.interacting = False
-            return
+            if self.count == len(self.conversation_list) - 1:
+                self.player_sprite.currently_npc_interacting=False
+                npc.interacting = False
+                return
+            else:
+                self.count+=1
+                print(self.conversation_list[self.count])
+                self.inspect_message_UI.display_text(self.conversation_list[self.count])
         else:
+            self.inspect_message_UI.reset()
             self.player_sprite.currently_npc_interacting = True
+            self.count = 0
             npc.interacting = True
             x_diff = self.player_sprite.center_x - npc.center_x
             y_diff = self.player_sprite.center_y - npc.center_y
@@ -281,6 +293,7 @@ class MyGame(arcade.Window):
                 self.player_sprite.character_face_direction = BACKWARD_FACING
                 npc.character_face_direction = FORWARD_FACING
             return
+         
 
     def on_update(self, delta_time):
         """ Movement and game logic. Runs constantly when anything changes."""
