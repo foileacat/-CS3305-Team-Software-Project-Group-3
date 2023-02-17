@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="27">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="15" height="14" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="27">
  <tileset firstgid="1" source="Sources/atlas_16x.tsx"/>
  <tileset firstgid="769" source="Sources/TilesetHouse.tsx"/>
  <tileset firstgid="1528" source="Sources/TilesetRelief.tsx"/>
  <objectgroup id="9" name="interactables">
-  <object id="12" gid="1550" x="140.167" y="212.333" width="39.3333" height="39">
+  <object id="12" gid="1550" x="140.167" y="100.313" width="39.3333" height="39">
    <properties>
     <property name="inspect_text" value="hint_system?"/>
     <property name="item_id" value="giant_frog_statue"/>
-    <property name="on_interact" value="show_message"/>
-   </properties>
-  </object>
-  <object id="13" gid="1550" x="186.667" y="287.667" width="102" height="38">
-   <properties>
-    <property name="inspect_text" value="Wow, that's a lot of books."/>
-    <property name="item_id" value="bookshelves"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
@@ -25,7 +18,7 @@
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="16" gid="1550" x="239.833" y="37.3333" width="16" height="16">
+  <object id="16" gid="1550" x="143.872" y="42.0334" width="16" height="16">
    <properties>
     <property name="destination_room" type="int" value="8"/>
     <property name="on_interact" value="room_transition"/>
@@ -41,7 +34,7 @@
     <property name="transition_id" value="kitchen"/>
    </properties>
   </object>
-  <object id="18" gid="1550" x="280.288" y="184.909" width="16" height="31.0909">
+  <object id="18" gid="1550" x="212.136" y="153.967" width="16" height="31.0909" rotation="180">
    <properties>
     <property name="destination_room" type="int" value="2"/>
     <property name="on_interact" value="room_transition"/>
@@ -85,37 +78,35 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="11" name="Animation">
-  <object id="26" gid="1634" x="244.321" y="129.189" width="16" height="16"/>
- </objectgroup>
- <layer id="1" name="floor" width="20" height="20">
+ <objectgroup id="11" name="Animation"/>
+ <layer id="1" name="floor" width="15" height="14">
   <data encoding="base64" compression="zlib">
-   eJwLZmRgCB7Fo3gUj+JRPIpJxABLRYNB
+   eJwLZmRgCB7Fo3gUU4QBn4VE6Q==
   </data>
  </layer>
- <layer id="7" name="carpet" width="20" height="20">
+ <layer id="7" name="carpet" width="15" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBi5QBCIhUjEwnjMcwRiJxKx86h5VDdPkG1wu2/UvMFpXiEQF5GIi/GYNxIAAP7DMqA=
+   eJxjYBjaQBCIhfBgYTx6HYHYCQ92HtXLIMhGub2FQFyEBxfj0TtUAADzDxKo
   </data>
  </layer>
- <layer id="2" name="walls" width="20" height="20">
+ <layer id="2" name="walls" width="15" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYWBgYKEiNqEyBpqZAKQTGCgEQDMWsEDwqHmj5o2aN2reUDFvUJfPAPpOL8E=
+   eJxjYWBgYCETm1CAgfoTgHQCAwkAqH4BCwSP6h3Vi0vvgKRnAJ8HHvE=
   </data>
  </layer>
- <layer id="12" name="wall dec" width="20" height="20">
+ <layer id="5" name="furniture" width="15" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYMAN1qLxvZkYGHyYIOyVQLwKiFfj0HsFiK8i8XMYGRhygTiPESFWDTSrBmreTSC+BcS38bhnFAw/AEw/CcA4T6CWecA0mXCLCuYB0+OClRCccJMK5gHdtADotgWUmgMDwDBbsJqK5o2CUUAOAAAlvRjb
+   eJxjYKA+yGFkYMgF4jxG0vQFsjIwzAHqmQvE80jUO5DAaYDs1QaGkQ6Z4RQN1BczyMNYkomBQYoJkx6MAAAhYQV0
   </data>
  </layer>
- <layer id="5" name="furniture" width="20" height="20">
+ <layer id="6" name="furniture 2" width="15" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYKAPyGFkYMgF4jxG8vSbAPWZQvUGsjIwzAGy5wLxPDLNG2qgiomB4R7TQLsCE/hC3aQNjAcdaFz4UeDOWqjeaKBZMVDz6ujs74/DLE2FAfNLOCtu+eHmX3LA0wHKW5JAe6WYMOmhAgClLwwZ
+   eJxjYMAN1gLxSiBeBcSrgdibiYHBhwkitxJJ3RUgvopF/00gvgXEt4G4GqivhgkhDgMmjAwMpox4HDEEQBXQX/eY6G/vCWC4HSYQdsB4SwCGfwKMXwt1JweSvjocbgfGe8ItJL3EAGDcLlgJwQk3SdQLtGsB0M4FpOiBAaAfF6wmUy81AABwIB1v
   </data>
  </layer>
- <layer id="10" name="over layer" width="20" height="20">
+ <layer id="10" name="over layer" width="15" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFtABeTAPtAvoAX6g/TzAyMBxmhLD9qOB3Dkbi1R4kQe1QAKasDAxmrLjlh5t/yQFbByh/vQSG/StGTHqkAgC5aQqx
+   eJxjYBgFIODFhGCbsjIwmLGSZ04YUF84mXqJBb5MmGJ+WMQGA3jJyMDwihGTHm4AAM8YB5c=
   </data>
  </layer>
 </map>
