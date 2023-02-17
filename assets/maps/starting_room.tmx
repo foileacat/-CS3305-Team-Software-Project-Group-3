@@ -46,14 +46,14 @@
   </object>
   <object id="33" gid="3060" x="30.75" y="48.75" width="35" height="32.75">
    <properties>
-    <property name="inspect_text" value="efjkfkjfskfrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr rrrrrrrrrrrrrrrr"/>
+    <property name="inspect_text" value="efjkfkjfskfrrrr one two three four five six  seven eight nine ten 11 twelvetenn fiften sisrenn tenty"/>
     <property name="item_id" value="bookshelf_01"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
   <object id="34" gid="3060" x="15.5511" y="69.6542" width="23.7857" height="17.3848" rotation="89.3857">
    <properties>
-    <property name="inspect_text" value="blahblah "/>
+    <property name="inspect_text" value="blah            blah "/>
     <property name="item_id" value="bed_01"/>
     <property name="on_interact" value="show_message"/>
    </properties>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="14" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="73">
+ <editorsettings>
+  <export format="json"/>
+ </editorsettings>
+ <tileset firstgid="1" source="Sources/TilesetInteriorFloor.tsx"/>
+ <tileset firstgid="375" source="Sources/TilesetWallSimple.tsx"/>
+ <tileset firstgid="485" source="Sources/TilesetInterior.tsx"/>
+ <tileset firstgid="805" source="Sources/Elements.tsx"/>
+ <tileset firstgid="832" source="Sources/TilesetElement.tsx"/>
+ <tileset firstgid="1072" source="Sources/TilesetHouse.tsx"/>
+ <tileset firstgid="1831" source="Sources/TilesetRelief.tsx"/>
+ <tileset firstgid="2071" source="Sources/Basic Furniture.tsx"/>
+ <tileset firstgid="2125" source="Sources/TopDownHouse_FurnitureState1.tsx"/>
+ <tileset firstgid="2359" source="Sources/atlas_16x.tsx"/>
+ <tileset firstgid="3127" source="Sources/fire_1.tsx"/>
+ <tileset firstgid="3133" name="animation_test" tilewidth="16" tileheight="16" tilecount="4" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <image width="16" height="16" source="../assetpacks/ninja/Items/Food/Beaf.png"/>
+   <animation>
+    <frame tileid="0" duration="500"/>
+    <frame tileid="1" duration="500"/>
+    <frame tileid="2" duration="500"/>
+    <frame tileid="3" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="1">
+   <image width="16" height="16" source="../assetpacks/ninja/Items/Food/Calamari.png"/>
+  </tile>
+  <tile id="2">
+   <image width="16" height="16" source="../assetpacks/ninja/Items/Food/FortuneCookie.png"/>
+  </tile>
+  <tile id="3">
+   <image width="16" height="16" source="../assetpacks/ninja/Items/Food/Fish.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="3137" source="Sources/fire_animation.tmx"/>
+ <tileset firstgid="3143" source="Sources/TilesetExteriorFloor.tsx"/>
+ <tileset firstgid="3715" source="Sources/TilesetNature.tsx"/>
+ <objectgroup id="6" name="interactables">
+  <object id="72" x="0.5" y="68.25" width="10.75" height="58.5">
+   <properties>
+    <property name="destination_room" type="int" value="22"/>
+    <property name="on_interact" value="room_transition"/>
+    <property name="transition_direction" type="int" value="0"/>
+    <property name="transition_id" value="dungeon"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer id="1" name="floor" width="14" height="11">
+  <data encoding="csv">
+3572,3572,3572,3572,3572,3572,3572,3572,3572,3572,3572,3572,3572,3572,
+3572,3573,3572,3572,3572,3572,3572,3572,3572,3572,3572,3572,3572,3573,
+3572,3572,3572,3572,3572,3572,3573,3572,3572,3572,3572,3572,3572,3572,
+3572,3572,3572,3572,3572,3462,3463,3463,3464,3572,3572,3572,3572,3572,
+3463,3463,3463,3463,3463,3485,3485,3485,3485,3464,3572,3572,3572,3572,
+3485,3485,3485,3485,3485,3485,3485,3485,3485,3486,3572,3572,3572,3572,
+3485,3485,3485,3485,3485,3485,3485,3485,3485,3486,3572,3572,3572,3572,
+3507,3507,3507,3507,3507,3485,3485,3485,3485,3508,3572,3572,3572,3572,
+3572,3572,3573,3572,3572,3506,3507,3507,3508,3572,3572,3572,3572,3572,
+3572,3572,3572,3572,3572,3572,3572,3572,3572,3572,3572,3572,3572,3572,
+3572,3572,3572,3572,3572,3572,3572,3572,3572,3572,3572,3573,3572,3572
+</data>
+ </layer>
+ <layer id="5" name="walls" width="14" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="3" name="wall dec" width="14" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,2530,0,2532,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="4" name="trees2" width="14" height="11">
+  <data encoding="csv">
+3719,3720,0,0,3719,3720,0,0,0,0,3719,3720,0,0,
+3735,3736,0,0,3735,3736,0,0,0,0,3735,3736,3719,3720,
+0,0,0,0,0,0,0,0,0,3719,3720,0,3735,3736,
+0,0,0,0,0,0,0,0,0,3735,3736,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,3719,3720,0,0,
+0,0,0,0,0,0,0,0,0,0,3735,3736,0,0,
+0,0,0,0,0,0,0,0,0,0,3719,3735,0,0,
+3719,3720,0,3719,3720,0,0,0,3719,3720,3735,3736,0,0,
+3735,3736,0,3735,3736,0,0,0,3735,3736,3735,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="2" name="trees" width="14" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,3795,3796,3797,3798,3719,3720,3719,3720,3795,0,0,3798,0,
+0,3811,3812,3813,3814,3735,3736,3735,3736,0,3795,3796,3797,3798,
+0,3827,3828,3829,3830,0,0,0,0,0,3811,3812,3813,3814,
+0,0,0,0,0,0,0,0,0,0,3827,3828,3829,3830,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,3795,3796,3797,3798,
+0,0,0,0,0,0,0,0,0,3795,0,3720,3813,3814,
+0,0,0,0,0,0,0,0,0,0,3719,3720,3829,3830,
+0,0,3719,3720,0,3719,3720,0,0,3719,3720,3736,0,0,
+0,0,3735,3736,0,3735,3736,0,0,3735,3736,0,0,0
+</data>
+ </layer>
+ <layer id="13" name="over layer" width="14" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="12" name="Animation"/>
+</map>

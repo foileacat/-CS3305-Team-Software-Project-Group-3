@@ -1,6 +1,6 @@
 import arcade
 from constants import *
-from character_lists import clothing
+from character_lists import full_body
 class PlayerAccessory(arcade.Sprite):
 
     """
@@ -21,6 +21,9 @@ class PlayerAccessory(arcade.Sprite):
         self.load_textures()
         # Load textures for idle standing
 
+    def __str__(self):
+        return f"Type is {self.asset_list}, style is {self.asset_index} and color is {self.color_offset}"
+    
     def load_textures(self):
         self.idle_texture_list = load_texture_list(
             self.file_path, 0, 0, self.color_offset)
@@ -31,11 +34,25 @@ class PlayerAccessory(arcade.Sprite):
             texture = load_texture_list(
                 self.file_path, 0, frame, self.color_offset)
             self.walk_textures.append(texture)
-
+        self.carry_textures = []
+        for frame in range(8):
+            texture = load_texture_list(
+                self.file_path, 12, frame, self.color_offset)
+            self.carry_textures.append(texture)
+        self.sword_textures = []
+        for frame in range(4):
+            texture = load_texture_list(
+                self.file_path, 16, frame, self.color_offset)
+            self.sword_textures.append(texture)
+        self.pickaxe_textures = []
+        for frame in range(5):
+            texture = load_texture_list(
+                self.file_path, 29, frame, self.color_offset)
+            self.pickaxe_textures.append(texture)
+        
     def change_color(self):
-        if self.asset_list == clothing:
+        if self.asset_list == full_body:
             if self.asset_index <= 1:
-                print("witch!!")
                 overflow = 0
             elif self.asset_index <=3:
                 overflow = 1
@@ -49,23 +66,49 @@ class PlayerAccessory(arcade.Sprite):
         self.load_textures()
 
     def change_style(self):
-        self.asset_index+=1
-        if self.asset_index >= len(self.asset_list):
-            self.asset_index = 0
-            if self.asset_list == clothing:
-                self.color_offset = 0
-        print(self.asset_index)
-        self.file_path = self.asset_list[self.asset_index]
-        self.load_textures()
+        if self.alpha == 0:
+            self.alpha = 255
+            self.file_path = self.asset_list[self.asset_index]
+            self.load_textures()
+            return
+        else:
+            self.asset_index+=1
+            if self.asset_index >= len(self.asset_list):
+                self.alpha = 0
+                self.asset_index = 0
+                if self.asset_list == full_body:
+                    self.color_offset = 0
+            self.file_path = self.asset_list[self.asset_index]
+            self.load_textures()
 
     def update_animation(self, player_sprite, delta_time: float = 1 / 60):
         self.face_direction = player_sprite.character_face_direction
         self.center_x = player_sprite.center_x
         self.center_y = player_sprite.center_y
+        self.cur_texture = player_sprite.cur_texture
         # Walking animation
+        if player_sprite.pickaxing == True:
+            self.cur_texture += 1
+            if self.cur_texture > 4 * UPDATES_PER_FRAME:
+                self.cur_texture = 0
+                self.pickaxing = False
+            frame = self.cur_texture // UPDATES_PER_FRAME
+            direction = self.face_direction
+            self.texture = self.pickaxe_textures[frame][direction]
+            return
+        if player_sprite.attacking == True:
+            self.cur_texture += 1
+            if self.cur_texture > 3 * UPDATES_PER_FRAME:
+                self.cur_texture = 0
+                self.attacking = False
+            frame = self.cur_texture // UPDATES_PER_FRAME
+            direction = self.face_direction
+            self.texture = self.sword_textures[frame][direction]
+            return
         if player_sprite.change_x == 0 and player_sprite.change_y == 0:
             self.texture = self.idle_texture_list[self.face_direction]
             return
+        
         self.cur_texture += 1
         if self.cur_texture > 7 * UPDATES_PER_FRAME:
             self.cur_texture = 0
