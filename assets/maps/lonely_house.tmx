@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="14" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="73">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="14" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="75">
  <editorsettings>
   <export format="json"/>
  </editorsettings>
@@ -37,10 +37,14 @@
  </tileset>
  <tileset firstgid="3137" source="Sources/fire_animation.tmx"/>
  <tileset firstgid="3143" source="Sources/Wooden House.tsx"/>
+ <tileset firstgid="3178" source="Sources/TilesetNature.tsx"/>
+ <objectgroup id="12" name="Animation">
+  <object id="73" gid="3220" x="114" y="143" width="16" height="16"/>
+ </objectgroup>
  <objectgroup id="6" name="interactables">
-  <object id="72" x="108" y="157.333" width="24" height="8.66667">
+  <object id="74" gid="3182" x="106" y="166.667" width="26" height="16">
    <properties>
-    <property name="destination_room" type="int" value="1"/>
+    <property name="destination_room" type="int" value="13"/>
     <property name="on_interact" value="room_transition"/>
     <property name="transition_direction" type="int" value="0"/>
     <property name="transition_id" value="forest_hideout"/>
@@ -137,5 +141,4 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="12" name="Animation"/>
 </map>

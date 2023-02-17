@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="23">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="24">
  <tileset firstgid="1" source="Sources/TilesetElement.tsx"/>
  <tileset firstgid="241" source="Sources/TilesetRelief.tsx"/>
  <tileset firstgid="481" source="Sources/TilesetInteriorFloor.tsx"/>
@@ -46,6 +46,14 @@
     <property name="transition_id" value="forest"/>
    </properties>
   </object>
+  <object id="23" gid="1822" x="297.997" y="126.298" width="21.7834" height="48.5976">
+   <properties>
+    <property name="destination_room" type="int" value="12"/>
+    <property name="on_interact" value="room_transition"/>
+    <property name="transition_direction" type="int" value="0"/>
+    <property name="transition_id" value="dungeon"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer id="2" name="floor" width="20" height="30">
   <data encoding="base64" compression="zlib">
@@ -54,7 +62,7 @@
  </layer>
  <layer id="1" name="walls" width="20" height="30">
   <data encoding="base64" compression="zlib">
-   eJxbysDAsJTKmFpg1LxR80bNGzVv1LxR88g1z5911LzBYl4BOwMDE/WMA5tHi/SHDZfhwfj0AQCNrzoE
+   eJxbysDAsJTKmFpg1DzKgBz7yDJvsMfHqHmj5o2aR1/z/FlHzRss5hUAy3sm6hkHNo8W6Q8bLsOD8ekDAL71OIQ=
   </data>
  </layer>
  <layer id="4" name="solids" width="20" height="30">

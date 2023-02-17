@@ -50,8 +50,7 @@ class MyGame(arcade.Window):
         setup_inspect_gui(self)
         setup_character_creator_gui(self)
 
-        self.rooms = [starting_room.setup(self), main_room.setup(self), cave_outside.setup(self), cave_inside.setup(self), dojo_outside.setup(self), dojo.setup(
-            self), blacksmith.setup(self), living_room.setup(self), bedroom.setup(self), kitchen.setup(self), forest.setup(self), enemy_house.setup(self)]
+        self.rooms = [starting_room.setup(self), main_room.setup(self), cave_outside.setup(self), cave_inside.setup(self), dojo_outside.setup(self), dojo.setup(self), blacksmith.setup(self), living_room.setup(self), bedroom.setup(self), kitchen.setup(self), forest.setup(self), enemy_house.setup(self), dungeon.setup(self), forest_hideout.setup(self), lonely_house.setup(self)]
         
         self.current_room_index = 0
         self.current_room = self.rooms[self.current_room_index]
