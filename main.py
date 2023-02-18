@@ -105,6 +105,9 @@ class MyGame(arcade.Window):
         """More lighting Code"""
         # with self.light_layer:
         self.scene.draw(pixelated=True)
+        
+        #self.player_sprite.generate_floating_head().draw(pixelated=True)
+#     
         # self.current_room.npc.draw_hit_box()
         # self.light_layer.draw(ambient_color=AMBIENT_COLOR)
         # returns interactable objects the player is touching - if we have any, the item has an arrow/text hint
