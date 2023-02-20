@@ -10,6 +10,7 @@ from maps import *
 from constants import *
 from gui.TypewriterText import TypewriterTextWidget
 arcade.enable_timings()
+import json_functions
 
 class MyGame(arcade.Window):
     """ Main application class. """
@@ -24,7 +25,7 @@ class MyGame(arcade.Window):
         file_path = os.path.dirname(os.path.abspath(__file__))
         os.chdir(file_path)
         self.perf_graph_list = None
-        self.conversation_list = ["sdsdd","bijfjkdfkj kfjdkjfj", "ckdjfdkjfjk dfjkdjfk", "dksdsjkdjk dkjsdjk", "eskjdsjkd sdkjsdjk"]
+        self.conversation_list = json_functions.get_one_conversation("npc_dialogue/hallway_npc.json","first_convo")
         self.frame_count = 0
         self.current_room_index = 0
         self.rooms = None
@@ -124,8 +125,6 @@ class MyGame(arcade.Window):
 
         elif self.player_sprite.currently_npc_interacting:
             self.camera_gui.use()
-            #self.inspect_message_UI.text=self.inspect_text
-            #self.inspect_message_UI.fit_content()
             self.inspect_message_UI.display_text(self.conversation_list[self.count])
             self.gui_inspect_manager.draw()
             
