@@ -121,3 +121,26 @@ class Character(arcade.Sprite):
             arcade.load_texture(filename, x=color_offset+CHARACTER_NATIVE_SIZE*frame, y=CHARACTER_NATIVE_SIZE*(
                 row+3), width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE)
         ]
+    
+    def generate_floating_head(self):
+        list = arcade.SpriteList()
+        self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=5,image_width=32,image_height=28,center_x=300,center_y=300)
+        self.shirt_sprite = arcade.Sprite(filename=self.shirt.file_path,image_x=self.shirt.color_offset*ACCESSORIES_OFFSET,scale=5,image_width=32,image_height=28,center_x=300,center_y=300)
+        self.hair_sprite = arcade.Sprite(filename=self.hair.file_path,image_x=self.hair.color_offset*ACCESSORIES_OFFSET,scale=5,image_width=32,image_height=28,center_x=300,center_y=300)
+        self.full_body_sprite = arcade.Sprite(filename=self.full_body.file_path,image_x=self.full_body.color_offset*ACCESSORIES_OFFSET,scale=5,image_width=32,image_height=28,center_x=300,center_y=300)
+        list.append(self.head_sprite)
+        list.append(self.shirt_sprite)
+        list.append(self.hair_sprite)
+        #list.append(self.full_body_sprite)
+        return list
+    
+        #self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=5,image_width=32,image_height=20,center_x=300,center_y=300)
+        
+        #print(self.hair.file_path)
+        #self.shirt.file_path
+        #self.hair.file_path
+       
+        # self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=5,image_width=32,image_height=32,center_x=300,center_y=300)
+        # self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=5,image_width=32,image_height=32,center_x=300,center_y=300)
+        # self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=5,image_width=32,image_height=32,center_x=300,center_y=300)
+        # self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=5,image_width=32,image_height=32,center_x=300,center_y=300)
