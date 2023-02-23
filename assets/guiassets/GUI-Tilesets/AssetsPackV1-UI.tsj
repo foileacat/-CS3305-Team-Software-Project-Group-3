@@ -1,0 +1,14 @@
+{ "columns":76,
+ "image":"..\/UI Assets pack_v.1_st\/UI Assets pack_v.1_st\/UI.png",
+ "imageheight":448,
+ "imagewidth":1216,
+ "margin":0,
+ "name":"AssetsPackV1-UI",
+ "spacing":0,
+ "tilecount":2128,
+ "tiledversion":"1.9.2",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.9"
+}

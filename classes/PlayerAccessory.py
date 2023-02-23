@@ -27,6 +27,8 @@ class PlayerAccessory(arcade.Sprite):
     def load_textures(self):
         self.idle_texture_list = load_texture_list(
             self.file_path, 0, 0, self.color_offset)
+        self.idle_carry_texture_list = load_texture_list(
+            self.file_path, 12, 0, self.color_offset)
         # Load textures for walking
         self.walk_textures = []
         # loads each frame
@@ -96,6 +98,7 @@ class PlayerAccessory(arcade.Sprite):
             direction = self.face_direction
             self.texture = self.pickaxe_textures[frame][direction]
             return
+        
         if player_sprite.attacking == True:
             self.cur_texture += 1
             if self.cur_texture > 3 * UPDATES_PER_FRAME:
@@ -105,6 +108,20 @@ class PlayerAccessory(arcade.Sprite):
             direction = self.face_direction
             self.texture = self.sword_textures[frame][direction]
             return
+        
+        if player_sprite.carrying == True:
+            if player_sprite.change_x == 0 and player_sprite.change_y == 0:
+                self.texture = self.idle_carry_texture_list[self.face_direction]
+                return
+            self.cur_texture += 1
+            if self.cur_texture > 7 * UPDATES_PER_FRAME:
+                self.cur_texture = 0
+                self.attacking = False
+            frame = self.cur_texture // UPDATES_PER_FRAME
+            direction = self.face_direction
+            self.texture = self.carry_textures[frame][direction]
+            return
+        
         if player_sprite.change_x == 0 and player_sprite.change_y == 0:
             self.texture = self.idle_texture_list[self.face_direction]
             return

@@ -6,6 +6,8 @@ import character_lists
 from gui.inspect_gui import setup_inspect_gui
 from gui.character_creator_gui import setup_character_creator_gui
 from classes.PlayerCharacter import PlayerCharacter
+from classes.InventoryBar import InventoryBar
+from classes.Item import Item
 from maps import *
 from constants import *
 from gui.TypewriterText import TypewriterTextWidget
@@ -23,6 +25,7 @@ class MyGame(arcade.Window):
         # Set the working directory
         file_path = os.path.dirname(os.path.abspath(__file__))
         os.chdir(file_path)
+        self.draw_performance = False
         self.perf_graph_list = None
         self.conversation_list = ["sdsdd","bijfjkdfkj kfjdkjfj", "ckdjfdkjfjk dfjkdjfk", "dksdsjkdjk dkjsdjk", "eskjdsjkd sdkjsdjk"]
         self.frame_count = 0
@@ -35,7 +38,7 @@ class MyGame(arcade.Window):
         self.camera_gui = arcade.Camera(
             SCREEN_WIDTH, SCREEN_HEIGHT)
         self.count = 0 
-
+        
     def setup(self):
         """ Set up the game and initialize variables. """
         self.character_creator_open = False
@@ -47,7 +50,7 @@ class MyGame(arcade.Window):
         self.player_sprite = PlayerCharacter()
         self.player_sprite.set_hit_box(self.player_sprite.points)
         self.player_accessory_list = self.player_sprite.accessory_list
-
+        self.inventory_bar = InventoryBar()
         setup_inspect_gui(self)
         setup_character_creator_gui(self)
 
@@ -101,13 +104,10 @@ class MyGame(arcade.Window):
         self.clear()
         # this camera is used for everything except the gui
         self.camera_sprites.use()
-        
+
         """More lighting Code"""
         # with self.light_layer:
         self.scene.draw(pixelated=True)
-        
-        self.player_sprite.generate_floating_head().draw(pixelated=True)
-#     
         # self.current_room.npc.draw_hit_box()
         # self.light_layer.draw(ambient_color=AMBIENT_COLOR)
         # returns interactable objects the player is touching - if we have any, the item has an arrow/text hint
@@ -115,8 +115,10 @@ class MyGame(arcade.Window):
             self.player_sprite, self.scene["interactables"])
         #arcade.gui.UITextArea.w
         # renders inspecting popup/interactable hint if applicable
+
         if self.player_sprite.currently_inspecting:
             self.camera_gui.use()
+            "text formatting"
             #self.inspect_message_UI.text=self.inspect_text
             #self.inspect_message_UI.fit_content()
             self.inspect_message_UI.display_text(self.inspect_text)
@@ -124,26 +126,18 @@ class MyGame(arcade.Window):
 
         elif self.player_sprite.currently_npc_interacting:
             self.camera_gui.use()
+            "text formatting"
             #self.inspect_message_UI.text=self.inspect_text
             #self.inspect_message_UI.fit_content()
             self.inspect_message_UI.display_text(self.conversation_list[self.count])
             self.gui_inspect_manager.draw()
-            
+
         elif self.character_creator_open == True:
             self.camera_gui.use()
             self.gui_character_creator_manager.draw()
 
         elif interactableObjects:
             interactable = interactableObjects[0]
-
-            """
-            Alternative hint is text based - currently unused but may be readded:
-
-            self.inspect_item_hint_UI = arcade.Text(
-                    "Enter to Inspect", self.player_sprite.center_x, self.player_sprite.center_y, (255, 255, 255), 15, font_name="NinjaAdventure")
-            self.inspect_item_hint_UI.draw()
-            """
-
             self.inspect_item_symbol_UI = arcade.Sprite(filename="assets/assetpacks/ninja/HUD/Arrow.png", scale=3,
                                                         center_x=interactable.center_x, center_y=interactable.center_y+(interactable.height//2)+20)
             if interactable.properties["on_interact"] == "room_transition":
@@ -151,6 +145,8 @@ class MyGame(arcade.Window):
             elif interactable.properties["on_interact"] == "character_creator":
                 self.inspect_item_symbol_UI.color = arcade.csscolor.INDIGO
             self.inspect_item_symbol_UI.draw(pixelated=True)
+            self.camera_gui.use()
+            self.inventory_bar.draw()
 
         elif self.current_room.has_npcs:
             npcs = arcade.check_for_collision_with_list(
@@ -162,13 +158,15 @@ class MyGame(arcade.Window):
                                                            center_x=npc.center_x, center_y=(npc.center_y+(npc.height//2)-20))
                 self.inspect_npc_symbol_UI.color = arcade.csscolor.SEA_GREEN
                 self.inspect_npc_symbol_UI.draw(pixelated=True)
-        '''Draw Performance Metrics'''
-        # self.camera_gui.use()
-        # self.perf_graph_list.draw()
+            self.camera_gui.use()
+            self.inventory_bar.draw()
 
-        # # Get FPS for the last 60 frames
-        # text = f"FPS: {arcade.get_fps(60):5.1f}"
-        # arcade.draw_text(text, 10, 10, arcade.color.BLACK, 22)
+        else:
+            self.camera_gui.use()
+            self.inventory_bar.draw()
+
+        if self.draw_performance:
+            self.draw_performance_graph()
 
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed. """
@@ -181,6 +179,10 @@ class MyGame(arcade.Window):
                 self.player_sprite.change_x = -MOVEMENT_SPEED
             elif key == RIGHT_KEY:
                 self.player_sprite.change_x = MOVEMENT_SPEED
+            elif key == INVENTORY_BAR_CURSOR_LEFT:
+                self.inventory_bar.move_cursor("left")
+            elif key == INVENTORY_BAR_CURSOR_RIGHT:
+                self.inventory_bar.move_cursor("right")
         if key == arcade.key.C:
             self.player_sprite.attacking = True
             self.player_sprite.cur_texture = 0
@@ -189,6 +191,8 @@ class MyGame(arcade.Window):
             self.player_sprite.cur_texture = 0
         if key == INTERACT_KEY:
             self.handle_interact()
+        if key == arcade.key.B:
+            self.draw_performance = not self.draw_performance
 
     def on_key_release(self, key, modifiers):
         """Called when the user releases a key. """
@@ -340,6 +344,11 @@ class MyGame(arcade.Window):
         position = self.view_left, self.view_bottom
         self.camera_sprites.move_to(position, CAMERA_SPEED)
 
+    def draw_performance_graph(self):
+        self.camera_gui.use()
+        self.perf_graph_list.draw()
+        text = f"FPS: {arcade.get_fps(60):5.1f}"
+        arcade.draw_text(text, 10, 10, arcade.color.BLACK, 22)
 
 def main():
     """ Main function """

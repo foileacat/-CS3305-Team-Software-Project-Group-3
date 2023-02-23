@@ -1,0 +1,24 @@
+{ "columns":0,
+ "grid":
+    {
+     "height":1,
+     "orientation":"orthogonal",
+     "width":1
+    },
+ "margin":0,
+ "name":"menu_gui",
+ "spacing":0,
+ "tilecount":1,
+ "tiledversion":"1.9.2",
+ "tileheight":480,
+ "tiles":[
+        {
+         "id":0,
+         "image":"AssetPacks\/UI assets pack 2\/UI books & more.png",
+         "imageheight":480,
+         "imagewidth":832
+        }],
+ "tilewidth":832,
+ "type":"tileset",
+ "version":"1.9"
+}
