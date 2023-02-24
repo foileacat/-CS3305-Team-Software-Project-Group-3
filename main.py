@@ -246,7 +246,12 @@ class MyGame(arcade.Window):
             return False
         return True
     
-
+    def renovate(self, interactable):
+        renovation_dict = {1:"renovation1", 2:"renovation2"}
+        renovation = renovation_dict[int(interactable.properties["renovate_num"])]
+        self.current_room.scene[renovation].visible=True
+        self.current_room.scene["renovation2_replace"].visible = not(self.current_room.scene["renovation2"].visible)
+        
     def show_message(self, interactable):
         if self.player_sprite.currently_inspecting:
             self.player_sprite.currently_inspecting = False

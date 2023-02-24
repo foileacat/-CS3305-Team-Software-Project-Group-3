@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="14" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="77">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="14" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="18" nextobjectid="79">
  <editorsettings>
   <export format="json"/>
  </editorsettings>
@@ -43,8 +43,8 @@
  <objectgroup id="12" name="Animation">
   <object id="76" gid="3785" x="57.5" y="99" width="16" height="16"/>
  </objectgroup>
- <objectgroup id="6" name="interactables">
-  <object id="74" gid="3735" x="-1.5" y="132.5" width="16" height="67">
+ <objectgroup id="6" name="interactables" visible="0">
+  <object id="74" gid="3735" x="0.291045" y="131.903" width="16" height="67" visible="0">
    <properties>
     <property name="destination_room" type="int" value="12"/>
     <property name="on_interact" value="room_transition"/>
@@ -58,6 +58,18 @@
     <property name="on_interact" value="room_transition"/>
     <property name="transition_direction" type="int" value="0"/>
     <property name="transition_id" value="lonely_house"/>
+   </properties>
+  </object>
+  <object id="77" gid="879" x="31.7015" y="49.4925" width="16" height="32.4179">
+   <properties>
+    <property name="on_interact" value="renovate"/>
+    <property name="renovate_num" value="1"/>
+   </properties>
+  </object>
+  <object id="78" gid="882" x="18.8657" y="142.328" width="30.3284" height="26.4478">
+   <properties>
+    <property name="on_interact" value="renovate"/>
+    <property name="renovate_num" value="2"/>
    </properties>
   </object>
  </objectgroup>
@@ -130,8 +142,8 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,882,883,0,0,0,0,0,0,0,0,0,0,0,
-0,898,899,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
@@ -147,6 +159,51 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="16" name="renovation2" width="14" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,882,883,0,0,0,0,0,0,0,0,0,0,0,
+0,898,899,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="15" name="renovation1" width="14" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,879,0,0,0,0,0,0,0,0,0,0,0,
+0,0,895,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="17" name="renovation2_replace" width="14" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,880,881,0,0,0,0,0,0,0,0,0,0,0,
+0,896,897,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
