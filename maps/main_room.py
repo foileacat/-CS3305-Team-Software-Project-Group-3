@@ -6,7 +6,7 @@ def setup(self):
     room = Room()
     room.has_npcs = True
     room.multiple_entrances = True
-    room.entrances = {"starting_room" : [SPRITE_SIZE * 11.5,SPRITE_SIZE * 2.5], "cave_outside" : [200,600], "dojo_outside": [100,100],"forest": [SPRITE_SIZE*12.5,SPRITE_SIZE*2], "dungeon": [SPRITE_SIZE*2,SPRITE_SIZE*5]}
+    room.entrances = {"starting_room" : [SPRITE_SIZE * 11.5,SPRITE_SIZE * 2.5], "cave_outside" : [200,600], "dojo_outside": [100,100],"forest": [SPRITE_SIZE*12.5,SPRITE_SIZE*2], "dungeon": [SPRITE_SIZE*1,SPRITE_SIZE*6]}
     room.starting_x = SPRITE_SIZE * 2.5
     room.starting_y = SPRITE_SIZE * 7
     room.map_file = "assets/maps/main_room.tmx"

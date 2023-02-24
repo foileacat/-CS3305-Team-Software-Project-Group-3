@@ -247,7 +247,7 @@ class MyGame(arcade.Window):
         return True
     
     def renovate(self, interactable):
-        renovation_dict = {1:"renovation1", 2:"renovation2"}
+        renovation_dict = {1:"renovation1", 2:"renovation2", 3:"renovation3", 4:"renovation4", 5:"renovation5", 6:"renovation6", 7:"renovation7", 8:"renovation8", 9:"renovation9"}
         renovation = renovation_dict[int(interactable.properties["renovate_num"])]
         self.current_room.scene[renovation].visible=True
         self.current_room.scene["renovation2_replace"].visible = not(self.current_room.scene["renovation2"].visible)

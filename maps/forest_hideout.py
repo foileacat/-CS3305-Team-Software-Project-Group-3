@@ -6,7 +6,7 @@ def setup(self):
     room.starting_x = SPRITE_SIZE * 11.5
     room.starting_y = SPRITE_SIZE * 2.5
     room.map_file = "assets/maps/forest_hideout.tmx"
-    room.entrances = {"dungeon" : [SPRITE_SIZE*9,SPRITE_SIZE*2],"lonely_house" : [SPRITE_SIZE*9,SPRITE_SIZE*7.5]}
+    room.entrances = {"dungeon" : [SPRITE_SIZE*12,SPRITE_SIZE*6],"lonely_house" : [SPRITE_SIZE*7,SPRITE_SIZE*3]}
     room.wall_list = arcade.SpriteList(visible=False)
    
     # all layers that are spatially hashed are "solid" - aka we can give them collision
@@ -34,5 +34,11 @@ def setup(self):
     room.wall_list.append(room.scene["trees"])
     room.scene["renovation1"].visible=False
     room.scene["renovation2"].visible=False
-    
+    room.scene["renovation3"].visible=False
+    room.scene["renovation4"].visible=False
+    room.scene["renovation5"].visible=False
+    room.scene["renovation6"].visible=False
+    room.scene["renovation7"].visible=False
+    room.scene["renovation8"].visible=False
+    room.scene["renovation9"].visible=False
     return room
