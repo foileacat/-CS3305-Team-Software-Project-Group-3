@@ -5,8 +5,8 @@ from constants import *
 def setup(self):
     room = Room()
     room.multiple_entrances = True
-    room.entrances = {"main_room" : [17*SPRITE_SIZE,3*SPRITE_SIZE], "cave_inside" : [20*SPRITE_SIZE,3*SPRITE_SIZE], "blacksmith" : [7*SPRITE_SIZE,13*SPRITE_SIZE],
-                      "living_room" : [17*SPRITE_SIZE,10*SPRITE_SIZE]}
+    room.entrances = {"main_room" : [17*SPRITE_SIZE,3*SPRITE_SIZE], "cave_inside" : [17*SPRITE_SIZE,17*SPRITE_SIZE], "blacksmith" : [7*SPRITE_SIZE,10*SPRITE_SIZE],
+                      "living_room" : [13*SPRITE_SIZE,4*SPRITE_SIZE]}
     room.starting_x = SPRITE_SIZE * 11.5
     room.starting_y = SPRITE_SIZE * 2.5
     room.map_file = "assets/maps/caveoutside.tmx"

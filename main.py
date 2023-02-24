@@ -35,6 +35,9 @@ class MyGame(arcade.Window):
         self.camera_gui = arcade.Camera(
             SCREEN_WIDTH, SCREEN_HEIGHT)
         self.count = 0 
+        self.achievements = {"none":True, "flower_quest_key":True, "gem_chest_key":False}
+        self.buttonPressed="None"
+        
 
     def setup(self):
         """ Set up the game and initialize variables. """
@@ -54,7 +57,7 @@ class MyGame(arcade.Window):
         self.rooms = [starting_room.setup(self), main_room.setup(self), cave_outside.setup(self), cave_inside.setup(self), dojo_outside.setup(self), dojo.setup(
             self), blacksmith.setup(self), living_room.setup(self), bedroom.setup(self), kitchen.setup(self), forest.setup(self), enemy_house.setup(self)]
         
-        self.current_room_index = 0
+        self.current_room_index = 3
         self.current_room = self.rooms[self.current_room_index]
         self.scene = self.current_room.scene
 
@@ -113,6 +116,10 @@ class MyGame(arcade.Window):
         # returns interactable objects the player is touching - if we have any, the item has an arrow/text hint
         interactableObjects = arcade.check_for_collision_with_list(
             self.player_sprite, self.scene["interactables"])
+        inventoryObjects = arcade.check_for_collision_with_list(
+            self.player_sprite, self.scene["inventory"])
+        pickaxeObjects = arcade.check_for_collision_with_list(
+            self.player_sprite, self.scene["pickaxe_inventory"])
         #arcade.gui.UITextArea.w
         # renders inspecting popup/interactable hint if applicable
         if self.player_sprite.currently_inspecting:
@@ -151,7 +158,19 @@ class MyGame(arcade.Window):
             elif interactable.properties["on_interact"] == "character_creator":
                 self.inspect_item_symbol_UI.color = arcade.csscolor.INDIGO
             self.inspect_item_symbol_UI.draw(pixelated=True)
-
+            
+        elif inventoryObjects:
+            invInteractable=inventoryObjects[0]
+            self.inspect_item_symbol_UI = arcade.Sprite(filename="assets/assetpacks/ninja/HUD/Arrow.png", scale=3,
+                                                        center_x=invInteractable.center_x, center_y=invInteractable.center_y+(invInteractable.height//2)+20)
+            self.inspect_item_symbol_UI.draw(pixelated=True)
+            
+        elif pickaxeObjects:
+            pickaxeInteractable=pickaxeObjects[0]
+            self.inspect_item_symbol_UI = arcade.Sprite(filename="assets/assetpacks/ninja/HUD/Arrow.png", scale=3,
+                                                        center_x= pickaxeInteractable.center_x, center_y= pickaxeInteractable.center_y+( pickaxeInteractable.height//2)+20)
+            self.inspect_item_symbol_UI.draw(pixelated=True)
+            
         elif self.current_room.has_npcs:
             npcs = arcade.check_for_collision_with_list(
                 self.player_sprite, self.scene["NPC"])
@@ -185,8 +204,12 @@ class MyGame(arcade.Window):
             self.player_sprite.attacking = True
             self.player_sprite.cur_texture = 0
         if key == arcade.key.P:
-            self.player_sprite.pickaxing = True
-            self.player_sprite.cur_texture = 0
+            #for item in inv_dict:
+                #if inv_dict[item] == pickaxe:
+                    self.player_sprite.pickaxing = True
+                    self.player_sprite.cur_texture = 0
+                    self.buttonPressed="pickaxe"
+                    self.handle_interact()
         if key == INTERACT_KEY:
             self.handle_interact()
 
@@ -210,9 +233,77 @@ class MyGame(arcade.Window):
                 self.handle_npc_interaction(npc)
         interactables = arcade.check_for_collision_with_list(
             self.player_sprite, self.scene["interactables"])
+        invInteractables = arcade.check_for_collision_with_list(
+            self.player_sprite, self.scene["inventory"])
+        pickaxeInteractables = arcade.check_for_collision_with_list(
+            self.player_sprite, self.scene["pickaxe_inventory"])
+        for invInteractable in invInteractables:
+            getattr(self, invInteractable.properties['on_interact'])(invInteractable)
+        for pickaxeInteractable in pickaxeInteractables:
+           getattr(self, pickaxeInteractable.properties['on_interact'])(pickaxeInteractable)
         for interactable in interactables:
             getattr(self, interactable.properties['on_interact'])(interactable)
         return
+    
+    def check_pickaxe_condition(self, pickaxeInteractable):
+        if self.buttonPressed=="pickaxe":
+            self.buttonPressed="None"
+            if self.player_sprite.currently_inspecting:
+                self.player_sprite.currently_inspecting = False
+                return
+            else:
+                if pickaxeInteractable.properties["pickaxe_condition"] == 1:
+                    self.player_sprite.currently_inspecting = True
+                    self.inspect_message_UI.reset()
+                    self.inspect_text = pickaxeInteractable.properties["item_collection_message"]
+                    pickaxeInteractable.properties["pickaxe_condition"] = int(pickaxeInteractable.properties["pickaxe_condition"]) - 1
+                    #add to inventory
+                elif pickaxeInteractable.properties["pickaxe_condition"] == 0:
+                    self.player_sprite.currently_inspecting = True
+                    self.inspect_message_UI.reset()
+                    self.inspect_text = "You already gathered all the ore from here."
+                else:
+                    pickaxeInteractable.properties["pickaxe_condition"] = int(pickaxeInteractable.properties["pickaxe_condition"]) - 1
+        else:
+            if self.player_sprite.currently_inspecting:
+                self.player_sprite.currently_inspecting = False
+                return
+            else:
+                if pickaxeInteractable.properties["pickaxe_condition"] == 0:
+                    self.player_sprite.currently_inspecting = True
+                    self.inspect_message_UI.reset()
+                    self.inspect_text = "You already gathered all the ore from here."
+                else:
+                    self.player_sprite.currently_inspecting = True
+                    self.inspect_message_UI.reset()
+                    self.inspect_text = "You need to hit this rock " + str(pickaxeInteractable.properties["pickaxe_condition"]) + " more times to get ore from it."
+    
+    def check_inv_condition(self, invInteractable):
+        if self.player_sprite.currently_inspecting:
+            self.player_sprite.currently_inspecting = False
+            return
+        else:
+            conditionToBeMet = invInteractable.properties["inv_condition"]
+            if self.achievements[conditionToBeMet] == True:
+                #check if inventory is full or already in inventory - dont add + send error message
+                #for item in inventoryDict:
+                    #if invInteractable.properties["item_id"] == dict[item]:
+                        #don't add to inventory - already in inventory message
+                        #self.player_sprite.currently_inspecting = True
+                        #self.inspect_message_UI.reset()
+                        #self.inspect_text = "You already have this item. You don't need two."
+                    #elif dict[item] == "empty"
+                        #add to inventory
+                        self.player_sprite.currently_inspecting = True
+                        self.inspect_message_UI.reset()
+                        self.inspect_text = invInteractable.properties["item_collection_message"]
+                    #else:
+                        #if inventory full? only remaining option - any way to confirm dict=0 for item in dict if !=empty counter if counter=dict length == empty
+                        #self.player_sprite.currently_inspecting = True
+                        #self.inspect_message_UI.reset()
+                        #self.inspect_text = "Your inventory is full."
+            elif self.achievements[conditionToBeMet] == False:
+                self.inspect_text = invInteractable.properties["item_refuse_message"]
 
     def character_creator(self, interactable):
         if self.character_creator_open == True:
@@ -255,13 +346,15 @@ class MyGame(arcade.Window):
     
 
     def show_message(self, interactable):
-        if self.player_sprite.currently_inspecting:
-            self.player_sprite.currently_inspecting = False
-            return
-        else:
-            self.player_sprite.currently_inspecting = True
-            self.inspect_message_UI.reset()
-            self.inspect_text = interactable.properties["inspect_text"]
+        if self.buttonPressed != "pickaxe":
+            if self.player_sprite.currently_inspecting:
+                self.player_sprite.currently_inspecting = False
+                return
+            else:
+                self.player_sprite.currently_inspecting = True
+                self.inspect_message_UI.reset()
+                self.inspect_text = interactable.properties["inspect_text"]
+        self.buttonPressed="None"
 
     
 

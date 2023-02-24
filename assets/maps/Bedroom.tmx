@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="16" height="14" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="26">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="16" height="14" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="28">
  <tileset firstgid="1" source="Sources/atlas_16x.tsx"/>
  <tileset firstgid="769" source="Sources/TilesetHouse.tsx"/>
  <tileset firstgid="1528" source="Sources/TopDownHouse_SmallItems.tsx"/>
@@ -19,7 +19,7 @@
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="15" gid="1614" x="41.0507" y="39.7461" width="28.4296" height="18.3501">
+  <object id="15" gid="1614" x="27.0678" y="41.6653" width="28.4296" height="18.3501">
    <properties>
     <property name="destination_room" type="int" value="7"/>
     <property name="on_interact" value="room_transition"/>
@@ -34,7 +34,7 @@
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="17" gid="1614" x="77.2856" y="50.9261" width="20.7001" height="21.4835">
+  <object id="17" gid="1614" x="77.2856" y="53.942" width="20.7001" height="21.4835">
    <properties>
     <property name="inspect_text" value="I love that dumbfuck"/>
     <property name="item_id" value="wifes_diary_1"/>
@@ -80,9 +80,20 @@
  <objectgroup id="8" name="Animation">
   <object id="24" gid="1617" x="182.152" y="90.432" width="16" height="16"/>
  </objectgroup>
+ <objectgroup id="11" name="pickaxe_inventory">
+  <object id="26" gid="1614" x="7.35373" y="103.138" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="12" name="inventory">
+  <object id="27" gid="1614" x="233.821" y="85.0428" width="16" height="16"/>
+ </objectgroup>
  <layer id="2" name="floor" width="16" height="14">
   <data encoding="base64" compression="zlib">
    eJxrYmRgaBrFo3gUDwgGAIuncqE=
+  </data>
+ </layer>
+ <layer id="10" name="floor dec" width="16" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFuAATG4PDQLuBmoCZjbAaoJ8baO6QUQAHAH8RANo=
   </data>
  </layer>
  <layer id="1" name="walls" width="16" height="14">
@@ -92,17 +103,17 @@
  </layer>
  <layer id="3" name="furniture" width="16" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYICAlUC8CohXA/E7RogYPxALMBAHbgLxLSC+DcRyTBAxeyB2AOJgIF8NiNWB+AqQf5VIM2GgGagvDIjDgdgE6DZTRhINIBMIsNHHHhBYw0SZ/jto+v8C8T8g/o8kxkyCf3SBYawHxPp0Cmt6gScsA+0CVAAAlhcQRA==
+   eJxjYGBgWAnEq4B4NQMq4AdiAQbC4CYQ3wLi22ji9kDsAMTBTAwMakCsDsRXgPyrBMwTZEOwF7EwMDQD9YUBcTgQmzAyMJgyEuGoIQbWMFGm/w6a/r9A/A+I/5Npni4wjPWAWH+YhfUTloF2ASoAAO6CD9M=
   </data>
  </layer>
  <layer id="4" name="furniture 2" width="16" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYMANMoE4C488ITATiGehiS0FYm02CgwdBUSBw4wMDJ+BWJkJU+4jI259TGwMDTRzFBH2kwskgf6Ugvp1E5SeArRnKiOqGK3sJxcAALG6CuI=
+   eJxjYMANMoE4C488ITATiGehiS0FYm02CgwdBUSBw4wMDJ+BWJkJU+4jI/3dQ2v7JYH+lIL6dROUngK0Zyojqhit7CcXAADvsQpa
   </data>
  </layer>
  <layer id="7" name="over layer" width="16" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBh8QJANwV7EMnDuGEhwFojPAfF5LHIHGensGDrY/xJo5iuouU1MEDoFyE9FE6OV/QMFAAa6CRY=
+   eJxjYMAE7xixCJIA5Jgo0z8KGBjOAvE5ID6PRe4ghfFDKaCF/S+BZr6CmtsETT8pQH4qmhit7B8oAAB9sAlo
   </data>
  </layer>
 </map>

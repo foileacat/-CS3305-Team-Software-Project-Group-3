@@ -1,37 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="72">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="16" nextobjectid="86">
  <tileset firstgid="1" source="Sources/TilesetRelief.tsx"/>
  <tileset firstgid="241" source="Sources/TilesetReliefDetail.tsx"/>
  <tileset firstgid="385" source="Sources/TilesetNature.tsx"/>
  <tileset firstgid="721" source="Sources/TilesetElement.tsx"/>
  <tileset firstgid="961" source="Sources/TilesetHouse.tsx"/>
  <tileset firstgid="1720" source="Sources/atlas_16x.tsx"/>
+ <tileset firstgid="2488" source="Sources/fire_animation.tmx"/>
  <objectgroup id="9" name="interactables">
-  <object id="57" gid="23" x="109.333" y="129.333" width="37.6666" height="35.3333">
-   <properties>
-    <property name="inspect_text" value="Large cave rock orange"/>
-    <property name="item_id" value="large_cave_rock-orange"/>
-    <property name="on_interact" value="show_message"/>
-   </properties>
-  </object>
-  <object id="59" gid="23" x="46.6666" y="84" width="21.3333" height="21.6667">
-   <properties>
-    <property name="inspect_text" value="Small cave rock blue"/>
-    <property name="item_id" value="small_cave_rock_blue"/>
-    <property name="on_interact" value="show_message"/>
-   </properties>
-  </object>
   <object id="60" gid="23" x="94.667" y="66" width="19.6667" height="18.6667">
    <properties>
-    <property name="inspect_text" value="This flower is so so sooo cute"/>
-    <property name="item_id" value="caveoutside_flower02"/>
-    <property name="on_interact" value="show_message"/>
-   </properties>
-  </object>
-  <object id="61" gid="23" x="43.6667" y="261.333" width="24.6667" height="24">
-   <properties>
-    <property name="inspect_text" value="Small green cave rock"/>
-    <property name="item_id" value="small_cave_rock_green"/>
+    <property name="inspect_text" value="This pot is so dusty."/>
+    <property name="item_id" value="cave_pot"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
@@ -46,41 +26,6 @@
    <properties>
     <property name="inspect_text" value="Achievement-from chest"/>
     <property name="item_id" value="cave_shrine"/>
-    <property name="on_interact" value="show_message"/>
-   </properties>
-  </object>
-  <object id="64" gid="23" x="268.667" y="177.667" width="22.6667" height="19">
-   <properties>
-    <property name="inspect_text" value="Shrine-achievement-chest?"/>
-    <property name="item_id" value="cave_chest"/>
-    <property name="on_interact" value="show_message"/>
-   </properties>
-  </object>
-  <object id="65" gid="23" x="412.667" y="288.333" width="22.6667" height="18">
-   <properties>
-    <property name="inspect_text" value="Small purple cave rock"/>
-    <property name="item_id" value="small_cave_rock_purple"/>
-    <property name="on_interact" value="show_message"/>
-   </properties>
-  </object>
-  <object id="66" gid="23" x="412.333" y="259" width="35.3333" height="36.6667">
-   <properties>
-    <property name="inspect_text" value="Large cave rock purple"/>
-    <property name="item_id" value="large_cave_rock-purple"/>
-    <property name="on_interact" value="show_message"/>
-   </properties>
-  </object>
-  <object id="67" gid="23" x="317.333" y="97.6667" width="21.6667" height="19.3333">
-   <properties>
-    <property name="inspect_text" value="Small green cave rock"/>
-    <property name="item_id" value="small_cave_rock_green"/>
-    <property name="on_interact" value="show_message"/>
-   </properties>
-  </object>
-  <object id="68" gid="23" x="350.333" y="84" width="20" height="22">
-   <properties>
-    <property name="inspect_text" value="Small green cave rock"/>
-    <property name="item_id" value="small_cave_rock_green"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
@@ -100,12 +45,83 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="11" name="Animation">
-  <object id="71" gid="3" x="303.333" y="76.6667" width="16" height="16"/>
+ <objectgroup id="12" name="pickaxe_inventory">
+  <object id="73" gid="23" x="107.641" y="132.537" width="40.0178" height="39.1282">
+   <properties>
+    <property name="item_collection_message" value="I got some pristine amber ores."/>
+    <property name="item_id" value="pristine_amber_ore"/>
+    <property name="on_interact" value="check_pickaxe_condition"/>
+    <property name="pickaxe_condition" value="5"/>
+   </properties>
+  </object>
+  <object id="74" gid="23" x="47.5967" y="84.5011" width="20.003" height="21.7821">
+   <properties>
+    <property name="item_collection_message" value="I got some regular sapphire ores."/>
+    <property name="item_id" value="regular_sapphire_ore"/>
+    <property name="on_interact" value="check_pickaxe_condition"/>
+    <property name="pickaxe_condition" value="3"/>
+   </properties>
+  </object>
+  <object id="75" gid="23" x="44.0385" y="259.742" width="24.8955" height="22.2268">
+   <properties>
+    <property name="item_collection_message" value="I got some regular emerald ores."/>
+    <property name="item_id" value="regular_emerald_ore"/>
+    <property name="on_interact" value="check_pickaxe_condition"/>
+    <property name="pickaxe_condition" value="3"/>
+   </properties>
+  </object>
+  <object id="76" gid="23" x="315.351" y="100.513" width="24.8955" height="22.6716">
+   <properties>
+    <property name="item_collection_message" value="I got some regular emerald ores."/>
+    <property name="item_id" value="regular_emerald_ore"/>
+    <property name="on_interact" value="check_pickaxe_condition"/>
+    <property name="pickaxe_condition" value="3"/>
+   </properties>
+  </object>
+  <object id="77" gid="23" x="346.485" y="84.0563" width="26.6746" height="22.2268">
+   <properties>
+    <property name="item_collection_message" value="I got some regular emerald ores."/>
+    <property name="item_id" value="regular_emerald_ore"/>
+    <property name="on_interact" value="check_pickaxe_condition"/>
+    <property name="pickaxe_condition" value="3"/>
+   </properties>
+  </object>
+  <object id="78" gid="23" x="411.422" y="260.187" width="36.0148" height="42.6864">
+   <properties>
+    <property name="item_collection_message" value="I got some pristine amethyst ores."/>
+    <property name="item_id" value="pristine_amethyst_ore"/>
+    <property name="on_interact" value="check_pickaxe_condition"/>
+    <property name="pickaxe_condition" value="5"/>
+   </properties>
+  </object>
+  <object id="79" gid="23" x="414.09" y="289.987" width="20.8925" height="21.7821">
+   <properties>
+    <property name="item_collection_message" value="I got some regular amethyst ores."/>
+    <property name="item_id" value="regular_amethyst_ore"/>
+    <property name="on_interact" value="check_pickaxe_condition"/>
+    <property name="pickaxe_condition" value="3"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="15" name="inventory">
+  <object id="83" gid="1073741847" x="267.76" y="179.683" width="23.5612" height="25.785">
+   <properties>
+    <property name="inv_condition" value="gem_chest_key"/>
+    <property name="item_collection_message" value="YES! I GOT THE GEM!"/>
+    <property name="item_id" value="cave_gem"/>
+    <property name="item_refuse_message" value="I can't open this, I don't have a key. Maybe the the blacksmith can make me a keep out of these ores./maybe the shrine has the key"/>
+    <property name="on_interact" value="check_inv_condition"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer id="1" name="floor" width="30" height="20">
   <data encoding="base64" compression="zlib">
    eJxjYBgF9ABpQJwOxA1IYg10wFVAXA21rxqJPWrv4LIXHQyEvaToJdWdMIzuVhifHLNG7cVvLzZxetiLDdPaXlyAlnaO4pGBp1CgFwDOl+qV
+  </data>
+ </layer>
+ <layer id="14" name="steps" width="30" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjALygRQjBI8CVAAMkwUDbS8sbkbjZxSMAvoDALnqAf4=
   </data>
  </layer>
  <layer id="5" name="walls" width="30" height="20">
@@ -120,7 +136,11 @@
  </layer>
  <layer id="10" name="over layer" width="30" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUDCRIA+J0NJwxoC4iDUgxQvAoQAXAMFkw0PbC4mY0fkbBKKA/AADHnARo
+   eJxjYBgFo2AUDCRIA+J0NJwxoC4aBaNgFIyCUUApAAAXEgJr
   </data>
  </layer>
+ <objectgroup id="11" name="Animation">
+  <object id="84" gid="2488" x="287.775" y="52.0267" width="16" height="32"/>
+  <object id="85" gid="2488" x="223.25" y="51.5" width="16" height="32"/>
+ </objectgroup>
 </map>

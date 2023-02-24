@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="15" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="25">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="15" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="30">
  <tileset firstgid="1" source="Sources/TilesetInteriorFloor.tsx"/>
  <tileset firstgid="375" source="Sources/atlas_16x.tsx"/>
  <tileset firstgid="1143" source="Sources/TilesetHouse.tsx"/>
@@ -64,7 +64,13 @@
   </object>
  </objectgroup>
  <objectgroup id="8" name="Animation">
-  <object id="24" gid="1989" x="87.2166" y="110.857" width="16" height="20.1126"/>
+  <object id="24" gid="1989" x="6.37449" y="53.5155" width="16" height="20.1126"/>
+ </objectgroup>
+ <objectgroup id="9" name="pickaxe_inventory">
+  <object id="28" gid="1988" x="216.901" y="62.2864" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="10" name="inventory">
+  <object id="29" gid="1988" x="220.191" y="112.578" width="16" height="16"/>
  </objectgroup>
  <layer id="2" name="floor" width="15" height="12">
   <data encoding="base64" compression="zlib">
