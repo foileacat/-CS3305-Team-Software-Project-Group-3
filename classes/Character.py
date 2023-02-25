@@ -133,25 +133,26 @@ class Character(arcade.Sprite):
                 row+3), width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE)
         ]
     
-    def generate_floating_head(self):
+    def generate_floating_head(self,x,y):
+        scale = 5
         list = arcade.SpriteList()
-        self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=5,image_width=32,image_height=28,center_x=300,center_y=300)
-        self.shirt_sprite = arcade.Sprite(filename=self.shirt.file_path,image_x=self.shirt.color_offset*ACCESSORIES_OFFSET,scale=5,image_width=32,image_height=28,center_x=300,center_y=300)
-        self.hair_sprite = arcade.Sprite(filename=self.hair.file_path,image_x=self.hair.color_offset*ACCESSORIES_OFFSET,scale=5,image_width=32,image_height=28,center_x=300,center_y=300)
-        self.full_body_sprite = arcade.Sprite(filename=self.full_body.file_path,image_x=self.full_body.color_offset*ACCESSORIES_OFFSET,scale=5,image_width=32,image_height=28,center_x=300,center_y=300)
+        self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=scale,image_width=32,image_height=28,center_x=x,center_y=y)
+        self.shirt_sprite = arcade.Sprite(filename=self.shirt.file_path,image_x=self.shirt.color_offset*ACCESSORIES_OFFSET,scale=scale,image_width=32,image_height=28,center_x=x,center_y=y)
+        self.hair_sprite = arcade.Sprite(filename=self.hair.file_path,image_x=self.hair.color_offset*ACCESSORIES_OFFSET,scale=scale,image_width=32,image_height=28,center_x=x,center_y=y)
+        self.full_body_sprite = arcade.Sprite(filename=self.full_body.file_path,image_x=self.full_body.color_offset*ACCESSORIES_OFFSET,scale=scale,image_width=32,image_height=28,center_x=x,center_y=y)
         list.append(self.head_sprite)
         list.append(self.shirt_sprite)
         list.append(self.hair_sprite)
         #list.append(self.full_body_sprite)
         return list
     
-        #self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=5,image_width=32,image_height=20,center_x=300,center_y=300)
+        #self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=5,image_width=32,image_height=20,center_x=x,center_y=y)
         
         #print(self.hair.file_path)
         #self.shirt.file_path
         #self.hair.file_path
        
-        # self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=5,image_width=32,image_height=32,center_x=300,center_y=300)
-        # self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=5,image_width=32,image_height=32,center_x=300,center_y=300)
-        # self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=5,image_width=32,image_height=32,center_x=300,center_y=300)
-        # self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=5,image_width=32,image_height=32,center_x=300,center_y=300)
+        # self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=5,image_width=32,image_height=32,center_x=x,center_y=y)
+        # self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=5,image_width=32,image_height=32,center_x=x,center_y=y)
+        # self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=5,image_width=32,image_height=32,center_x=x,center_y=y)
+        # self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=5,image_width=32,image_height=32,center_x=x,center_y=y)

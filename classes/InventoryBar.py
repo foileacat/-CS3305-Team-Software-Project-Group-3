@@ -4,15 +4,16 @@ from classes.Item import Item
 from constants import *
 
 INVENTORY_BAR_SIZE = 8
-INVENTORY_BAR_WIDTH = 504
-INVENTORY_BAR_HEIGHT = 56
+INVENTORY_BAR_SPRITE_SCALING = 5
+INVENTORY_BAR_WIDTH = 126 * INVENTORY_BAR_SPRITE_SCALING
+INVENTORY_BAR_HEIGHT = 14 * INVENTORY_BAR_SPRITE_SCALING
 INVENTORY_BAR_HORIZONTAL_PADDING = 20
 INVENTORY_BAR_X = 500
 INVENTORY_BAR_Y = 100
 INVENTORY_SLOT_SIZE = (INVENTORY_BAR_WIDTH - INVENTORY_BAR_HORIZONTAL_PADDING ) // INVENTORY_BAR_SIZE
-INVENTORY_SLOT_SPRITE_SIZE = 35
+INVENTORY_SLOT_SPRITE_SIZE = 9 * INVENTORY_BAR_SPRITE_SCALING
 INVENTORY_BAR_CURSOR_SIZE = INVENTORY_SLOT_SIZE * 5/6
-INVENTORY_BAR_SPRITE_SCALING = 4
+
 
 class InventoryBar():
     def __init__(self):
@@ -77,6 +78,14 @@ class InventoryBar():
         if self.selected_slot>7:
             self.selected_slot=0
 
+        self.slots[self.selected_slot].selected = True
+        self.update_cursor()
+
+    def select_slot(self,key):
+        key-=49 # converting key to list index - arcade keys are numbers, 0 is 48, 1 is 49 etc.
+        for slot in self.slots:
+            slot.selected=False
+        self.selected_slot=key
         self.slots[self.selected_slot].selected = True
         self.update_cursor()
     
