@@ -5,12 +5,14 @@ import random
 import character_lists
 from classes.Character import Character
 from classes.PlayerAccessory import PlayerAccessory
+import json 
+import json_functions
 
 class Npc(Character):
 
     """Creates our Character"""
 
-    def __init__(self,x,y,name,id,):
+    def __init__(self,x,y,name,id,conversation_list,):
         super().__init__()
         #initialise starting position
         #be able to pace
@@ -37,6 +39,7 @@ class Npc(Character):
         self.id = id
         self.speed = 3.0
         self.interacting = False
+        self.conversation_list = conversation_list 
 
     def wander(self):
         if self.wandering == False:
@@ -100,6 +103,9 @@ class Npc(Character):
                 else:
                     self.home = True
                 self.wandering = False
+    
+    def get_conversation(self, conversation_key):
+        return json_functions.get_one_conversation(self.conversation_list, conversation_key)
 
                 
 
