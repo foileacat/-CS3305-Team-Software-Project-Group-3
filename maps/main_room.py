@@ -1,7 +1,7 @@
 from classes.Rooms import Room
 from constants import *
 from classes.Npc import Npc
-
+from classes.Enemy import Enemy
 def setup(self):
     room = Room()
     room.has_npcs = True
@@ -32,10 +32,18 @@ def setup(self):
   
     room.npc_list.append(room.npc)
     
+    room.enemy = Enemy(500,300,"boberta",12)
+    
+    room.enemy_list = arcade.SpriteList()
+  
+    room.enemy_list.append(room.enemy)
+    
     #room.scene.add_sprite("NPC", room.npc)
+    room.scene.add_sprite_list("ENEMY", sprite_list=room.enemy_list)
+    #room.scene.add_sprite("NPC", room.npc)
+
     room.scene.add_sprite_list("NPC", sprite_list=room.npc_list)
     room.scene.add_sprite_list("NPC Stuff", sprite_list = room.npc.accessory_list)
-    #room.scene.add_sprite("NPC", room.npc)
 
     room.scene.add_sprite_list("NPC Stuff", sprite_list = room.npc.accessory_list)
     room.scene.add_sprite("Player", self.player_sprite)

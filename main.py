@@ -72,7 +72,7 @@ class MyGame(arcade.Window):
         self.rooms = [starting_room.setup(self), main_room.setup(self), cave_outside.setup(self), cave_inside.setup(self), dojo_outside.setup(self), dojo.setup(
             self), blacksmith.setup(self), living_room.setup(self), bedroom.setup(self), kitchen.setup(self), forest.setup(self), enemy_house.setup(self)]
         
-        self.current_room_index = 0
+        self.current_room_index = 1
         self.current_room = self.rooms[self.current_room_index]
         self.scene = self.current_room.scene
 
@@ -371,7 +371,8 @@ class MyGame(arcade.Window):
         self.physics_engine.update()
         self.scene.on_update(delta_time=1/60)
         if self.current_room.has_npcs:
-            self.scene.update_animation(delta_time, ["NPC"])
+            self.scene.update_animation(delta_time, ["NPC", "ENEMY"])
+            
         self.scene.update_animation(delta_time, ["Animation", "Player"])
         self.scroll_to_player()
 
