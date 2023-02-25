@@ -14,7 +14,7 @@ def setup_inspect_gui(self):
         #     filename="assets/assetpacks/ninja/HUD/Dialog/DialogueBoxSimple.png", scale=SPRITE_SCALING))
         
         self.inspect_message_UI = TypewriterTextWidget(
-            x=0, y=0,width= 400, height = 50, font_name="NinjaAdventure")
+            x=0, y=0,width= 350, height = 70, font_name="NinjaAdventure")
         
 
         self.inspect_message_UI_background = self.inspect_message_UI.with_background(texture = arcade.load_texture(

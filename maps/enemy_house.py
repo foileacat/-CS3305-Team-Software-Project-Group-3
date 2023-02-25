@@ -1,8 +1,10 @@
 from classes.Rooms import Room
+from classes.Enemy import Enemy
 from constants import *
 
 def setup(self):
     room = Room()
+    room.has_enemy = True
     room.entrances = {"forest" : [SPRITE_SIZE*14.5,SPRITE_SIZE*14]}
     room.starting_x = SPRITE_SIZE * 11.5
     room.starting_y = SPRITE_SIZE * 2.5
@@ -14,8 +16,7 @@ def setup(self):
         "walls": {
             "use_spatial_hash": True,
         },
-        
-       
+          
     }
 
     # create tilemap, and then a scene from that tilemap. the scene is what we use.
@@ -27,6 +28,12 @@ def setup(self):
     room.scene.add_sprite("Player", self.player_sprite)
     room.scene.add_sprite_list("Player Stuff", sprite_list = self.player_accessory_list)
     room.scene.move_sprite_list_after("over layer", "Player Stuff")
+
+    room.enemy = Enemy(500,500,"bob",1)
+    room.scene.add_sprite("ENEMY", room.enemy)
+    room.scene.add_sprite_list("Enemy Stuff", sprite_list = room.enemy.accessory_list)
+
+
     # the rooms wall list is used for player collision.
     room.wall_list = []
     

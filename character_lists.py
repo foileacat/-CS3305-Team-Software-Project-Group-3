@@ -16,3 +16,5 @@ shoes = ["assets/characterassets/Character v.2/clothes/shoes.png"]
 
 full_body = ["assets/characterassets/Character v.2/clothes/witch.png", "assets/characterassets/Character v.2/clothes/spooky .png",
              "assets/characterassets/Character v.2/clothes/clown.png", "assets/characterassets/Character v.2/clothes/pumpkin.png", "assets/characterassets/Character v.2/clothes/dress .png"]
+
+enemy = ["assets\characterassets\Character v.2\enemy\SpriteSheet.png"]

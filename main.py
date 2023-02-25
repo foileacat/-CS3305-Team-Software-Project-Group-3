@@ -6,6 +6,7 @@ import character_lists
 from gui.inspect_gui import setup_inspect_gui
 from gui.character_creator_gui import setup_character_creator_gui
 from classes.PlayerCharacter import PlayerCharacter
+from classes.Enemy import Enemy
 from maps import *
 from constants import *
 from gui.TypewriterText import TypewriterTextWidget
@@ -35,6 +36,7 @@ class MyGame(arcade.Window):
         self.camera_gui = arcade.Camera(
             SCREEN_WIDTH, SCREEN_HEIGHT)
         self.count = 0 
+        self.enemy_sprite = None
 
     def setup(self):
         """ Set up the game and initialize variables. """
@@ -48,13 +50,15 @@ class MyGame(arcade.Window):
         self.player_sprite.set_hit_box(self.player_sprite.points)
         self.player_accessory_list = self.player_sprite.accessory_list
 
+        self.enemy_sprite = Enemy()
+
         setup_inspect_gui(self)
         setup_character_creator_gui(self)
 
         self.rooms = [starting_room.setup(self), main_room.setup(self), cave_outside.setup(self), cave_inside.setup(self), dojo_outside.setup(self), dojo.setup(
             self), blacksmith.setup(self), living_room.setup(self), bedroom.setup(self), kitchen.setup(self), forest.setup(self), enemy_house.setup(self)]
         
-        self.current_room_index = 0
+        self.current_room_index = 10
         self.current_room = self.rooms[self.current_room_index]
         self.scene = self.current_room.scene
 
@@ -162,6 +166,14 @@ class MyGame(arcade.Window):
                                                            center_x=npc.center_x, center_y=(npc.center_y+(npc.height//2)-20))
                 self.inspect_npc_symbol_UI.color = arcade.csscolor.SEA_GREEN
                 self.inspect_npc_symbol_UI.draw(pixelated=True)
+
+        elif self.current_room.has_enemy:
+            enemy = arcade.check_for_collision_with_list(
+                self.enemy_sprite["ENEMY"])
+            
+            if enemy:
+                enemy = enemy[0]
+
         '''Draw Performance Metrics'''
         # self.camera_gui.use()
         # self.perf_graph_list.draw()
