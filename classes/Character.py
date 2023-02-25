@@ -12,6 +12,7 @@ class Character(arcade.Sprite):
         #initialise starting position
         self.attacking = False
         self.pickaxing = False
+        self.using_tool = False
         self.carrying = False
         self.center_x = 0
         self.center_y = 0
@@ -156,3 +157,10 @@ class Character(arcade.Sprite):
         # self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=5,image_width=32,image_height=32,center_x=x,center_y=y)
         # self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=5,image_width=32,image_height=32,center_x=x,center_y=y)
         # self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=5,image_width=32,image_height=32,center_x=x,center_y=y)
+    def is_holding_item(self):
+        if self.inventory_bar.current_slot().occupied:
+            if self.inventory_bar.current_slot().item.is_tool == False:
+                return True
+            else:
+                return False
+        return False

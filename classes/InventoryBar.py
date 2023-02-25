@@ -1,6 +1,7 @@
 import arcade
 from classes.InventorySlot import InventorySlot
 from classes.Item import Item
+from classes.Tool import Tool
 from constants import *
 
 INVENTORY_BAR_SIZE = 8
@@ -16,8 +17,10 @@ INVENTORY_BAR_CURSOR_SIZE = INVENTORY_SLOT_SIZE * 5/6
 
 
 class InventoryBar():
-    def __init__(self):
-        self.sprite = arcade.Sprite(filename=INVENTORY_BAR_ASSET,
+    def __init__(self, inventory):
+        self.inventory = inventory
+        self.sprite = arcade.Sprite(
+                        filename=INVENTORY_BAR_ASSET,
                         scale=SPRITE_SCALING,
                         center_x=INVENTORY_BAR_X,
                         center_y=INVENTORY_BAR_Y)
@@ -35,7 +38,8 @@ class InventoryBar():
         self.slot7 = InventorySlot()
 
         self.selected_slot=0
-        self.slots = [self.slot0,self.slot1,self.slot2,self.slot3,self.slot4,self.slot5,self.slot6,self.slot7]
+        self.slots = inventory.slots[:INVENTORY_BAR_SIZE]
+        #self.slots1 = [self.slot0,self.slot1,self.slot2,self.slot3,self.slot4,self.slot5,self.slot6,self.slot7]
         self.slot_list = arcade.SpriteList()
         
         self.cursor = arcade.Sprite(filename=INVENTORY_BAR_CURSOR_ASSET,scale=INVENTORY_BAR_SPRITE_SCALING)
@@ -44,6 +48,13 @@ class InventoryBar():
         self.initialise_slots()
         self.update_cursor()
         self.slot_list.append(self.cursor)
+        self.name_text =arcade.Text( text="",
+                                     start_x=200,
+                                     start_y=200,
+                                     color=(255, 255, 255), 
+                                     font_size=12,
+                                     font_name="NinjaAdventure")
+        self.time_since_last_change=1000
 
     def update_cursor(self):
         for slot in self.slots:
@@ -61,8 +72,9 @@ class InventoryBar():
             slot.center_y = INVENTORY_BAR_Y
             slot.width = INVENTORY_SLOT_SPRITE_SIZE
             slot.height = INVENTORY_SLOT_SPRITE_SIZE
-            slot.insert_item(Item(id=1,filename=EXAMPLE_EGG_SPRITE_LINK))
-            self.slot_list.append(sprite=slot.item)
+            if slot.occupied:
+                slot.position_item()
+                self.slot_list.append(sprite=slot.item)
             slot_counter+=1
        
     def move_cursor(self,direction):
@@ -80,6 +92,7 @@ class InventoryBar():
 
         self.slots[self.selected_slot].selected = True
         self.update_cursor()
+        self.time_since_last_change=0
 
     def select_slot(self,key):
         key-=49 # converting key to list index - arcade keys are numbers, 0 is 48, 1 is 49 etc.
@@ -88,8 +101,19 @@ class InventoryBar():
         self.selected_slot=key
         self.slots[self.selected_slot].selected = True
         self.update_cursor()
+        self.time_since_last_change=0
     
     def draw(self, pixelated=True):
+        self.time_since_last_change+=1
         self.sprite.draw(pixelated=pixelated)
         self.slot_list.draw(pixelated=pixelated)
         self.cursor.draw(pixelated=pixelated)
+
+        if self.time_since_last_change <=100 and self.current_slot().occupied:
+            self.name_text.value=self.current_slot().item.name
+            self.name_text.y=self.current_slot().center_y+40
+            self.name_text.x=self.current_slot().center_x-(INVENTORY_SLOT_SIZE//2 +5)
+            self.name_text.draw()
+
+    def current_slot(self):
+        return self.slots[self.selected_slot]

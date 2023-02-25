@@ -64,7 +64,8 @@ UPDATES_PER_FRAME = 5
 #Number correlates to 
 WALK = [0,7]
 CARRY = [12,7]
-SWORD = [16,3]
+PICKAXE = {"sprite_location":29, "frames":5 }
+SWORD = {"sprite_location":16, "frames":4 }
 # Constants used to track if the player is facing left or right
 FORWARD_FACING = 0
 BACKWARD_FACING = 1

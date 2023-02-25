@@ -7,6 +7,7 @@ from gui.inspect_gui import setup_inspect_gui
 from gui.npc_chat_gui import setup_npc_gui
 from gui.character_creator_gui import setup_character_creator_gui
 from classes.PlayerCharacter import PlayerCharacter
+from classes.Inventory import Inventory
 from classes.InventoryBar import InventoryBar
 from classes.Item import Item
 from maps import *
@@ -50,6 +51,7 @@ class MyGame(arcade.Window):
         super().on_resize(width, height)
 
         print(f"Window resized to: {width}, {height}")
+
     def setup(self):
         """ Set up the game and initialize variables. """
         self.character_creator_open = False
@@ -60,7 +62,9 @@ class MyGame(arcade.Window):
         self.player_sprite = PlayerCharacter()
         self.player_sprite.set_hit_box(self.player_sprite.points)
         self.player_accessory_list = self.player_sprite.accessory_list
-        self.inventory_bar = InventoryBar()
+        
+        self.inventory_bar = self.player_sprite.inventory_bar
+    
         setup_inspect_gui(self)
         setup_character_creator_gui(self)
         setup_npc_gui(self)
@@ -123,6 +127,13 @@ class MyGame(arcade.Window):
         interactableObjects = arcade.check_for_collision_with_list(
             self.player_sprite, self.scene["interactables"])
         
+        if self.player_sprite.is_holding_item():
+                filename = self.inventory_bar.current_slot().item.filename
+                holding_item = arcade.Sprite(filename=filename,
+                                            center_x=self.player_sprite.center_x,
+                                            center_y=self.player_sprite.center_y+20,
+                                            scale=3)
+                holding_item.draw(pixelated=True)
         # self.spritea = arcade.Sprite(filename="assets/guiassets/CustomAssets/qq1map.png",center_y=100,center_x=500,scale=6)
         # self.spritea.draw(pixelated=True)
         #self.player_sprite.generate_floating_head(180,130).draw(pixelated=True)
@@ -204,18 +215,17 @@ class MyGame(arcade.Window):
                 self.player_sprite.change_x = MOVEMENT_SPEED
             elif key == INVENTORY_BAR_CURSOR_LEFT:
                 self.inventory_bar.move_cursor("left")
+                self.player_sprite.using_tool = False
             elif key == INVENTORY_BAR_CURSOR_RIGHT:
                 self.inventory_bar.move_cursor("right")
+                self.player_sprite.using_tool = False
             elif INVENTORY_BAR_SLOT_A <= key <= INVENTORY_BAR_SLOT_H:
                 self.inventory_bar.select_slot(key)
+                self.player_sprite.using_tool = False
         if key == arcade.key.I:
             self.inventory_open = not self.inventory_open
         if key == arcade.key.C:
-            self.player_sprite.attacking = True
-            self.player_sprite.cur_texture = 0
-        if key == arcade.key.P:
-            self.player_sprite.pickaxing = True
-            self.player_sprite.cur_texture = 0
+            self.player_sprite.use_tool()
         if key == INTERACT_KEY:
             self.handle_interact()
         if key == arcade.key.B:
@@ -238,7 +248,7 @@ class MyGame(arcade.Window):
         
     def on_key_release(self, key, modifiers):
         """Called when the user releases a key. """
-
+      
         if key == UP_KEY or key == DOWN_KEY:
             self.player_sprite.change_y = 0
         elif key == LEFT_KEY or key == RIGHT_KEY:
@@ -346,13 +356,8 @@ class MyGame(arcade.Window):
 
     def on_update(self, delta_time):
         """ Movement and game logic. Runs constantly when anything changes."""
-        # self.frame_count += 1
-        # if self.frame_count % 60 == 0:
-        #     arcade.print_timings()
-        #     arcade.clear_timings()
         self.physics_engine.update()
         self.scene.on_update(delta_time=1/60)
-        # self.player_accessory_list.update_animation(self.player_sprite)
         if self.current_room.has_npcs:
             self.scene.update_animation(delta_time, ["NPC"])
         self.scene.update_animation(delta_time, ["Animation", "Player"])

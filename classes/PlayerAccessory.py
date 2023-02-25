@@ -51,7 +51,11 @@ class PlayerAccessory(arcade.Sprite):
             texture = load_texture_list(
                 self.file_path, 29, frame, self.color_offset)
             self.pickaxe_textures.append(texture)
-        
+        self.watering_textures = []
+        for frame in range(2):
+            texture = load_texture_list(self.file_path, 37, frame, self.color_offset)
+            self.watering_textures.append(texture)
+
     def change_color(self):
         if self.asset_list == full_body:
             if self.asset_index <= 1:
@@ -89,49 +93,55 @@ class PlayerAccessory(arcade.Sprite):
         self.center_y = player_sprite.center_y
         self.cur_texture = player_sprite.cur_texture
         # Walking animation
-        if player_sprite.pickaxing == True:
-            self.cur_texture += 1
-            if self.cur_texture > 4 * UPDATES_PER_FRAME:
-                self.cur_texture = 0
-                self.pickaxing = False
-            frame = self.cur_texture // UPDATES_PER_FRAME
-            direction = self.face_direction
-            self.texture = self.pickaxe_textures[frame][direction]
-            return
-        
-        if player_sprite.attacking == True:
-            self.cur_texture += 1
-            if self.cur_texture > 3 * UPDATES_PER_FRAME:
-                self.cur_texture = 0
-                self.attacking = False
-            frame = self.cur_texture // UPDATES_PER_FRAME
-            direction = self.face_direction
-            self.texture = self.sword_textures[frame][direction]
-            return
-        
-        if player_sprite.carrying == True:
-            if player_sprite.change_x == 0 and player_sprite.change_y == 0:
-                self.texture = self.idle_carry_texture_list[self.face_direction]
+
+        if player_sprite.using_tool==True:
+            use_speed = player_sprite.current_item().use_speed
+            if player_sprite.current_item().type == "Pickaxe":
+                self.update_frames(5,self.pickaxe_textures,use_speed)
                 return
+            if player_sprite.current_item().type == "Sword":
+                self.update_frames(4, self.sword_textures,use_speed)
+                return
+            if player_sprite.current_item().type == "Watering Can":
+                self.update_frames(2, self.watering_textures,use_speed)
+                return
+            return
+        else:
+            if player_sprite.is_holding_item():
+                if player_sprite.change_x == 0 and player_sprite.change_y == 0:
+                    self.texture = self.idle_carry_texture_list[self.face_direction]
+                    return
+                self.cur_texture += 1
+                if self.cur_texture > 7 * UPDATES_PER_FRAME:
+                    self.cur_texture = 0
+                    self.attacking = False
+                frame = self.cur_texture // UPDATES_PER_FRAME
+                direction = self.face_direction
+                self.texture = self.carry_textures[frame][direction]
+                return
+            
+            if player_sprite.change_x == 0 and player_sprite.change_y == 0:
+                self.texture = self.idle_texture_list[self.face_direction]
+                return
+            
             self.cur_texture += 1
             if self.cur_texture > 7 * UPDATES_PER_FRAME:
                 self.cur_texture = 0
-                self.attacking = False
             frame = self.cur_texture // UPDATES_PER_FRAME
             direction = self.face_direction
-            self.texture = self.carry_textures[frame][direction]
-            return
+            self.texture = self.walk_textures[frame][direction]
         
-        if player_sprite.change_x == 0 and player_sprite.change_y == 0:
-            self.texture = self.idle_texture_list[self.face_direction]
-            return
-        
+    def update_frames(self, max_frames, texture_dict,use_speed):
         self.cur_texture += 1
-        if self.cur_texture > 7 * UPDATES_PER_FRAME:
+        if self.cur_texture > max_frames * use_speed:
             self.cur_texture = 0
-        frame = self.cur_texture // UPDATES_PER_FRAME
+            self.using_tool = False
+        frame = self.cur_texture // use_speed
         direction = self.face_direction
-        self.texture = self.walk_textures[frame][direction]
+        if frame == max_frames:
+            frame=max_frames-1
+        self.texture = texture_dict[frame][direction]
+        return
 
 def load_texture_list(filename, row, frame, offset):
     """
