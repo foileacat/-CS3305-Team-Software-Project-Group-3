@@ -29,3 +29,4 @@ class Item(arcade.Sprite):
         self.name = name
         self.filename = filename
         self.is_tool=False
+        self.is_consumable=False

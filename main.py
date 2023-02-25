@@ -48,8 +48,9 @@ class MyGame(arcade.Window):
         self.camera_sprites.resize(int(width), int(height))
         self.camera_gui.resize(int(width), int(height))
         #update_constants(self)
-        super().on_resize(width, height)
 
+        super().on_resize(width, height)
+        self.inventory_bar.resize(self)
         print(f"Window resized to: {width}, {height}")
 
     def setup(self):
@@ -71,7 +72,7 @@ class MyGame(arcade.Window):
         self.rooms = [starting_room.setup(self), main_room.setup(self), cave_outside.setup(self), cave_inside.setup(self), dojo_outside.setup(self), dojo.setup(
             self), blacksmith.setup(self), living_room.setup(self), bedroom.setup(self), kitchen.setup(self), forest.setup(self), enemy_house.setup(self)]
         
-        self.current_room_index = 1
+        self.current_room_index = 0
         self.current_room = self.rooms[self.current_room_index]
         self.scene = self.current_room.scene
 
@@ -128,12 +129,13 @@ class MyGame(arcade.Window):
             self.player_sprite, self.scene["interactables"])
         
         if self.player_sprite.is_holding_item():
-                filename = self.inventory_bar.current_slot().item.filename
-                holding_item = arcade.Sprite(filename=filename,
-                                            center_x=self.player_sprite.center_x,
-                                            center_y=self.player_sprite.center_y+20,
-                                            scale=3)
-                holding_item.draw(pixelated=True)
+                if self.player_sprite.current_item().is_tool == False:
+                    filename = self.inventory_bar.current_slot().item.filename
+                    holding_item = arcade.Sprite(filename=filename,
+                                                center_x=self.player_sprite.center_x,
+                                                center_y=self.player_sprite.center_y+20,
+                                                scale=3)
+                    holding_item.draw(pixelated=True)
         # self.spritea = arcade.Sprite(filename="assets/guiassets/CustomAssets/qq1map.png",center_y=100,center_x=500,scale=6)
         # self.spritea.draw(pixelated=True)
         #self.player_sprite.generate_floating_head(180,130).draw(pixelated=True)
@@ -150,6 +152,7 @@ class MyGame(arcade.Window):
 
         elif self.character_creator_open == True:
             self.camera_gui.use()
+            self.background_sprite.draw(pixelated=True)
             self.gui_character_creator_manager.draw()
 
         elif interactableObjects:
@@ -160,6 +163,8 @@ class MyGame(arcade.Window):
                 self.inspect_item_symbol_UI.color = arcade.csscolor.INDIANRED
             elif interactable.properties["on_interact"] == "character_creator":
                 self.inspect_item_symbol_UI.color = arcade.csscolor.INDIGO
+            else:
+                self.inspect_item_symbol_UI.color = arcade.color.CORNFLOWER_BLUE
             self.inspect_item_symbol_UI.draw(pixelated=True)
             self.camera_gui.use()
             self.inventory_bar.draw()
@@ -225,7 +230,7 @@ class MyGame(arcade.Window):
         if key == arcade.key.I:
             self.inventory_open = not self.inventory_open
         if key == arcade.key.C:
-            self.player_sprite.use_tool()
+            self.use_selected_item()
         if key == INTERACT_KEY:
             self.handle_interact()
         if key == arcade.key.B:
@@ -254,6 +259,13 @@ class MyGame(arcade.Window):
         elif key == LEFT_KEY or key == RIGHT_KEY:
             self.player_sprite.change_x = 0
 
+    def use_selected_item(self):
+        if self.player_sprite.is_holding_item():
+            if self.player_sprite.current_item().is_tool:
+                self.player_sprite.use_tool()
+            if self.player_sprite.current_item().is_consumable:
+                self.player_sprite.use_consumable()
+        return
     def handle_interact(self):
         """
         Runs when a player presses the interact key next to an interactable object. 
@@ -276,6 +288,7 @@ class MyGame(arcade.Window):
             return
         else:
             self.player_sprite.character_face_direction = FORWARD_FACING
+            setup_character_creator_gui(self)
             self.character_creator_open = True
 
     def room_transition(self, interactable):
@@ -284,7 +297,6 @@ class MyGame(arcade.Window):
         Transitions player from one room to the next.
 
         """
-
         entrance = interactable.properties["transition_id"]
         entrance_coordinates = self.current_room.entrances[entrance]
         self.player_sprite.center_x = entrance_coordinates[0]

@@ -108,17 +108,18 @@ class PlayerAccessory(arcade.Sprite):
             return
         else:
             if player_sprite.is_holding_item():
-                if player_sprite.change_x == 0 and player_sprite.change_y == 0:
-                    self.texture = self.idle_carry_texture_list[self.face_direction]
+                if player_sprite.current_item().is_tool == False:
+                    if player_sprite.change_x == 0 and player_sprite.change_y == 0:
+                        self.texture = self.idle_carry_texture_list[self.face_direction]
+                        return
+                    self.cur_texture += 1
+                    if self.cur_texture > 7 * UPDATES_PER_FRAME:
+                        self.cur_texture = 0
+                        self.attacking = False
+                    frame = self.cur_texture // UPDATES_PER_FRAME
+                    direction = self.face_direction
+                    self.texture = self.carry_textures[frame][direction]
                     return
-                self.cur_texture += 1
-                if self.cur_texture > 7 * UPDATES_PER_FRAME:
-                    self.cur_texture = 0
-                    self.attacking = False
-                frame = self.cur_texture // UPDATES_PER_FRAME
-                direction = self.face_direction
-                self.texture = self.carry_textures[frame][direction]
-                return
             
             if player_sprite.change_x == 0 and player_sprite.change_y == 0:
                 self.texture = self.idle_texture_list[self.face_direction]

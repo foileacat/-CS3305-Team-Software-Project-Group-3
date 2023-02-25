@@ -24,18 +24,20 @@ class InventoryBar():
                         scale=SPRITE_SCALING,
                         center_x=INVENTORY_BAR_X,
                         center_y=INVENTORY_BAR_Y)
+        self.x = INVENTORY_BAR_X
+        self.y = INVENTORY_BAR_Y
         self.width = INVENTORY_BAR_WIDTH
         self.height = INVENTORY_BAR_HEIGHT
         self.sprite.width = self.width
         self.sprite.height = self.height
-        self.slot0 = InventorySlot(selected=True)
-        self.slot1 = InventorySlot()
-        self.slot2 = InventorySlot()
-        self.slot3 = InventorySlot()
-        self.slot4 = InventorySlot()
-        self.slot5 = InventorySlot()
-        self.slot6 = InventorySlot()
-        self.slot7 = InventorySlot()
+        # self.slot0 = InventorySlot(selected=True)
+        # self.slot1 = InventorySlot()
+        # self.slot2 = InventorySlot()
+        # self.slot3 = InventorySlot()
+        # self.slot4 = InventorySlot()
+        # self.slot5 = InventorySlot()
+        # self.slot6 = InventorySlot()
+        # self.slot7 = InventorySlot()
 
         self.selected_slot=0
         self.slots = inventory.slots[:INVENTORY_BAR_SIZE]
@@ -68,8 +70,8 @@ class InventoryBar():
         slot_center = (INVENTORY_SLOT_SIZE // 2)
         for slot in self.slots:
             slot_position = slot_counter * INVENTORY_SLOT_SIZE
-            slot.center_x = INVENTORY_BAR_X - inventory_bar_center + slot_center + slot_position
-            slot.center_y = INVENTORY_BAR_Y
+            slot.center_x = self.x - inventory_bar_center + slot_center + slot_position
+            slot.center_y = self.y
             slot.width = INVENTORY_SLOT_SPRITE_SIZE
             slot.height = INVENTORY_SLOT_SPRITE_SIZE
             if slot.occupied:
@@ -110,6 +112,12 @@ class InventoryBar():
         self.cursor.draw(pixelated=pixelated)
 
         if self.time_since_last_change <=100 and self.current_slot().occupied:
+            if self.current_slot().item.is_consumable:
+                self.name_text.color=arcade.color.RADICAL_RED
+            elif self.current_slot().item.is_tool:
+                self.name_text.color=arcade.color.AERO_BLUE
+            else:
+                self.name_text.color=arcade.color.WHITE
             self.name_text.value=self.current_slot().item.name
             self.name_text.y=self.current_slot().center_y+40
             self.name_text.x=self.current_slot().center_x-(INVENTORY_SLOT_SIZE//2 +5)
@@ -117,3 +125,17 @@ class InventoryBar():
 
     def current_slot(self):
         return self.slots[self.selected_slot]
+    
+    def resize(self,screen):
+        self.slot_list.clear()
+        self.x=screen.width//2
+        self.y= screen.height//8
+        self.sprite.center_x=screen.width//2
+        self.sprite.center_y=screen.height//8
+        self.initialise_slots()
+        self.update_cursor()
+
+    def remove_item(self):
+        self.current_slot().occupied=False
+        self.current_slot().item.kill()
+        self.current_slot().item = None

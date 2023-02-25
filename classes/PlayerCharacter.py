@@ -92,7 +92,7 @@ class PlayerCharacter(Character):
                 return
             return
         else:
-            if self.is_holding_item():
+            if self.is_holding_item() and self.current_item().is_tool == False:
                 if self.change_x == 0 and self.change_y == 0:
                     self.texture = self.idle_carry_texture_list[self.character_face_direction]
                     return
@@ -122,10 +122,7 @@ class PlayerCharacter(Character):
 
     def is_holding_item(self):
         if self.inventory_bar.current_slot().occupied:
-            if self.inventory_bar.current_slot().item.is_tool == False:
-                return True
-            else:
-                return False
+            return True
         return False
     
     def use_tool(self):
@@ -136,7 +133,11 @@ class PlayerCharacter(Character):
             if self.current_item().is_tool == False:
                 return
             self.using_tool = True
-    
+
+    def use_consumable(self):
+        self.inventory_bar.remove_item()
+        
+
     def update_frames(self, max_frames, texture_dict,use_speed):
             self.cur_texture += 1
             if self.cur_texture > max_frames * use_speed:

@@ -2,6 +2,7 @@ import arcade
 from classes.InventorySlot import InventorySlot
 from classes.Item import Item
 from classes.Tool import Tool
+from classes.Consumable import Consumable
 from constants import *
 
 class Inventory():
@@ -47,3 +48,8 @@ class Inventory():
                                        id=1,
                                        filename="assets/characterassets/Character v.2/separate/water/tool/wateringcan_full_green.png",
                                        image_x=64,image_y=0,image_width=16,image_height=16,use_speed=10))
+        
+        self.slots[3].insert_item(Consumable(
+                                       name="Tasty Noods",
+                                       id=1,
+                                       filename="assets/assetpacks/ninja/Items/Food/Noodle.png"))

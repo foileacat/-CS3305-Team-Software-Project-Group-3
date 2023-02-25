@@ -32,3 +32,6 @@ class InventorySlot():
         self.item.width=self.width
         self.item.height=self.height
         
+    def remove_item(self):
+        self.occupied = False
+        self.item = None

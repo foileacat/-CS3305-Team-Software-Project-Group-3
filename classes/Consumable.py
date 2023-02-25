@@ -2,12 +2,10 @@ import arcade
 from classes.Item import Item
 from constants import *
 
-class Tool(Item):
+class Consumable(Item):
     def __init__(self,*,
                 id=0, 
                 name="None",
-                type="Unspecified",
-                use_speed = UPDATES_PER_FRAME,
                 filename=None, 
                 scale=SPRITE_SCALING, 
                 image_x=0, 
@@ -28,7 +26,11 @@ class Tool(Item):
                         center_x=center_x, center_y=center_y, flipped_horizontally=flipped_horizontally, 
                         flipped_vertically=flipped_vertically, flipped_diagonally=flipped_diagonally, 
                         hit_box_algorithm=hit_box_algorithm, texture=texture, angle=angle)
-        self.is_tool=True
-        self.type=type
-        self.use_speed=use_speed
         
+        self.is_consumable=True
+        
+
+    def be_consumed(self):
+        #play sound?
+        #change stats
+        return
