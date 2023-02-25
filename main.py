@@ -4,6 +4,7 @@ from arcade.experimental.lights import Light, LightLayer
 import os
 import character_lists
 from gui.inspect_gui import setup_inspect_gui
+from gui.npc_chat_gui import setup_npc_gui
 from gui.character_creator_gui import setup_character_creator_gui
 from classes.PlayerCharacter import PlayerCharacter
 from classes.InventoryBar import InventoryBar
@@ -20,14 +21,14 @@ class MyGame(arcade.Window):
         """
         Initializer
         """
-        super().__init__(width, height, title)
+        super().__init__(width, height, title, resizable=True)
 
         # Set the working directory
         file_path = os.path.dirname(os.path.abspath(__file__))
         os.chdir(file_path)
         self.draw_performance = False
         self.perf_graph_list = None
-        self.conversation_list = ["sdsdd","bijfjkdfkj kfjdkjfj", "ckdjfdkjfjk dfjkdjfk", "dksdsjkdjk dkjsdjk", "eskjdsjkd sdkjsdjk"]
+        self.conversation_list = ["sdsdd","bijfjkdfkj sds sdsd sd d dd sd sdsss sd sd sd sd sdsdssd sds ds dsdsdsds ds d sds dsdsdsds sd s ds dsdsds sd sd sd sdsd sd sd sd s dsdsdsfwrg wrg rg wg ew ew gw gwe g kfjdkjfj", "ckdjfdkjfjk dfjkdjfk", "dksdsjkdjk dkjsdjk", "eskjdsjkd sdkjsdjk"]
         self.frame_count = 0
         self.current_room_index = 0
         self.rooms = None
@@ -38,7 +39,17 @@ class MyGame(arcade.Window):
         self.camera_gui = arcade.Camera(
             SCREEN_WIDTH, SCREEN_HEIGHT)
         self.count = 0 
-        
+        "dumb"
+        self.any_sprite_x=700
+        self.any_sprite_y=510
+
+    def on_resize(self, width, height):
+        self.camera_sprites.resize(int(width), int(height))
+        self.camera_gui.resize(int(width), int(height))
+        #update_constants(self)
+        super().on_resize(width, height)
+
+        print(f"Window resized to: {width}, {height}")
     def setup(self):
         """ Set up the game and initialize variables. """
         self.character_creator_open = False
@@ -46,18 +57,17 @@ class MyGame(arcade.Window):
         
         # imports game font. name of font is "NinjaAdventure"
         arcade.load_font(FONT_PATH)
-
         self.player_sprite = PlayerCharacter()
         self.player_sprite.set_hit_box(self.player_sprite.points)
         self.player_accessory_list = self.player_sprite.accessory_list
         self.inventory_bar = InventoryBar()
         setup_inspect_gui(self)
         setup_character_creator_gui(self)
-
+        setup_npc_gui(self)
         self.rooms = [starting_room.setup(self), main_room.setup(self), cave_outside.setup(self), cave_inside.setup(self), dojo_outside.setup(self), dojo.setup(
             self), blacksmith.setup(self), living_room.setup(self), bedroom.setup(self), kitchen.setup(self), forest.setup(self), enemy_house.setup(self)]
         
-        self.current_room_index = 0
+        self.current_room_index = 1
         self.current_room = self.rooms[self.current_room_index]
         self.scene = self.current_room.scene
 
@@ -65,6 +75,9 @@ class MyGame(arcade.Window):
         self.view_left = 0
         self.view_bottom = 0
 
+        #####
+        self.inventory_open = False
+        ###
         # #create physics engine - adds collision
         self.physics_engine = arcade.PhysicsEngineSimple(
             self.player_sprite, walls=self.current_room.wall_list)
@@ -98,39 +111,31 @@ class MyGame(arcade.Window):
         # light2 = Light(95*4, 650, 400, (80,80,100), "soft")
         # self.light_layer.add(light)
         # self.light_layer.add(light2)
+        self.inspect_item_symbol_UI = arcade.Sprite(filename="assets/assetpacks/ninja/HUD/Arrow.png", scale=3,
+                                                    center_x=0, center_y=0)
 
     def on_draw(self):
         # This command has to happen before we start drawing
         self.clear()
         # this camera is used for everything except the gui
         self.camera_sprites.use()
-
-        """More lighting Code"""
-        # with self.light_layer:
         self.scene.draw(pixelated=True)
-        # self.current_room.npc.draw_hit_box()
-        # self.light_layer.draw(ambient_color=AMBIENT_COLOR)
-        # returns interactable objects the player is touching - if we have any, the item has an arrow/text hint
         interactableObjects = arcade.check_for_collision_with_list(
             self.player_sprite, self.scene["interactables"])
-        #arcade.gui.UITextArea.w
-        # renders inspecting popup/interactable hint if applicable
-
+        
+        # self.spritea = arcade.Sprite(filename="assets/guiassets/CustomAssets/qq1map.png",center_y=100,center_x=500,scale=6)
+        # self.spritea.draw(pixelated=True)
+        #self.player_sprite.generate_floating_head(180,130).draw(pixelated=True)
+        
         if self.player_sprite.currently_inspecting:
             self.camera_gui.use()
-            "text formatting"
-            #self.inspect_message_UI.text=self.inspect_text
-            #self.inspect_message_UI.fit_content()
             self.inspect_message_UI.display_text(self.inspect_text)
             self.gui_inspect_manager.draw()
 
         elif self.player_sprite.currently_npc_interacting:
             self.camera_gui.use()
-            "text formatting"
-            #self.inspect_message_UI.text=self.inspect_text
-            #self.inspect_message_UI.fit_content()
-            self.inspect_message_UI.display_text(self.conversation_list[self.count])
-            self.gui_inspect_manager.draw()
+            self.npc_message_UI.display_text(self.conversation_list[self.count])
+            self.gui_npc_manager.draw()
 
         elif self.character_creator_open == True:
             self.camera_gui.use()
@@ -138,8 +143,8 @@ class MyGame(arcade.Window):
 
         elif interactableObjects:
             interactable = interactableObjects[0]
-            self.inspect_item_symbol_UI = arcade.Sprite(filename="assets/assetpacks/ninja/HUD/Arrow.png", scale=3,
-                                                        center_x=interactable.center_x, center_y=interactable.center_y+(interactable.height//2)+20)
+            self.inspect_item_symbol_UI.center_x=interactable.center_x
+            self.inspect_item_symbol_UI.center_y=interactable.center_y+(interactable.height//2)+20
             if interactable.properties["on_interact"] == "room_transition":
                 self.inspect_item_symbol_UI.color = arcade.csscolor.INDIANRED
             elif interactable.properties["on_interact"] == "character_creator":
@@ -149,15 +154,14 @@ class MyGame(arcade.Window):
             self.inventory_bar.draw()
 
         elif self.current_room.has_npcs:
-            npcs = arcade.check_for_collision_with_list(
-                self.player_sprite, self.scene["NPC"])
-            
+            npcs = arcade.check_for_collision_with_list(self.player_sprite, 
+                                                        self.scene["NPC"])
             if npcs:
                 npc = npcs[0]
-                self.inspect_npc_symbol_UI = arcade.Sprite(filename="assets/assetpacks/ninja/HUD/Arrow.png", scale=3,
-                                                           center_x=npc.center_x, center_y=(npc.center_y+(npc.height//2)-20))
-                self.inspect_npc_symbol_UI.color = arcade.csscolor.SEA_GREEN
-                self.inspect_npc_symbol_UI.draw(pixelated=True)
+                self.inspect_item_symbol_UI.center_x=npc.center_x
+                self.inspect_item_symbol_UI.center_y=npc.center_y+(npc.height//2)-20
+                self.inspect_item_symbol_UI.color = arcade.csscolor.SEA_GREEN
+                self.inspect_item_symbol_UI.draw(pixelated=True)
             self.camera_gui.use()
             self.inventory_bar.draw()
 
@@ -167,7 +171,26 @@ class MyGame(arcade.Window):
 
         if self.draw_performance:
             self.draw_performance_graph()
+        self.camera_gui.use()
+        self.inventory_experiment()
 
+    def inventory_experiment(self):
+        if self.inventory_open:
+            self.book = arcade.Sprite(filename="assets/guiassets/CustomAssets/Larger-Book-Test-2.png", scale=5,center_x=600,center_y=400)
+            self.book.draw(pixelated=True)
+            self.inventory_cursor=arcade.Sprite(filename=INVENTORY_BAR_CURSOR_ASSET,scale=4,center_x=700,center_y=510)
+            self.inventory_cursor2=arcade.Sprite(filename=INVENTORY_BAR_CURSOR_ASSET,scale=4,center_x=700+70,center_y=510)
+            self.inventory_cursor3=arcade.Sprite(filename=INVENTORY_BAR_CURSOR_ASSET,scale=4,center_x=700+140,center_y=510)
+            self.inventory_cursor4=arcade.Sprite(filename=INVENTORY_BAR_CURSOR_ASSET,scale=4,center_x=700+210,center_y=510)
+            self.inventory_cursor5=arcade.Sprite(filename=INVENTORY_BAR_CURSOR_ASSET,scale=4,center_x=700+280,center_y=510)
+            self.inventory_text=arcade.Text(text="Inventory",start_x=750,start_y=580,color=arcade.color.BLACK,font_name="NinjaAdventure",font_size=26)
+            self.inventory_cursor.draw(pixelated=True)
+            self.inventory_text.draw()
+            self.inventory_cursor2.draw(pixelated=True)
+            self.inventory_cursor3.draw(pixelated=True)
+            self.inventory_cursor4.draw(pixelated=True)
+            self.inventory_cursor5.draw(pixelated=True)
+            
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed. """
         if self.player_unpaused():
@@ -183,6 +206,10 @@ class MyGame(arcade.Window):
                 self.inventory_bar.move_cursor("left")
             elif key == INVENTORY_BAR_CURSOR_RIGHT:
                 self.inventory_bar.move_cursor("right")
+            elif INVENTORY_BAR_SLOT_A <= key <= INVENTORY_BAR_SLOT_H:
+                self.inventory_bar.select_slot(key)
+        if key == arcade.key.I:
+            self.inventory_open = not self.inventory_open
         if key == arcade.key.C:
             self.player_sprite.attacking = True
             self.player_sprite.cur_texture = 0
@@ -194,6 +221,21 @@ class MyGame(arcade.Window):
         if key == arcade.key.B:
             self.draw_performance = not self.draw_performance
 
+        "For inventory configuration - in progress"
+
+        if key == arcade.key.T:
+            self.any_sprite_y+=10
+            print("x= ", self.any_sprite_x, ", y= ",self.any_sprite_y)
+        if key == arcade.key.G:
+            self.any_sprite_y-=10
+            print("x= ", self.any_sprite_x, ", y= ",self.any_sprite_y)
+        if key == arcade.key.F:
+            self.any_sprite_x-=10
+            print("x= ", self.any_sprite_x, ", y= ",self.any_sprite_y)
+        if key == arcade.key.H:
+            self.any_sprite_x+=10
+            print("x= ", self.any_sprite_x, ", y= ",self.any_sprite_y)
+        
     def on_key_release(self, key, modifiers):
         """Called when the user releases a key. """
 
