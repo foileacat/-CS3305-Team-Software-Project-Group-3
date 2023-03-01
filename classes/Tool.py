@@ -35,4 +35,8 @@ class Tool(Item):
         self.damage = damage
         self.knockback = knockback
         self.use_speed=use_speed
-        
+    
+    def generate_stats(self):
+        self.statistic_one = "Damage: " + str(self.damage)
+        self.statistic_two = "Knockback: " +str(self.knockback)
+        self.statistic_three = "Use Speed: " + str(11 - self.use_speed)

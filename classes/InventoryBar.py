@@ -30,18 +30,8 @@ class InventoryBar():
         self.height = INVENTORY_BAR_HEIGHT
         self.sprite.width = self.width
         self.sprite.height = self.height
-        # self.slot0 = InventorySlot(selected=True)
-        # self.slot1 = InventorySlot()
-        # self.slot2 = InventorySlot()
-        # self.slot3 = InventorySlot()
-        # self.slot4 = InventorySlot()
-        # self.slot5 = InventorySlot()
-        # self.slot6 = InventorySlot()
-        # self.slot7 = InventorySlot()
-
         self.selected_slot=0
         self.slots = inventory.slots[:INVENTORY_BAR_SIZE]
-        #self.slots1 = [self.slot0,self.slot1,self.slot2,self.slot3,self.slot4,self.slot5,self.slot6,self.slot7]
         self.slot_list = arcade.SpriteList()
         
         self.cursor = arcade.Sprite(filename=INVENTORY_BAR_CURSOR_ASSET,scale=INVENTORY_BAR_SPRITE_SCALING)

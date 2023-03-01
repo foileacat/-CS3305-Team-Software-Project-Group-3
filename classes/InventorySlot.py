@@ -27,11 +27,13 @@ class InventorySlot():
         self.item.height=self.height
     
     def position_item(self):
-        self.item.center_x = self.center_x
-        self.item.center_y = self.center_y
-        self.item.width=self.width
-        self.item.height=self.height
-        
+        if self.occupied:
+            self.item.center_x = self.center_x
+            self.item.center_y = self.center_y
+            self.item.width=self.width
+            self.item.height=self.height
+        return
+            
     def remove_item(self):
         self.occupied = False
         self.item = None

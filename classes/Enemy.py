@@ -39,7 +39,7 @@ class Enemy(arcade.Sprite):
     def update(self):
         if self.health < 0:
             self.dead = True
-            self.kill()
+            #self.kill()
             self.color = arcade.color.BLACK
             return
         else:

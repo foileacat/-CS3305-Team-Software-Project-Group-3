@@ -4,7 +4,7 @@ from classes.Item import Item
 from classes.Tool import Tool
 from classes.Consumable import Consumable
 from constants import *
-
+import items
 class Inventory():
     def __init__(self):
         self.slots=[
@@ -24,33 +24,43 @@ class Inventory():
             InventorySlot(id=14),
             InventorySlot(id=15)
         ]
-        self.selected_slot=2
+        self.selected_slot=0
 
-        self.slots[6].insert_item(Item(id=1,name="Egg",filename=EXAMPLE_EGG_SPRITE_LINK))
-        self.slots[7].insert_item(Item(id=1,name="Book",
-                                       filename="assets/guiassets/AssetPacks/Free Pack/Free Pixel Paper/Png/Sprites/1 items Pack/5.png"))
+        self.slots[6].insert_item(items.egg)
+        self.slots[7].insert_item(items.book)
         
-        self.slots[0].insert_item(Tool(name="Old Pickaxe",
-                                       type="Pickaxe",
-                                       id=1,
-                                       knockback=5,
-                                       filename="assets/characterassets/Character v.2/separate/pickaxe/tool/pickaxe_full.png",
-                                       image_width=16,image_height=16))
+        self.slots[0].insert_item(items.old_pickaxe)
         
-        self.slots[1].insert_item(Tool(name="Rusty Sword",
-                                       type="Sword",
-                                       id=1,
-                                       filename="assets/characterassets/Character v.2/separate/sword/tool/sword.png",
-                                       image_x=0,image_y=112,image_width=16,image_height=16,use_speed=6))
+        self.slots[1].insert_item(items.rusty_sword)
         
-        self.slots[2].insert_item(Tool(
-                                       name="Holey Watering Can",
-                                       type="Watering Can",
-                                       id=1,
-                                       filename="assets/characterassets/Character v.2/separate/water/tool/wateringcan_full_green.png",
-                                       image_x=64,image_y=0,image_width=16,image_height=16,use_speed=10))
+        self.slots[2].insert_item(items.holey_watering_can)
         
-        self.slots[3].insert_item(Consumable(
-                                       name="Tasty Noods",
-                                       id=1,
-                                       filename="assets/assetpacks/ninja/Items/Food/Noodle.png"))
+        self.slots[3].insert_item(items.noodles)
+        
+    def move_cursor(self,direction):
+        if direction=="right":
+            movement=1
+        elif direction=="left":
+            movement=-1
+        elif direction=="up":
+            movement=-5
+        else:
+            movement=5
+        for slot in self.slots:
+            slot.selected=False
+        
+        if direction == "up" or direction == "down":
+            self.selected_slot+=movement
+            if self.selected_slot<0:
+                self.selected_slot= 15 + self.selected_slot
+            if self.selected_slot>14:
+                self.selected_slot= self.selected_slot - 15
+
+        else:
+            self.selected_slot+=movement
+            if self.selected_slot<0:
+                self.selected_slot=14
+            if self.selected_slot>14:
+                self.selected_slot=0
+        self.slots[self.selected_slot].selected = True
+        

@@ -71,8 +71,11 @@ FORWARD_FACING = 0
 BACKWARD_FACING = 1
 RIGHT_FACING = 2
 LEFT_FACING = 3
+
 INVENTORY_BAR_CURSOR_RIGHT = arcade.key.RIGHT
 INVENTORY_BAR_CURSOR_LEFT = arcade.key.LEFT
+INVENTORY_BAR_CURSOR_UP = arcade.key.UP
+INVENTORY_BAR_CURSOR_DOWN = arcade.key.DOWN
 
 FONT_PATH = "assets/assetpacks/ninja/HUD/Font/NormalFont.ttf"
 EXAMPLE_EGG_SPRITE_LINK = "assets/guiassets/AssetPacks/Free Pack/Free Pixel Paper/Png/Sprites/1 items Pack/1.png"

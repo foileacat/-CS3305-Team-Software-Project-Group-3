@@ -18,11 +18,11 @@ def setup_npc_gui(self):
         
 
         self.npc_message_UI_background = self.npc_message_UI.with_background(texture = arcade.load_texture(
-            "assets/assetpacks/ninja/HUD/Dialog/DialogBoxFaceset.png"),top=40,left=120,right=40,bottom=20)
+            "assets/guiassets/CustomAssets/DialogBoxFaceset.png"),top=40,left=120,right=40,bottom=20)
         
         
         self.npc_background_UI_anchor = arcade.gui.UIAnchorWidget(
-            child=self.npc_message_UI_background, align_x=-50, align_y=-250)
+            child=self.npc_message_UI_background, align_x=-50, align_y=-300)
 
         self.gui_npc_manager.add(self.npc_background_UI_anchor)
         

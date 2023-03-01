@@ -148,7 +148,7 @@ class Character(arcade.Sprite):
         ]
     
     def generate_floating_head(self,x,y):
-        scale = 5
+        scale = 4.5
         list = arcade.SpriteList()
         self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=scale,image_width=32,image_height=28,center_x=x,center_y=y)
         self.shirt_sprite = arcade.Sprite(filename=self.shirt.file_path,image_x=self.shirt.color_offset*ACCESSORIES_OFFSET,scale=scale,image_width=32,image_height=28,center_x=x,center_y=y)
@@ -157,19 +157,8 @@ class Character(arcade.Sprite):
         list.append(self.head_sprite)
         list.append(self.shirt_sprite)
         list.append(self.hair_sprite)
-        #list.append(self.full_body_sprite)
         return list
     
-        #self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=5,image_width=32,image_height=20,center_x=x,center_y=y)
-        
-        #print(self.hair.file_path)
-        #self.shirt.file_path
-        #self.hair.file_path
-       
-        # self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=5,image_width=32,image_height=32,center_x=x,center_y=y)
-        # self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=5,image_width=32,image_height=32,center_x=x,center_y=y)
-        # self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=5,image_width=32,image_height=32,center_x=x,center_y=y)
-        # self.head_sprite = arcade.Sprite(filename=character_lists.skintones[2],scale=5,image_width=32,image_height=32,center_x=x,center_y=y)
     def is_holding_item(self):
         if self.inventory_bar.current_slot().occupied:
             if self.inventory_bar.current_slot().item.is_tool == False:

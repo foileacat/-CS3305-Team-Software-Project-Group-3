@@ -6,6 +6,7 @@ import random
 import character_lists
 from gui.inspect_gui import setup_inspect_gui
 from gui.npc_chat_gui import setup_npc_gui
+from gui.setup_inventory import setup_inventory
 from gui.character_creator_gui import setup_character_creator_gui
 from classes.PlayerCharacter import PlayerCharacter
 from classes.Inventory import Inventory
@@ -65,7 +66,8 @@ class MyGame(arcade.Window):
         self.player_accessory_list = self.player_sprite.accessory_list
         
         self.inventory_bar = self.player_sprite.inventory_bar
-    
+        self.inventory = self.player_sprite.inventory
+
         setup_inspect_gui(self)
         setup_character_creator_gui(self)
         setup_npc_gui(self)
@@ -154,8 +156,12 @@ class MyGame(arcade.Window):
 
         elif self.player_sprite.currently_npc_interacting:
             self.camera_gui.use()
+            self.current_npc.generate_floating_head(100,100)
             self.npc_message_UI.display_text(self.conversation_list[self.count])
             self.gui_npc_manager.draw()
+            center_x = self.width //2
+            center_y = self.height //2
+            self.current_npc.generate_floating_head(center_x-283,center_y-280).draw(pixelated=True)
 
         elif self.character_creator_open == True:
             self.camera_gui.use()
@@ -194,29 +200,107 @@ class MyGame(arcade.Window):
 
         if self.draw_performance:
             self.draw_performance_graph()
-        self.camera_gui.use()
-        self.inventory_experiment()
-
-    def inventory_experiment(self):
+        
         if self.inventory_open:
-            self.book = arcade.Sprite(filename="assets/guiassets/CustomAssets/Larger-Book-Test-2.png", scale=5,center_x=600,center_y=400)
-            self.book.draw(pixelated=True)
-            self.inventory_cursor=arcade.Sprite(filename=INVENTORY_BAR_CURSOR_ASSET,scale=4,center_x=700,center_y=510)
-            self.inventory_cursor2=arcade.Sprite(filename=INVENTORY_BAR_CURSOR_ASSET,scale=4,center_x=700+70,center_y=510)
-            self.inventory_cursor3=arcade.Sprite(filename=INVENTORY_BAR_CURSOR_ASSET,scale=4,center_x=700+140,center_y=510)
-            self.inventory_cursor4=arcade.Sprite(filename=INVENTORY_BAR_CURSOR_ASSET,scale=4,center_x=700+210,center_y=510)
-            self.inventory_cursor5=arcade.Sprite(filename=INVENTORY_BAR_CURSOR_ASSET,scale=4,center_x=700+280,center_y=510)
-            self.inventory_text=arcade.Text(text="Inventory",start_x=750,start_y=580,color=arcade.color.BLACK,font_name="NinjaAdventure",font_size=26)
-            self.inventory_cursor.draw(pixelated=True)
-            self.inventory_text.draw()
-            self.inventory_cursor2.draw(pixelated=True)
-            self.inventory_cursor3.draw(pixelated=True)
-            self.inventory_cursor4.draw(pixelated=True)
-            self.inventory_cursor5.draw(pixelated=True)
+            self.camera_gui.use()
+            self.draw_inventory()
+
+    def draw_inventory(self):
+        screen_center_x = self.width // 2
+        screen_center_y = self.height // 2
+        self.book = arcade.Sprite(filename="assets/guiassets/CustomAssets/Larger-Book-Test-2.png", scale=5,center_x=screen_center_x,center_y=screen_center_y)
+        self.book.draw(pixelated=True)
+        inventory_start_x = screen_center_x + 100
+        inventory_start_y = screen_center_y + 120
+        inventory_text_start_x = screen_center_x + 150
+        inventory_text_start_y = screen_center_y + 180
+        slot_sprite_list = arcade.SpriteList()
+        slot_list = []
+        increase_x = 0
+        for index in range(5):
+            slot_background = arcade.Sprite(filename="assets/guiassets/CustomAssets/InventorySlotBackground8.png",scale=4,center_x=inventory_start_x+increase_x,center_y=inventory_start_y)
+            # slot_background.color = arcade.color.CELESTIAL_BLUE
+            slot_sprite_list.append(slot_background)
+            slot = self.inventory.slots[index]
+            slot.center_x = inventory_start_x+increase_x
+            slot.center_y = inventory_start_y
+            slot.position_item()
+            increase_x += 70
+            if slot.occupied:
+                slot_sprite_list.append(slot.item)
+        increase_x = 0
+        for index in range(5):
+            slot_background = arcade.Sprite(filename="assets/guiassets/CustomAssets/InventorySlotBackground8.png",scale=4,center_x=inventory_start_x+increase_x,center_y=inventory_start_y-70)
+            slot_sprite_list.append(slot_background)
+            slot = self.inventory.slots[index+5]
+            slot.center_x = inventory_start_x+increase_x
+            slot.center_y = inventory_start_y-70
+            slot.position_item()
+            increase_x += 70
+            if slot.occupied:
+                slot_sprite_list.append(slot.item)
+        increase_x = 0
+        for index in range(5):
+            slot_background = arcade.Sprite(filename="assets/guiassets/CustomAssets/InventorySlotBackground8.png",scale=4,center_x=inventory_start_x+increase_x,center_y=inventory_start_y-140)
+            slot_sprite_list.append(slot_background)
+            slot = self.inventory.slots[index+10]
+            slot.center_x = inventory_start_x+increase_x
+            slot.center_y = inventory_start_y-140
+            slot.position_item()
+            increase_x += 70
+            if slot.occupied:
+                slot_sprite_list.append(slot.item)
+        for slot in self.inventory.slots:
+            if slot.selected:
+                x = slot.center_x
+                y = slot.center_y
+                self.selected_item = slot.item
+                self.inventory_cursor=arcade.Sprite(filename=INVENTORY_BAR_CURSOR_ASSET,scale=4,center_x=x,center_y=y)
+
+        self.inventory_text=arcade.Text(text="Inventory",start_x=inventory_text_start_x,start_y=inventory_text_start_y,color=arcade.color.BLACK,font_name="NinjaAdventure",font_size=26)
+        self.inventory_text.draw()
+        #self.inventory_display_box = arcade.Sprite(filename="assets/guiassets/CustomAssets/InventorySlotBackground8.png",scale=11,center_x=inventory_start_x+50,center_y=inventory_start_y-270)
+        if self.selected_item:
+            self.inventory_display_name=arcade.Text(text=self.selected_item.name,start_x=inventory_start_x-20,start_y=inventory_start_y-210,color=arcade.color.BLACK,font_name="NinjaAdventure",font_size=19)
+            if self.selected_item.is_tool:
+                self.selected_item.generate_stats()
+                self.inventory_display_stat1=arcade.Text(text=self.selected_item.statistic_one,start_x=inventory_start_x-20,start_y=inventory_start_y-230,color=arcade.color.BLACK,font_name="NinjaAdventure",font_size=12)
+                self.inventory_display_stat2=arcade.Text(text=self.selected_item.statistic_two,start_x=inventory_start_x-20,start_y=inventory_start_y-250,color=arcade.color.BLACK,font_name="NinjaAdventure",font_size=12)
+                self.inventory_display_stat3=arcade.Text(text=self.selected_item.statistic_three,start_x=inventory_start_x-20,start_y=inventory_start_y-270,color=arcade.color.BLACK,font_name="NinjaAdventure",font_size=12)
+                self.inventory_display_description=arcade.Text(text=self.selected_item.description,start_x=inventory_start_x-20,start_y=inventory_start_y-310,color=arcade.color.BLACK,font_name="NinjaAdventure",font_size=12,multiline=True,width=350)
+                self.inventory_display_stat1.draw()
+                self.inventory_display_stat2.draw()
+                self.inventory_display_stat3.draw()
+                self.inventory_display_description.draw()
+            elif self.selected_item.is_consumable:
+                self.selected_item.generate_stats()
+                self.inventory_display_stat1=arcade.Text(text=self.selected_item.statistic_one,start_x=inventory_start_x-20,start_y=inventory_start_y-250,color=arcade.color.BLACK,font_name="NinjaAdventure",font_size=12)
+                self.inventory_display_description=arcade.Text(text=self.selected_item.description,start_x=inventory_start_x-20,start_y=inventory_start_y-280,color=arcade.color.BLACK,font_name="NinjaAdventure",font_size=12,multiline=True,width=350)
+                self.inventory_display_stat1.draw()
+                self.inventory_display_description.draw()
+            else:
+                self.inventory_display_description=arcade.Text(text=self.selected_item.description,start_x=inventory_start_x-20,start_y=inventory_start_y-240,color=arcade.color.BLACK,font_name="NinjaAdventure",font_size=12,multiline=True,width=350)
+                self.inventory_display_description.draw()
+            
+            self.inventory_display_name.draw()
+        #self.inventory_display_box.draw(pixelated=True)
+        slot_sprite_list.draw(pixelated=True)
+        self.inventory_cursor.draw(pixelated=True)
+
+    
             
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed. """
-        if self.player_unpaused():
+        if self.inventory_open:
+            if key == INVENTORY_BAR_CURSOR_LEFT:
+                self.inventory.move_cursor("left")
+            elif key == INVENTORY_BAR_CURSOR_RIGHT:
+                self.inventory.move_cursor("right")
+            elif key == INVENTORY_BAR_CURSOR_UP:
+                self.inventory.move_cursor("up")
+            elif key == INVENTORY_BAR_CURSOR_DOWN:
+                self.inventory.move_cursor("down")
+        elif self.player_unpaused():
             if key == UP_KEY:
                 self.player_sprite.change_y = MOVEMENT_SPEED
             elif key == DOWN_KEY:
@@ -235,7 +319,9 @@ class MyGame(arcade.Window):
                 self.inventory_bar.select_slot(key)
                 self.player_sprite.using_tool = False
         if key == arcade.key.I:
+            self.inventory_bar.resize(self)
             self.inventory_open = not self.inventory_open
+            
         if key == arcade.key.C:
             self.use_selected_item()
         if key == INTERACT_KEY:
@@ -245,18 +331,18 @@ class MyGame(arcade.Window):
 
         "For inventory configuration - in progress"
 
-        if key == arcade.key.T:
-            self.any_sprite_y+=10
-            print("x= ", self.any_sprite_x, ", y= ",self.any_sprite_y)
-        if key == arcade.key.G:
-            self.any_sprite_y-=10
-            print("x= ", self.any_sprite_x, ", y= ",self.any_sprite_y)
-        if key == arcade.key.F:
-            self.any_sprite_x-=10
-            print("x= ", self.any_sprite_x, ", y= ",self.any_sprite_y)
-        if key == arcade.key.H:
-            self.any_sprite_x+=10
-            print("x= ", self.any_sprite_x, ", y= ",self.any_sprite_y)
+        # if key == arcade.key.T:
+        #     self.any_sprite_y+=10
+        #     print("x= ", self.any_sprite_x, ", y= ",self.any_sprite_y)
+        # if key == arcade.key.G:
+        #     self.any_sprite_y-=10
+        #     print("x= ", self.any_sprite_x, ", y= ",self.any_sprite_y)
+        # if key == arcade.key.F:
+        #     self.any_sprite_x-=10
+        #     print("x= ", self.any_sprite_x, ", y= ",self.any_sprite_y)
+        # if key == arcade.key.H:
+        #     self.any_sprite_x+=10
+        #     print("x= ", self.any_sprite_x, ", y= ",self.any_sprite_y)
         
     def on_key_release(self, key, modifiers):
         """Called when the user releases a key. """
@@ -356,6 +442,7 @@ class MyGame(arcade.Window):
             self.player_sprite.currently_npc_interacting = True
             self.count = 0
             npc.interacting = True
+            self.current_npc = npc
             x_diff = self.player_sprite.center_x - npc.center_x
             y_diff = self.player_sprite.center_y - npc.center_y
             self.player_sprite.currently_npc_interacting

@@ -28,9 +28,11 @@ class Consumable(Item):
                         hit_box_algorithm=hit_box_algorithm, texture=texture, angle=angle)
         
         self.is_consumable=True
-        
+        self.health = 10
 
     def be_consumed(self):
         #play sound?
         #change stats
         return
+    def generate_stats(self):
+        self.statistic_one = "Health: +" + str(self.health)

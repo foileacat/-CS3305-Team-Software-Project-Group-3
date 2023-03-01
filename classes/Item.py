@@ -30,3 +30,7 @@ class Item(arcade.Sprite):
         self.filename = filename
         self.is_tool=False
         self.is_consumable=False
+        self.statistic_one = "Loren Ipsum Blah"
+        self.statistic_two = "Loren Ipsum Blah"
+        self.statistic_three = "Loren Ipsum Blah"
+        self.description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text"
