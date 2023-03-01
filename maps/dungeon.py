@@ -12,10 +12,10 @@ def setup(self):
     room.wall_list = arcade.SpriteList()
     # all layers that are spatially hashed are "solid" - aka we can give them collision
     layer_options = {
-        "walls": {
+        "trees": {
             "use_spatial_hash": True,
         },
-        "over layer": {
+        "trees2": {
             "use_spatial_hash": True,
         } 
         
@@ -37,7 +37,7 @@ def setup(self):
     # the rooms wall list is used for player collision.
 
     room.wall_list = []
-    room.wall_list.append(room.scene["walls"])
-    
+    room.wall_list.append(room.scene["trees"])
+    room.wall_list.append(room.scene["trees2"])
 
     return room

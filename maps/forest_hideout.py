@@ -14,7 +14,10 @@ def setup(self):
         "walls": {
             "use_spatial_hash": True,
         },
-        "over layer": {
+        "renovation2": {
+            "use_spatial_hash": True,
+        },
+        "trees": {
             "use_spatial_hash": True,
         }
     }
@@ -32,6 +35,7 @@ def setup(self):
     room.wall_list = []
     room.wall_list.append(room.scene["walls"])
     room.wall_list.append(room.scene["trees"])
+    room.wall_list.append(room.scene["renovation2"])
     room.scene["renovation1"].visible=False
     room.scene["renovation2"].visible=False
     room.scene["renovation3"].visible=False
