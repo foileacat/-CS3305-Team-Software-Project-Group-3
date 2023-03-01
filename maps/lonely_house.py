@@ -38,6 +38,9 @@ def setup(self):
     room.scene["renovation1"].visible=False
     room.scene["renovation2"].visible=False
     room.scene["renovation3"].visible=False
+    room.scene["renovation4"].visible=False
+    room.scene["renovation5"].visible=False
+    room.scene["renovation6"].visible=False
     #room.wall_list.append(room.scene["Trees 1"])
     #room.wall_list.append(room.scene["Trees 2"])
     #room.wall_list.append(room.scene["House"])
