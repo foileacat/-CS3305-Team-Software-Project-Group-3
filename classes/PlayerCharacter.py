@@ -26,14 +26,22 @@ class PlayerCharacter(Character):
         self.bottoms = PlayerAccessory(character_lists.bottoms,2,6)
         self.full_body = PlayerAccessory(character_lists.full_body,4,6)
         self.shoes = PlayerAccessory(character_lists.shoes,0,1)
+        # self.sword = PlayerAccessory(["assets/characterassets/Character v.2/separate/sword/tool/sword.png"],0,0)
         self.full_body.alpha = 0
+        self.health = 10
+        self.knockback = 3
         self.populate_accessory_list()
         self.currently_inspecting = False
         self.currently_npc_interacting = False
+        self.taking_damage = False
+        self.dead = False
+        
         
     def load_textures(self):
         self.idle_texture_list = self.load_texture_list(self.skintone_file, 0, 0, 0)
         self.idle_carry_texture_list = self.load_texture_list(self.skintone_file, 12, 0, 0)
+        
+        self.dying_textures = self.load_horizontal_texture_pair(self.skintone_file, 28, 0, 0)
 
         self.walk_textures = []
         for frame in range(8):
@@ -60,6 +68,13 @@ class PlayerCharacter(Character):
             texture = self.load_texture_list(self.skintone_file, 37, frame, 0)
             self.watering_textures.append(texture)
 
+        self.damage_textures = []
+        for frame in range(3):
+            texture = self.load_texture_list(self.skintone_file, 24, 0, 0)
+            self.damage_textures.append(texture)
+        
+        
+
     def populate_accessory_list(self):
         self.accessory_list.append(self.shirt)
         self.accessory_list.append(self.bottoms)
@@ -68,6 +83,8 @@ class PlayerCharacter(Character):
         self.accessory_list.append(self.full_body)
 
     def update_animation(self, delta_time: float = 1 / 60):
+        if self.dead:
+            return
         for accessory in self.accessory_list:
             accessory.update_animation(self)
         if self.change_x < 0 and self.change_y == 0:
@@ -79,16 +96,24 @@ class PlayerCharacter(Character):
         elif self.change_y > 0 and self.change_x == 0:
             self.character_face_direction = BACKWARD_FACING
 
+        if self.dying:
+            self.update_dying_frames(2,self.dying_textures,40)
+            return
+        
+        if self.taking_damage:
+            self.update_damage_frames(3,self.damage_textures,10)
+            return
+        
         if self.using_tool==True:
             use_speed = self.current_item().use_speed
             if self.current_item().type == "Pickaxe":
-                self.update_frames(5,self.pickaxe_textures,use_speed)
+                self.update_tool_frames(5,self.pickaxe_textures,use_speed)
                 return
             if self.current_item().type == "Sword":
-                self.update_frames(4, self.sword_textures,use_speed)
+                self.update_tool_frames(4, self.sword_textures,use_speed)
                 return
             if self.current_item().type == "Watering Can":
-                self.update_frames(2, self.watering_textures,use_speed)
+                self.update_tool_frames(2, self.watering_textures,use_speed)
                 return
             return
         else:
@@ -125,6 +150,36 @@ class PlayerCharacter(Character):
             return True
         return False
     
+    def take_damage(self,enemy):
+        if self.dead:
+            return
+        x_diff = self.center_x - enemy.center_x
+        y_diff = self.center_y - enemy.center_y-16
+      
+        if x_diff <= 0 and abs(x_diff) > abs(y_diff):
+            self.character_face_direction=RIGHT_FACING
+            self.center_x -= enemy.knockback*10
+
+        if x_diff >= 0 and abs(x_diff) > abs(y_diff):
+            self.character_face_direction=LEFT_FACING
+            self.center_x += enemy.knockback*10
+            
+        if y_diff >= 0 and abs(x_diff) < abs(y_diff):
+            self.character_face_direction=FORWARD_FACING
+            self.center_y += enemy.knockback*10
+
+        if y_diff <= 0 and abs(x_diff) < abs(y_diff):
+            self.character_face_direction=BACKWARD_FACING
+            self.center_y -= enemy.knockback*10
+      
+        self.cur_texture = 0
+        self.taking_damage=True
+        self.health -= enemy.damage
+        if self.health < 0:
+            self.dying =True
+            self.cur_texture = 0
+        return
+    
     def use_tool(self):
         if self.using_tool == True:
             return
@@ -133,20 +188,58 @@ class PlayerCharacter(Character):
             if self.current_item().is_tool == False:
                 return
             self.using_tool = True
+            self.calculate_tool_stats()
 
     def use_consumable(self):
         self.inventory_bar.remove_item()
-        
+    
+    def calculate_tool_stats(self):
+        if self.current_item().is_tool == False:
+                return
+        else:
+            self.knockback = self.current_item().knockback
+            self.damage =  self.current_item().damage
 
-    def update_frames(self, max_frames, texture_dict,use_speed):
+
+    def update_tool_frames(self, max_frames, texture_dict,use_speed):
             self.cur_texture += 1
             if self.cur_texture > max_frames * use_speed:
                 self.cur_texture = 0
                 self.using_tool = False
+                self.set_hit_box(self.points)
+                return
+            frame = self.cur_texture // use_speed
+            direction = self.character_face_direction
+            if frame == max_frames:
+                frame=max_frames-1
+            self.texture = texture_dict[frame][direction]
+            self.set_hit_box(self.texture.hit_box_points)
+            return
+    
+    def update_damage_frames(self, max_frames, texture_dict,use_speed):
+            self.cur_texture += 1
+            if self.cur_texture > max_frames * use_speed:
+                self.cur_texture = 0
+                self.taking_damage = False
             frame = self.cur_texture // use_speed
             direction = self.character_face_direction
             if frame == max_frames:
                 frame=max_frames-1
             self.texture = texture_dict[frame][direction]
             return
-        
+    
+    def update_dying_frames(self, max_frames, texture_dict,use_speed):
+            self.cur_texture += 1
+            if self.cur_texture > max_frames * use_speed:
+                self.dying = False
+                self.die()
+            frame = self.cur_texture // use_speed
+            if frame == max_frames:
+                frame=max_frames-1
+            self.texture = texture_dict[frame]
+            return
+    
+    def die(self):
+        self.dead = True
+        self.color = arcade.color.BAKER_MILLER_PINK
+    

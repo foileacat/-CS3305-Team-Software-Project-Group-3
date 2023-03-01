@@ -5,6 +5,8 @@ from constants import *
 class Tool(Item):
     def __init__(self,*,
                 id=0, 
+                knockback=3,
+                damage=2,
                 name="None",
                 type="Unspecified",
                 use_speed = UPDATES_PER_FRAME,
@@ -30,5 +32,7 @@ class Tool(Item):
                         hit_box_algorithm=hit_box_algorithm, texture=texture, angle=angle)
         self.is_tool=True
         self.type=type
+        self.damage = damage
+        self.knockback = knockback
         self.use_speed=use_speed
         

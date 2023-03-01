@@ -5,6 +5,7 @@ from classes.Enemy import Enemy
 def setup(self):
     room = Room()
     room.has_npcs = True
+    room.has_enemies = True
     room.multiple_entrances = True
     room.entrances = {"starting_room" : [SPRITE_SIZE * 11.5,SPRITE_SIZE * 2.5], "cave_outside" : [200,600], "dojo_outside": [100,100],"forest": [SPRITE_SIZE*12.5,SPRITE_SIZE*2]}
     room.starting_x = SPRITE_SIZE * 2.5
@@ -20,6 +21,9 @@ def setup(self):
         },
         "NPC": {
             "use_spatial_hash": True,
+        },
+        "ENEMY": {
+            "use_spatial_hash": True,
         }
     }
     room.tile_map = arcade.load_tilemap(
@@ -32,14 +36,14 @@ def setup(self):
   
     room.npc_list.append(room.npc)
     
-    room.enemy = Enemy(500,300,"boberta",12)
+    room.enemy = Enemy(500,300,"bobesrta",12)
     
     room.enemy_list = arcade.SpriteList()
   
     room.enemy_list.append(room.enemy)
     
     #room.scene.add_sprite("NPC", room.npc)
-    room.scene.add_sprite_list("ENEMY", sprite_list=room.enemy_list)
+    room.scene.add_sprite_list("Enemy", sprite_list=room.enemy_list)
     #room.scene.add_sprite("NPC", room.npc)
 
     room.scene.add_sprite_list("NPC", sprite_list=room.npc_list)
@@ -50,6 +54,12 @@ def setup(self):
     room.scene.add_sprite_list("Player Stuff", sprite_list = self.player_accessory_list)
     room.scene.move_sprite_list_after("over layer", "Player Stuff")
     room.wall_list = []
+    room.wall_sprite_list = arcade.SpriteList(use_spatial_hash=True)
+
+    room.wall_sprite_list.extend(room.scene["walls"])
+    room.wall_sprite_list.extend(room.scene["solids"])
+
     room.wall_list.append(room.scene["walls"])
     room.wall_list.append(room.scene["solids"])
+    #room.wall_list.append(room.scene["Enemy"])
     return room

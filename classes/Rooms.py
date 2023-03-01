@@ -13,6 +13,7 @@ class Room:
         self.entrances = []
         self.multiple_entrances = False
         self.has_npcs = False
+        self.has_enemies = False
         self.map_file = ""
         self.wall_list = None
         self.wall_list = None
@@ -32,6 +33,7 @@ class RoomA:
         self.entrances = {}
         self.multiple_entrances = False
         self.has_npcs = False
+        self.has_enemies = False
         self.map_file = map_file
         self.background = None
         self.wall_list = arcade.SpriteList()

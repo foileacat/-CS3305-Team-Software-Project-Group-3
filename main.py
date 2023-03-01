@@ -2,6 +2,7 @@ import arcade
 import arcade.gui
 from arcade.experimental.lights import Light, LightLayer
 import os
+import random
 import character_lists
 from gui.inspect_gui import setup_inspect_gui
 from gui.npc_chat_gui import setup_npc_gui
@@ -13,7 +14,7 @@ from classes.Item import Item
 from maps import *
 from constants import *
 from gui.TypewriterText import TypewriterTextWidget
-arcade.enable_timings()
+
 
 class MyGame(arcade.Window):
     """ Main application class. """
@@ -23,7 +24,7 @@ class MyGame(arcade.Window):
         Initializer
         """
         super().__init__(width, height, title, resizable=True)
-
+        arcade.enable_timings()
         # Set the working directory
         file_path = os.path.dirname(os.path.abspath(__file__))
         os.chdir(file_path)
@@ -61,7 +62,6 @@ class MyGame(arcade.Window):
         # imports game font. name of font is "NinjaAdventure"
         arcade.load_font(FONT_PATH)
         self.player_sprite = PlayerCharacter()
-        self.player_sprite.set_hit_box(self.player_sprite.points)
         self.player_accessory_list = self.player_sprite.accessory_list
         
         self.inventory_bar = self.player_sprite.inventory_bar
@@ -88,27 +88,7 @@ class MyGame(arcade.Window):
             self.player_sprite, walls=self.current_room.wall_list)
         
         '''''Performance Metrics'''
-        self.perf_graph_list = arcade.SpriteList()
-
-        # Create the FPS performance graph
-        graph = arcade.PerfGraph(GRAPH_WIDTH, GRAPH_HEIGHT, graph_data="FPS")
-        graph.center_x = GRAPH_WIDTH / 2
-        graph.center_y = self.height - GRAPH_HEIGHT / 2
-        self.perf_graph_list.append(graph)
-
-        # Create the on_update graph
-        graph = arcade.PerfGraph(
-            GRAPH_WIDTH, GRAPH_HEIGHT, graph_data="update")
-        graph.center_x = GRAPH_WIDTH / 2 + (GRAPH_WIDTH + GRAPH_MARGIN)
-        graph.center_y = self.height - GRAPH_HEIGHT / 2
-        self.perf_graph_list.append(graph)
-
-        # Create the on_draw graph
-        graph = arcade.PerfGraph(
-            GRAPH_WIDTH, GRAPH_HEIGHT, graph_data="on_draw")
-        graph.center_x = GRAPH_WIDTH / 2 + (GRAPH_WIDTH + GRAPH_MARGIN) * 2
-        graph.center_y = self.height - GRAPH_HEIGHT / 2
-        self.perf_graph_list.append(graph)
+        self.setup_performance_graphs()
 
         """Preliminary Lighting Code - For later"""
         # self.light_layer = LightLayer(SCREEN_WIDTH, SCREEN_HEIGHT)
@@ -127,6 +107,33 @@ class MyGame(arcade.Window):
         self.scene.draw(pixelated=True)
         interactableObjects = arcade.check_for_collision_with_list(
             self.player_sprite, self.scene["interactables"])
+        self.player_sprite.draw_hit_box()
+
+        if self.current_room.has_enemies:
+            for enemy in self.current_room.enemy_list:
+            
+                    enemy.draw_hit_box()
+                    if arcade.has_line_of_sight(point_1=self.player_sprite.position,
+                                                point_2=enemy.position,
+                                                walls=self.current_room.wall_sprite_list):
+                        if self.player_sprite.health < 0:
+                            enemy.following = False
+                        else:
+                            enemy.following=True
+                            enemy.target = self.player_sprite
+                    else:
+                        enemy.following=False
+
+            enemies = arcade.check_for_collision_with_list(self.player_sprite, 
+                                                        self.scene["Enemy"])
+            if enemies:
+                enemy = enemies[0]
+                if self.player_sprite.using_tool:
+                    enemy.take_damage(self.player_sprite)
+                else:
+                    self.player_sprite.take_damage(enemy)
+                    enemy.reset_cooldown()
+          
         
         if self.player_sprite.is_holding_item():
                 if self.player_sprite.current_item().is_tool == False:
@@ -266,6 +273,7 @@ class MyGame(arcade.Window):
             if self.player_sprite.current_item().is_consumable:
                 self.player_sprite.use_consumable()
         return
+    
     def handle_interact(self):
         """
         Runs when a player presses the interact key next to an interactable object. 
@@ -371,8 +379,11 @@ class MyGame(arcade.Window):
         self.physics_engine.update()
         self.scene.on_update(delta_time=1/60)
         if self.current_room.has_npcs:
-            self.scene.update_animation(delta_time, ["NPC", "ENEMY"])
-            
+            self.scene.update_animation(delta_time, ["NPC"])
+        if self.current_room.has_enemies:
+            self.current_room.enemy_list.update()
+            self.scene.update_animation(delta_time, ["Enemy"])
+        
         self.scene.update_animation(delta_time, ["Animation", "Player"])
         self.scroll_to_player()
 
@@ -410,6 +421,28 @@ class MyGame(arcade.Window):
         text = f"FPS: {arcade.get_fps(60):5.1f}"
         arcade.draw_text(text, 10, 10, arcade.color.BLACK, 22)
 
+    def setup_performance_graphs(self):
+        self.perf_graph_list = arcade.SpriteList()
+
+        # Create the FPS performance graph
+        graph = arcade.PerfGraph(GRAPH_WIDTH, GRAPH_HEIGHT, graph_data="FPS")
+        graph.center_x = GRAPH_WIDTH / 2
+        graph.center_y = self.height - GRAPH_HEIGHT / 2
+        self.perf_graph_list.append(graph)
+
+        # Create the on_update graph
+        graph = arcade.PerfGraph(
+            GRAPH_WIDTH, GRAPH_HEIGHT, graph_data="update")
+        graph.center_x = GRAPH_WIDTH / 2 + (GRAPH_WIDTH + GRAPH_MARGIN)
+        graph.center_y = self.height - GRAPH_HEIGHT / 2
+        self.perf_graph_list.append(graph)
+
+        # Create the on_draw graph
+        graph = arcade.PerfGraph(
+            GRAPH_WIDTH, GRAPH_HEIGHT, graph_data="on_draw")
+        graph.center_x = GRAPH_WIDTH / 2 + (GRAPH_WIDTH + GRAPH_MARGIN) * 2
+        graph.center_y = self.height - GRAPH_HEIGHT / 2
+        self.perf_graph_list.append(graph)
 def main():
     """ Main function """
     window = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)

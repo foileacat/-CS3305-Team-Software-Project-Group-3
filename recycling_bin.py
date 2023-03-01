@@ -71,7 +71,34 @@ def on_draw(self):
 
         if self.draw_performance:
             self.draw_performance_graph()
-
+"pathfinding"
+#         left_boundary = self.view_left + VIEWPORT_MARGIN
+                        
+                    #         right_boundary = self.view_left + self.width - VIEWPORT_MARGIN
+                        
+                    #         top_boundary = self.view_bottom + self.height - VIEWPORT_MARGIN
+                        
+                    #         bottom_boundary = self.view_bottom + VIEWPORT_MARGIN
+                        
+                    #         barrier_list = arcade.AStarBarrierList(moving_sprite=enemy,blocking_sprites=self.current_room.wall_sprite_list,grid_size=SPRITE_SIZE,
+                    #                                             top=top_boundary,left=left_boundary,right=right_boundary,bottom=bottom_boundary)
+                            
+                    #         self.path = arcade.astar_calculate_path(enemy.position,
+                    #                                     self.player_sprite.position,
+                    #                                     barrier_list,
+                    #                                     diagonal_movement=False)
+                            
+                    #         if self.path:
+                    #             print(self.path)
+                    #             enemy.following=True
+                    #             enemy.path = self.path
+                    #             enemy.cur_position=0
+                    #             #enemy.follow_sprite(self.player_sprite)
+                    #             #enemy.attack_player(self.path)
+                    #             arcade.draw_line_strip(self.path, arcade.color.BLUE, 2)
+                    # else:
+                    #     print("not")
+                    #    enemy.following = False
 "old player char class"
 import arcade
 from constants import *

@@ -43,6 +43,7 @@ class Npc(Character):
         self.id = id
         self.speed = 3.0
         self.interacting = False
+        self.taking_damage = False
 
     def wander(self):
         if self.wandering == False:

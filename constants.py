@@ -60,7 +60,7 @@ INTERACT_KEY = arcade.key.ENTER
 "Animation"
 MOVEMENT_SPEED = 5
 UPDATES_PER_FRAME = 5
-
+HIT_BOX_ALGORITHM = "Simple"
 #Number correlates to 
 WALK = [0,7]
 CARRY = [12,7]

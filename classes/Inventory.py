@@ -33,6 +33,7 @@ class Inventory():
         self.slots[0].insert_item(Tool(name="Old Pickaxe",
                                        type="Pickaxe",
                                        id=1,
+                                       knockback=5,
                                        filename="assets/characterassets/Character v.2/separate/pickaxe/tool/pickaxe_full.png",
                                        image_width=16,image_height=16))
         

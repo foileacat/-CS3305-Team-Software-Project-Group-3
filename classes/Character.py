@@ -14,6 +14,7 @@ class Character(arcade.Sprite):
         self.pickaxing = False
         self.using_tool = False
         self.carrying = False
+        self.dying = False
         self.center_x = 0
         self.center_y = 0
         self.character_face_direction = FORWARD_FACING
@@ -22,9 +23,12 @@ class Character(arcade.Sprite):
         self.scale = CHARACTER_SCALING
         # creates hitbox
         self.points = [[7, -16], [7, -8], [-7, -8], [-7, -16]]
+        self.set_hit_box(self.points)
         # Select the desired asset file from our character_lists file
         self.skintone_file = character_lists.skintones[2]
         self.accessory_list = arcade.SpriteList()
+        textures = self.load_texture_list(self.skintone_file, 0, 0, 0)
+        self.texture = textures[0]
         self.load_textures()
         
     def load_textures(self):
@@ -125,13 +129,22 @@ class Character(arcade.Sprite):
         color_offset = color_offset*ACCESSORIES_OFFSET
         return [
             arcade.load_texture(filename, x=color_offset+CHARACTER_NATIVE_SIZE*frame, y=CHARACTER_NATIVE_SIZE *
-                                row, width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE),
+                                row, width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE,hit_box_algorithm="Simple"),
             arcade.load_texture(filename, x=color_offset+CHARACTER_NATIVE_SIZE*frame, y=CHARACTER_NATIVE_SIZE*(
-                row+1), width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE),
+                row+1), width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE,hit_box_algorithm="Simple"),
             arcade.load_texture(filename, x=color_offset+CHARACTER_NATIVE_SIZE*frame, y=CHARACTER_NATIVE_SIZE*(
-                row+2), width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE),
+                row+2), width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE,hit_box_algorithm="Simple"),
             arcade.load_texture(filename, x=color_offset+CHARACTER_NATIVE_SIZE*frame, y=CHARACTER_NATIVE_SIZE*(
-                row+3), width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE)
+                row+3), width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE,hit_box_algorithm="Simple")
+        ]
+    
+    def load_horizontal_texture_pair(self,filename, row, frame, color_offset):
+        color_offset = color_offset*ACCESSORIES_OFFSET
+        return [
+            arcade.load_texture(filename, x=color_offset+CHARACTER_NATIVE_SIZE*frame, y=CHARACTER_NATIVE_SIZE *
+                                row, width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE,hit_box_algorithm="Simple"),
+            arcade.load_texture(filename, x=color_offset+CHARACTER_NATIVE_SIZE*(frame+1), y=CHARACTER_NATIVE_SIZE*(
+                row), width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE,hit_box_algorithm="Simple"),
         ]
     
     def generate_floating_head(self,x,y):
