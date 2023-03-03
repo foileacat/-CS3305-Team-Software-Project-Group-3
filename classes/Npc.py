@@ -5,16 +5,20 @@ import random
 import character_lists
 from classes.Character import Character
 from classes.PlayerAccessory import PlayerAccessory
-from classes.PlayerAccessory import PlayerAccessory
+
+import json 
+import json_functions
+
 
 from classes.Inventory import Inventory
 from classes.InventoryBar import InventoryBar
+
 
 class Npc(Character):
 
     """Creates our Character"""
 
-    def __init__(self,x,y,name,id,):
+    def __init__(self,x,y,name,id,conversation_list,):
         super().__init__()
         #initialise starting position
         #be able to pace
@@ -43,6 +47,10 @@ class Npc(Character):
         self.id = id
         self.speed = 3.0
         self.interacting = False
+
+        self.conversation_list = conversation_list 
+        self.conversations = ["first_convo","second_convo"]
+        self.conversation_index = 0
         self.taking_damage = False
 
     def wander(self):
@@ -107,6 +115,16 @@ class Npc(Character):
                 else:
                     self.home = True
                 self.wandering = False
+    
+    def get_conversation(self, conversation_key):
+        return json_functions.get_one_conversation(self.conversation_list, conversation_key)
 
-                
-
+    def get_current_conversation(self):
+        if len(self.conversations)-1 < self.conversation_index:
+            return self.get_conversation("final_convo")
+        else:
+            return self.get_conversation(self.conversations[self.conversation_index])
+     
+        
+    def end_convo(self):
+        self.conversation_index+=1

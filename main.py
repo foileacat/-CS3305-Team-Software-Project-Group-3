@@ -17,6 +17,9 @@ from constants import *
 from gui.TypewriterText import TypewriterTextWidget
 
 
+import json_functions
+
+
 class MyGame(arcade.Window):
     """ Main application class. """
 
@@ -31,7 +34,11 @@ class MyGame(arcade.Window):
         os.chdir(file_path)
         self.draw_performance = False
         self.perf_graph_list = None
-        self.conversation_list = ["sdsdd","bijfjkdfkj sds sdsd sd d dd sd sdsss sd sd sd sd sdsdssd sds ds dsdsdsds ds d sds dsdsdsds sd s ds dsdsds sd sd sd sdsd sd sd sd s dsdsdsfwrg wrg rg wg ew ew gw gwe g kfjdkjfj", "ckdjfdkjfjk dfjkdjfk", "dksdsjkdjk dkjsdjk", "eskjdsjkd sdkjsdjk"]
+
+        self.conversation_list = json_functions.get_one_conversation("npc_dialogue/main_room.json","first_convo")
+
+        #self.conversation_list = ["sdsdd","bijfjkdfkj sds sdsd sd d dd sd sdsss sd sd sd sd sdsdssd sds ds dsdsdsds ds d sds dsdsdsds sd s ds dsdsds sd sd sd sdsd sd sd sd s dsdsdsfwrg wrg rg wg ew ew gw gwe g kfjdkjfj", "ckdjfdkjfjk dfjkdjfk", "dksdsjkdjk dkjsdjk", "eskjdsjkd sdkjsdjk"]
+
         self.frame_count = 0
         self.current_room_index = 0
         self.rooms = None
@@ -156,8 +163,15 @@ class MyGame(arcade.Window):
 
         elif self.player_sprite.currently_npc_interacting:
             self.camera_gui.use()
+            #commented out from zainab_json
+            #self.inspect_message_UI.display_text(self.conversation_list[self.count])
+            #self.gui_inspect_manager.draw()
+            
+
             self.current_npc.generate_floating_head(100,100)
-            self.npc_message_UI.display_text(self.conversation_list[self.count])
+            #self.npc_message_UI.display_text(self.conversation_list[self.count])
+            #sprint(self.current_npc.get_conversation("first_convo"))
+            self.npc_message_UI.display_text(self.current_npc.get_current_conversation()[self.count])
             self.gui_npc_manager.draw()
             center_x = self.width //2
             center_y = self.height //2
@@ -429,14 +443,14 @@ class MyGame(arcade.Window):
 
     def handle_npc_interaction(self, npc):
         if self.player_sprite.currently_npc_interacting:
-            if self.count == len(self.conversation_list) - 1:
+            self.current_npc = npc
+            if self.count == len(self.current_npc.get_current_conversation()) - 1:
                 self.player_sprite.currently_npc_interacting=False
                 npc.interacting = False
+                npc.end_convo()
                 return
             else:
                 self.count+=1
-                print(self.conversation_list[self.count])
-                self.inspect_message_UI.display_text(self.conversation_list[self.count])
         else:
             self.inspect_message_UI.reset()
             self.player_sprite.currently_npc_interacting = True
@@ -530,6 +544,7 @@ class MyGame(arcade.Window):
         graph.center_x = GRAPH_WIDTH / 2 + (GRAPH_WIDTH + GRAPH_MARGIN) * 2
         graph.center_y = self.height - GRAPH_HEIGHT / 2
         self.perf_graph_list.append(graph)
+
 def main():
     """ Main function """
     window = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)

@@ -30,7 +30,12 @@ def setup(self):
         room.map_file, SPRITE_SCALING, layer_options=layer_options)
     room.scene = arcade.Scene.from_tilemap(room.tile_map)
 
-    room.npc = Npc(500,500,"boberta",12)
+   #commented out from zainab_json
+    room.npc = Npc(500,500,"boberta",12, "npc_dialogue/main_room.json")
+   # room.scene.add_sprite("NPC", room.npc)
+
+
+    #room.npc = Npc(500,500,"boberta",12)
     
     room.npc_list = arcade.SpriteList()
   
