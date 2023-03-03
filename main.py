@@ -16,6 +16,9 @@ from maps import *
 from constants import *
 from gui.TypewriterText import TypewriterTextWidget
 
+arcade.enable_timings()
+import json_functions
+
 
 class MyGame(arcade.Window):
     """ Main application class. """
@@ -31,7 +34,11 @@ class MyGame(arcade.Window):
         os.chdir(file_path)
         self.draw_performance = False
         self.perf_graph_list = None
-        self.conversation_list = ["sdsdd","bijfjkdfkj sds sdsd sd d dd sd sdsss sd sd sd sd sdsdssd sds ds dsdsdsds ds d sds dsdsdsds sd s ds dsdsds sd sd sd sdsd sd sd sd s dsdsdsfwrg wrg rg wg ew ew gw gwe g kfjdkjfj", "ckdjfdkjfjk dfjkdjfk", "dksdsjkdjk dkjsdjk", "eskjdsjkd sdkjsdjk"]
+
+        self.conversation_list = json_functions.get_one_conversation("npc_dialogue/main_room.json","first_convo")
+
+        #self.conversation_list = ["sdsdd","bijfjkdfkj sds sdsd sd d dd sd sdsss sd sd sd sd sdsdssd sds ds dsdsdsds ds d sds dsdsdsds sd s ds dsdsds sd sd sd sdsd sd sd sd s dsdsdsfwrg wrg rg wg ew ew gw gwe g kfjdkjfj", "ckdjfdkjfjk dfjkdjfk", "dksdsjkdjk dkjsdjk", "eskjdsjkd sdkjsdjk"]
+
         self.frame_count = 0
         self.current_room_index = 0
         self.rooms = None
@@ -156,6 +163,11 @@ class MyGame(arcade.Window):
 
         elif self.player_sprite.currently_npc_interacting:
             self.camera_gui.use()
+            #commented out from zainab_json
+            #self.inspect_message_UI.display_text(self.conversation_list[self.count])
+            #self.gui_inspect_manager.draw()
+            
+
             self.current_npc.generate_floating_head(100,100)
             self.npc_message_UI.display_text(self.conversation_list[self.count])
             self.gui_npc_manager.draw()

@@ -1,0 +1,9 @@
+{"hallway_npc" : 
+    {"first_convo": 
+            ["hello, hello, hello, how are you?","i haven't seen you in so long!", "I hope you are well", "i even forgot your name", "silly me!! Please remind me"], 
+    "second_convo": ["you remember my name !!!"]
+}
+}
+
+
+
