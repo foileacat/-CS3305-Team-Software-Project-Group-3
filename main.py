@@ -402,37 +402,33 @@ class MyGame(arcade.Window):
         return
     
     def check_pickaxe_condition(self, pickaxeInteractable):
-        if self.player_sprite.current_item().type == "Pickaxe" and self.player_sprite.using_tool:
             if self.player_sprite.currently_inspecting:
                 self.player_sprite.currently_inspecting = False
                 return
             else:
-                if pickaxeInteractable.properties["pickaxe_condition"] == 1:
-                    self.player_sprite.currently_inspecting = True
-                    self.inspect_message_UI.reset()
-                    self.inspect_text = pickaxeInteractable.properties["item_collection_message"]
-                    pickaxeInteractable.properties["pickaxe_condition"] = int(pickaxeInteractable.properties["pickaxe_condition"]) - 1
-                    #add to inventory
-                elif pickaxeInteractable.properties["pickaxe_condition"] == 0:
-                    self.player_sprite.currently_inspecting = True
-                    self.inspect_message_UI.reset()
-                    self.inspect_text = "You already gathered all the ore from here."
+                if self.player_sprite.current_item().type == "Pickaxe" and self.player_sprite.using_tool:
+                    if pickaxeInteractable.properties["pickaxe_condition"] == 1:
+                        self.player_sprite.currently_inspecting = True
+                        self.inspect_message_UI.reset()
+                        self.inspect_text = pickaxeInteractable.properties["item_collection_message"]
+                        pickaxeInteractable.properties["pickaxe_condition"] = int(pickaxeInteractable.properties["pickaxe_condition"]) - 1
+                        #add to inventory
+                    elif pickaxeInteractable.properties["pickaxe_condition"] == 0:
+                        self.player_sprite.currently_inspecting = True
+                        self.inspect_message_UI.reset()
+                        self.inspect_text = "You already gathered all the ore from here."
+                    else:
+                        pickaxeInteractable.properties["pickaxe_condition"] = int(pickaxeInteractable.properties["pickaxe_condition"]) - 1
                 else:
-                    pickaxeInteractable.properties["pickaxe_condition"] = int(pickaxeInteractable.properties["pickaxe_condition"]) - 1
-        else:
-            if self.player_sprite.currently_inspecting:
-                self.player_sprite.currently_inspecting = False
-                return
-            else:
-                if pickaxeInteractable.properties["pickaxe_condition"] == 0:
-                    self.player_sprite.currently_inspecting = True
-                    self.inspect_message_UI.reset()
-                    self.inspect_text = "You already gathered all the ore from here."
-                else:
-                    self.player_sprite.currently_inspecting = True
-                    self.inspect_message_UI.reset()
-                    self.inspect_text = "You need to hit this rock " + str(pickaxeInteractable.properties["pickaxe_condition"]) + " more times to get ore from it."
-    
+                    if pickaxeInteractable.properties["pickaxe_condition"] == 0:
+                        self.player_sprite.currently_inspecting = True
+                        self.inspect_message_UI.reset()
+                        self.inspect_text = "You already gathered all the ore from here."
+                    else:
+                        self.player_sprite.currently_inspecting = True
+                        self.inspect_message_UI.reset()
+                        self.inspect_text = "You need to hit this rock " + str(pickaxeInteractable.properties["pickaxe_condition"]) + " more times to get ore from it."
+ 
     def check_inv_condition(self, invInteractable):
         if self.player_sprite.currently_inspecting:
             self.player_sprite.currently_inspecting = False
