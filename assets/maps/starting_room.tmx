@@ -103,9 +103,6 @@
  <objectgroup id="14" name="inventory">
   <object id="72" gid="2560" x="179.848" y="30.6193" width="16" height="16"/>
  </objectgroup>
- <objectgroup id="15" name="pickaxe_inventory">
-  <object id="73" gid="2460" x="117.16" y="97.8311" width="16" height="16"/>
- </objectgroup>
  <layer id="1" name="floor" width="14" height="11">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,

@@ -7,9 +7,6 @@
  <objectgroup id="14" name="inventory">
   <object id="34" gid="1550" x="220.661" y="71.6083" width="16" height="16"/>
  </objectgroup>
- <objectgroup id="13" name="pickaxe_inventory">
-  <object id="32" gid="1550" x="222.854" y="80.9302" width="16" height="16"/>
- </objectgroup>
  <objectgroup id="9" name="interactables">
   <object id="12" gid="1550" x="140.167" y="100.313" width="39.3333" height="39">
    <properties>

@@ -112,8 +112,6 @@ class MyGame(arcade.Window):
             self.player_sprite, self.scene["interactables"])
         inventoryObjects = arcade.check_for_collision_with_list(
             self.player_sprite, self.scene["inventory"])
-        pickaxeObjects = arcade.check_for_collision_with_list(
-            self.player_sprite, self.scene["pickaxe_inventory"])
         self.player_sprite.draw_hit_box()
 
         if self.current_room.has_enemies:
@@ -192,13 +190,7 @@ class MyGame(arcade.Window):
             self.inspect_item_symbol_UI = arcade.Sprite(filename="assets/assetpacks/ninja/HUD/Arrow.png", scale=3,
                                                         center_x=invInteractable.center_x, center_y=invInteractable.center_y+(invInteractable.height//2)+20)
             self.inspect_item_symbol_UI.draw(pixelated=True)
-            
-        elif pickaxeObjects:
-            pickaxeInteractable=pickaxeObjects[0]
-            self.inspect_item_symbol_UI = arcade.Sprite(filename="assets/assetpacks/ninja/HUD/Arrow.png", scale=3,
-                                                        center_x= pickaxeInteractable.center_x, center_y= pickaxeInteractable.center_y+( pickaxeInteractable.height//2)+20)
-            self.inspect_item_symbol_UI.draw(pixelated=True)
-            
+                
         elif self.current_room.has_npcs:
             npcs = arcade.check_for_collision_with_list(self.player_sprite, 
                                                         self.scene["NPC"])
@@ -391,43 +383,39 @@ class MyGame(arcade.Window):
             self.player_sprite, self.scene["interactables"])
         invInteractables = arcade.check_for_collision_with_list(
             self.player_sprite, self.scene["inventory"])
-        pickaxeInteractables = arcade.check_for_collision_with_list(
-            self.player_sprite, self.scene["pickaxe_inventory"])
         for invInteractable in invInteractables:
             getattr(self, invInteractable.properties['on_interact'])(invInteractable)
-        for pickaxeInteractable in pickaxeInteractables:
-           getattr(self, pickaxeInteractable.properties['on_interact'])(pickaxeInteractable)
         for interactable in interactables:
             getattr(self, interactable.properties['on_interact'])(interactable)
         return
     
-    def check_pickaxe_condition(self, pickaxeInteractable):
+    def check_pickaxe_condition(self, invInteractable):
             if self.player_sprite.currently_inspecting:
                 self.player_sprite.currently_inspecting = False
                 return
             else:
                 if self.player_sprite.current_item().type == "Pickaxe" and self.player_sprite.using_tool:
-                    if pickaxeInteractable.properties["pickaxe_condition"] == 1:
+                    if invInteractable.properties["pickaxe_condition"] == 1:
                         self.player_sprite.currently_inspecting = True
                         self.inspect_message_UI.reset()
-                        self.inspect_text = pickaxeInteractable.properties["item_collection_message"]
-                        pickaxeInteractable.properties["pickaxe_condition"] = int(pickaxeInteractable.properties["pickaxe_condition"]) - 1
+                        self.inspect_text = invInteractable.properties["item_collection_message"]
+                        invInteractable.properties["pickaxe_condition"] = int(invInteractable.properties["pickaxe_condition"]) - 1
                         #add to inventory
-                    elif pickaxeInteractable.properties["pickaxe_condition"] == 0:
+                    elif invInteractable.properties["pickaxe_condition"] == 0:
                         self.player_sprite.currently_inspecting = True
                         self.inspect_message_UI.reset()
                         self.inspect_text = "You already gathered all the ore from here."
                     else:
-                        pickaxeInteractable.properties["pickaxe_condition"] = int(pickaxeInteractable.properties["pickaxe_condition"]) - 1
+                        invInteractable.properties["pickaxe_condition"] = int(invInteractable.properties["pickaxe_condition"]) - 1
                 else:
-                    if pickaxeInteractable.properties["pickaxe_condition"] == 0:
+                    if invInteractable.properties["pickaxe_condition"] == 0:
                         self.player_sprite.currently_inspecting = True
                         self.inspect_message_UI.reset()
                         self.inspect_text = "You already gathered all the ore from here."
                     else:
                         self.player_sprite.currently_inspecting = True
                         self.inspect_message_UI.reset()
-                        self.inspect_text = "You need to hit this rock " + str(pickaxeInteractable.properties["pickaxe_condition"]) + " more times to get ore from it."
+                        self.inspect_text = "You need to hit this rock " + str(invInteractable.properties["pickaxe_condition"]) + " more times to get ore from it."
  
     def check_inv_condition(self, invInteractable):
         if self.player_sprite.currently_inspecting:

@@ -51,9 +51,6 @@
  <objectgroup id="7" name="inventory">
   <object id="23" gid="2168" x="223.481" y="213.043" width="16" height="16"/>
  </objectgroup>
- <objectgroup id="8" name="pickaxe_inventory">
-  <object id="24" gid="2013" x="172.955" y="191.305" width="16" height="16"/>
- </objectgroup>
  <layer id="2" name="floor" width="20" height="30">
   <data encoding="base64" compression="zlib">
    eJyLZ2BgiKcD5mRExfSwcxSP4lE8ikfxKB7Fo3ggMADVS91V

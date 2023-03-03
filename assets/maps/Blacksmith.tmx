@@ -66,9 +66,6 @@
  <objectgroup id="8" name="Animation">
   <object id="24" gid="1989" x="6.37449" y="53.5155" width="16" height="20.1126"/>
  </objectgroup>
- <objectgroup id="9" name="pickaxe_inventory">
-  <object id="28" gid="1988" x="216.901" y="62.2864" width="16" height="16"/>
- </objectgroup>
  <objectgroup id="10" name="inventory">
   <object id="29" gid="1988" x="220.191" y="112.578" width="16" height="16"/>
  </objectgroup>
