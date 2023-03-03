@@ -42,9 +42,9 @@ class MyGame(arcade.Window):
         self.camera_gui = arcade.Camera(
             SCREEN_WIDTH, SCREEN_HEIGHT)
         self.count = 0 
-        "dumb"
         self.any_sprite_x=700
         self.any_sprite_y=510
+        self.achievements = {"none":True, "flower_quest_key":False, "gem_chest_key":False}
 
     def on_resize(self, width, height):
         self.camera_sprites.resize(int(width), int(height))
@@ -54,8 +54,6 @@ class MyGame(arcade.Window):
         super().on_resize(width, height)
         self.inventory_bar.resize(self)
         print(f"Window resized to: {width}, {height}")
-        self.achievements = {"none":True, "flower_quest_key":True, "gem_chest_key":False}
-        self.buttonPressed="None"
         
 
     def setup(self):
@@ -119,19 +117,19 @@ class MyGame(arcade.Window):
         self.player_sprite.draw_hit_box()
 
         if self.current_room.has_enemies:
-            for enemy in self.current_room.enemy_list:
             
-                    enemy.draw_hit_box()
-                    if arcade.has_line_of_sight(point_1=self.player_sprite.position,
-                                                point_2=enemy.position,
-                                                walls=self.current_room.wall_sprite_list):
-                        if self.player_sprite.health < 0:
-                            enemy.following = False
-                        else:
-                            enemy.following=True
-                            enemy.target = self.player_sprite
+            for enemy in self.current_room.enemy_list:
+                enemy.draw_hit_box()
+                if arcade.has_line_of_sight(point_1=self.player_sprite.position,
+                                            point_2=enemy.position,
+                                            walls=self.current_room.wall_sprite_list):
+                    if self.player_sprite.health < 0:
+                        enemy.following = False
                     else:
-                        enemy.following=False
+                        enemy.following=True
+                        enemy.target = self.player_sprite
+                else:
+                    enemy.following=False
 
             enemies = arcade.check_for_collision_with_list(self.player_sprite, 
                                                         self.scene["Enemy"])
@@ -186,7 +184,7 @@ class MyGame(arcade.Window):
             else:
                 self.inspect_item_symbol_UI.color = arcade.color.CORNFLOWER_BLUE
             self.inspect_item_symbol_UI.draw(pixelated=True)
-                        self.camera_gui.use()
+            self.camera_gui.use()
             self.inventory_bar.draw()
 
         elif inventoryObjects:
@@ -404,8 +402,7 @@ class MyGame(arcade.Window):
         return
     
     def check_pickaxe_condition(self, pickaxeInteractable):
-        if self.buttonPressed=="pickaxe":
-            self.buttonPressed="None"
+        if self.player_sprite.current_item().type == "Pickaxe" and self.player_sprite.using_tool:
             if self.player_sprite.currently_inspecting:
                 self.player_sprite.currently_inspecting = False
                 return
@@ -461,6 +458,8 @@ class MyGame(arcade.Window):
                         #self.inspect_message_UI.reset()
                         #self.inspect_text = "Your inventory is full."
             elif self.achievements[conditionToBeMet] == False:
+                self.player_sprite.currently_inspecting = True
+                self.inspect_message_UI.reset()
                 self.inspect_text = invInteractable.properties["item_refuse_message"]
 
     def character_creator(self, interactable):
@@ -504,7 +503,7 @@ class MyGame(arcade.Window):
     
 
     def show_message(self, interactable):
-        if self.buttonPressed != "pickaxe":
+        if self.player_sprite.using_tool == False:
             if self.player_sprite.currently_inspecting:
                 self.player_sprite.currently_inspecting = False
                 return

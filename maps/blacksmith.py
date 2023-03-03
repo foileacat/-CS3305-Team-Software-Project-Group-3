@@ -1,9 +1,11 @@
 from classes.Rooms import Room
 from constants import *
+from classes.Npc import Npc
 
 def setup(self):
     room = Room()
     room.multiple_entrances = True
+    room.has_npcs = True
     room.entrances = { "cave_outside" : [5*SPRITE_SIZE,12*SPRITE_SIZE],}
     room.map_file = "assets/maps/blacksmith.tmx"
 
@@ -18,10 +20,10 @@ def setup(self):
         },
         "over layer": {
             "use_spatial_hash": True,
+        },
+        "NPC": {
+            "use_spatial_hash": True,
         }
-        
-        
-        
     }
     # create tilemap, and then a scene from that tilemap. the scene is what we use.
 
@@ -29,6 +31,15 @@ def setup(self):
         room.map_file, SPRITE_SCALING, layer_options=layer_options)
     
     room.scene = arcade.Scene.from_tilemap(room.tile_map)
+    
+    room.npc = Npc(500,500,"bob",10)
+    
+    room.npc_list = arcade.SpriteList()
+  
+    room.npc_list.append(room.npc)
+    
+    room.scene.add_sprite_list("NPC", sprite_list=room.npc_list)
+    room.scene.add_sprite_list("NPC Stuff", sprite_list = room.npc.accessory_list)
 
     room.scene.add_sprite("Player", self.player_sprite)
     room.scene.add_sprite_list("Player Stuff", sprite_list = self.player_accessory_list)
