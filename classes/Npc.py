@@ -5,8 +5,14 @@ import random
 import character_lists
 from classes.Character import Character
 from classes.PlayerAccessory import PlayerAccessory
+
 import json 
 import json_functions
+
+
+from classes.Inventory import Inventory
+from classes.InventoryBar import InventoryBar
+
 
 class Npc(Character):
 
@@ -16,6 +22,8 @@ class Npc(Character):
         super().__init__()
         #initialise starting position
         #be able to pace
+        self.inventory=Inventory()
+        self.inventory_bar=InventoryBar(self.inventory)
         self.points = [[9, -18], [9, 6], [-9, 6], [-9, -18]]
         self.set_hit_box(self.points)
         self.wanders = True
@@ -39,7 +47,10 @@ class Npc(Character):
         self.id = id
         self.speed = 3.0
         self.interacting = False
+
         self.conversation_list = conversation_list 
+
+        self.taking_damage = False
 
     def wander(self):
         if self.wandering == False:

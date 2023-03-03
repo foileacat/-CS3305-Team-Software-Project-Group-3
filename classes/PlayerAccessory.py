@@ -27,6 +27,10 @@ class PlayerAccessory(arcade.Sprite):
     def load_textures(self):
         self.idle_texture_list = load_texture_list(
             self.file_path, 0, 0, self.color_offset)
+        self.idle_carry_texture_list = load_texture_list(
+            self.file_path, 12, 0, self.color_offset)
+        
+        self.dying_textures = load_horizontal_texture_pair(self.file_path, 28, 0, self.color_offset)
         # Load textures for walking
         self.walk_textures = []
         # loads each frame
@@ -49,7 +53,17 @@ class PlayerAccessory(arcade.Sprite):
             texture = load_texture_list(
                 self.file_path, 29, frame, self.color_offset)
             self.pickaxe_textures.append(texture)
-        
+
+        self.watering_textures = []
+        for frame in range(2):
+            texture = load_texture_list(self.file_path, 37, frame, self.color_offset)
+            self.watering_textures.append(texture)
+
+        self.damage_textures = []
+        for frame in range(3):
+            texture = load_texture_list(self.file_path, 24, 0, self.color_offset)
+            self.damage_textures.append(texture)
+
     def change_color(self):
         if self.asset_list == full_body:
             if self.asset_index <= 1:
@@ -87,35 +101,84 @@ class PlayerAccessory(arcade.Sprite):
         self.center_y = player_sprite.center_y
         self.cur_texture = player_sprite.cur_texture
         # Walking animation
-        if player_sprite.pickaxing == True:
+        if player_sprite.dying:
+            self.update_dying_frames(2,self.dying_textures,40)
+            return
+        if player_sprite.taking_damage:
+            self.update_damage_frames(3,self.damage_textures,10)
+            return
+        if player_sprite.using_tool==True:
+            use_speed = player_sprite.current_item().use_speed
+            if player_sprite.current_item().type == "Pickaxe":
+                self.update_tool_frames(5,self.pickaxe_textures,use_speed)
+                return
+            if player_sprite.current_item().type == "Sword":
+                self.update_tool_frames(4, self.sword_textures,use_speed)
+                return
+            if player_sprite.current_item().type == "Watering Can":
+                self.update_tool_frames(2, self.watering_textures,use_speed)
+                return
+            return
+        else:
+            if player_sprite.is_holding_item():
+                if player_sprite.current_item().is_tool == False:
+                    if player_sprite.change_x == 0 and player_sprite.change_y == 0:
+                        self.texture = self.idle_carry_texture_list[self.face_direction]
+                        return
+                    self.cur_texture += 1
+                    if self.cur_texture > 7 * UPDATES_PER_FRAME:
+                        self.cur_texture = 0
+                        self.attacking = False
+                    frame = self.cur_texture // UPDATES_PER_FRAME
+                    direction = self.face_direction
+                    self.texture = self.carry_textures[frame][direction]
+                    return
+            
+            if player_sprite.change_x == 0 and player_sprite.change_y == 0:
+                self.texture = self.idle_texture_list[self.face_direction]
+                return
+            
             self.cur_texture += 1
-            if self.cur_texture > 4 * UPDATES_PER_FRAME:
+            if self.cur_texture > 7 * UPDATES_PER_FRAME:
                 self.cur_texture = 0
-                self.pickaxing = False
             frame = self.cur_texture // UPDATES_PER_FRAME
             direction = self.face_direction
-            self.texture = self.pickaxe_textures[frame][direction]
-            return
-        if player_sprite.attacking == True:
-            self.cur_texture += 1
-            if self.cur_texture > 3 * UPDATES_PER_FRAME:
-                self.cur_texture = 0
-                self.attacking = False
-            frame = self.cur_texture // UPDATES_PER_FRAME
-            direction = self.face_direction
-            self.texture = self.sword_textures[frame][direction]
-            return
-        if player_sprite.change_x == 0 and player_sprite.change_y == 0:
-            self.texture = self.idle_texture_list[self.face_direction]
-            return
+            self.texture = self.walk_textures[frame][direction]
         
+    def update_tool_frames(self, max_frames, texture_dict,use_speed):
         self.cur_texture += 1
-        if self.cur_texture > 7 * UPDATES_PER_FRAME:
+        if self.cur_texture > max_frames * use_speed:
             self.cur_texture = 0
-        frame = self.cur_texture // UPDATES_PER_FRAME
+            self.using_tool = False
+        frame = self.cur_texture // use_speed
         direction = self.face_direction
-        self.texture = self.walk_textures[frame][direction]
-
+        if frame == max_frames:
+            frame=max_frames-1
+        self.texture = texture_dict[frame][direction]
+        return
+    
+    def update_damage_frames(self, max_frames, texture_dict,use_speed):
+        self.cur_texture += 1
+        if self.cur_texture > max_frames * use_speed:
+            self.cur_texture = 0
+            self.taking_damage = False
+        frame = self.cur_texture // use_speed
+        direction = self.face_direction
+        if frame == max_frames:
+            frame=max_frames-1
+        self.texture = texture_dict[frame][direction]
+        return
+    
+    def update_dying_frames(self, max_frames, texture_dict,use_speed):
+            self.cur_texture += 1
+            if self.cur_texture > max_frames * use_speed:
+                return
+            frame = self.cur_texture // use_speed
+            if frame == max_frames:
+                frame=max_frames-1
+            self.texture = texture_dict[frame]
+            return
+    
 def load_texture_list(filename, row, frame, offset):
     """
     Load a texture list for character skin/hair/accesories. This loads their down,up,right and left facing positions.
@@ -125,11 +188,20 @@ def load_texture_list(filename, row, frame, offset):
     offset = offset*ACCESSORIES_OFFSET
     return [
         arcade.load_texture(filename, x=offset+CHARACTER_NATIVE_SIZE*frame, y=CHARACTER_NATIVE_SIZE *
-                            row, width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE),
+                            row, width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE,hit_box_algorithm=HIT_BOX_ALGORITHM),
         arcade.load_texture(filename, x=offset+CHARACTER_NATIVE_SIZE*frame, y=CHARACTER_NATIVE_SIZE*(
-            row+1), width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE),
+            row+1), width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE,hit_box_algorithm=HIT_BOX_ALGORITHM),
         arcade.load_texture(filename, x=offset+CHARACTER_NATIVE_SIZE*frame, y=CHARACTER_NATIVE_SIZE*(
-            row+2), width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE),
+            row+2), width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE,hit_box_algorithm=HIT_BOX_ALGORITHM),
         arcade.load_texture(filename, x=offset+CHARACTER_NATIVE_SIZE*frame, y=CHARACTER_NATIVE_SIZE*(
-            row+3), width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE)
+            row+3), width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE,hit_box_algorithm=HIT_BOX_ALGORITHM)
     ]
+
+def load_horizontal_texture_pair(filename, row, frame, color_offset):
+        color_offset = color_offset*ACCESSORIES_OFFSET
+        return [
+            arcade.load_texture(filename, x=color_offset+CHARACTER_NATIVE_SIZE*frame, y=CHARACTER_NATIVE_SIZE *
+                                row, width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE,hit_box_algorithm="Simple"),
+            arcade.load_texture(filename, x=color_offset+CHARACTER_NATIVE_SIZE*(frame+1), y=CHARACTER_NATIVE_SIZE*(
+                row), width=CHARACTER_NATIVE_SIZE, height=CHARACTER_NATIVE_SIZE,hit_box_algorithm="Simple"),
+        ]

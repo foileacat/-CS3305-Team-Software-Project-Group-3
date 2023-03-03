@@ -1,4 +1,5 @@
 import arcade
+import arcade.gui
 from constants import *
 
 def setup_character_creator_gui(self):
@@ -10,33 +11,21 @@ def setup_character_creator_gui(self):
         texture = arcade.load_texture(
             "assets/assetpacks/ninja/HUD/Dialog/DialogueBoxSimple.png")
         self.v_box = arcade.gui.UIBoxLayout()
-
+        self.background_sprite=arcade.Sprite(filename="assets/guiassets/CustomAssets/Plain-Page.png",scale=12)
+        
+        # self.background_widget = arcade.gui.UISpriteWidget(sprite=background)
+        # self.v_box.add(self.background_widget)
         # Create a text label
         ui_text_label = arcade.gui.UITextArea(text="Character Customiser",
-                                              text_color=arcade.csscolor.WHITE,
+                                              text_color=arcade.csscolor.BLACK,
                                               width=450,
                                               height=40,
                                               font_size=20,
                                               font_name="NinjaAdventure")
-        self.background = arcade.gui.UITexturePane(
-            child=ui_text_label, tex=texture)
-        self.v_box.add(ui_text_label.with_space_around(bottom=20))
+    
+        self.v_box.add(ui_text_label.with_space_around(top=40,bottom=20))
 
-        text = "Balh"
-        ui_text_label = arcade.gui.UITextArea(text=text,
-                                              width=450,
-                                              height=60,
-                                              font_size=12,
-                                              font_name="Arial",
-                                              text_color=arcade.csscolor.BLACK)
-        blah = arcade.gui.UIWidget(children=[ui_text_label])
-        blah.with_background(texture=texture)
 
-        horse = ui_text_label.with_background(
-            texture=texture, bottom=20, top=20, left=20, right=20)
-        self.v_box.add(horse.with_space_around(bottom=0))
-        # HAIR#####################
-        # Create a UIFlatButton
         ui_flatbutton_hair = arcade.gui.UIFlatButton(text="Hair", width=200)
         self.v_box.add(ui_flatbutton_hair.with_space_around(bottom=20))
 
@@ -133,11 +122,15 @@ def setup_character_creator_gui(self):
             self.player_sprite.shoes.change_color()
 
         texture = arcade.load_texture(
-            "assets/assetpacks/ninja/HUD/Dialog/DialogueBoxSimple.png")
+            "assets/guiassets/CustomAssets/Plain-Page.png")
         # Create a widget to hold the v_box widget, that will center the buttons
         self.gui_character_creator_manager.add(
             arcade.gui.UIAnchorWidget(
                 anchor_x="center_x",
                 anchor_y="center_y",
-                child=self.v_box.with_background(texture=texture, bottom=20, top=20, left=20, right=20))
+                child=self.v_box
         )
+        )
+        self.background_sprite.center_x=self.width//2
+        self.background_sprite.center_y=self.height//2
+       

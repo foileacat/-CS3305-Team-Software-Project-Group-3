@@ -11,7 +11,7 @@ class TypewriterTextWidget(arcade.gui.UITextArea):
                  font_name=('Arial',),
                  font_size: float = 12,
                  text_color: arcade.Color = arcade.color.BLACK,
-                 multiline: bool = False,
+                 multiline: bool = True,
                  scroll_speed: float = None,
                  size_hint=None,
                  size_hint_min=None,
