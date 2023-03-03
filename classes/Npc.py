@@ -49,7 +49,8 @@ class Npc(Character):
         self.interacting = False
 
         self.conversation_list = conversation_list 
-
+        self.conversations = ["first_convo","second_convo"]
+        self.conversation_index = 0
         self.taking_damage = False
 
     def wander(self):
@@ -118,5 +119,12 @@ class Npc(Character):
     def get_conversation(self, conversation_key):
         return json_functions.get_one_conversation(self.conversation_list, conversation_key)
 
-                
-
+    def get_current_conversation(self):
+        if len(self.conversations)-1 < self.conversation_index:
+            return self.get_conversation("final_convo")
+        else:
+            return self.get_conversation(self.conversations[self.conversation_index])
+     
+        
+    def end_convo(self):
+        self.conversation_index+=1

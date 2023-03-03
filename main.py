@@ -16,7 +16,7 @@ from maps import *
 from constants import *
 from gui.TypewriterText import TypewriterTextWidget
 
-arcade.enable_timings()
+
 import json_functions
 
 
@@ -169,7 +169,9 @@ class MyGame(arcade.Window):
             
 
             self.current_npc.generate_floating_head(100,100)
-            self.npc_message_UI.display_text(self.conversation_list[self.count])
+            #self.npc_message_UI.display_text(self.conversation_list[self.count])
+            #sprint(self.current_npc.get_conversation("first_convo"))
+            self.npc_message_UI.display_text(self.current_npc.get_current_conversation()[self.count])
             self.gui_npc_manager.draw()
             center_x = self.width //2
             center_y = self.height //2
@@ -441,14 +443,14 @@ class MyGame(arcade.Window):
 
     def handle_npc_interaction(self, npc):
         if self.player_sprite.currently_npc_interacting:
-            if self.count == len(self.conversation_list) - 1:
+            self.current_npc = npc
+            if self.count == len(self.current_npc.get_current_conversation()) - 1:
                 self.player_sprite.currently_npc_interacting=False
                 npc.interacting = False
+                npc.end_convo()
                 return
             else:
                 self.count+=1
-                print(self.conversation_list[self.count])
-                self.inspect_message_UI.display_text(self.conversation_list[self.count])
         else:
             self.inspect_message_UI.reset()
             self.player_sprite.currently_npc_interacting = True
@@ -542,6 +544,7 @@ class MyGame(arcade.Window):
         graph.center_x = GRAPH_WIDTH / 2 + (GRAPH_WIDTH + GRAPH_MARGIN) * 2
         graph.center_y = self.height - GRAPH_HEIGHT / 2
         self.perf_graph_list.append(graph)
+
 def main():
     """ Main function """
     window = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
