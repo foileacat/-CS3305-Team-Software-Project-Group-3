@@ -14,8 +14,12 @@ def setup(self):
         "walls": {
             "use_spatial_hash": True,
         },
-        
-       
+        "over layer": {
+            "use_spatial_hash": True,
+        },
+        "furniture": {
+            "use_spatial_hash": True,
+        }     
     }
 
     # create tilemap, and then a scene from that tilemap. the scene is what we use.
@@ -31,7 +35,7 @@ def setup(self):
     room.wall_list = []
     
     room.wall_list.append(room.scene["walls"])
-    #room.wall_list.append(room.scene["Trees 1"])
+    room.wall_list.append(room.scene["furniture"])
     #room.wall_list.append(room.scene["Trees 2"])
 
     return room

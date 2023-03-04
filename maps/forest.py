@@ -13,6 +13,9 @@ def setup(self):
         "walls": {
             "use_spatial_hash": True,
         },
+        "house": {
+            "use_spatial_hash": True,
+        },
         "over layer": {
             "use_spatial_hash": True,
         }   
@@ -31,7 +34,7 @@ def setup(self):
     room.wall_list = []
     
     room.wall_list.append(room.scene["walls"])
-    #room.wall_list.append(room.scene["Trees 1"])
+    room.wall_list.append(room.scene["house"])
     #room.wall_list.append(room.scene["Trees 2"])
     #room.wall_list.append(room.scene["House"])
     return room

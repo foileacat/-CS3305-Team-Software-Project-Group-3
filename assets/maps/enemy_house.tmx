@@ -19,27 +19,27 @@
  </objectgroup>
  <layer id="1" name="floor" width="18" height="13">
   <data encoding="base64" compression="zlib">
-   eJwTYGBg4KUQCwOxEhArU4hVRs0ZNWeYmRMExJYU4lAgBgCucyA9
-  </data>
- </layer>
- <layer id="6" name="over layer" width="18" height="13">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUDHYAAAOoAAE=
+   eJwTYGBg4MWB0QEudcJArATEyhRilVFzRs0ZZuYEAbElDowOcKkLBWIA1VQfJQ==
   </data>
  </layer>
  <layer id="7" name="walls" width="18" height="13">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUDHYAAAOoAAE=
+   eJyzZGVgsAJiXgZMrIyGsamxhOqPAuJoICYXwPQrkW8EHKgwjJozag5l5sDSNbkAPV9YMmBi9PyFTQ1MPwCSvws7
   </data>
  </layer>
  <layer id="2" name="furniture" width="18" height="13">
   <data encoding="base64" compression="zlib">
-   eJyzZGVgsAJibGAFEyrGBiyh+qOAOBqHOcQASvUPdvCJEbfcC6DcSyh+hUcdyAw2HPEAAn+A8n+h+B8ec0BmSOExRwAoJwjFQnjU4TNjqANLPPmCFP340jUx+QumHwCoIBRb
+   eJxjYMANVjCh4lFAG/CHkYHhJRT/Y6TMHBigxBwBpLgWGo13mgFS8hcAt6ELQw==
+  </data>
+ </layer>
+ <layer id="6" name="over layer" width="18" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF5IIXjAwML6H4FeNAu2YUDGcAAMkAA6k=
   </data>
  </layer>
  <layer id="3" name="furniture 2" width="18" height="13">
   <data encoding="base64" compression="zlib">
-   eJxjYMANepkZGPqYEfQoGDngLwsEjwLaAVLyFwBtmQaH
+   eJxjYMANepkZGPqYEfQooB34ywjBg8YcFggeBbQDpOQvAEY9Cn8=
   </data>
  </layer>
  <objectgroup id="5" name="Animation">
