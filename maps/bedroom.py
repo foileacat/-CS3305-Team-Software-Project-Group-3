@@ -4,7 +4,7 @@ from constants import *
 def setup(self):
     room = Room()
     room.multiple_entrances = True
-    room.entrances = {"living_room" : [15*SPRITE_SIZE,17*SPRITE_SIZE]}
+    room.entrances = {"living_room" : [10*SPRITE_SIZE,12*SPRITE_SIZE]}
     room.starting_x = SPRITE_SIZE * 11.5
     room.starting_y = SPRITE_SIZE * 2.5
     room.map_file = "assets/maps/bedroom.tmx"

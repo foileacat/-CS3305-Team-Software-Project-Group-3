@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="25">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="16" height="14" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="28">
  <tileset firstgid="1" source="Sources/atlas_16x.tsx"/>
  <tileset firstgid="769" source="Sources/TilesetHouse.tsx"/>
  <tileset firstgid="1528" source="Sources/TopDownHouse_SmallItems.tsx"/>
  <tileset firstgid="1592" source="Sources/TilesetRelief.tsx"/>
  <objectgroup id="6" name="interactables">
-  <object id="13" gid="1614" x="203.506" y="103.652" width="26.1836" height="21.8752">
+  <object id="13" gid="1614" x="109.173" y="86.9853" width="26.1836" height="21.8752">
    <properties>
     <property name="inspect_text" value="but hes a dumbfuck"/>
     <property name="item_id" value="wives_diary_2"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="14" gid="1614" x="222.698" y="52.6512" width="20.3084" height="22.2668">
+  <object id="14" gid="1614" x="124.365" y="52.6512" width="20.3084" height="22.2668">
    <properties>
     <property name="inspect_text" value="what's this doing here"/>
     <property name="item_id" value="love_potion"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="15" gid="1614" x="249.384" y="43.4128" width="28.4296" height="18.3501">
+  <object id="15" gid="1614" x="27.0678" y="41.6653" width="28.4296" height="18.3501">
    <properties>
     <property name="destination_room" type="int" value="7"/>
     <property name="on_interact" value="room_transition"/>
@@ -34,7 +34,7 @@
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="17" gid="1614" x="78.9523" y="55.5928" width="20.7001" height="21.4835">
+  <object id="17" gid="1614" x="77.2856" y="53.942" width="20.7001" height="21.4835">
    <properties>
     <property name="inspect_text" value="I love that dumbfuck"/>
     <property name="item_id" value="wifes_diary_1"/>
@@ -48,68 +48,72 @@
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="19" gid="1614" x="32.7344" y="210.105" width="25.4002" height="29.7087">
+  <object id="19" gid="1614" x="56.4011" y="101.105" width="25.4002" height="29.7087" rotation="180">
    <properties>
     <property name="inspect_text" value="I don't wanna know"/>
     <property name="item_id" value="couples_bed"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="20" gid="1614" x="125.953" y="187.388" width="52.0343" height="35.5838">
+  <object id="20" gid="1614" x="94.6197" y="140.721" width="52.0343" height="35.5838">
    <properties>
     <property name="inspect_text" value="That's a fuck ton of plants"/>
     <property name="item_id" value="wives_plant_table"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="21" gid="1614" x="267.349" y="286.874" width="20.7001" height="19.9168">
-   <properties>
-    <property name="inspect_text" value="This is probably for plants."/>
-    <property name="item_id" value="plant_potion"/>
-    <property name="on_interact" value="show_message"/>
-   </properties>
-  </object>
-  <object id="22" gid="1614" x="30.776" y="286.874" width="44.2007" height="36.3672">
-   <properties>
-    <property name="inspect_text" value="They're all books about plants"/>
-    <property name="item_id" value="bedroom_bookshelf"/>
-    <property name="on_interact" value="show_message"/>
-   </properties>
-  </object>
-  <object id="23" gid="1614" x="236.131" y="232.239" width="23.8335" height="23.4419">
+  <object id="23" gid="1614" x="172.798" y="136.239" width="23.8335" height="23.4419">
    <properties>
     <property name="inspect_text" value="nvm I love him"/>
     <property name="item_id" value="wives_diary_4"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
+  <object id="25" gid="1614" x="189.512" y="193.867" width="20.3084" height="22.2668">
+   <properties>
+    <property name="inspect_text" value="This is probably for the plants."/>
+    <property name="item_id" value="plant_potion"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="8" name="Animation">
-  <object id="24" gid="1617" x="237.485" y="130.432" width="16" height="16"/>
+  <object id="24" gid="1617" x="182.152" y="90.432" width="16" height="16"/>
  </objectgroup>
- <layer id="2" name="floor" width="20" height="20">
+ <objectgroup id="11" name="pickaxe_inventory">
+  <object id="26" gid="1614" x="7.35373" y="103.138" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="12" name="inventory">
+  <object id="27" gid="1614" x="233.821" y="85.0428" width="16" height="16"/>
+ </objectgroup>
+ <layer id="2" name="floor" width="16" height="14">
   <data encoding="base64" compression="zlib">
-   eJxrYmRgaBrFo3gUj+JRPIpJxABpn8yx
+   eJxrYmRgaBrFo3gUDwgGAIuncqE=
   </data>
  </layer>
- <layer id="1" name="walls" width="20" height="20">
+ <layer id="10" name="floor dec" width="16" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYmBgYKIiNqIyBpqZAKQTGCgEQDMWMEHwqHmj5o2aN2reUDFvUJfPAHPhLqE=
+   eJxjYBgFuAATG4PDQLuBmoCZjbAaoJ8baO6QUQAHAH8RANo=
   </data>
  </layer>
- <layer id="3" name="furniture" width="20" height="20">
+ <layer id="1" name="walls" width="16" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYMAE7xghND8QC2CRh4GVQLwKiFfjkL8GxNeBWI4JwrcHYgcgDgby1YBYHYivAPlXoepvAvEtIL6Nwzw2oLvYGTHFm4HmhAFxOBCbAOVNsagZBaOAFqAXmNb6gLifxDS3hgm7+F6gOfuAeD+J5t3BYd4oGBpgGjC+pw/BcgsA3iESiw==
+   eJxjYmBgYKIAG1GIgWYkAOkEBhIBUM8CJgge1T+qnxL9A5r+ATesHpE=
   </data>
  </layer>
- <layer id="4" name="furniture 2" width="20" height="20">
+ <layer id="3" name="furniture" width="16" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYMANMoE4C488qWAmEM9CE1sKxNpspJkjSIT6RSykmTmUgQCJ4TfQIIgJtxwTG0MD3RyCA+BzHzo4zMjA8BmIlUnQQykgxX30BMxDLB3SEkgC40gKKZ42IbGnANPLVEZMcRh4MoTKLgDRRArM
+   eJxjYGBgWAnEq4B4NQMq4AdiAQbC4CYQ3wLi22ji9kDsAMTBTAwMakCsDsRXgPyrBMwTZEOwF7EwMDQD9YUBcTgQmzAyMJgyEuGoIQbWMFGm/w6a/r9A/A+I/5Npni4wjPWAWH+YhfUTloF2ASoAAO6CD9M=
   </data>
  </layer>
- <layer id="7" name="over layer" width="20" height="20">
+ <layer id="4" name="furniture 2" width="16" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFowA/UGIaaBfgB6S4L5aRgSEOiOMZaecedDDYw28UMDC8BKaHV0hpogkpzlKA4qmMqOJpQH46HdPQYAUAOucGAQ==
+   eJxjYMANMoE4C488ITATiGehiS0FYm02CgwdBUSBw4wMDJ+BWJkJU+4jI/3dQ2v7JYH+lIL6dROUngK0Zyojqhit7CcXAADvsQpa
+  </data>
+ </layer>
+ <layer id="7" name="over layer" width="16" height="14">
+  <data encoding="base64" compression="zlib">
+   eJxjYMAE7xixCJIA5Jgo0z8KGBjOAvE5ID6PRe4ghfFDKaCF/S+BZr6CmtsETT8pQH4qmhit7B8oAAB9sAlo
   </data>
  </layer>
 </map>

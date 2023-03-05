@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="92">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="16" nextobjectid="106">
  <tileset firstgid="1" source="Sources/TilesetRelief.tsx"/>
  <tileset firstgid="241" source="Sources/TilesetReliefDetail.tsx"/>
  <tileset firstgid="385" source="Sources/atlas_16x.tsx"/>
@@ -16,13 +16,6 @@
     <property name="transition_id" value="cave_inside"/>
    </properties>
   </object>
-  <object id="78" gid="23" x="288.667" y="96.6667" width="16" height="16">
-   <properties>
-    <property name="inspect_text" value="yellow flower"/>
-    <property name="item_id" value="yellow_flower"/>
-    <property name="on_interact" value="show_message"/>
-   </properties>
-  </object>
   <object id="79" gid="23" x="80" y="136.333" width="16" height="16">
    <properties>
     <property name="destination_room" type="int" value="6"/>
@@ -31,19 +24,12 @@
     <property name="transition_id" value="blacksmith"/>
    </properties>
   </object>
-  <object id="80" gid="23" x="1.66667" y="203" width="18" height="38.3333">
+  <object id="80" gid="23" x="1.16667" y="202" width="18" height="38.3333">
    <properties>
     <property name="destination_room" type="int" value="1"/>
     <property name="on_interact" value="room_transition"/>
     <property name="transition_direction" type="int" value="3"/>
     <property name="transition_id" value="main_room"/>
-   </properties>
-  </object>
-  <object id="81" gid="23" x="45" y="274" width="23" height="21">
-   <properties>
-    <property name="inspect_text" value="Red flower"/>
-    <property name="item_id" value="red_flower_quest"/>
-    <property name="on_interact" value="show_message"/>
    </properties>
   </object>
   <object id="82" gid="23" x="303" y="263.667" width="18.3333" height="16">
@@ -54,41 +40,6 @@
     <property name="transition_id" value="living_room"/>
    </properties>
   </object>
-  <object id="84" gid="23" x="443.667" y="274.667" width="20.3333" height="22.3333">
-   <properties>
-    <property name="inspect_text" value="white flower"/>
-    <property name="item_id" value="white_flower"/>
-    <property name="on_interact" value="show_message"/>
-   </properties>
-  </object>
-  <object id="85" gid="23" x="160.333" y="113" width="16" height="16">
-   <properties>
-    <property name="inspect_text" value="Chest contains key to cave."/>
-    <property name="item_id" value="cave_key_chest"/>
-    <property name="on_interact" value="show_message"/>
-   </properties>
-  </object>
-  <object id="86" gid="23" x="363.667" y="82.6667" width="54.6667" height="18">
-   <properties>
-    <property name="inspect_text" value="yellow flower"/>
-    <property name="item_id" value="yellow_flower"/>
-    <property name="on_interact" value="show_message"/>
-   </properties>
-  </object>
-  <object id="89" gid="23" x="428.667" y="132.667" width="18.6667" height="56.3333">
-   <properties>
-    <property name="inspect_text" value="Red flower"/>
-    <property name="item_id" value="red_flower_quest"/>
-    <property name="on_interact" value="show_message"/>
-   </properties>
-  </object>
-  <object id="90" gid="23" x="334" y="131" width="20" height="52.3333">
-   <properties>
-    <property name="inspect_text" value="white flower"/>
-    <property name="item_id" value="white_flower"/>
-    <property name="on_interact" value="show_message"/>
-   </properties>
-  </object>
   <object id="91" gid="23" x="379.667" y="117.667" width="24.6667" height="24">
    <properties>
     <property name="inspect_text" value="Don't trample the flowers, bitch"/>
@@ -97,8 +48,70 @@
    </properties>
   </object>
  </objectgroup>
+ <objectgroup id="14" name="inventory">
+  <object id="93" gid="23" x="427.878" y="128.089" width="20.8925" height="48.9133">
+   <properties>
+    <property name="inv_condition" value="none"/>
+    <property name="item_collection_message" value="This might be the right flower. I should bring it to the blacksmith."/>
+    <property name="item_id" value="red_flower_quest"/>
+    <property name="on_interact" value="check_inv_condition"/>
+   </properties>
+  </object>
+  <object id="97" gid="23" x="44.9281" y="276.643" width="21.7821" height="23.5612">
+   <properties>
+    <property name="inv_condition" value="none"/>
+    <property name="item_collection_message" value="This might be the right flower. I should bring it to the blacksmith."/>
+    <property name="item_id" value="red_flower_quest"/>
+    <property name="on_interact" value="check_inv_condition"/>
+   </properties>
+  </object>
+  <object id="98" gid="23" x="285.996" y="98.7339" width="19.5582" height="21.3373">
+   <properties>
+    <property name="inv_condition" value="none"/>
+    <property name="item_collection_message" value="This might be the right flower. I should bring it to the blacksmith."/>
+    <property name="item_id" value="yellow_flower_quest"/>
+    <property name="on_interact" value="check_inv_condition"/>
+   </properties>
+  </object>
+  <object id="100" gid="23" x="335.365" y="129.423" width="20.8925" height="51.5819">
+   <properties>
+    <property name="inv_condition" value="none"/>
+    <property name="item_collection_message" value="This might be the right flower. I should bring it to the blacksmith."/>
+    <property name="item_id" value="white_flower_quest"/>
+    <property name="on_interact" value="check_inv_condition"/>
+   </properties>
+  </object>
+  <object id="101" gid="23" x="364.276" y="83.1668" width="56.0297" height="20.003">
+   <properties>
+    <property name="inv_condition" value="none"/>
+    <property name="item_collection_message" value="This might be the right flower. I should bring it to the blacksmith."/>
+    <property name="item_id" value="yellow_flower_quest"/>
+    <property name="on_interact" value="check_inv_condition"/>
+   </properties>
+  </object>
+  <object id="102" gid="23" x="442.778" y="275.988" width="21.7821" height="23.5612">
+   <properties>
+    <property name="inspect_text" value="This might be the right flower. I should bring it to the blacksmith."/>
+    <property name="inv_condition" value="none"/>
+    <property name="item_id" value="white_flower_quest"/>
+    <property name="on_interact" value="check_inv_condition"/>
+   </properties>
+  </object>
+  <object id="103" gid="23" x="157.233" y="116.202" width="21.7821" height="23.5612">
+   <properties>
+    <property name="inv_condition" value="flower_quest_key"/>
+    <property name="item_collection_message" value="Now I can use this to get some ores."/>
+    <property name="item_id" value="cave_key_chest"/>
+    <property name="item_refuse_message" value="I can't open this, I don't have a key. Maybe the the blacksmith does."/>
+    <property name="on_interact" value="check_inv_condition"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="15" name="pickaxe_inventory">
+  <object id="105" gid="23" x="463.46" y="62.2624" width="16" height="16"/>
+ </objectgroup>
  <objectgroup id="11" name="Animation">
-  <object id="60" gid="62" x="202" y="151" width="16" height="16"/>
+  <object id="60" gid="62" x="205" y="175.5" width="16" height="16"/>
  </objectgroup>
  <layer id="1" name="floor" width="30" height="20">
   <data encoding="csv">
@@ -129,23 +142,47 @@
 105,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,106,107,
 125,126,126,126,126,126,126,126,126,126,126,126,126,126,126,126,126,126,126,126,126,126,126,126,126,126,126,126,126,127,
 145,146,146,146,146,146,146,146,146,146,146,146,146,146,146,279,146,146,146,146,146,146,146,146,146,146,146,146,146,147,
-2684355854,1315,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1315,2684355854,
+2684355854,1315,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1828,1829,1829,1829,1829,1829,1829,1829,1832,2684355854,
+2684355855,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1861,0,0,0,0,0,0,0,1865,2684355855,
+2684355855,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1861,0,0,0,0,0,0,0,1865,2684355855,
+2684355855,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1861,0,0,0,0,0,0,0,1865,2684355855,
+2684355855,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1861,0,0,0,0,0,0,0,1865,2684355855,
+2684355855,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1861,0,0,0,0,0,0,0,1865,2684355855,
+2684355855,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1894,1829,1830,0,0,0,1831,1829,1898,2684355855,
+2509,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2684355855,
+1045,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2684355855,
+2509,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2684355855,
 2684355855,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2684355855,
 2684355855,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2684355855,
 2684355855,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2684355855,
 2684355855,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2684355855,
 2684355855,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2684355855,
-2684355855,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2684355855,
-2684355856,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2684355855,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2684355855,
-2684355854,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2684355855,
-2684355855,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2684355855,
-2684355855,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2684355855,
-2684355855,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2684355855,
-2684355855,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2684355855,
-2684355855,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2684355855,
-2684355856,1315,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1315,2684355856,
+2684355856,1315,0,0,0,0,1023,1024,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1315,2684355856,
 3221226768,1295,1295,1295,1295,1295,1295,1295,1295,1295,1295,1295,1295,1295,1295,1295,1295,1295,1295,1295,1295,1295,1295,1295,1295,1295,1295,1295,1295,3221226766
+</data>
+ </layer>
+ <layer id="5" name="furniture" width="30" height="20">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,2314,2315,0,0,0,0,0,0,0,2316,2317,0,0,0,0,0,1175,1176,0,0,0,1330,1330,1330,0,0,0,0,
+0,0,0,0,0,0,0,0,1947,1948,0,0,0,0,0,0,0,0,1330,0,0,1335,0,0,0,0,0,1332,0,0,
+0,0,0,1541,1542,1543,1544,2114,1980,1981,456,0,0,0,0,0,0,0,0,0,0,1335,0,0,2280,0,0,1332,0,0,
+0,1866,1867,1574,1575,1576,1577,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1335,0,0,0,0,0,1332,0,0,
+0,0,0,0,0,0,0,0,0,2013,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2271,0,0,0,0,0,0,0,
+2684355856,0,2286,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2287,0,0,0,1023,1024,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+2684355854,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1811,1812,1813,1814,0,0,2291,2294,2295,2293,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1910,1911,1912,1913,0,0,2307,2310,2311,2309,0,0,
+0,0,1474,0,1302,0,0,0,0,0,0,0,0,0,0,0,0,0,1943,1944,1945,1946,0,0,0,0,0,0,0,0,
+0,0,0,1332,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1335,0,
+0,0,0,1283,1284,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1202,1203,0,0,0,
+0,0,0,1299,1300,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1217,1218,1219,1220,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
  <layer id="12" name="over layer" width="30" height="20">
@@ -156,7 +193,7 @@
 0,0,2298,2299,0,0,0,0,0,0,0,2300,2301,0,0,0,0,0,1159,1160,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,1508,1509,1510,1511,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,1833,1834,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,1833,1834,0,1627,1628,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -169,54 +206,6 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1186,1187,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1201,0,0,1204,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-</data>
- </layer>
- <layer id="5" name="furniture" width="30" height="20">
-  <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1828,1829,1829,1829,1829,1829,1829,1829,1832,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1861,0,0,1330,1330,1330,0,0,1865,0,
-0,0,0,0,0,0,0,0,1947,1948,0,0,0,0,0,0,0,0,1330,0,1861,1335,0,0,0,0,0,1332,1865,0,
-0,0,0,1541,1542,1543,1544,2114,1980,1981,456,0,0,0,0,0,0,0,0,0,1861,1335,0,0,2280,0,0,1332,1865,0,
-0,1866,1867,1574,1575,1576,1577,0,0,0,0,0,0,0,0,0,0,0,0,0,1861,1335,0,0,0,0,0,1332,1865,0,
-0,0,0,0,0,0,0,0,0,2013,0,0,0,0,0,0,0,0,0,0,1861,0,0,0,0,0,0,0,1865,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1894,1829,1830,0,0,0,1831,1829,1898,0,
-0,0,2286,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2287,0,0,0,1023,1024,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2291,2294,2295,2293,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2307,2310,2311,2309,0,0,
-0,0,0,0,1302,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,1332,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1335,0,
-0,0,0,1283,1284,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,1299,1300,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-</data>
- </layer>
- <layer id="6" name="furniture 2" width="30" height="20" opacity="0.9">
-  <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,2314,2315,0,0,0,0,0,0,0,2316,2317,0,0,0,0,0,1175,1176,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,1627,1628,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,2047,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2271,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1811,1812,1813,1814,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1910,1845,1846,1913,0,0,0,0,0,0,0,0,
-0,0,1474,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1943,1944,1945,1946,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1202,1203,0,0,0,
-0,0,0,0,0,0,1023,1024,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1217,1218,1219,1220,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
