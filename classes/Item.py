@@ -3,7 +3,7 @@ from constants import *
 
 class Item(arcade.Sprite):
     def __init__(self,*,
-                id=0, 
+                id=None, 
                 name="Unamed-Item01",
                 filename=None, 
                 scale=SPRITE_SCALING, 

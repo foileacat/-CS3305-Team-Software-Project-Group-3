@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="16" nextobjectid="106">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="16" nextobjectid="108">
  <tileset firstgid="1" source="Sources/TilesetRelief.tsx"/>
  <tileset firstgid="241" source="Sources/TilesetReliefDetail.tsx"/>
  <tileset firstgid="385" source="Sources/atlas_16x.tsx"/>
@@ -51,7 +51,9 @@
  <objectgroup id="14" name="inventory">
   <object id="93" gid="23" x="427.878" y="128.089" width="20.8925" height="48.9133">
    <properties>
-    <property name="inv_condition" value="none"/>
+    <property name="collected" type="bool" value="false"/>
+    <property name="conditional" type="bool" value="false"/>
+    <property name="item_collected_message" value="Already got it"/>
     <property name="item_collection_message" value="This might be the right flower. I should bring it to the blacksmith."/>
     <property name="item_id" value="red_flower_quest"/>
     <property name="on_interact" value="check_inv_condition"/>
@@ -59,7 +61,9 @@
   </object>
   <object id="97" gid="23" x="44.9281" y="276.643" width="21.7821" height="23.5612">
    <properties>
-    <property name="inv_condition" value="none"/>
+    <property name="collected" type="bool" value="false"/>
+    <property name="conditional" type="bool" value="false"/>
+    <property name="item_collected_message" value="Already got it"/>
     <property name="item_collection_message" value="This might be the right flower. I should bring it to the blacksmith."/>
     <property name="item_id" value="red_flower_quest"/>
     <property name="on_interact" value="check_inv_condition"/>
@@ -67,7 +71,9 @@
   </object>
   <object id="98" gid="23" x="285.996" y="98.7339" width="19.5582" height="21.3373">
    <properties>
-    <property name="inv_condition" value="none"/>
+    <property name="collected" type="bool" value="false"/>
+    <property name="conditional" type="bool" value="false"/>
+    <property name="item_collected_message" value="Already got it"/>
     <property name="item_collection_message" value="This might be the right flower. I should bring it to the blacksmith."/>
     <property name="item_id" value="yellow_flower_quest"/>
     <property name="on_interact" value="check_inv_condition"/>
@@ -75,7 +81,9 @@
   </object>
   <object id="100" gid="23" x="335.365" y="129.423" width="20.8925" height="51.5819">
    <properties>
-    <property name="inv_condition" value="none"/>
+    <property name="collected" type="bool" value="false"/>
+    <property name="conditional" type="bool" value="false"/>
+    <property name="item_collected_message" value="Already got it"/>
     <property name="item_collection_message" value="This might be the right flower. I should bring it to the blacksmith."/>
     <property name="item_id" value="white_flower_quest"/>
     <property name="on_interact" value="check_inv_condition"/>
@@ -83,7 +91,9 @@
   </object>
   <object id="101" gid="23" x="364.276" y="83.1668" width="56.0297" height="20.003">
    <properties>
-    <property name="inv_condition" value="none"/>
+    <property name="collected" type="bool" value="false"/>
+    <property name="conditional" type="bool" value="false"/>
+    <property name="item_collected_message" value="Already got it"/>
     <property name="item_collection_message" value="This might be the right flower. I should bring it to the blacksmith."/>
     <property name="item_id" value="yellow_flower_quest"/>
     <property name="on_interact" value="check_inv_condition"/>
@@ -91,15 +101,20 @@
   </object>
   <object id="102" gid="23" x="442.778" y="275.988" width="21.7821" height="23.5612">
    <properties>
-    <property name="inspect_text" value="This might be the right flower. I should bring it to the blacksmith."/>
-    <property name="inv_condition" value="none"/>
+    <property name="collected" type="bool" value="false"/>
+    <property name="conditional" type="bool" value="false"/>
+    <property name="item_collected_message" value="Already got it"/>
+    <property name="item_collection_message" value="This might be the right flower. I should bring it to the blacksmith."/>
     <property name="item_id" value="white_flower_quest"/>
     <property name="on_interact" value="check_inv_condition"/>
    </properties>
   </object>
   <object id="103" gid="23" x="157.233" y="116.202" width="21.7821" height="23.5612">
    <properties>
+    <property name="collected" type="bool" value="false"/>
+    <property name="conditional" type="bool" value="true"/>
     <property name="inv_condition" value="flower_quest_key"/>
+    <property name="item_collected_message" value="Already got it"/>
     <property name="item_collection_message" value="Now I can use this to get some ores."/>
     <property name="item_id" value="cave_key_chest"/>
     <property name="item_refuse_message" value="I can't open this, I don't have a key. Maybe the the blacksmith does."/>

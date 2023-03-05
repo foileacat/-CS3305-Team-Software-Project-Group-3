@@ -12,6 +12,7 @@ from classes.PlayerCharacter import PlayerCharacter
 from classes.Inventory import Inventory
 from classes.InventoryBar import InventoryBar
 from classes.Item import Item
+from items import *
 from maps import *
 from constants import *
 from gui.TypewriterText import TypewriterTextWidget
@@ -472,29 +473,30 @@ class MyGame(arcade.Window):
             self.player_sprite.currently_inspecting = False
             return
         else:
-            conditionToBeMet = invInteractable.properties["inv_condition"]
-            if self.achievements[conditionToBeMet] == True:
-                #check if inventory is full or already in inventory - dont add + send error message
-                #for item in inventoryDict:
-                    #if invInteractable.properties["item_id"] == dict[item]:
-                        #don't add to inventory - already in inventory message
-                        #self.player_sprite.currently_inspecting = True
-                        #self.inspect_message_UI.reset()
-                        #self.inspect_text = "You already have this item. You don't need two."
-                    #elif dict[item] == "empty"
-                        #add to inventory
+            if invInteractable.properties["collected"]:
+                self.player_sprite.currently_inspecting = True
+                self.inspect_message_UI.reset()
+                self.inspect_text = invInteractable.properties["item_collected_message"]
+            else:
+                invInteractable.properties["collected"] = True
+                if invInteractable.properties["conditional"]:
+                    required_item = invInteractable.properties["inv_condition"]
+                    if self.player_sprite.has_item(required_item):
                         self.player_sprite.currently_inspecting = True
                         self.inspect_message_UI.reset()
                         self.inspect_text = invInteractable.properties["item_collection_message"]
-                    #else:
-                        #if inventory full? only remaining option - any way to confirm dict=0 for item in dict if !=empty counter if counter=dict length == empty
-                        #self.player_sprite.currently_inspecting = True
-                        #self.inspect_message_UI.reset()
-                        #self.inspect_text = "Your inventory is full."
-            elif self.achievements[conditionToBeMet] == False:
-                self.player_sprite.currently_inspecting = True
-                self.inspect_message_UI.reset()
-                self.inspect_text = invInteractable.properties["item_refuse_message"]
+                        
+                        self.player_sprite.inventory.add_to_inventory(invInteractable.properties["item_id"])
+                
+                    else:
+                        self.player_sprite.currently_inspecting = True
+                        self.inspect_message_UI.reset()
+                        self.inspect_text = invInteractable.properties["item_refuse_message"]
+                else:
+                    self.player_sprite.currently_inspecting = True
+                    self.inspect_message_UI.reset()
+                    self.inspect_text = invInteractable.properties["item_collection_message"]
+                    self.player_sprite.add_to_inventory(get_item(invInteractable.properties["item_id"]))
 
     def character_creator(self, interactable):
         if self.character_creator_open == True:
