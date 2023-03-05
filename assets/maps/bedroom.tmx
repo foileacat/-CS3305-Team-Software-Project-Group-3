@@ -80,12 +80,6 @@
  <objectgroup id="8" name="Animation">
   <object id="24" gid="1617" x="182.152" y="90.432" width="16" height="16"/>
  </objectgroup>
- <objectgroup id="11" name="pickaxe_inventory">
-  <object id="26" gid="1614" x="7.35373" y="103.138" width="16" height="16"/>
- </objectgroup>
- <objectgroup id="12" name="inventory">
-  <object id="27" gid="1614" x="233.821" y="85.0428" width="16" height="16"/>
- </objectgroup>
  <layer id="2" name="floor" width="16" height="14">
   <data encoding="base64" compression="zlib">
    eJxrYmRgaBrFo3gUDwgGAIuncqE=

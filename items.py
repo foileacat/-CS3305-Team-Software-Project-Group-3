@@ -6,7 +6,8 @@ from classes.Consumable import Consumable
 from constants import *
 egg = Item(id=1,name="Egg",filename=EXAMPLE_EGG_SPRITE_LINK)
 book =Item(id=1,name="Book",filename="assets/guiassets/AssetPacks/Free Pack/Free Pixel Paper/Png/Sprites/1 items Pack/5.png")
-        
+
+
 old_pickaxe = Tool(name="Old Pickaxe",
                                        type="Pickaxe",
                                        id=1,

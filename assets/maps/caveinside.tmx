@@ -7,6 +7,9 @@
  <tileset firstgid="961" source="Sources/TilesetHouse.tsx"/>
  <tileset firstgid="1720" source="Sources/atlas_16x.tsx"/>
  <tileset firstgid="2488" source="Sources/fire_animation.tmx"/>
+ <tileset firstgid="2494" source="Sources/Book.tsj"/>
+ <tileset firstgid="3069" source="Sources/amber_ore_empty.tsj"/>
+ <tileset firstgid="3073" source="Sources/amethyst_ore_empty.tsj"/>
  <objectgroup id="9" name="interactables">
   <object id="60" gid="23" x="94.667" y="66" width="19.6667" height="18.6667">
    <properties>
@@ -49,57 +52,64 @@
   <object id="73" gid="23" x="107.641" y="132.537" width="40.0178" height="39.1282">
    <properties>
     <property name="item_collection_message" value="I got some pristine amber ores."/>
-    <property name="item_id" value="pristine_amber_ore"/>
+    <property name="item_id" value="amber_ore"/>
+    <property name="name" value="Amber Ore"/>
     <property name="on_interact" value="check_pickaxe_condition"/>
-    <property name="pickaxe_condition" value="5"/>
+    <property name="pickaxe_condition" type="int" value="5"/>
    </properties>
   </object>
-  <object id="74" gid="23" x="47.5967" y="84.5011" width="20.003" height="21.7821">
+  <object id="74" gid="23" x="45.5967" y="83.0011" width="20.753" height="20.2821">
    <properties>
     <property name="item_collection_message" value="I got some regular sapphire ores."/>
-    <property name="item_id" value="regular_sapphire_ore"/>
+    <property name="item_id" value="sapphire_ore"/>
+    <property name="name" value="Sapphire Ore"/>
     <property name="on_interact" value="check_pickaxe_condition"/>
-    <property name="pickaxe_condition" value="3"/>
+    <property name="pickaxe_condition" type="int" value="3"/>
    </properties>
   </object>
-  <object id="75" gid="23" x="44.0385" y="259.742" width="24.8955" height="22.2268">
+  <object id="75" gid="23" x="44.2885" y="260.492" width="23.1455" height="22.4768">
    <properties>
     <property name="item_collection_message" value="I got some regular emerald ores."/>
-    <property name="item_id" value="regular_emerald_ore"/>
+    <property name="item_id" value="emerald_ore"/>
+    <property name="name" value="Emerald Ore"/>
     <property name="on_interact" value="check_pickaxe_condition"/>
-    <property name="pickaxe_condition" value="3"/>
+    <property name="pickaxe_condition" type="int" value="3"/>
    </properties>
   </object>
-  <object id="76" gid="23" x="315.351" y="100.513" width="24.8955" height="22.6716">
+  <object id="76" gid="23" x="316.101" y="99.763" width="24.1455" height="22.4216">
    <properties>
     <property name="item_collection_message" value="I got some regular emerald ores."/>
-    <property name="item_id" value="regular_emerald_ore"/>
+    <property name="item_id" value="emerald_ore"/>
+    <property name="name" value="Emerald Ore"/>
     <property name="on_interact" value="check_pickaxe_condition"/>
-    <property name="pickaxe_condition" value="3"/>
+    <property name="pickaxe_condition" type="int" value="3"/>
    </properties>
   </object>
-  <object id="77" gid="23" x="346.485" y="84.0563" width="26.6746" height="22.2268">
+  <object id="77" gid="23" x="364.485" y="83.8063" width="23.1746" height="22.4768">
    <properties>
     <property name="item_collection_message" value="I got some regular emerald ores."/>
-    <property name="item_id" value="regular_emerald_ore"/>
+    <property name="item_id" value="emerald_ore"/>
+    <property name="name" value="Emerald Ore"/>
     <property name="on_interact" value="check_pickaxe_condition"/>
-    <property name="pickaxe_condition" value="3"/>
+    <property name="pickaxe_condition" type="int" value="3"/>
    </properties>
   </object>
-  <object id="78" gid="23" x="411.422" y="260.187" width="36.0148" height="42.6864">
+  <object id="78" gid="23" x="414.755" y="256.52" width="34.0148" height="33.3531">
    <properties>
     <property name="item_collection_message" value="I got some pristine amethyst ores."/>
-    <property name="item_id" value="pristine_amethyst_ore"/>
+    <property name="item_id" value="amethyst_ore"/>
+    <property name="name" value="Amethyst Ore"/>
     <property name="on_interact" value="check_pickaxe_condition"/>
-    <property name="pickaxe_condition" value="5"/>
+    <property name="pickaxe_condition" type="int" value="5"/>
    </properties>
   </object>
-  <object id="79" gid="23" x="414.09" y="289.987" width="20.8925" height="21.7821">
+  <object id="79" gid="23" x="385.423" y="190.32" width="30.5592" height="30.1154">
    <properties>
     <property name="item_collection_message" value="I got some regular amethyst ores."/>
-    <property name="item_id" value="regular_amethyst_ore"/>
+    <property name="item_id" value="amethyst_ore"/>
+    <property name="name" value="Amethyst Ore"/>
     <property name="on_interact" value="check_pickaxe_condition"/>
-    <property name="pickaxe_condition" value="3"/>
+    <property name="pickaxe_condition" type="int" value="5"/>
    </properties>
   </object>
  </objectgroup>
@@ -116,7 +126,7 @@
  </objectgroup>
  <layer id="1" name="floor" width="30" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgF9ABpQJwOxA1IYg10wFVAXA21rxqJPWrv4LIXHQyEvaToJdWdMIzuVhifHLNG7cVvLzZxetiLDdPaXlyAlnaO4pGBp1CgFwDOl+qV
+   eJxjYBgF9ABpQJyORINwBhA30BhXAXE1Eg3CNaP2Djp70cFA2FtNgt2kuhOGYXZUI2FyzRq1F7+92MTpYS82TGt7cQFa2jmKRwaeQoFeAOef7/8=
   </data>
  </layer>
  <layer id="14" name="steps" width="30" height="20">
@@ -126,12 +136,12 @@
  </layer>
  <layer id="5" name="walls" width="30" height="20">
   <data encoding="base64" compression="zlib">
-   eJztlVEKgzAMhnPUPNWpNxA3T1Cd9QI9So+2f6ioBScoSX1Y4KOlsXxNKyQnokKZEjzBS5kG9MApM4w1M0Y2mGcTD5IL1OlzgPtmnIGrVa4W9LrR+ffe3GsmMtr+j0d7Y69d5ezursX5jSpar094Dz6PvZzCO0cqb/weVthrfuQkvS3odngLeq9Eai96A/eKXvQ+jx7oMQanDOoMcIdCGdxx+ABr/ck4
+   eJztlU0KwjAQRmfpMTzarKqtN5D6c4GojRfIUXI0n7TSEqiikokLP3gk5IfHJIupRaQxZgM72BtzgA68Mde+ZmXU5UKOMoR5tlBnqIH3Vm/o9b3z7/1xbzWwmrCG9k2vm+y52Vuj855tst5+4H1xPPVqCe8jpbzpf7jM3urJXk7vCc4zXDJ6v0lpL71BO0MvvS/QAwNj9MZQZ8QdG2N443gDUUzHrg==
   </data>
  </layer>
  <layer id="2" name="furniture" width="30" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBh6wIORgcETiL0Y6WfnOQ4GhhCgfaFAHMYI4VMDFDLjl/8HtCcBaF8iECcxQvi4wGcmBoazbEC3sWGXL2XCb5coGwQTA6aimfUXqO8fkXrJsRPdPnJABtCMTCaEvfQCFUA7K6ng/lFAHfCfjnE/CmgPzgLLxK2sDAzbWCFsYkAHMD924siTxJQ1oPLjL9Cua0A7r7NC2ITUg8AMoNkziSwLvqKpo2eZRamdMH2tI7zcAwAjWByX
+   eJxjYBh6wIORgcETiL0Y6WfnOQ4GhhCgfaFAHMYI4VMDFDLjl/8HtCcBaF8iECcxQvi4wGcmBoazbEC3sWGXL2fCb5coGwQTC6YjmfcXqO8fCXpJtXM6AbcTA/5yA93IjbCXXuA/yE4e+tk3CvCD/3jinhEYT0wDEFfMQDtZRtMIWeAssEzcysrAsI0VwiYG4ItnYsoaUPnxF2jXNaCd11khbELqQYCUeP6K5g56llmU2jkQbh2MAAAABBuf
   </data>
  </layer>
  <layer id="10" name="over layer" width="30" height="20">

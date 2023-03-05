@@ -1,0 +1,14 @@
+{ "columns":25,
+ "image":"..\/..\/guiassets\/AssetPacks\/UI Assets pack_v.1_st\/UI Assets pack_v.1_st\/Book.png",
+ "imageheight":368,
+ "imagewidth":400,
+ "margin":0,
+ "name":"Book",
+ "spacing":0,
+ "tilecount":575,
+ "tiledversion":"1.9.2",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.9"
+}

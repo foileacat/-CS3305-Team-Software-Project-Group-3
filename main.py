@@ -81,7 +81,7 @@ class MyGame(arcade.Window):
         self.rooms = [starting_room.setup(self), main_room.setup(self), cave_outside.setup(self), cave_inside.setup(self), dojo_outside.setup(self), dojo.setup(
             self), blacksmith.setup(self), living_room.setup(self), bedroom.setup(self), kitchen.setup(self), forest.setup(self), enemy_house.setup(self)]
         
-        self.current_room_index = 1
+        self.current_room_index = 3
         self.current_room = self.rooms[self.current_room_index]
         self.scene = self.current_room.scene
 
@@ -116,8 +116,35 @@ class MyGame(arcade.Window):
         self.scene.draw(pixelated=True)
         interactableObjects = arcade.check_for_collision_with_list(
             self.player_sprite, self.scene["interactables"])
+        
         self.player_sprite.draw_hit_box()
 
+        if self.current_room.has_mineable:
+                self.scene["Ore List"].clear()
+                for item in list(self.scene["pickaxe_inventory"]):
+                    
+                    if item.properties["item_id"] == "amber_ore" or item.properties["item_id"] == "amethyst_ore":
+                        if item.properties["pickaxe_condition"] >= 3:
+                            filename = "assets/customassets/"+item.properties["item_id"]+"_full.png"
+                            ore = arcade.Sprite(filename=filename,scale=4 ,center_x=item.center_x, center_y=item.center_y)
+                            self.scene["Ore List"].append(ore)
+                        elif item.properties["pickaxe_condition"] >= 1:
+                            filename = "assets/customassets/"+item.properties["item_id"]+"_half.png"
+                            ore = arcade.Sprite(filename=filename,scale=4 ,center_x=item.center_x, center_y=item.center_y)
+                            self.scene["Ore List"].append(ore)
+                    else:
+                        if item.properties["pickaxe_condition"] == 3:
+                            filename = "assets/customassets/"+item.properties["item_id"]+"_full.png"
+                            ore = arcade.Sprite(filename=filename,scale=SPRITE_SCALING+0.1 ,center_x=item.center_x, center_y=item.center_y)
+                            self.scene["Ore List"].append(ore)
+                        elif item.properties["pickaxe_condition"] >= 1:
+                            #assets/customassets/emerald_ore_full.png
+                            filename = "assets/customassets/"+item.properties["item_id"]+"_half.png"
+                            ore = arcade.Sprite(filename=filename,scale=SPRITE_SCALING+0.1 ,center_x=item.center_x, center_y=item.center_y)
+                            self.scene["Ore List"].append(ore)
+                #self.current_room.ore_list.draw()
+                
+                
         if self.current_room.has_enemies:
             for enemy in self.current_room.enemy_list:
             
@@ -163,14 +190,7 @@ class MyGame(arcade.Window):
 
         elif self.player_sprite.currently_npc_interacting:
             self.camera_gui.use()
-            #commented out from zainab_json
-            #self.inspect_message_UI.display_text(self.conversation_list[self.count])
-            #self.gui_inspect_manager.draw()
-            
-
             self.current_npc.generate_floating_head(100,100)
-            #self.npc_message_UI.display_text(self.conversation_list[self.count])
-            #sprint(self.current_npc.get_conversation("first_convo"))
             self.npc_message_UI.display_text(self.current_npc.get_current_conversation()[self.count])
             self.gui_npc_manager.draw()
             center_x = self.width //2
@@ -181,8 +201,11 @@ class MyGame(arcade.Window):
             self.camera_gui.use()
             self.background_sprite.draw(pixelated=True)
             self.gui_character_creator_manager.draw()
-
-        elif interactableObjects:
+        else:
+            self.camera_gui.use()
+            self.inventory_bar.draw()
+        self.camera_sprites.use()
+        if interactableObjects:
             interactable = interactableObjects[0]
             self.inspect_item_symbol_UI.center_x=interactable.center_x
             self.inspect_item_symbol_UI.center_y=interactable.center_y+(interactable.height//2)+20
@@ -193,9 +216,32 @@ class MyGame(arcade.Window):
             else:
                 self.inspect_item_symbol_UI.color = arcade.color.CORNFLOWER_BLUE
             self.inspect_item_symbol_UI.draw(pixelated=True)
-            self.camera_gui.use()
-            self.inventory_bar.draw()
+        #NOAH CODE
 
+        elif self.current_room.has_mineable or self.current_room.has_inventory:
+            if self.current_room.has_mineable:
+                pickaxeObjects = arcade.check_for_collision_with_list(
+                self.player_sprite, self.scene["pickaxe_inventory"])
+                if pickaxeObjects and self.player_sprite.using_tool:
+                    pickaxeInteractable=pickaxeObjects[0]
+                    if pickaxeInteractable.properties["pickaxe_condition"] > 0:
+                        self.player_sprite.mine(pickaxeInteractable)
+                elif pickaxeObjects:
+                    pickaxeInteractable=pickaxeObjects[0]
+                    self.inspect_item_symbol_UI = arcade.Sprite(filename="assets/assetpacks/ninja/HUD/Arrow.png", scale=3,
+                                                                center_x= pickaxeInteractable.center_x, center_y= pickaxeInteractable.center_y+( pickaxeInteractable.height//2)+20)
+                    self.inspect_item_symbol_UI.draw(pixelated=True)
+            if self.current_room.has_inventory:
+                inventoryObjects = arcade.check_for_collision_with_list(
+                self.player_sprite, self.scene["inventory"])
+                if inventoryObjects:
+                    invInteractable=inventoryObjects[0]
+                    self.inspect_item_symbol_UI = arcade.Sprite(filename="assets/assetpacks/ninja/HUD/Arrow.png", scale=3,
+                                                                center_x=invInteractable.center_x, center_y=invInteractable.center_y+(invInteractable.height//2)+20)
+                    self.inspect_item_symbol_UI.draw(pixelated=True)
+            else:
+                return
+            
         elif self.current_room.has_npcs:
             npcs = arcade.check_for_collision_with_list(self.player_sprite, 
                                                         self.scene["NPC"])
@@ -205,12 +251,7 @@ class MyGame(arcade.Window):
                 self.inspect_item_symbol_UI.center_y=npc.center_y+(npc.height//2)-20
                 self.inspect_item_symbol_UI.color = arcade.csscolor.SEA_GREEN
                 self.inspect_item_symbol_UI.draw(pixelated=True)
-            self.camera_gui.use()
-            self.inventory_bar.draw()
 
-        else:
-            self.camera_gui.use()
-            self.inventory_bar.draw()
 
         if self.draw_performance:
             self.draw_performance_graph()
@@ -229,7 +270,6 @@ class MyGame(arcade.Window):
         inventory_text_start_x = screen_center_x + 150
         inventory_text_start_y = screen_center_y + 180
         slot_sprite_list = arcade.SpriteList()
-        slot_list = []
         increase_x = 0
         for index in range(5):
             slot_background = arcade.Sprite(filename="assets/guiassets/CustomAssets/InventorySlotBackground8.png",scale=4,center_x=inventory_start_x+increase_x,center_y=inventory_start_y)
@@ -299,6 +339,9 @@ class MyGame(arcade.Window):
             self.inventory_display_name.draw()
         #self.inventory_display_box.draw(pixelated=True)
         slot_sprite_list.draw(pixelated=True)
+        for slot in self.inventory.slots:
+            if slot.number_text:
+                slot.number_text.draw()
         self.inventory_cursor.draw(pixelated=True)
 
     
@@ -386,9 +429,72 @@ class MyGame(arcade.Window):
                 self.handle_npc_interaction(npc)
         interactables = arcade.check_for_collision_with_list(
             self.player_sprite, self.scene["interactables"])
+        
         for interactable in interactables:
             getattr(self, interactable.properties['on_interact'])(interactable)
+
+        if self.current_room.has_mineable or self.current_room.has_inventory:
+            if self.current_room.has_mineable:
+                pickaxeInteractables = arcade.check_for_collision_with_list(
+                    self.player_sprite, self.scene["pickaxe_inventory"])
+                for pickaxeInteractable in pickaxeInteractables:
+                    getattr(self, pickaxeInteractable.properties['on_interact'])(pickaxeInteractable)
+            if self.current_room.has_inventory:
+                invInteractables = arcade.check_for_collision_with_list(
+                self.player_sprite, self.scene["inventory"])
+                for invInteractable in invInteractables:
+                    getattr(self, invInteractable.properties['on_interact'])(invInteractable)
+        
         return
+
+    def check_pickaxe_condition(self, pickaxeInteractable):
+            if self.player_sprite.currently_inspecting:
+                self.player_sprite.currently_inspecting = False
+                return
+            else:
+                if pickaxeInteractable.properties["pickaxe_condition"] == 3:
+                    self.player_sprite.currently_inspecting = True
+                    self.inspect_message_UI.reset()
+                    self.inspect_text = "I think this is what the blacksmith was talking about... I should mine this"
+             
+                elif pickaxeInteractable.properties["pickaxe_condition"] == 0:
+                    self.player_sprite.currently_inspecting = True
+                    self.inspect_message_UI.reset()
+                    self.inspect_text = "Nice! I think ive gathered everything I can from this rock."
+                else:
+                    self.player_sprite.currently_inspecting = True
+                    self.inspect_message_UI.reset()
+                    self.inspect_text = "I think theres still some ore I can mine in this..."
+                    
+    
+    def check_inv_condition(self, invInteractable):
+        if self.player_sprite.currently_inspecting:
+            self.player_sprite.currently_inspecting = False
+            return
+        else:
+            conditionToBeMet = invInteractable.properties["inv_condition"]
+            if self.achievements[conditionToBeMet] == True:
+                #check if inventory is full or already in inventory - dont add + send error message
+                #for item in inventoryDict:
+                    #if invInteractable.properties["item_id"] == dict[item]:
+                        #don't add to inventory - already in inventory message
+                        #self.player_sprite.currently_inspecting = True
+                        #self.inspect_message_UI.reset()
+                        #self.inspect_text = "You already have this item. You don't need two."
+                    #elif dict[item] == "empty"
+                        #add to inventory
+                        self.player_sprite.currently_inspecting = True
+                        self.inspect_message_UI.reset()
+                        self.inspect_text = invInteractable.properties["item_collection_message"]
+                    #else:
+                        #if inventory full? only remaining option - any way to confirm dict=0 for item in dict if !=empty counter if counter=dict length == empty
+                        #self.player_sprite.currently_inspecting = True
+                        #self.inspect_message_UI.reset()
+                        #self.inspect_text = "Your inventory is full."
+            elif self.achievements[conditionToBeMet] == False:
+                self.player_sprite.currently_inspecting = True
+                self.inspect_message_UI.reset()
+                self.inspect_text = invInteractable.properties["item_refuse_message"]
 
     def character_creator(self, interactable):
         if self.character_creator_open == True:
