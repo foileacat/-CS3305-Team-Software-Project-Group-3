@@ -4,11 +4,11 @@ from constants import *
 def setup(self):
     room = Room()
     room.multiple_entrances = True
-    room.entrances = {"cave_outside" : [19.5*SPRITE_SIZE,4*SPRITE_SIZE], "kitchen" : [16*SPRITE_SIZE,10*SPRITE_SIZE], "bedroom" : [16*SPRITE_SIZE,17*SPRITE_SIZE]}
+    room.entrances = {"cave_outside" : [19.5*SPRITE_SIZE,4*SPRITE_SIZE], "kitchen" : [14*SPRITE_SIZE,5*SPRITE_SIZE], "bedroom" : [3*SPRITE_SIZE,12*SPRITE_SIZE]}
     room.starting_x = SPRITE_SIZE * 11.5
     room.starting_y = SPRITE_SIZE * 2.5
     room.map_file = "assets/maps/living room.tmx"
-
+   
     room.wall_list = arcade.SpriteList()
     # all layers that are spatially hashed are "solid" - aka we can give them collision
     layer_options = {

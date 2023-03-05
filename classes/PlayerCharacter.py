@@ -5,6 +5,8 @@ from classes.PlayerAccessory import PlayerAccessory
 from classes.Character import Character
 from classes.Inventory import Inventory
 from classes.InventoryBar import InventoryBar
+from classes.Item import Item
+import items
 class PlayerCharacter(Character):
 
     """Creates our player"""
@@ -35,6 +37,7 @@ class PlayerCharacter(Character):
         self.currently_npc_interacting = False
         self.taking_damage = False
         self.dead = False
+        self.mining = False
         
         
     def load_textures(self):
@@ -206,6 +209,7 @@ class PlayerCharacter(Character):
             if self.cur_texture > max_frames * use_speed:
                 self.cur_texture = 0
                 self.using_tool = False
+                self.mining = False
                 self.set_hit_box(self.points)
                 return
             frame = self.cur_texture // use_speed
@@ -242,4 +246,16 @@ class PlayerCharacter(Character):
     def die(self):
         self.dead = True
         self.color = arcade.color.BAKER_MILLER_PINK
-    
+
+    def mine(self,pickaxe_interactable):
+        if self.mining:
+            return
+        else:
+            self.mining = True
+            pickaxe_interactable.properties["pickaxe_condition"] -= 1 
+            print(pickaxe_interactable.properties["pickaxe_condition"])
+            asset="assets/customassets/"+pickaxe_interactable.properties['item_id']+".png"
+            ore =Item(id=1,name=pickaxe_interactable.properties["name"],filename=asset,image_width=16,image_height=16)
+            ore.description = "This is the emerald ore the blacksmith needs! I should bring this to him ASAP"
+            self.inventory.add_to_inventory(ore)
+            self.inventory_bar.update_on_add()

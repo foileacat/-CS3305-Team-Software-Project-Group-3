@@ -9,7 +9,8 @@ def setup(self):
     room.starting_x = SPRITE_SIZE * 11.5
     room.starting_y = SPRITE_SIZE * 2.5
     room.map_file = "assets/maps/caveinside.tmx"
-
+    room.has_mineable = True
+    room.has_inventory = True
     room.wall_list = arcade.SpriteList()
     # all layers that are spatially hashed are "solid" - aka we can give them collision
     layer_options = {
@@ -26,14 +27,14 @@ def setup(self):
         
         
     }
-
+   
     # create tilemap, and then a scene from that tilemap. the scene is what we use.
-
+    room.ore_list = arcade.SpriteList()
     room.tile_map = arcade.load_tilemap(
         room.map_file, SPRITE_SCALING, layer_options=layer_options)
     
     room.scene = arcade.Scene.from_tilemap(room.tile_map)
-
+    room.scene.add_sprite_list("Ore List", sprite_list=room.ore_list)
     room.scene.add_sprite("Player", self.player_sprite)
     room.scene.add_sprite_list("Player Stuff", sprite_list = self.player_accessory_list)
 

@@ -64,3 +64,21 @@ class Inventory():
                 self.selected_slot=0
         self.slots[self.selected_slot].selected = True
         
+    def add_to_inventory(self,item):
+        if self.in_inventory(item.name):
+            self.in_inventory(item.name).item.quantity+=1
+            return
+        inserted = False
+        for slot in self.slots:
+            if inserted == False:
+                if slot.occupied == False:
+                    slot.insert_item(item)
+                    inserted = True
+                    return
+                
+    def in_inventory(self,name):
+        for slot in self.slots:
+            if slot.occupied:
+                    if slot.item.name == name:
+                        return slot
+        return False

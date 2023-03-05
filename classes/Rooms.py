@@ -12,6 +12,8 @@ class Room:
        #Lists for coins, monsters, etc.
         self.entrances = []
         self.multiple_entrances = False
+        self.has_mineable = False
+        self.has_inventory = False
         self.has_npcs = False
         self.has_enemies = False
         self.map_file = ""
@@ -34,6 +36,8 @@ class RoomA:
         self.multiple_entrances = False
         self.has_npcs = False
         self.has_enemies = False
+        self.has_mineable = False
+        self.has_inventory = False
         self.map_file = map_file
         self.background = None
         self.wall_list = arcade.SpriteList()

@@ -67,6 +67,13 @@ class InventoryBar():
             if slot.occupied:
                 slot.position_item()
                 self.slot_list.append(sprite=slot.item)
+                if slot.item.quantity > 1:
+                    slot.number_text =arcade.Text(text=str(slot.item.quantity),
+                                     start_x=slot.center_x-15,
+                                     start_y=slot.center_y-15,
+                                     color=(255, 255, 255), 
+                                     font_size=25,
+                                     font_name="NinjaAdventure")
             slot_counter+=1
        
     def move_cursor(self,direction):
@@ -100,7 +107,10 @@ class InventoryBar():
         self.sprite.draw(pixelated=pixelated)
         self.slot_list.draw(pixelated=pixelated)
         self.cursor.draw(pixelated=pixelated)
-
+        for slot in self.slots:
+            if slot.occupied:
+                if slot.item.quantity > 1:
+                    slot.number_text.draw()
         if self.time_since_last_change <=100 and self.current_slot().occupied:
             if self.current_slot().item.is_consumable:
                 self.name_text.color=arcade.color.RADICAL_RED
@@ -129,3 +139,8 @@ class InventoryBar():
         self.current_slot().occupied=False
         self.current_slot().item.kill()
         self.current_slot().item = None
+
+    def update_on_add(self):
+        self.slot_list.clear()
+        self.initialise_slots()
+        self.update_cursor()

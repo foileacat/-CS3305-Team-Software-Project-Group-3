@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="19">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="16" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="21">
  <tileset firstgid="1" source="Sources/atlas_16x.tsx"/>
  <tileset firstgid="769" source="Sources/TilesetHouse.tsx"/>
  <tileset firstgid="1528" source="Sources/TopDownHouse_SmallItems.tsx"/>
@@ -34,24 +34,17 @@
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="12" gid="536" x="142.404" y="234.389" width="50.4676" height="33.6255">
+  <object id="12" gid="536" x="108.72" y="120.803" width="50.4676" height="33.6255">
    <properties>
     <property name="inspect_text" value="The food looks so good and smells so good too."/>
     <property name="item_id" value="kitchen_table"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="13" gid="536" x="236.406" y="288.441" width="25.4002" height="21.0918">
+  <object id="13" gid="536" x="203.113" y="143.912" width="25.4002" height="21.0918">
    <properties>
     <property name="inspect_text" value="Is that? wtf?"/>
     <property name="item_id" value="kitchen_pot"/>
-    <property name="on_interact" value="show_message"/>
-   </properties>
-  </object>
-  <object id="14" gid="536" x="268.132" y="49.5177" width="21.4835" height="18.7417">
-   <properties>
-    <property name="inspect_text" value="wtf is in here?"/>
-    <property name="item_id" value="weird_pot"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
@@ -62,7 +55,7 @@
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="16" gid="536" x="279.882" y="193.263" width="16" height="16">
+  <object id="16" gid="536" x="217.214" y="111.794" width="16" height="16">
    <properties>
     <property name="destination_room" type="int" value="7"/>
     <property name="on_interact" value="room_transition"/>
@@ -72,32 +65,31 @@
   </object>
  </objectgroup>
  <objectgroup id="8" name="Animation">
-  <object id="17" gid="1856" x="248.671" y="178.285" width="16" height="16"/>
-  <object id="18" gid="1856" x="181.333" y="178.667" width="16" height="16"/>
+  <object id="17" gid="1856" x="171.119" y="90.1577" width="16" height="16"/>
  </objectgroup>
- <layer id="1" name="floor" width="20" height="20">
+ <layer id="1" name="floor" width="16" height="11">
   <data encoding="base64" compression="zlib">
-   eJzbxsjAsI1EHIwHk2rWqHmj5g1m80bxKB7FuDEAJca1hw==
+   eJzbxsjAsI1EHIyESdVLDf2jePhgStMBAEBEerk=
   </data>
  </layer>
- <layer id="2" name="walls" width="20" height="20">
+ <layer id="2" name="walls" width="16" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjZ2BgYKciNqcyBpqZAKQTGCgEQDMWsEPwqHmj5o2aN2reUDFvUJfPAEQIMXE=
+   eJxjZ2BgYKcAm1OIgWYkAOkEBhIBUM8Cdgge1T+w+gc0/QAAfHcZJQ==
   </data>
  </layer>
- <layer id="3" name="furniture" width="20" height="20">
+ <layer id="3" name="furniture" width="16" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYEAF/EAswEAcIEatPRA7YBE/xsjAcJwRwu5jwq8WBDJYGBgygfgJE0PDYyAGibGwMjA8Boo9AuJvQLO+Q83bx0SkB6gI6lioa94+KpunSUXzxBkYEtyBmFrmiQHNcqOieYMNBA1AekQHCYzUMccAaE4vEPcBcT8QT8BiLqn+3Qs0Yx8Q76eSG4c6GAzphVgAAFMBFTk=
+   eJxjYEAF/EAswEA+sAdiByzixxgZGI4zQth9TJjyGSwMDJlA/ISJoeExEIPEWFgZGB4DxR4B8Teg3u9Q/fuw6KcU1LFQpn8fDv0JjMTp10TTbwDU1wvEfUDcD8QT8JgjDrTGHYjRxfcC9ewD4v0E3CAG1OuGRT8ucIONWJW0BwCkgxR9
   </data>
  </layer>
- <layer id="4" name="furniture 2" width="20" height="20">
+ <layer id="4" name="furniture 2" width="16" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYCAN3GMjTf0WJoaGzUBMip5WVtLsIASWUdm8UTAKSAU3GRgWrARiapl3C2jWKiqadxto1moizZNiY1jQzQKmE6hl/wFGapk0dMENEsvWwQAAtgkQPw==
+   eJxjYCAN3GPDL7+FiaFhMxCTaOyIAzcZGBasBGJ8aqTYGBZ0s4DpBHS5W0C9qwjoB4EDjNjFbwP1riZC/2AHAEtmDiw=
   </data>
  </layer>
- <layer id="7" name="over layer" width="20" height="20">
+ <layer id="7" name="over layer" width="16" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUIAMlpoF2AXVBLCMDQxwQxzNilx9u/qU3GMnhBwCIZAGK
+   eJxjYBgFtAKxjAwMcUAczzjQLhm+AACKpAEe
   </data>
  </layer>
 </map>
