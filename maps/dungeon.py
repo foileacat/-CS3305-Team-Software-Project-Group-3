@@ -15,9 +15,7 @@ def setup(self):
         "walls": {
             "use_spatial_hash": True,
         },
-        "trees": {
-            "use_spatial_hash": True,
-        }
+    
         
         
         
@@ -33,10 +31,8 @@ def setup(self):
     room.scene.add_sprite("Player", self.player_sprite)
     room.scene.add_sprite_list("Player Stuff", sprite_list = self.player_accessory_list)
 
-    room.scene.move_sprite_list_after("over layer", "Player Stuff")
     # the rooms wall list is used for player collision.
 
     room.wall_list = []
     room.wall_list.append(room.scene["walls"])
-    room.wall_list.append(room.scene["trees"])
     return room
