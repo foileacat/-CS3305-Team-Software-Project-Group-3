@@ -82,7 +82,7 @@ class MyGame(arcade.Window):
         self.rooms = [starting_room.setup(self), main_room.setup(self), cave_outside.setup(self), cave_inside.setup(self), dojo_outside.setup(self), dojo.setup(
             self), blacksmith.setup(self), living_room.setup(self), bedroom.setup(self), kitchen.setup(self), forest.setup(self), enemy_house.setup(self)]
         
-        self.current_room_index = 3
+        self.current_room_index = 1
         self.current_room = self.rooms[self.current_room_index]
         self.scene = self.current_room.scene
 
@@ -149,7 +149,7 @@ class MyGame(arcade.Window):
         if self.current_room.has_enemies:
             for enemy in self.current_room.enemy_list:
             
-                    enemy.draw_hit_box()
+                    
                     if arcade.has_line_of_sight(point_1=self.player_sprite.position,
                                                 point_2=enemy.position,
                                                 walls=self.current_room.wall_sprite_list):
