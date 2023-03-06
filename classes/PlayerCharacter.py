@@ -251,13 +251,16 @@ class PlayerCharacter(Character):
         if self.mining:
             return
         else:
-            self.mining = True
-            pickaxe_interactable.properties["pickaxe_condition"] -= 1 
-            print(pickaxe_interactable.properties["pickaxe_condition"])
-            asset="assets/customassets/"+pickaxe_interactable.properties['item_id']+".png"
-            ore =Item(id=1,name=pickaxe_interactable.properties["name"],filename=asset,image_width=16,image_height=16)
-            ore.description = "This is the emerald ore the blacksmith needs! I should bring this to him ASAP"
-            self.add_to_inventory(ore)
+            if self.current_item().type == "Pickaxe":
+                self.mining = True
+                pickaxe_interactable.properties["pickaxe_condition"] -= 1 
+                print(pickaxe_interactable.properties["pickaxe_condition"])
+                asset="assets/customassets/"+pickaxe_interactable.properties['item_id']+".png"
+                ore =Item(id=1,name=pickaxe_interactable.properties["name"],filename=asset,image_width=16,image_height=16)
+                ore.description = "This is the emerald ore the blacksmith needs! I should bring this to him ASAP"
+                self.add_to_inventory(ore)
+            else:
+                return
 
     def has_item(self,item):
         if self.inventory.in_inventory(item):
