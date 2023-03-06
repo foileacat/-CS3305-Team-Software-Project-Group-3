@@ -6,7 +6,7 @@ def setup(self):
     room.starting_x = SPRITE_SIZE * 11.5
     room.starting_y = SPRITE_SIZE * 2.5
     room.map_file = "assets/maps/forest_hideout.tmx"
-    room.entrances = {"dungeon" : [SPRITE_SIZE*30,SPRITE_SIZE*8],"lonely_house" : [SPRITE_SIZE*7,SPRITE_SIZE*3]}
+    room.entrances = {"dungeon" : [SPRITE_SIZE*33,SPRITE_SIZE*10],"lonely_house" : [SPRITE_SIZE*7,SPRITE_SIZE*3]}
     room.wall_list = arcade.SpriteList(visible=False)
    
     # all layers that are spatially hashed are "solid" - aka we can give them collision
@@ -25,7 +25,7 @@ def setup(self):
     # create tilemap, and then a scene from that tilemap. the scene is what we use.
 
     room.tile_map = arcade.load_tilemap(
-        room.map_file, SPRITE_SCALING, layer_options=layer_options)
+        room.map_file, SPRITE_SCALING, layer_options=layer_options, hit_box_algorithm=None)
     
     room.scene = arcade.Scene.from_tilemap(room.tile_map)
     room.scene.add_sprite("Player", self.player_sprite)

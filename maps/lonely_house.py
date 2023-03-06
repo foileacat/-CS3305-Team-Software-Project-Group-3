@@ -6,7 +6,7 @@ def setup(self):
     room.starting_x = SPRITE_SIZE * 11.5
     room.starting_y = SPRITE_SIZE * 2.5
     room.map_file = "assets/maps/lonely_house.tmx"
-    room.entrances = {"forest_hideout" : [SPRITE_SIZE*8,SPRITE_SIZE*4]}
+    room.entrances = {"forest_hideout" : [SPRITE_SIZE*12,SPRITE_SIZE*7]}
     room.wall_list = arcade.SpriteList()
     # all layers that are spatially hashed are "solid" - aka we can give them collision
     layer_options = {

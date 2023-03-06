@@ -520,7 +520,7 @@ class MyGame(arcade.Window):
         Transitions player from one room to the next.
 
         """
-        print("transition")
+       
         entrance = interactable.properties["transition_id"]
         entrance_coordinates = self.current_room.entrances[entrance]
         self.player_sprite.center_x = entrance_coordinates[0]

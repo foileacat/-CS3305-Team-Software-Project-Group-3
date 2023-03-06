@@ -4,7 +4,7 @@ from constants import *
 def setup(self):
 
     room = Room()
-    room.entrances = {"main_room" : [SPRITE_SIZE*19,SPRITE_SIZE*22],"forest_hideout" : [SPRITE_SIZE*2,SPRITE_SIZE*6]}
+    room.entrances = {"main_room" : [SPRITE_SIZE*19,SPRITE_SIZE*22],"forest_hideout" : [SPRITE_SIZE*5,SPRITE_SIZE*9]}
     room.starting_x = SPRITE_SIZE * 11.5
     room.starting_y = SPRITE_SIZE * 2.5
     room.map_file = "assets/maps/dungeon.tmx"
@@ -24,7 +24,7 @@ def setup(self):
     # create tilemap, and then a scene from that tilemap. the scene is what we use.
 
     room.tile_map = arcade.load_tilemap(
-        room.map_file, SPRITE_SCALING, layer_options=layer_options)
+        room.map_file, SPRITE_SCALING, layer_options=layer_options, hit_box_algorithm=None)
     
     room.scene = arcade.Scene.from_tilemap(room.tile_map)
 
