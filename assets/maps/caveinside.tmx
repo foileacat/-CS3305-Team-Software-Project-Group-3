@@ -116,7 +116,10 @@
  <objectgroup id="15" name="inventory">
   <object id="83" gid="1073741847" x="267.76" y="179.683" width="23.5612" height="25.785">
    <properties>
-    <property name="inv_condition" value="gem_chest_key"/>
+    <property name="collected" type="bool" value="false"/>
+    <property name="conditional" type="bool" value="true"/>
+    <property name="inv_condition" value="cave_chest_key"/>
+    <property name="item_collected_message" value="Already got it"/>
     <property name="item_collection_message" value="YES! I GOT THE GEM!"/>
     <property name="item_id" value="cave_gem"/>
     <property name="item_refuse_message" value="I can't open this, I don't have a key. Maybe the the blacksmith can make me a keep out of these ores./maybe the shrine has the key"/>

@@ -257,5 +257,14 @@ class PlayerCharacter(Character):
             asset="assets/customassets/"+pickaxe_interactable.properties['item_id']+".png"
             ore =Item(id=1,name=pickaxe_interactable.properties["name"],filename=asset,image_width=16,image_height=16)
             ore.description = "This is the emerald ore the blacksmith needs! I should bring this to him ASAP"
-            self.inventory.add_to_inventory(ore)
-            self.inventory_bar.update_on_add()
+            self.add_to_inventory(ore)
+
+    def has_item(self,item):
+        if self.inventory.in_inventory(item):
+            return True
+        else:
+            return False
+        
+    def add_to_inventory(self,item):
+        self.inventory.add_to_inventory(item)
+        self.inventory_bar.update_on_add()

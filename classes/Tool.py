@@ -4,7 +4,7 @@ from constants import *
 
 class Tool(Item):
     def __init__(self,*,
-                id=0, 
+                id=None, 
                 knockback=3,
                 damage=2,
                 name="None",

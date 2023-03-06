@@ -4,7 +4,7 @@ from constants import *
 
 class Consumable(Item):
     def __init__(self,*,
-                id=0, 
+                id=None, 
                 name="None",
                 filename=None, 
                 scale=SPRITE_SCALING, 
