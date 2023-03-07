@@ -22,7 +22,7 @@ def setup_npc_gui(self):
         
         
         self.npc_background_UI_anchor = arcade.gui.UIAnchorWidget(
-            child=self.npc_message_UI_background, align_x=-50, align_y=-300)
+            child=self.npc_message_UI_background, align_x=-50, align_y=-250)
 
         self.gui_npc_manager.add(self.npc_background_UI_anchor)
         

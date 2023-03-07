@@ -40,7 +40,7 @@ class MyGame(arcade.Window):
         self.conversation_list = json_functions.get_one_conversation("npc_dialogue/main_room.json","first_convo")
 
         #self.conversation_list = ["sdsdd","bijfjkdfkj sds sdsd sd d dd sd sdsss sd sd sd sd sdsdssd sds ds dsdsdsds ds d sds dsdsdsds sd s ds dsdsds sd sd sd sdsd sd sd sd s dsdsdsfwrg wrg rg wg ew ew gw gwe g kfjdkjfj", "ckdjfdkjfjk dfjkdjfk", "dksdsjkdjk dkjsdjk", "eskjdsjkd sdkjsdjk"]
-        self.set_minimum_size(MIN_SCREEN_WIDTH,MIN_SCREEN_HEIGHT)
+       # self.set_minimum_size(MIN_SCREEN_WIDTH,MIN_SCREEN_HEIGHT)
         self.frame_count = 0
         self.current_room_index = 0
         self.rooms = None
@@ -59,7 +59,7 @@ class MyGame(arcade.Window):
         self.camera_sprites.resize(int(width), int(height))
         self.camera_gui.resize(int(width), int(height))
         #update_constants(self)
-        reposition_health_bar(self)
+        #reposition_health_bar(self)
         super().on_resize(width, height)
         self.inventory_bar.resize(self)
         print(f"Window resized to: {width}, {height}")
@@ -73,7 +73,7 @@ class MyGame(arcade.Window):
         arcade.load_font(FONT_PATH)
         self.player_sprite = PlayerCharacter()
         self.player_accessory_list = self.player_sprite.accessory_list
-        setup_health_gui(self)
+        #setup_health_gui(self)
         self.inventory_bar = self.player_sprite.inventory_bar
         self.inventory = self.player_sprite.inventory
 
@@ -197,7 +197,7 @@ class MyGame(arcade.Window):
             self.gui_npc_manager.draw()
             center_x = self.width //2
             center_y = self.height //2
-            self.current_npc.generate_floating_head(center_x-283,center_y-280).draw(pixelated=True)
+            self.current_npc.generate_floating_head(center_x-283,center_y-230).draw(pixelated=True)
 
         elif self.character_creator_open == True:
             self.camera_gui.use()
@@ -261,9 +261,9 @@ class MyGame(arcade.Window):
         if self.inventory_open:
             self.camera_gui.use()
             self.draw_inventory()
-        self.camera_gui.use()
-        update_health_bar(self)
-        self.health_bar.draw()
+        #self.camera_gui.use()
+        #update_health_bar(self)
+        #self.health_bar.draw()
 
     def draw_inventory(self):
         screen_center_x = self.width // 2
