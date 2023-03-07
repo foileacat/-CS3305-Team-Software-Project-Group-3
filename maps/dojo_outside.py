@@ -32,7 +32,7 @@ def setup(self):
     # create tilemap, and then a scene from that tilemap. the scene is what we use.
 
     room.tile_map = arcade.load_tilemap(
-        room.map_file, SPRITE_SCALING, layer_options=layer_options)
+        room.map_file, SPRITE_SCALING, layer_options=layer_options,hit_box_algorithm=None)
     
     room.scene = arcade.Scene.from_tilemap(room.tile_map)
 

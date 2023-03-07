@@ -9,7 +9,7 @@ def setup(self):
     room.respawn_x = 100
     room.respawn_y = 200
     room.multiple_entrances = True
-    room.entrances = {"starting_room" : [SPRITE_SIZE * 11.5,SPRITE_SIZE * 2.5], "cave_outside" : [200,600], "dojo_outside": [100,100],"forest": [SPRITE_SIZE*12.5,SPRITE_SIZE*2], "dungeon": [SPRITE_SIZE*5,SPRITE_SIZE*9]}
+    room.entrances = {"starting_room" : [SPRITE_SIZE * 11.5,SPRITE_SIZE * 2.5], "cave_outside" : [200,600], "dojo_outside": [SPRITE_SIZE*13,SPRITE_SIZE*2],"forest": [SPRITE_SIZE*12.5,SPRITE_SIZE*2], "dungeon": [SPRITE_SIZE*5,SPRITE_SIZE*9]}
     room.starting_x = SPRITE_SIZE * 2.5
     room.starting_y = SPRITE_SIZE * 7
     room.map_file = "assets/maps/main_room.tmx"

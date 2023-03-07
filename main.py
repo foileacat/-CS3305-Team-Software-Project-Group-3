@@ -432,6 +432,7 @@ class MyGame(arcade.Window):
                 self.player_sprite, self.scene["NPC"])
             for npc in npcs:
                 self.handle_npc_interaction(npc)
+                
         interactables = arcade.check_for_collision_with_list(
             self.player_sprite, self.scene["interactables"])
         
