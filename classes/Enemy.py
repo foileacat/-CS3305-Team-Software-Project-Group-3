@@ -32,15 +32,18 @@ class Enemy(arcade.Sprite):
         self.knockback = 4
         self.taking_damage = False
         self.health = 10
+        self.dying = False
+        self.dead = False
 
     def on_update(self, delta_time: float = 1 / 60):
         return super().on_update(delta_time)
     
     def update(self):
-        if self.health < 0:
-            self.dead = True
-            #self.kill()
-            self.color = arcade.color.BLACK
+        if self.dead:
+            self.die()
+        elif self.health < 0:
+            self.dying = True
+            #self.color = arcade.color.BLACK
             return
         else:
             if self.following:
@@ -111,6 +114,10 @@ class Enemy(arcade.Sprite):
         else:
             self.character_face_direction = ENEMY_FORWARD_FACING
 
+        if self.dying:
+            self.update_death_frames(6,self.death_textures,5)
+            return
+        
         if self.taking_damage:
             self.update_damage_frames(4,self.damage_textures,5)
             return
@@ -134,6 +141,7 @@ class Enemy(arcade.Sprite):
             
     def load_textures(self):
             self.filename="assets/assetpacks/ninja/Actor/Monsters/Spirit2/SpriteSheet.png"
+            self.death_filename = "assets/assetpacks/ninja/FX/Smoke/Smoke/SpriteSheet.png"
             self.idle_texture_list = self.load_texture_list_vertical(self.filename, 0, 0, 0)
             self.texture_list = []
             for frame in range(4):
@@ -143,6 +151,8 @@ class Enemy(arcade.Sprite):
             for frame in range(4):
                 texture = self.load_texture_list(self.filename, 0, frame, 0)
                 self.damage_textures.append(texture)
+
+            self.death_textures = self.load_death_textures(self.death_filename, 0, 0, 0)
 
     def load_texture_list_vertical(self,filename, row, frame, color_offset):
         """
@@ -193,3 +203,38 @@ class Enemy(arcade.Sprite):
                 frame=max_frames-1
             self.texture = texture_dict[frame][direction]
             return
+    
+    def update_death_frames(self, max_frames, texture_dict,use_speed):
+            self.cur_texture += 1
+            if self.cur_texture > max_frames * use_speed:
+                self.cur_texture = 0
+                self.dying = False
+                self.dead = True
+            frame = self.cur_texture // use_speed
+            direction = self.character_face_direction
+            if frame == max_frames:
+                frame=max_frames-1
+            self.texture = texture_dict[frame]
+            return
+    
+    def load_death_textures(self,filename, row, frame, color_offset):
+        SMOKE_NATIVE_SIZE = 32
+        color_offset = color_offset*ACCESSORIES_OFFSET
+        return [
+            arcade.load_texture(filename, x=color_offset+SMOKE_NATIVE_SIZE*frame, y=SMOKE_NATIVE_SIZE *
+                                row, width=SMOKE_NATIVE_SIZE, height=SMOKE_NATIVE_SIZE,hit_box_algorithm="Simple"),
+            arcade.load_texture(filename, x=color_offset+SMOKE_NATIVE_SIZE*(frame+1), y=SMOKE_NATIVE_SIZE*(
+                row), width=SMOKE_NATIVE_SIZE, height=SMOKE_NATIVE_SIZE,hit_box_algorithm="Simple"),
+            arcade.load_texture(filename, x=color_offset+SMOKE_NATIVE_SIZE*(frame+2), y=SMOKE_NATIVE_SIZE*(
+                row), width=SMOKE_NATIVE_SIZE, height=SMOKE_NATIVE_SIZE,hit_box_algorithm="Simple"),
+            arcade.load_texture(filename, x=color_offset+SMOKE_NATIVE_SIZE*(frame+3), y=SMOKE_NATIVE_SIZE*(
+                row), width=SMOKE_NATIVE_SIZE, height=SMOKE_NATIVE_SIZE,hit_box_algorithm="Simple"),
+            arcade.load_texture(filename, x=color_offset+SMOKE_NATIVE_SIZE*(frame+4), y=SMOKE_NATIVE_SIZE*(
+                row), width=SMOKE_NATIVE_SIZE, height=SMOKE_NATIVE_SIZE,hit_box_algorithm="Simple"),
+            arcade.load_texture(filename, x=color_offset+SMOKE_NATIVE_SIZE*(frame+5), y=SMOKE_NATIVE_SIZE*(
+                row), width=SMOKE_NATIVE_SIZE, height=SMOKE_NATIVE_SIZE,hit_box_algorithm="Simple"),
+        ]
+    
+    def die(self):
+        print("ok")
+        self.kill()

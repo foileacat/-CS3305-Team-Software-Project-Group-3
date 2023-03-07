@@ -150,7 +150,6 @@ class MyGame(arcade.Window):
                 
         if self.current_room.has_enemies:
             for enemy in self.current_room.enemy_list:
-            
                     
                     if arcade.has_line_of_sight(point_1=self.player_sprite.position,
                                                 point_2=enemy.position,

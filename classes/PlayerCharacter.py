@@ -154,7 +154,7 @@ class PlayerCharacter(Character):
         return False
     
     def take_damage(self,enemy):
-        if self.dead:
+        if self.dead or enemy.dying:
             return
         x_diff = self.center_x - enemy.center_x
         y_diff = self.center_y - enemy.center_y-16
