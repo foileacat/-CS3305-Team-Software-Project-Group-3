@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="28" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="21">
+ <tileset firstgid="1" source="../sem2-game/-CS3305-Team-Software-Project-Group-3/assets/maps/Sources/TilesetInteriorFloor.tsx"/>
+ <tileset firstgid="375" source="../sem2-game/-CS3305-Team-Software-Project-Group-3/assets/maps/Sources/TilesetHouse.tsx"/>
+ <tileset firstgid="1134" source="../sem2-game/-CS3305-Team-Software-Project-Group-3/assets/maps/Sources/fire_animation.tmx"/>
+ <objectgroup id="8" name="interactables">
+  <properties>
+   <property name="inspect_text" value="&quot;you have won this round"/>
+   <property name="item_id" value="frog_Stone"/>
+   <property name="on_interact" value="show_message"/>
+  </properties>
+  <object id="19" gid="203" x="128.947" y="58.424" width="50" height="50">
+   <properties>
+    <property name="inspect_text" value="&quot;you have won this round&quot;"/>
+    <property name="item_id" value="frog_stone"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer id="1" name="floor" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt0bcBwkAUREHRg/DQACBsA3jTAN703wXTwSWfiAsm22hfWSuKOg2atGjToUuPPmXQbsCQERVjJkyZMWcRuFuyYs2GLTv2HDhyCtyduXDlxp0HT168+QTuorrkfr/pl/ozul/qz+h+qT+j+6V+z/1yv9zvf/p9ATzCfUk=
+  </data>
+ </layer>
+ <layer id="2" name="walls" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztVEEOwCAI88CP+Ar/f8tOJsS0CgNvNjFZDFJoGWM8dEKFnxswwSfLV63P3PtIv1bk87rOnqPxf7zJ6qrEl0itK281TgV/n2JPcSzW15L1hQFpj95F5i7q5ZoX+Zfxclf/2gfLi2qOzvVuDpkWjO/WXKP7jt2Z+feru2nm6NjLVdzkQ1p2aMeA9PwA53UjoA==
+  </data>
+ </layer>
+ <layer id="3" name="wall dec" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBiZwJ9loF0wfAC5YTkaB6NgFIyCUTAKCAFcdQUAuOoBTQ==
+  </data>
+ </layer>
+ <layer id="4" name="furniture" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYICAT8wMdAXCLPS1bxSQBkbTw8gCo/E9CkYB7cBQzV+D3d0A8FcFPQ==
+  </data>
+ </layer>
+ <layer id="5" name="furniture2" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBh8QJ+FgcGAhX72BQDtCqSjfaNgFIwCyoDJEMuvQ829o2AUDAUAAAjqAYE=
+  </data>
+ </layer>
+ <layer id="6" name="over layer" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUDAdgwjLQLhgFo2AUjAL6AQAeKwA5
+  </data>
+ </layer>
+ <objectgroup id="7" name="Animation">
+  <object id="5" gid="1134" x="334.081" y="103.096" width="16" height="32"/>
+  <object id="6" gid="1134" x="172.495" y="173.002" width="16" height="32"/>
+  <object id="7" gid="1134" x="-0.551001" y="55.537" width="16" height="32"/>
+  <object id="8" gid="1134" x="17.212" y="323.128" width="16" height="32"/>
+  <object id="9" gid="1134" x="373.618" y="250.357" width="16" height="32"/>
+  <object id="10" gid="1134" x="275.062" y="328.858" width="16" height="32"/>
+  <object id="11" gid="1134" x="232.087" y="324.847" width="16" height="32"/>
+  <object id="12" gid="1134" x="144.418" y="100.804" width="16" height="32"/>
+  <object id="13" gid="1134" x="92.848" y="62.986" width="16" height="32"/>
+  <object id="14" gid="1134" x="-4.562" y="207.382" width="16" height="32"/>
+  <object id="15" gid="1134" x="428.626" y="312.814" width="16" height="32"/>
+ </objectgroup>
+</map>
