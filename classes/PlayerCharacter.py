@@ -179,6 +179,7 @@ class PlayerCharacter(Character):
         self.taking_damage=True
         self.health -= enemy.damage
         if self.health < 0:
+            self.health = 0
             self.dying =True
             self.cur_texture = 0
         return

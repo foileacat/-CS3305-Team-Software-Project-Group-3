@@ -4,6 +4,7 @@ from arcade.experimental.lights import Light, LightLayer
 import os
 import random
 import character_lists
+from gui.health_gui import setup_health_gui, update_health_bar
 from gui.inspect_gui import setup_inspect_gui
 from gui.npc_chat_gui import setup_npc_gui
 from gui.setup_inventory import setup_inventory
@@ -72,7 +73,7 @@ class MyGame(arcade.Window):
         arcade.load_font(FONT_PATH)
         self.player_sprite = PlayerCharacter()
         self.player_accessory_list = self.player_sprite.accessory_list
-        
+        setup_health_gui(self)
         self.inventory_bar = self.player_sprite.inventory_bar
         self.inventory = self.player_sprite.inventory
 
@@ -261,6 +262,10 @@ class MyGame(arcade.Window):
         if self.inventory_open:
             self.camera_gui.use()
             self.draw_inventory()
+        self.camera_gui.use()
+        update_health_bar(self)
+        
+        self.health_bar.draw()
 
     def draw_inventory(self):
         screen_center_x = self.width // 2
