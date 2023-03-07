@@ -8,7 +8,7 @@
  <tileset firstgid="771" source="Sources/TilesetHouse.tsx"/>
  <tileset firstgid="1530" source="Sources/TilesetNature.tsx"/>
  <objectgroup id="4" name="interactables">
-  <object id="3" gid="390" x="125.121" y="105.883" width="40.0512" height="16">
+  <object id="3" gid="390" x="124.454" y="97.883" width="40.0512" height="16">
    <properties>
     <property name="destination_room" value="10"/>
     <property name="on_interact" value="room_transition"/>
@@ -19,7 +19,17 @@
  </objectgroup>
  <layer id="1" name="floor" width="18" height="13">
   <data encoding="base64" compression="zlib">
-   eJwTYGBg4KUQCwOxEhArU4hVRs0ZNWeYmRMExJYU4lAgBgCucyA9
+   eJwTYGBg4MWB0QEudcJArATEyhRilVFzRs0ZZuYEAbElDowOcKkLBWIA1VQfJQ==
+  </data>
+ </layer>
+ <layer id="7" name="walls" width="18" height="13">
+  <data encoding="base64" compression="zlib">
+   eJyzZGVgsAJiXgZMrIyGsamxhOqPAuJoICYXwPQrkW8EHKgw0MecF4wMDC+h+BUj+eb8QdL7bxCYI8CEYAsx4VZHr3AeCHNg6ZpcgJ4vLBkwMXr+wqYGph8Aa7YTAQ==
+  </data>
+ </layer>
+ <layer id="2" name="furniture" width="18" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjYMANVjCh4lFAG/CHkYHhJRT/Y6TMHBigxBwBpLgWGo13mgFS8hcAt6ELQw==
   </data>
  </layer>
  <layer id="6" name="over layer" width="18" height="13">
@@ -27,19 +37,9 @@
    eJxjYBgFo2AUDHYAAAOoAAE=
   </data>
  </layer>
- <layer id="7" name="walls" width="18" height="13">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUDHYAAAOoAAE=
-  </data>
- </layer>
- <layer id="2" name="furniture" width="18" height="13">
-  <data encoding="base64" compression="zlib">
-   eJyzZGVgsAJibGAFEyrGBiyh+qOAOBqHOcQASvUPdvCJEbfcC6DcSyh+hUcdyAw2HPEAAn+A8n+h+B8ec0BmSOExRwAoJwjFQnjU4TNjqANLPPmCFP340jUx+QumHwCoIBRb
-  </data>
- </layer>
  <layer id="3" name="furniture 2" width="18" height="13">
   <data encoding="base64" compression="zlib">
-   eJxjYMANepkZGPqYEfQoGDngLwsEjwLaAVLyFwBtmQaH
+   eJxjYMANepkZGPqYEfQoQAXCLAwM5lAswkK+OWJAvX8ZIViMAnNMkMwxpcAcEPjLAsGjgHaAlPwFAA+KC8k=
   </data>
  </layer>
  <objectgroup id="5" name="Animation">

@@ -37,6 +37,7 @@ class Npc(Character):
         self.shirt = PlayerAccessory(character_lists.tops,1,3)
         self.bottoms = PlayerAccessory(character_lists.bottoms,2,6)
         self.full_body = PlayerAccessory(character_lists.full_body,4,6)
+        self.full_body.alpha = 0
         self.shoes = PlayerAccessory(character_lists.shoes,0,1)
         self.full_body.alpha = 0
         self.populate_accessory_list()
@@ -129,3 +130,26 @@ class Npc(Character):
         
     def end_convo(self):
         self.conversation_index+=1
+
+    def change_appearance(self,hair_tuple,shirt_tuple,bottoms_tuple,full_body_tuple,shoes_tuple):
+        if full_body_tuple != False:
+            self.full_body = PlayerAccessory(character_lists.full_body,full_body_tuple[0],full_body_tuple[1])
+        else:
+            self.full_body = PlayerAccessory(character_lists.full_body,0,0)
+            self.full_body.alpha = 0
+            self.full_body.hide = True
+        if hair_tuple != False:
+            self.hair = PlayerAccessory(character_lists.hairstyles,hair_tuple[0],hair_tuple[1])
+        else:
+            self.hair = PlayerAccessory(character_lists.hairstyles,0,0)
+            self.hair.alpha = 0
+            self.hair.hide = True
+        self.shirt = PlayerAccessory(character_lists.tops,shirt_tuple[0],shirt_tuple[1])
+        if bottoms_tuple !=False:
+            self.bottoms = PlayerAccessory(character_lists.bottoms,bottoms_tuple[0],bottoms_tuple[1])
+        else:
+            self.bottoms = PlayerAccessory(character_lists.bottoms,0,0)
+            self.bottoms.alpha = 0
+            self.bottoms.hide = True
+        self.shoes = PlayerAccessory(character_lists.shoes,shoes_tuple[0],shoes_tuple[1])
+        self.populate_accessory_list()

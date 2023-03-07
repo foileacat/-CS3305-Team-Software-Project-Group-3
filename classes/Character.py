@@ -56,6 +56,7 @@ class Character(arcade.Sprite):
             self.pickaxe_textures.append(texture)
     
     def populate_accessory_list(self):
+        self.accessory_list.clear()
         self.accessory_list.append(self.shirt)
         self.accessory_list.append(self.bottoms)
         self.accessory_list.append(self.hair)
@@ -156,7 +157,10 @@ class Character(arcade.Sprite):
         self.full_body_sprite = arcade.Sprite(filename=self.full_body.file_path,image_x=self.full_body.color_offset*ACCESSORIES_OFFSET,scale=scale,image_width=32,image_height=28,center_x=x,center_y=y)
         list.append(self.head_sprite)
         list.append(self.shirt_sprite)
-        list.append(self.hair_sprite)
+        if self.hair.hide == False:
+            list.append(self.hair_sprite)
+        if self.full_body.hide == False:
+            list.append(self.full_body_sprite)
         return list
     
     def is_holding_item(self):

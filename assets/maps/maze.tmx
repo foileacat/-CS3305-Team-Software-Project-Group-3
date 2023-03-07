@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="28" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="24">
+ <tileset firstgid="1" source="Sources/TilesetInteriorFloor.tsx"/>
+ <tileset firstgid="375" source="Sources/TilesetHouse.tsx"/>
+ <tileset firstgid="1134" source="Sources/fire_animation.tmx"/>
+ <tileset firstgid="1140" source="Sources/TilesetElement.tsx"/>
+ <objectgroup id="8" name="interactables">
+  <properties>
+   <property name="inspect_text" value="&quot;you have won this round"/>
+   <property name="item_id" value="frog_Stone"/>
+   <property name="on_interact" value="show_message"/>
+  </properties>
+  <object id="19" gid="203" x="134.947" y="59.0907" width="50" height="50">
+   <properties>
+    <property name="inspect_text" value="&quot;you have won this round&quot;"/>
+    <property name="item_id" value="frog_stone"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="23" gid="203" x="6.947" y="267.757" width="50" height="50">
+   <properties>
+    <property name="inspect_text" value="Find you way to the end to prove your courage"/>
+    <property name="item_id" value="frog_stone"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="21" gid="1287" x="78.3333" y="38.8333" width="50.3333" height="22">
+   <properties>
+    <property name="destination_room" type="int" value="5"/>
+    <property name="on_interact" value="room_transition"/>
+    <property name="transition_direction" type="int" value="0"/>
+    <property name="transition_id" value="dojo"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer id="1" name="floor" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt0bcBwkAUREHRg/DQACBsA3jTAN703wXTwSWfiAsm22hfWSuKOg2atGjToUuPPmXQbsCQERVjJkyZMWcRuFuyYs2GLTv2HDhyCtyduXDlxp0HT168+QTuorrkfr/pl/ozul/qz+h+qT+j+6V+z/1yv9zvf/p9ATzCfUk=
+  </data>
+ </layer>
+ <layer id="2" name="walls" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzFVdsJgDAMFHSDoo6hIKhbqOD+QziBERRiuTbnAz24r6S5vNo2WZI0HnNhISyB7SlnwFbYCfuA/S43vS/xh95btfv+S4p9UNxh17yCzX9QZxw4H9LTNt0DH7qGWCzGh+mrroGZDZsTg1j/Gb2jV6yeNRvLx2VnX0sb9V7vgKWn47B3xM9Nn2X1QvEsO5rnUz20i7HcDr1KWJO7zSJW3yicyL1ggWKEduDqW4bw95+E7tcXePP/ZrgC6iM6PA==
+  </data>
+ </layer>
+ <layer id="5" name="furniture2" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYICAT8wMFANSzBBmwS2nD5QzwCNPjBmkgACgOYFUMgsX8Kex+aNgFIyCUTAKBiegRv06CjABAP2qBHE=
+  </data>
+ </layer>
+ <layer id="6" name="over layer" width="28" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF1AT+LAwMxlgwSHykAFgY0BoYk2EPLC6Q48ZkmMTNUPQHuXnEhIW8+B9MAL2MIAZgCyNs5c1QTAu0Buj5fqSUybjqJEIYX12GSw+9AQChuA/V
+  </data>
+ </layer>
+ <objectgroup id="7" name="Animation">
+  <object id="5" gid="1134" x="335.414" y="102.429" width="16" height="32"/>
+  <object id="6" gid="1134" x="172.495" y="173.002" width="16" height="32"/>
+  <object id="7" gid="1134" x="-0.551001" y="55.537" width="16" height="32"/>
+  <object id="8" gid="1134" x="15.212" y="298.461" width="16" height="32"/>
+  <object id="9" gid="1134" x="370.285" y="248.357" width="16" height="32"/>
+  <object id="10" gid="1134" x="335.729" y="296.858" width="16" height="32"/>
+  <object id="11" gid="1134" x="240.754" y="298.18" width="16" height="32"/>
+  <object id="12" gid="1134" x="143.751" y="90.804" width="16" height="32"/>
+  <object id="13" gid="1134" x="92.848" y="62.986" width="16" height="32"/>
+  <object id="14" gid="1134" x="-2.562" y="214.715" width="16" height="32"/>
+  <object id="15" gid="1134" x="431.959" y="249.481" width="16" height="32"/>
+ </objectgroup>
+</map>

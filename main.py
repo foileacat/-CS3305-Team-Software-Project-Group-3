@@ -82,9 +82,9 @@ class MyGame(arcade.Window):
         setup_npc_gui(self)
         self.rooms = [starting_room.setup(self), main_room.setup(self), cave_outside.setup(self), cave_inside.setup(self), dojo_outside.setup(self), dojo.setup(
             self), blacksmith.setup(self), living_room.setup(self), bedroom.setup(self), kitchen.setup(self), forest.setup(self), enemy_house.setup(self),
-            dungeon.setup(self), forest_hideout.setup(self), lonely_house.setup(self)]
+            dungeon.setup(self), forest_hideout.setup(self), lonely_house.setup(self),maze.setup(self)]
         
-        self.current_room_index = 1
+        self.current_room_index = 14
         self.current_room = self.rooms[self.current_room_index]
         self.scene = self.current_room.scene
 
@@ -432,7 +432,7 @@ class MyGame(arcade.Window):
                 self.player_sprite, self.scene["NPC"])
             for npc in npcs:
                 self.handle_npc_interaction(npc)
-                
+
         interactables = arcade.check_for_collision_with_list(
             self.player_sprite, self.scene["interactables"])
         
@@ -596,8 +596,6 @@ class MyGame(arcade.Window):
          
 
     def on_update(self, delta_time):
-        print("x= ",self.player_sprite.center_x)
-        print("y= ",self.player_sprite.center_y)
         if self.player_sprite.dead:
             if self.respawn_timer > 100:
                 self.player_sprite.respawn(self)
@@ -618,6 +616,33 @@ class MyGame(arcade.Window):
         self.scroll_to_player()
 
     def scroll_to_player(self):
+        """
+        Manages scrolling camera. Runs constantly from the on_update function
+        """
+        # Scroll left
+        left_boundary = self.view_left + VIEWPORT_MARGIN
+        if self.player_sprite.left < left_boundary:
+            self.view_left -= left_boundary - self.player_sprite.left
+
+        # Scroll right
+        right_boundary = self.view_left + self.width - VIEWPORT_MARGIN
+        if self.player_sprite.right > right_boundary:
+            self.view_left += self.player_sprite.right - right_boundary
+
+        # Scroll up
+        top_boundary = self.view_bottom + self.height - VIEWPORT_MARGIN
+        if self.player_sprite.top > top_boundary:
+            self.view_bottom += self.player_sprite.top - top_boundary
+
+        # Scroll down
+        bottom_boundary = self.view_bottom + VIEWPORT_MARGIN
+        if self.player_sprite.bottom < bottom_boundary:
+            self.view_bottom -= bottom_boundary - self.player_sprite.bottom
+
+        # Scroll to the proper location
+        position = self.view_left, self.view_bottom
+        self.camera_sprites.move_to(position, CAMERA_SPEED)
+    def focus_player(self):
         """
         Manages scrolling camera. Runs constantly from the on_update function
         """
