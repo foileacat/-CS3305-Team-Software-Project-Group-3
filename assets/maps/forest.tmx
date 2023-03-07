@@ -19,7 +19,7 @@
     <property name="transition_id" value="enemy_house"/>
    </properties>
   </object>
-  <object id="5" gid="1772" x="189.667" y="281.667" width="37.6667" height="19.3333">
+  <object id="5" gid="1772" x="182.667" y="283.667" width="50.1667" height="19.3333">
    <properties>
     <property name="destination_room" value="1"/>
     <property name="on_interact" value="room_transition"/>

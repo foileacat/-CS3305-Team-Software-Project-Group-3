@@ -32,40 +32,30 @@ def setup(self):
         room.map_file, SPRITE_SCALING, layer_options=layer_options)
     room.scene = arcade.Scene.from_tilemap(room.tile_map)
 
-   #commented out from zainab_json
-    room.npc = Npc(500,500,"boberta",12, "npc_dialogue/main_room.json")
-   # room.scene.add_sprite("NPC", room.npc)
-
-
-    #room.npc = Npc(500,500,"boberta",12)
+   #
     
     room.npc_list = arcade.SpriteList()
-  
+    room.npc = Npc(500,500,"boberta",12, "npc_dialogue/main_room.json")
     room.npc_list.append(room.npc)
-    
+    room.scene.add_sprite_list("NPC", sprite_list=room.npc_list)
+    room.scene.add_sprite_list("NPC Stuff", sprite_list = room.npc.accessory_list)
     room.enemy = Enemy(500,300,"bobesrta",12)
     room.enemies = []
     room.enemies.append(room.enemy)
     room.enemy_list = arcade.SpriteList()
     room.enemy_list.append(room.enemy)
-    #room.scene.add_sprite("NPC", room.npc)
-    room.scene.add_sprite_list("Enemy", sprite_list=room.enemy_list)
-    #room.scene.add_sprite("NPC", room.npc)
-
-    room.scene.add_sprite_list("NPC", sprite_list=room.npc_list)
-    room.scene.add_sprite_list("NPC Stuff", sprite_list = room.npc.accessory_list)
-
-    room.scene.add_sprite_list("NPC Stuff", sprite_list = room.npc.accessory_list)
-    room.scene.add_sprite("Player", self.player_sprite)
-    room.scene.add_sprite_list("Player Stuff", sprite_list = self.player_accessory_list)
-    room.scene.move_sprite_list_after("over layer", "Player Stuff")
-    room.wall_list = []
     room.wall_sprite_list = arcade.SpriteList(use_spatial_hash=True)
 
     room.wall_sprite_list.extend(room.scene["walls"])
     room.wall_sprite_list.extend(room.scene["solids"])
 
+    room.scene.add_sprite_list("Enemy", sprite_list=room.enemy_list)
+   
+    room.scene.add_sprite("Player", self.player_sprite)
+    room.scene.add_sprite_list("Player Stuff", sprite_list = self.player_accessory_list)
+    room.scene.move_sprite_list_after("over layer", "Player Stuff")
+    room.wall_list = []
+
     room.wall_list.append(room.scene["walls"])
     room.wall_list.append(room.scene["solids"])
-    #room.wall_list.append(room.scene["Enemy"])
     return room

@@ -7,7 +7,7 @@ def setup(self):
     room = Room()
     room.has_npcs = True
     room.multiple_entrances = True
-    room.entrances = {"main_room" : [10*SPRITE_SIZE,20*SPRITE_SIZE], "dojo" : [100,700]}
+    room.entrances = {"main_room" : [10*SPRITE_SIZE,20*SPRITE_SIZE], "dojo" : [SPRITE_SIZE*14,SPRITE_SIZE*2]}
     room.starting_x = SPRITE_SIZE * 11.5
     room.starting_y = SPRITE_SIZE * 2.5
     room.map_file = "assets/maps/outside_dojo.tmx"
@@ -35,10 +35,14 @@ def setup(self):
         room.map_file, SPRITE_SCALING, layer_options=layer_options)
     
     room.scene = arcade.Scene.from_tilemap(room.tile_map)
-    room.npc = Npc(500,500,"sammy",12, "npc_dialogue/npc_dojo.json")
-    room.scene.add_sprite("Player", self.player_sprite)
-    room.scene.add_sprite("NPC", room.npc)
+
+    room.npc_list = arcade.SpriteList()
+    room.npc =  Npc(500,400,"Sensei",12, "npc_dialogue/generic_npc.json")
+    room.npc_list.append(room.npc)
+    room.scene.add_sprite_list("NPC", sprite_list=room.npc_list)
     room.scene.add_sprite_list("NPC Stuff", sprite_list = room.npc.accessory_list)
+
+    room.scene.add_sprite("Player", self.player_sprite)
     room.scene.add_sprite_list("Player Stuff", sprite_list = self.player_accessory_list)
 
     room.scene.move_sprite_list_after("over layer", "Player Stuff")

@@ -1,61 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="28" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="62">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="28" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="66">
  <tileset firstgid="1" source="Sources/TilesetHouse.tsx"/>
  <tileset firstgid="760" source="Sources/Elements.tsx"/>
  <tileset firstgid="787" source="Sources/TilesetInteriorFloor.tsx"/>
  <tileset firstgid="1161" source="Sources/Hills.tsx"/>
- <tileset firstgid="1197" source="Sources/Elements.tsx"/>
- <tileset firstgid="1224" source="Sources/Basic Furniture.tsx"/>
- <tileset firstgid="1278" source="Sources/TilesetNature.tsx"/>
- <tileset firstgid="1614" source="Sources/Frog SpriteSheet.tsx"/>
- <tileset firstgid="1616" source="Sources/Wooden House.tsx"/>
- <tileset firstgid="1838" source="Sources/TilesetRelief.tsx"/>
- <objectgroup id="6" name="Animation">
-  <object id="58" gid="1482" x="384.047" y="320.515" width="16" height="16"/>
- </objectgroup>
- <layer id="2" name="floor" width="28" height="20" locked="1">
-  <data encoding="base64" compression="zlib">
-   eJzt00sSwVAUhOFUWUIQ7MAj2IG3HSDC6rAILAJL8k9uVdcd3DtxBlEZfKPu0ek6WSNJOuiihxRNtNBG9uM8xxgTTNHHAEOMDPIV1thgixnmWGBpkB9R4oQzdtjjgMIgt97Lz/XeF1xxi+yhvdBe2nO53vuOB56RPbQX2kt7Ltd7v/DGJ7KH9kJ7ac/l1nvV//e//2exl59b7+Xn1nv5ef1/1f6/L44wjIU=
-  </data>
- </layer>
- <layer id="1" name="walls" width="28" height="20">
-  <data encoding="base64" compression="zlib">
-   eJwzYmJgMIJiMSAWB+IoII4GYmMgNgHiMCAOB2IYiACyI5H4MHmYeph+mHlGSFickYFuAGTXqH2j9g1m++gJ6G3fQIDhHKYjIT8Md/s+IGF08BEo9okE9+BSj2yHIBMCfwXyvwGxJZBtBcRCQCwMxKZAbIZUn5sD2RZIfJg8TD1MP8w8ZDuQ63p6tCcAWh0esA==
-  </data>
- </layer>
- <layer id="5" name="furniture" width="28" height="20">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMJiAHxsDgz/bQLtiYMBI9vsoIA0AAIqhAVM=
-  </data>
- </layer>
- <layer id="4" name="furniture 2" width="28" height="20">
-  <data encoding="base64" compression="zlib">
-   eJzt1tsNQDAUgOGmOzEKMzEIEvcpkLhP5B+AqqYSxJ98D9KTPjTngRD6BQgV308vQowEqRQiQ44CJSrU0mxurwYtOvTMDxgxYcaCVZrN/X2vs32yPae7T7bn9nLYb1dePzPN4z7/4E7V2Ru74/1Ufe39/u7Jxv/EBlVMNok=
-  </data>
- </layer>
+ <tileset firstgid="1197" source="Sources/Basic Furniture.tsx"/>
+ <tileset firstgid="1251" source="Sources/TilesetNature.tsx"/>
+ <tileset firstgid="1587" source="Sources/Frog SpriteSheet.tsx"/>
+ <tileset firstgid="1589" source="Sources/Wooden House.tsx"/>
+ <tileset firstgid="1624" source="Sources/TilesetRelief.tsx"/>
+ <tileset firstgid="1864" source="Sources/TilesetElement.tsx"/>
+ <tileset firstgid="2104" source="Sources/fire_animation.tmx"/>
  <objectgroup id="3" name="interactables">
-  <object id="53" gid="953" x="58.9006" y="117.942" width="26.2924" height="28.6316">
-    <properties>
+  <object id="53" gid="953" x="58.9006" y="149.942" width="26.2924" height="28.6316">
+   <properties>
     <property name="inspect_text" value="the    battle    of    wisdom"/>
-    <property name="on_interact" value="show_message"/>
     <property name="item_id" value="5"/>
+    <property name="on_interact" value="show_message"/>
    </properties>
-   </object>
-  <object id="55" gid="953" x="217.965" y="115.135" width="27.6959" height="23.4854">
-    <properties>
+  </object>
+  <object id="55" gid="953" x="217.965" y="147.135" width="27.6959" height="23.4854">
+   <properties>
     <property name="inspect_text" value="the    battle    of    strength"/>
-    <property name="on_interact" value="show_message"/>
     <property name="item_id" value="5"/>
+    <property name="on_interact" value="show_message"/>
    </properties>
-   </object>
-  <object id="56" gid="953" x="377.497" y="117.942" width="32.3743" height="26.2924">
-    <properties>
+  </object>
+  <object id="56" gid="953" x="377.497" y="149.942" width="32.3743" height="26.2924">
+   <properties>
     <property name="inspect_text" value="the    battle    of    courage"/>
-    <property name="on_interact" value="show_message"/>
     <property name="item_id" value="5"/>
+    <property name="on_interact" value="show_message"/>
    </properties>
-   </object>
-  <object id="61" gid="1963" x="172" y="281.333" width="100" height="16">
+  </object>
+  <object id="61" gid="1749" x="173.233" y="350.406" width="100" height="16">
    <properties>
     <property name="destination_room" type="int" value="4"/>
     <property name="on_interact" value="room_transition"/>
@@ -64,9 +42,33 @@
    </properties>
   </object>
  </objectgroup>
- <layer id="7" name="over layer" width="28" height="20">
+ <layer id="2" name="floor" width="28" height="22">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApGwSgYWgAACMAAAQ==
+   eJzt08kJgjEYhOHAX4K7HbjbgbsduFudWoRahFqS7yUw5JCA+B2UBJ7TzCnD59x/v1rhXB0NNFFCGRVUi+/nPfQxwBAttNFB1yCfYY4FlhhhjAmmBvkOexxwxAprbLA1yK33CnP97xPOuCT20F5sL+35XP/7ihvuiT20F9tLez7X/37giVdiD+3F9tKez/P95fv79P4s9gpz673C3HqvMM/399v39waPEIyF
   </data>
  </layer>
+ <layer id="8" name="floor2" width="28" height="22">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4B8cGKA1I2CUUAMGE2fo2AUjIKhCgC6tQSx
+  </data>
+ </layer>
+ <layer id="1" name="walls" width="28" height="22">
+  <data encoding="base64" compression="zlib">
+   eJztlk0KwkAMhWtvUAV7D+v/QbTVy8yRR0XXfkIfDUO7aEVwkQcfJJkkD2aVOMuy2JLqRu3eUx/SUH80HkXe8SR/wYH4CHNYwAa2eTe/I96bXO/qZzawI2if9VgZllDCBa5QwRpOcDb7a+LG5HpXP7OBHUH7rEc54r++1cfL/dzP/dzP/dzvH/z67ohfSfdEKt0TU6V7Iq1PvSceLdKYe+INRtInZw==
+  </data>
+ </layer>
+ <layer id="5" name="furniture" width="28" height="22">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFMNAJxF14+KMAFRyH0ieB+BITQ8NFIL4AxOeB+BwQnwXiM0CMrA7IZwCKMwDlGYDqGIDqGYD6QPpRzBsFo4BSQGx6ora6wQDCgPkpnIl0OXoBYzYGBhO2gXUDuYDS8BvKfh/q4C07djYtADXaEwDAsiF8
+  </data>
+ </layer>
+ <layer id="7" name="over layer" width="28" height="22">
+  <data encoding="base64" compression="zlib">
+   eJztk2EKgkAQRse9gXmWBDtdpzEhrbxZCvm7JzKQ4mJi0CLz4ME68838kF0RYy/keMECayfnB97xhhWWeMXPHN9CXegLOSEvzPXzo32GsZVv79OvcyFw5D2lbn3PWMb+X1g8o8EpDbV2pu7Dl5/uj93gi1qHGecTHjBxy/dD+5rXed2n+//BG5zcJ/4=
+  </data>
+ </layer>
+ <objectgroup id="6" name="Animation">
+  <object id="62" gid="2104" x="239" y="334" width="16" height="32"/>
+  <object id="63" gid="2104" x="191.667" y="333" width="16" height="32"/>
+ </objectgroup>
 </map>

@@ -595,6 +595,8 @@ class MyGame(arcade.Window):
          
 
     def on_update(self, delta_time):
+        print("x= ",self.player_sprite.center_x)
+        print("y= ",self.player_sprite.center_y)
         if self.player_sprite.dead:
             if self.respawn_timer > 100:
                 self.player_sprite.respawn(self)
