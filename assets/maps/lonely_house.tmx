@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="14" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="21" nextobjectid="81">
+ <editorsettings>
+  <export format="json"/>
+ </editorsettings>
+ <tileset firstgid="1" source="Sources/TilesetInteriorFloor.tsx"/>
+ <tileset firstgid="375" source="Sources/TilesetWallSimple.tsx"/>
+ <tileset firstgid="485" source="Sources/TilesetInterior.tsx"/>
+ <tileset firstgid="805" source="Sources/Elements.tsx"/>
+ <tileset firstgid="832" source="Sources/TilesetElement.tsx"/>
+ <tileset firstgid="1072" source="Sources/TilesetHouse.tsx"/>
+ <tileset firstgid="1831" source="Sources/TilesetRelief.tsx"/>
+ <tileset firstgid="2071" source="Sources/Basic Furniture.tsx"/>
+ <tileset firstgid="2125" source="Sources/TopDownHouse_FurnitureState1.tsx"/>
+ <tileset firstgid="2359" source="Sources/atlas_16x.tsx"/>
+ <tileset firstgid="3127" source="Sources/fire_1.tsx"/>
+ <tileset firstgid="3133" name="animation_test" tilewidth="16" tileheight="16" tilecount="4" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <image width="16" height="16" source="../assetpacks/ninja/Items/Food/Beaf.png"/>
+   <animation>
+    <frame tileid="0" duration="500"/>
+    <frame tileid="1" duration="500"/>
+    <frame tileid="2" duration="500"/>
+    <frame tileid="3" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="1">
+   <image width="16" height="16" source="../assetpacks/ninja/Items/Food/Calamari.png"/>
+  </tile>
+  <tile id="2">
+   <image width="16" height="16" source="../assetpacks/ninja/Items/Food/FortuneCookie.png"/>
+  </tile>
+  <tile id="3">
+   <image width="16" height="16" source="../assetpacks/ninja/Items/Food/Fish.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="3137" source="Sources/fire_animation.tmx"/>
+ <tileset firstgid="3143" source="Sources/Wooden House.tsx"/>
+ <tileset firstgid="3178" source="Sources/TilesetNature.tsx"/>
+ <objectgroup id="12" name="Animation">
+  <object id="73" gid="3220" x="189.764" y="93.4346" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="6" name="interactables">
+  <object id="74" gid="3182" x="112.373" y="166.313" width="15.0248" height="16">
+   <properties>
+    <property name="destination_room" type="int" value="13"/>
+    <property name="on_interact" value="room_transition"/>
+    <property name="transition_direction" type="int" value="0"/>
+    <property name="transition_id" value="forest_hideout"/>
+   </properties>
+  </object>
+  <object id="75" gid="944" x="90.1475" y="160.25" width="20.8525" height="30.1444">
+   <properties>
+    <property name="on_interact" value="renovate"/>
+    <property name="renovate_num" value="1"/>
+   </properties>
+  </object>
+  <object id="76" gid="944" x="129.27" y="160.25" width="21.1444" height="28.8323">
+   <properties>
+    <property name="on_interact" value="renovate"/>
+    <property name="renovate_num" value="2"/>
+   </properties>
+  </object>
+  <object id="77" gid="952" x="158.75" y="79.5" width="34.75" height="32">
+   <properties>
+    <property name="on_interact" value="renovate"/>
+    <property name="renovate_num" value="3"/>
+   </properties>
+  </object>
+  <object id="78" gid="1517" x="192.333" y="142.667" width="16" height="16">
+   <properties>
+    <property name="on_interact" value="renovate"/>
+    <property name="renovate_num" value="4"/>
+   </properties>
+  </object>
+  <object id="79" gid="1517" x="175.333" y="160.333" width="16" height="16">
+   <properties>
+    <property name="on_interact" value="renovate"/>
+    <property name="renovate_num" value="5"/>
+   </properties>
+  </object>
+  <object id="80" gid="1434" x="31.6667" y="146.333" width="18.6667" height="21.3333">
+   <properties>
+    <property name="on_interact" value="renovate"/>
+    <property name="renovate_num" value="6"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer id="1" name="floor" width="14" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,35,35,35,35,35,954,955,35,0,
+0,0,35,35,35,35,35,35,35,35,35,35,35,0,
+0,0,35,35,35,35,35,35,35,35,35,35,35,0,
+0,0,35,35,35,35,35,35,35,35,35,35,35,0,
+0,0,35,35,35,35,35,35,35,35,35,35,35,0,
+0,0,35,35,35,35,35,35,35,35,35,35,35,0,
+0,0,35,35,35,35,35,35,35,35,35,35,35,0,
+0,0,35,35,35,35,35,35,35,35,35,35,35,0
+</data>
+ </layer>
+ <layer id="5" name="walls" width="14" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,3150,3151,3151,3151,3151,3151,3151,3151,3151,3151,3151,3151,3152,
+0,3157,0,0,0,0,0,0,0,0,0,0,0,3159,
+0,3157,0,0,0,0,0,0,0,0,0,0,0,3159,
+0,3157,0,0,0,0,0,0,0,0,0,0,0,3159,
+0,3157,0,0,0,0,0,0,0,0,0,0,0,3159,
+0,3157,0,0,0,0,0,0,0,0,0,0,0,3159,
+0,3157,0,0,0,0,0,0,0,0,0,0,0,3159,
+0,3164,3165,3165,3165,3165,3165,3153,3165,3165,3165,3165,3165,3166
+</data>
+ </layer>
+ <layer id="3" name="wall dec" width="14" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,998,0,0,0,0,0,0,0,0,2532,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,978,0,978,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="2" name="furniture" width="14" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,3040,0,0,0,0,0,0,0,954,955,0,0,
+0,0,3088,0,0,0,0,0,0,0,970,971,0,0,
+0,0,2092,0,0,0,0,2710,0,0,0,0,0,0,
+0,0,0,0,0,0,2662,2704,2758,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,1434,0,0,0,0,0,0,0,0,0,1486,0,
+0,0,0,1431,1432,0,978,0,978,0,0,1486,1585,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="20" name="renovation6" width="14" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,1433,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="14" name="renovation1" width="14" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,944,0,0,0,0,0,0,0,
+0,0,0,0,0,0,960,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="19" name="renovation5" width="14" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,1519,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="15" name="renovation2" width="14" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,944,0,0,0,0,0,
+0,0,0,0,0,0,0,0,960,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="18" name="renovation4" width="14" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,1517,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="4" name="furniture 2" width="14" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,1552,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="16" name="renovation3" width="14" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,952,953,0,0,
+0,0,0,0,0,0,0,0,0,0,968,969,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="13" name="over layer" width="14" height="11">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>

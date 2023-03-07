@@ -80,7 +80,8 @@ class MyGame(arcade.Window):
         setup_character_creator_gui(self)
         setup_npc_gui(self)
         self.rooms = [starting_room.setup(self), main_room.setup(self), cave_outside.setup(self), cave_inside.setup(self), dojo_outside.setup(self), dojo.setup(
-            self), blacksmith.setup(self), living_room.setup(self), bedroom.setup(self), kitchen.setup(self), forest.setup(self), enemy_house.setup(self)]
+            self), blacksmith.setup(self), living_room.setup(self), bedroom.setup(self), kitchen.setup(self), forest.setup(self), enemy_house.setup(self),
+            dungeon.setup(self), forest_hideout.setup(self), lonely_house.setup(self)]
         
         self.current_room_index = 1
         self.current_room = self.rooms[self.current_room_index]
@@ -447,7 +448,13 @@ class MyGame(arcade.Window):
                     getattr(self, invInteractable.properties['on_interact'])(invInteractable)
         
         return
-
+    
+    def renovate(self, interactable):
+        renovation_dict = {1:"renovation1", 2:"renovation2", 3:"renovation3", 4:"renovation4", 5:"renovation5", 6:"renovation6", 7:"renovation7", 8:"renovation8", 9:"renovation9"}
+        renovation = renovation_dict[int(interactable.properties["renovate_num"])]
+        self.current_room.scene[renovation].visible=True
+        self.current_room.scene["renovation2_replace"].visible = not(self.current_room.scene["renovation2"].visible)
+        
     def check_pickaxe_condition(self, pickaxeInteractable):
             if self.player_sprite.currently_inspecting:
                 self.player_sprite.currently_inspecting = False
@@ -513,6 +520,7 @@ class MyGame(arcade.Window):
         Transitions player from one room to the next.
 
         """
+       
         entrance = interactable.properties["transition_id"]
         entrance_coordinates = self.current_room.entrances[entrance]
         self.player_sprite.center_x = entrance_coordinates[0]
