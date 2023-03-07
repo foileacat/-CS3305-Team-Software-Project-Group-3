@@ -19,3 +19,9 @@ def update_health_bar(game):
     game.health_bar.width = health_bar_length
 
     game.health_bar.center_x = start_x + game.health_bar.width/2
+
+def reposition_health_bar(game):
+    height = game.height
+    width = game.width
+    game.health_bar.center_x=width-width/5
+    game.health_bar.center_y=height-height/8

@@ -4,7 +4,7 @@ from arcade.experimental.lights import Light, LightLayer
 import os
 import random
 import character_lists
-from gui.health_gui import setup_health_gui, update_health_bar
+from gui.health_gui import setup_health_gui, update_health_bar, reposition_health_bar
 from gui.inspect_gui import setup_inspect_gui
 from gui.npc_chat_gui import setup_npc_gui
 from gui.setup_inventory import setup_inventory
@@ -40,7 +40,7 @@ class MyGame(arcade.Window):
         self.conversation_list = json_functions.get_one_conversation("npc_dialogue/main_room.json","first_convo")
 
         #self.conversation_list = ["sdsdd","bijfjkdfkj sds sdsd sd d dd sd sdsss sd sd sd sd sdsdssd sds ds dsdsdsds ds d sds dsdsdsds sd s ds dsdsds sd sd sd sdsd sd sd sd s dsdsdsfwrg wrg rg wg ew ew gw gwe g kfjdkjfj", "ckdjfdkjfjk dfjkdjfk", "dksdsjkdjk dkjsdjk", "eskjdsjkd sdkjsdjk"]
-
+        self.set_minimum_size(MIN_SCREEN_WIDTH,MIN_SCREEN_HEIGHT)
         self.frame_count = 0
         self.current_room_index = 0
         self.rooms = None
@@ -59,7 +59,7 @@ class MyGame(arcade.Window):
         self.camera_sprites.resize(int(width), int(height))
         self.camera_gui.resize(int(width), int(height))
         #update_constants(self)
-
+        reposition_health_bar(self)
         super().on_resize(width, height)
         self.inventory_bar.resize(self)
         print(f"Window resized to: {width}, {height}")
@@ -264,7 +264,6 @@ class MyGame(arcade.Window):
             self.draw_inventory()
         self.camera_gui.use()
         update_health_bar(self)
-        
         self.health_bar.draw()
 
     def draw_inventory(self):
