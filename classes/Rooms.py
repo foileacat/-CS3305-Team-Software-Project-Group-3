@@ -21,7 +21,17 @@ class Room:
         self.wall_list = None
         self.layer_options = {}
         self.background = None
+        self.enemies = None
+        self.enemy_list = None
 
+    def reload_enemies(self):
+        if self.has_enemies == False:
+            return
+        else:
+            self.enemy_list.clear()
+            for enemy in self.enemies:
+                enemy.reload()
+                self.enemy_list.append(enemy)
 
 class RoomA:
     """
@@ -69,5 +79,3 @@ class RoomA:
         
         self.wall_list.append(self.scene["walls"])
         self.wall_list.append(self.scene["furniture"])
-
-        

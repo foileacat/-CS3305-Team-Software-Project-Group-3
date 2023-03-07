@@ -86,8 +86,6 @@ class PlayerCharacter(Character):
         self.accessory_list.append(self.full_body)
 
     def update_animation(self, delta_time: float = 1 / 60):
-        if self.dead:
-            return
         for accessory in self.accessory_list:
             accessory.update_animation(self)
         if self.change_x < 0 and self.change_y == 0:
@@ -98,7 +96,8 @@ class PlayerCharacter(Character):
             self.character_face_direction = FORWARD_FACING
         elif self.change_y > 0 and self.change_x == 0:
             self.character_face_direction = BACKWARD_FACING
-
+        if self.dead:
+            return
         if self.dying:
             self.update_dying_frames(2,self.dying_textures,40)
             return
@@ -154,7 +153,7 @@ class PlayerCharacter(Character):
         return False
     
     def take_damage(self,enemy):
-        if self.dead or enemy.dying:
+        if self.dying or self.dead or enemy.dying:
             return
         x_diff = self.center_x - enemy.center_x
         y_diff = self.center_y - enemy.center_y-16
@@ -180,7 +179,7 @@ class PlayerCharacter(Character):
         self.health -= enemy.damage
         if self.health < 0:
             self.health = 0
-            self.dying =True
+            self.dying = True
             self.cur_texture = 0
         return
     
@@ -245,8 +244,9 @@ class PlayerCharacter(Character):
             return
     
     def die(self):
+        print("ok")
+        self.dying = False
         self.dead = True
-        self.color = arcade.color.BAKER_MILLER_PINK
 
     def mine(self,pickaxe_interactable):
         if self.mining:
@@ -272,3 +272,12 @@ class PlayerCharacter(Character):
     def add_to_inventory(self,item):
         self.inventory.add_to_inventory(item)
         self.inventory_bar.update_on_add()
+
+    def respawn(self,game):
+        self.health = 10
+        self.dying = False
+        self.dead = False
+        self.cur_texture = 0
+        self.center_x = game.current_room.respawn_x
+        self.center_y = game.current_room.respawn_y
+        

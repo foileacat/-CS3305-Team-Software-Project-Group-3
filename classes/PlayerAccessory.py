@@ -100,6 +100,8 @@ class PlayerAccessory(arcade.Sprite):
         self.center_x = player_sprite.center_x
         self.center_y = player_sprite.center_y
         self.cur_texture = player_sprite.cur_texture
+        if player_sprite.dead:
+            return
         # Walking animation
         if player_sprite.dying:
             self.update_dying_frames(2,self.dying_textures,40)

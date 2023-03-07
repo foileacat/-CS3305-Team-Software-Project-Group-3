@@ -6,6 +6,8 @@ def setup(self):
     room = Room()
     room.has_npcs = True
     room.has_enemies = True
+    room.respawn_x = 100
+    room.respawn_y = 200
     room.multiple_entrances = True
     room.entrances = {"starting_room" : [SPRITE_SIZE * 11.5,SPRITE_SIZE * 2.5], "cave_outside" : [200,600], "dojo_outside": [100,100],"forest": [SPRITE_SIZE*12.5,SPRITE_SIZE*2], "dungeon": [SPRITE_SIZE*5,SPRITE_SIZE*9]}
     room.starting_x = SPRITE_SIZE * 2.5
@@ -42,11 +44,10 @@ def setup(self):
     room.npc_list.append(room.npc)
     
     room.enemy = Enemy(500,300,"bobesrta",12)
-    
+    room.enemies = []
+    room.enemies.append(room.enemy)
     room.enemy_list = arcade.SpriteList()
-  
     room.enemy_list.append(room.enemy)
-    
     #room.scene.add_sprite("NPC", room.npc)
     room.scene.add_sprite_list("Enemy", sprite_list=room.enemy_list)
     #room.scene.add_sprite("NPC", room.npc)

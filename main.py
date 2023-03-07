@@ -54,7 +54,7 @@ class MyGame(arcade.Window):
         "dumb"
         self.any_sprite_x=700
         self.any_sprite_y=510
-
+        self.respawn_timer = 0
     def on_resize(self, width, height):
         self.camera_sprites.resize(int(width), int(height))
         self.camera_gui.resize(int(width), int(height))
@@ -595,6 +595,13 @@ class MyGame(arcade.Window):
          
 
     def on_update(self, delta_time):
+        if self.player_sprite.dead:
+            if self.respawn_timer > 100:
+                self.player_sprite.respawn(self)
+                self.current_room.reload_enemies()
+                self.respawn_timer = 0
+            else:
+                self.respawn_timer+=1
         """ Movement and game logic. Runs constantly when anything changes."""
         self.physics_engine.update()
         self.scene.on_update(delta_time=1/60)

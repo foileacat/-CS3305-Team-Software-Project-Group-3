@@ -12,8 +12,8 @@ ENEMY_LEFT_FACING = 2
 class Enemy(arcade.Sprite):
     def __init__(self,x,y,name,id):
         super().__init__()
-        self.center_x = 200
-        self.center_y = 300
+        self.start_x = x
+        self.start_y = y
         self.character_face_direction = ENEMY_FORWARD_FACING
         # Used for flipping between image sequences
         self.cur_texture = 0
@@ -31,7 +31,8 @@ class Enemy(arcade.Sprite):
         self.cooldown = 101
         self.knockback = 4
         self.taking_damage = False
-        self.health = 10
+        self.max_health = 10
+        self.health = self.max_health
         self.dying = False
         self.dead = False
 
@@ -238,3 +239,7 @@ class Enemy(arcade.Sprite):
     def die(self):
         print("ok")
         self.kill()
+    def reload(self):
+        self.health = self.max_health
+        self.center_x = self.start_x
+        self.center_y = self.start_y
