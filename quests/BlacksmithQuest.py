@@ -1,8 +1,3 @@
-import arcade
-from classes.InventorySlot import InventorySlot
-from classes.Item import Item
-from classes.Tool import Tool
-from classes.Consumable import Consumable
 from constants import *
 import items
 

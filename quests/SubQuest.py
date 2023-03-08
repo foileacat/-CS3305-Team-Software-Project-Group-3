@@ -1,7 +1,7 @@
 from constants import *
 
 
-class SubquestQuest():
+class Subquest():
     def __init__(self,name,description="Nothing here!"):
         self.name = name
         self.description = ""
