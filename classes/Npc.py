@@ -49,7 +49,7 @@ class Npc(Character):
         self.speed = 3.0
         self.interacting = False
         self.dead = False
-
+        
         self.conversation_list = conversation_list 
         self.conversations = json_functions.get_conversation_names(self.conversation_list)
         self.conversation_index = 0

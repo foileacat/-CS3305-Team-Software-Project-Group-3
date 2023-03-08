@@ -1,0 +1,12 @@
+{
+    "blacksmith": {
+        "first_convo": [
+            "Hmm... That doesn't look right at all. I dont think this is the right flower!",
+            "Maybe look outside again? I'm sure you can find it!"
+            
+        ],
+        "final_convo": [
+            "Did you find the flower yet?"
+        ]
+    }
+}

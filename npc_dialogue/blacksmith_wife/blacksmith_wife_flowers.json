@@ -1,0 +1,12 @@
+{
+    "wife": {
+        "first_convo": [
+            "Oh, Hi! How are you?",
+            "My foolish husband has finally given me those flowers, but I even though I'm great at hiding my emotions... I may still seem upset",
+            "I do feel better, but I wish he knew how to surprise me... Make me feel special"
+        ],
+        "final_convo": [
+            "These flowers are my favorite though... I wonder how he knew? Maybe these aren't so bad after all."
+        ]
+    }
+}

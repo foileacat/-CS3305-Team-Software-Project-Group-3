@@ -43,8 +43,8 @@
   </object>
   <object id="18" gid="1614" x="61.1685" y="150.262" width="19.9168" height="21.8752">
    <properties>
-    <property name="inspect_text" value="fuck my husband"/>
-    <property name="item_id" value="wifes_diary_3"/>
+    <property name="inspect_text" value="&quot;Today my husband got me red flowers...My FAVORITE!!&quot;"/>
+    <property name="item_id" value="wifes_diary_flower"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
@@ -79,6 +79,9 @@
  </objectgroup>
  <objectgroup id="8" name="Animation">
   <object id="24" gid="1617" x="182.152" y="90.432" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="12" name="inventory">
+  <object id="27" gid="1614" x="233.821" y="85.0428" width="16" height="16"/>
  </objectgroup>
  <layer id="2" name="floor" width="16" height="14">
   <data encoding="base64" compression="zlib">

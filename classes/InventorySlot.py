@@ -46,4 +46,6 @@ class InventorySlot():
             
     def remove_item(self):
         self.occupied = False
+        self.item.kill()
         self.item = None
+        self.number_text = False

@@ -24,18 +24,15 @@ class Inventory():
             InventorySlot(id=14),
             InventorySlot(id=15)
         ]
-        self.selected_slot=0
-
-        self.slots[6].insert_item(items.egg)
         
-        self.slots[0].insert_item(items.old_pickaxe)
+        #self.slots[0].insert_item(items.old_pickaxe)
         
         self.slots[1].insert_item(items.rusty_sword)
         
         self.slots[2].insert_item(items.holey_watering_can)
         
         self.slots[3].insert_item(items.noodles)
-        
+        self.selected_slot=0
     def move_cursor(self,direction):
         if direction=="right":
             movement=1

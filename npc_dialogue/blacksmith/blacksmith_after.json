@@ -1,0 +1,19 @@
+{
+    "blacksmith": {
+        "first_convo": [
+            "Perfect! These are all the gems I need. Let me just slot them into the necklace.",
+            "Hmmf. Ooof",
+            "Ouch!",
+            "...",
+            "Sorry about that! But it's all done! Oh my, it's beautiful, she's going to love it!",
+            "My anniversary is saved, I can't thank you enough. Now I can help you with what you need!",
+            "Let me guess... It doesn't happen to be to do with the gem? Am I right?",
+            "If that's the case, that's easy! It's just in the chest in the mine. I even have the key for it!",
+            "Take the key, and I hope your adventure goes well!"
+            
+        ],
+        "final_convo": [
+            "Wow, it's just perfect. Just like her!"
+        ]
+    }
+}

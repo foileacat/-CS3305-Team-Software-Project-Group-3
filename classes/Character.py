@@ -2,7 +2,7 @@ import arcade
 from constants import *
 import character_lists
 from classes.PlayerAccessory import PlayerAccessory
-
+from items import *
 class Character(arcade.Sprite):
 
     """Creates our Character"""
@@ -170,3 +170,5 @@ class Character(arcade.Sprite):
             else:
                 return False
         return False
+    def current_item(self):
+        return egg

@@ -27,14 +27,14 @@
   </object>
   <object id="63" gid="23" x="222.667" y="259.667" width="34.6667" height="18.3333">
    <properties>
-    <property name="inspect_text" value="Achievement-from chest"/>
+    <property name="inspect_text" value="This guy looks very serious. I wonder what he's thinking"/>
     <property name="item_id" value="cave_shrine"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
   <object id="69" gid="23" x="397" y="68" width="22.3333" height="21.6667">
    <properties>
-    <property name="inspect_text" value="fucking racoon thing"/>
+    <property name="inspect_text" value="Oh this guy is very serious. He knows what's up."/>
     <property name="item_id" value="Raccon_thing"/>
     <property name="on_interact" value="show_message"/>
    </properties>
@@ -118,11 +118,11 @@
    <properties>
     <property name="collected" type="bool" value="false"/>
     <property name="conditional" type="bool" value="true"/>
-    <property name="inv_condition" value="cave_chest_key"/>
-    <property name="item_collected_message" value="Already got it"/>
-    <property name="item_collection_message" value="YES! I GOT THE GEM!"/>
+    <property name="inv_condition" value="Gem Key"/>
+    <property name="item_collected_message" value="Now that I've collected this, let's get the next one!"/>
+    <property name="item_collection_message" value="Yes! The gem! One step closer!"/>
     <property name="item_id" value="cave_gem"/>
-    <property name="item_refuse_message" value="I can't open this, I don't have a key. Maybe the the blacksmith can make me a keep out of these ores./maybe the shrine has the key"/>
+    <property name="item_refuse_message" value="Hmmm it's locked... I wonder whats inside?"/>
     <property name="on_interact" value="check_inv_condition"/>
    </properties>
   </object>

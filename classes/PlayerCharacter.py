@@ -266,9 +266,18 @@ class PlayerCharacter(Character):
             return True
         else:
             return False
+    
+    def has_amount_of_items(self,item,quantity):
+        if self.inventory.in_inventory(item):
+            slot = self.inventory.in_inventory(item)
+            if slot.item.quantity==quantity:
+                return True
+            else:
+                return False
+        else:
+            return False
         
     def add_to_inventory(self,item,if_doesnt_have=False):
-        
         if if_doesnt_have:
             if self.has_item(item):
                 return
@@ -280,15 +289,17 @@ class PlayerCharacter(Character):
             self.inventory_bar.update_on_add()
 
     def remove_from_inventory(self,item_name,quantity=False):
-        slot=self.inventory.in_inventory(item_name)
-        if quantity:
-            slot.item.quantity-=int(quantity)
-            self.inventory_bar.update_on_add()
-            if slot.item.quantity == 0:
+        if self.inventory.in_inventory(item_name):
+            slot=self.inventory.in_inventory(item_name)
+            if quantity:
+                slot.item.quantity-=int(quantity)
+                self.inventory_bar.update_on_add()
+                if slot.item.quantity == 0:
+                    self.inventory_bar.remove_certain_item(slot)
+            else:
                 self.inventory_bar.remove_certain_item(slot)
-        else:
-            self.inventory_bar.remove_certain_item(slot)
-        return
+            return
+    
     def respawn(self,game):
         self.health = 10
         self.dying = False

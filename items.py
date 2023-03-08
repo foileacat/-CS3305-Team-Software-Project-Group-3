@@ -33,6 +33,12 @@ flowers =Item(id=1,name="Flowers",filename="assets/customassets/white_flower.png
 flowers.quantity = 7
 flowers.description = "These are so pretty! I feel like a real gardener."
 
+pickaxe_key =Item(id=1,name="Pickaxe Key",filename="assets/assetpacks/ninja/Items/Treasure/SilverKey.png" )
+pickaxe_key.description = "Fancy Key! I should open that chest outside with it"
+
+gem_key =Item(id=1,name="Gem Key",filename="assets/assetpacks/ninja/Items/Treasure/GoldKey.png" )
+gem_key.description = "Shiny! I can finally collect the gem!"
+
 white_flower_quest = Item(id="white_flower_quest",name="White Flower",filename="assets/customassets/white_flower.png")
 red_flower_quest = Item(id="red_flower_quest",name="Red Flower",filename="assets/customassets/red_flower.png")
 yellow_flower_quest = Item(id="yellow_flower_quest",name="Yellow Flower",filename="assets/customassets/yellow_flower.png")
@@ -64,5 +70,7 @@ items = [egg,book,white_flower_quest,red_flower_quest,yellow_flower_quest,old_pi
 def get_item(name):
     for item in items:
         if name == item.id:
+            return item
+        if name == item.name:
             return item
     return False

@@ -36,7 +36,7 @@ def setup(self):
 
     room.npc_list = arcade.SpriteList()
     
-    room.npc = Npc(253,644,"Wife",12, "npc_dialogue/generic_npc.json")
+    room.npc = Npc(253,644,"Wife","blacksmith_wife", "npc_dialogue/generic_npc.json")
     room.npc.change_appearance([8,7],[4,1],[2,2],False,[0,0])
     room.npc_list.append(room.npc)
     room.scene.add_sprite_list("NPC", sprite_list=room.npc_list)

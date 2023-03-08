@@ -1,0 +1,26 @@
+{
+    "blacksmith": {
+        "first_convo": [
+            "WAHHHHHHHHHH! WAHHHHH",
+            "Oh god. Oh god!",
+            "I'm sorry, please leave me. I can't be seen like this.",
+            "WAAAAHHHHHH",
+            "Okay, I'm sorry. *sniff sniff* I'm just dreadfully upset.",
+            "It's my wonderful wife and I's anniversary, and I spent all year growing her favorite flowers.",
+            "But I took a tumble in the mine, and now... now..",
+            "WAAHHHHHH",
+            "I CAN'T REMEMBER HER FAVORITE FLOWER!!",
+            "I banged my head, and it's just slipped my mind! I can't remember which flower it is!",
+            "I'm too ashamed to see her. My head hurts. She's so mad at me. Oh god",
+            "Please, leave me alone. She might be better company than me, go to the house and talk to her instead.",
+            "Maybe she'll talk about me! Oh god, I hope she's not too upset.",
+            "I'm sorry, I'm sure you came here for a reason, but I'm just too sad. Maybe once I make it up to her I can help you.",
+            "Oh dear. WAHHHHHHHH"
+            
+        ],
+        "final_convo": [
+            "*sniff sniff*",
+            "WAHHHHHHHHHH"
+        ]
+    }
+}

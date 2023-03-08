@@ -1,0 +1,24 @@
+{
+    "wife": {
+        "first_convo": [
+            "Oh, hello! I haven't seen you around here. I suppose you're here because you heard the racket coming from the blacksmiths. I must apologise on my husbands behalf. ",
+            "You see, today is our anniversary, and that big loaf had one job.",
+            "ONE JOB!",
+            "Ehem. Sorry.",
+            "ALL he had to do was bring me my favorite flower, and we were going to have a lovely meal.",
+            "AND HE FORGOT!!",
+            "I can't believe him honeslty. Its just a joke.",
+            "I don't suppose you needed anything from him? If that's the case, then I'm afraid you won't have any luck. He's inconsolable, the big oaf.",
+            "And he can stay that way until I get my flowers! I'm not doing anything for him. He can cry all night if he wants",
+            "Oh well. I must get back to cooking. Nice talking to you!",
+            "*at least someone is an adult around here*",
+            "And by the by, if you go into the bedroom and see scattered pages, you can ignore those.",
+            "They're just pages from my diary. Some silly breeze threw them around my room!",
+            "They're VERY personal. It's where I write all my thoughts. So ignore them"
+        ],
+        "final_convo": [
+            "That silly man...",
+            "Oh! I didn't see you there. Ignore me!"
+        ]
+    }
+}

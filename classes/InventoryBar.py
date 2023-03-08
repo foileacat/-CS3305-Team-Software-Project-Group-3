@@ -74,6 +74,8 @@ class InventoryBar():
                                      color=(255, 255, 255), 
                                      font_size=25,
                                      font_name="NinjaAdventure")
+                else:
+                    slot.number_text = False
             slot_counter+=1
        
     def move_cursor(self,direction):
@@ -110,6 +112,8 @@ class InventoryBar():
         for slot in self.slots:
             if slot.occupied:
                 if slot.item.quantity > 1:
+                    if slot.number_text == False:
+                        self.initialise_slots()
                     slot.number_text.draw()
         if self.time_since_last_change <=100 and self.current_slot().occupied:
             if self.current_slot().item.is_consumable:
@@ -141,9 +145,7 @@ class InventoryBar():
         self.current_slot().item = None
 
     def remove_certain_item(self,slot):
-        slot.occupied=False
-        slot.item.kill()
-        slot.item = None
+        slot.remove_item()
 
     def update_on_add(self):
         self.slot_list.clear()

@@ -88,7 +88,7 @@ class MyGame(arcade.Window):
             self), blacksmith.setup(self), living_room.setup(self), bedroom.setup(self), kitchen.setup(self), forest.setup(self), enemy_house.setup(self),
             dungeon.setup(self), forest_hideout.setup(self), lonely_house.setup(self),maze.setup(self)]
         
-        self.current_room_index = 0
+        self.current_room_index = 2
         self.current_room = self.rooms[self.current_room_index]
         self.scene = self.current_room.scene
 
@@ -397,12 +397,13 @@ class MyGame(arcade.Window):
             elif INVENTORY_BAR_SLOT_A <= key <= INVENTORY_BAR_SLOT_H:
                 self.inventory_bar.select_slot(key)
                 self.player_sprite.using_tool = False
+            elif key == arcade.key.C:
+            
+                self.use_selected_item()
         if key == arcade.key.I:
             self.inventory_bar.resize(self)
             self.inventory_open = not self.inventory_open
             
-        if key == arcade.key.C:
-            self.use_selected_item()
         if key == INTERACT_KEY:
             self.handle_interact()
         if key == arcade.key.B:
@@ -446,6 +447,8 @@ class MyGame(arcade.Window):
         """
         self.player_sprite.change_x = 0
         self.player_sprite.change_y = 0
+        if self.player_sprite.using_tool:
+            return
         if self.current_room.has_npcs:
             npcs = arcade.check_for_collision_with_list(
                 self.player_sprite, self.scene["NPC"])
@@ -496,10 +499,18 @@ class MyGame(arcade.Window):
                 self.player_sprite.currently_inspecting = False
                 return
             else:
-                if pickaxeInteractable.properties["pickaxe_condition"] == 3:
+                ore_type =  pickaxeInteractable.properties["item_id"]
+                if ore_type == "amber_ore" or ore_type == "amethyst_ore":
+                    max_ore = 5
+                else:
+                    max_ore = 3
+                if pickaxeInteractable.properties["pickaxe_condition"] == max_ore:
                     self.player_sprite.currently_inspecting = True
                     self.inspect_message_UI.reset()
-                    self.inspect_text = "I think this is what the blacksmith was talking about... I should mine this"
+                    if self.player_sprite.has_item("Old Pickaxe"):
+                        self.inspect_text = "I think this is what the blacksmith wanted! Maybe I should use the pickaxe on it?"
+                    else:
+                        self.inspect_text = "Oooo sparkly! These are so pretty!"
              
                 elif pickaxeInteractable.properties["pickaxe_condition"] == 0:
                     self.player_sprite.currently_inspecting = True
@@ -521,15 +532,15 @@ class MyGame(arcade.Window):
                 self.inspect_message_UI.reset()
                 self.inspect_text = invInteractable.properties["item_collected_message"]
             else:
-                invInteractable.properties["collected"] = True
                 if invInteractable.properties["conditional"]:
                     required_item = invInteractable.properties["inv_condition"]
                     if self.player_sprite.has_item(required_item):
                         self.player_sprite.currently_inspecting = True
+                        self.player_sprite.remove_from_inventory(required_item)
                         self.inspect_message_UI.reset()
                         self.inspect_text = invInteractable.properties["item_collection_message"]
-                        
-                        self.player_sprite.inventory.add_to_inventory(invInteractable.properties["item_id"])
+                        self.player_sprite.add_to_inventory(get_item(invInteractable.properties["item_id"]))
+                        invInteractable.properties["collected"] = True
                 
                     else:
                         self.player_sprite.currently_inspecting = True
@@ -540,6 +551,7 @@ class MyGame(arcade.Window):
                     self.inspect_message_UI.reset()
                     self.inspect_text = invInteractable.properties["item_collection_message"]
                     self.player_sprite.add_to_inventory(get_item(invInteractable.properties["item_id"]))
+                    invInteractable.properties["collected"] = True
 
     def character_creator(self, interactable):
         if self.character_creator_open == True:
@@ -572,6 +584,7 @@ class MyGame(arcade.Window):
         self.player_sprite.character_face_direction = int(
             interactable.properties["transition_direction"])
         
+
     def player_unpaused(self):
         if self.player_sprite.currently_inspecting:
             return False
@@ -594,6 +607,10 @@ class MyGame(arcade.Window):
             self.player_sprite.currently_inspecting = True
             self.inspect_message_UI.reset()
             self.inspect_text = interactable.properties["inspect_text"]
+            if interactable.properties["item_id"] == "wifes_diary_flower":
+                if self.blacksmith_quest.steps["read_diary"] == "active":
+                    self.blacksmith_quest.steps["read_diary"] = "complete"
+                    self.blacksmith_quest.steps["tell_blacksmith"] = "active"
 
     
 
@@ -694,6 +711,7 @@ class MyGame(arcade.Window):
         # Scroll to the proper location
         position = self.view_left, self.view_bottom
         self.camera_sprites.move_to(position, CAMERA_SPEED)
+
     def focus_player(self):
         """
         Manages scrolling camera. Runs constantly from the on_update function
