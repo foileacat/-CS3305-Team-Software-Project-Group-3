@@ -50,39 +50,63 @@
     <property name="transition_id" value="forest_hideout"/>
    </properties>
   </object>
-  <object id="75" gid="944" x="90.1475" y="160.25" width="20.8525" height="30.1444">
+  <object id="75" gid="944" x="88.0233" y="160.958" width="20.8525" height="30.1444">
    <properties>
+    <property name="complete" type="bool" value="false"/>
+    <property name="consumable_item" value="Seeds"/>
     <property name="on_interact" value="renovate"/>
+    <property name="quantity" type="int" value="1"/>
+    <property name="quest" value="plant_plants"/>
     <property name="renovate_num" value="1"/>
    </properties>
   </object>
-  <object id="76" gid="944" x="129.27" y="160.25" width="21.1444" height="28.8323">
+  <object id="76" gid="944" x="128.562" y="160.25" width="21.1444" height="28.8323">
    <properties>
+    <property name="complete" type="bool" value="false"/>
+    <property name="consumable_item" value="Seeds"/>
     <property name="on_interact" value="renovate"/>
+    <property name="quantity" type="int" value="1"/>
+    <property name="quest" value="plant_plants"/>
     <property name="renovate_num" value="2"/>
    </properties>
   </object>
   <object id="77" gid="952" x="158.75" y="79.5" width="34.75" height="32">
    <properties>
+    <property name="complete" type="bool" value="false"/>
+    <property name="consumable_item" value="Books"/>
     <property name="on_interact" value="renovate"/>
+    <property name="quantity" type="int" value="25"/>
+    <property name="quest" value="shelve_books"/>
     <property name="renovate_num" value="3"/>
    </properties>
   </object>
   <object id="78" gid="1517" x="192.333" y="142.667" width="16" height="16">
    <properties>
+    <property name="complete" type="bool" value="false"/>
+    <property name="consumable_item" value="Fish"/>
     <property name="on_interact" value="renovate"/>
+    <property name="quantity" type="int" value="2"/>
+    <property name="quest" value="sort_food"/>
     <property name="renovate_num" value="4"/>
    </properties>
   </object>
   <object id="79" gid="1517" x="175.333" y="160.333" width="16" height="16">
    <properties>
+    <property name="complete" type="bool" value="false"/>
+    <property name="consumable_item" value="Berries"/>
     <property name="on_interact" value="renovate"/>
+    <property name="quantity" type="int" value="5"/>
+    <property name="quest" value="sort_food"/>
     <property name="renovate_num" value="5"/>
    </properties>
   </object>
   <object id="80" gid="1434" x="31.6667" y="146.333" width="18.6667" height="21.3333">
    <properties>
+    <property name="complete" type="bool" value="false"/>
+    <property name="consumable_item" value="None"/>
     <property name="on_interact" value="renovate"/>
+    <property name="quantity" type="int" value="1"/>
+    <property name="quest" value="sort_food"/>
     <property name="renovate_num" value="6"/>
    </properties>
   </object>

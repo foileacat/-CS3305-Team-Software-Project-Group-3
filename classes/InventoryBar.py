@@ -140,6 +140,11 @@ class InventoryBar():
         self.current_slot().item.kill()
         self.current_slot().item = None
 
+    def remove_certain_item(self,slot):
+        slot.occupied=False
+        slot.item.kill()
+        slot.item = None
+
     def update_on_add(self):
         self.slot_list.clear()
         self.initialise_slots()

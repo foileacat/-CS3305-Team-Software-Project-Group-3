@@ -51,7 +51,7 @@ class Npc(Character):
         self.dead = False
 
         self.conversation_list = conversation_list 
-        self.conversations = ["first_convo","second_convo"]
+        self.conversations = json_functions.get_conversation_names(self.conversation_list)
         self.conversation_index = 0
         self.taking_damage = False
 
@@ -153,3 +153,11 @@ class Npc(Character):
             self.bottoms.hide = True
         self.shoes = PlayerAccessory(character_lists.shoes,shoes_tuple[0],shoes_tuple[1])
         self.populate_accessory_list()
+
+    def update_conversation_list(self,list):
+        if self.conversation_list == list:
+            return
+        else:
+            self.conversation_list = list
+            self.conversations = json_functions.get_conversation_names(self.conversation_list)
+            self.conversation_index = 0

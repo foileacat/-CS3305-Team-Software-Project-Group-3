@@ -15,6 +15,15 @@ def setup(self):
         "walls": {
             "use_spatial_hash": True,
         },
+        "trees": {
+            "use_spatial_hash": True,
+        },
+        "trees2": {
+            "use_spatial_hash": True,
+        },
+        "trees3": {
+            "use_spatial_hash": True,
+        }
     
         
         
@@ -35,4 +44,7 @@ def setup(self):
 
     room.wall_list = []
     room.wall_list.append(room.scene["walls"])
+    room.wall_list.append(room.scene["trees"])
+    room.wall_list.append(room.scene["trees2"])
+    room.wall_list.append(room.scene["trees3"])
     return room

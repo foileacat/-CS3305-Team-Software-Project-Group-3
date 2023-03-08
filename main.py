@@ -16,8 +16,10 @@ from classes.Item import Item
 from items import *
 from maps import *
 from constants import *
+from npc_dialogue.load_npc_dialogue import load_npc_dialogue
 from gui.TypewriterText import TypewriterTextWidget
-
+from quests.LonelyManQuest import LonelyManQuest
+from quests.setup_quests import setup_quests
 
 import json_functions
 
@@ -55,6 +57,8 @@ class MyGame(arcade.Window):
         self.any_sprite_x=700
         self.any_sprite_y=510
         self.respawn_timer = 0
+        setup_quests(self)
+
     def on_resize(self, width, height):
         self.camera_sprites.resize(int(width), int(height))
         self.camera_gui.resize(int(width), int(height))
@@ -192,6 +196,7 @@ class MyGame(arcade.Window):
 
         elif self.player_sprite.currently_npc_interacting:
             self.camera_gui.use()
+            load_npc_dialogue(self,self.current_npc)
             self.current_npc.generate_floating_head(100,100)
             self.npc_message_UI.display_text(self.current_npc.get_current_conversation()[self.count])
             self.gui_npc_manager.draw()
@@ -207,6 +212,7 @@ class MyGame(arcade.Window):
             self.camera_gui.use()
             self.inventory_bar.draw()
         self.camera_sprites.use()
+
         if interactableObjects:
             interactable = interactableObjects[0]
             self.inspect_item_symbol_UI.center_x=interactable.center_x
@@ -217,7 +223,12 @@ class MyGame(arcade.Window):
                 self.inspect_item_symbol_UI.color = arcade.csscolor.INDIGO
             else:
                 self.inspect_item_symbol_UI.color = arcade.color.CORNFLOWER_BLUE
-            self.inspect_item_symbol_UI.draw(pixelated=True)
+            if interactable.properties["on_interact"] == "renovate":
+
+                if self.allowed_to_renovate(interactable):
+                    self.inspect_item_symbol_UI.draw(pixelated=True)
+            else:
+                self.inspect_item_symbol_UI.draw(pixelated=True)
         #NOAH CODE
 
         elif self.current_room.has_mineable or self.current_room.has_inventory:
@@ -350,7 +361,13 @@ class MyGame(arcade.Window):
         self.inventory_cursor.draw(pixelated=True)
 
     
-            
+    def allowed_to_renovate(self,interactable):
+        if self.lonely_man_quest.steps[interactable.properties["quest"]] == "active":
+            if interactable.properties["complete"] == False:
+                return True
+        else:
+            return False
+        
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed. """
         if self.inventory_open:
@@ -436,6 +453,7 @@ class MyGame(arcade.Window):
         interactables = arcade.check_for_collision_with_list(
             self.player_sprite, self.scene["interactables"])
         
+        #change
         for interactable in interactables:
             getattr(self, interactable.properties['on_interact'])(interactable)
 
@@ -454,10 +472,22 @@ class MyGame(arcade.Window):
         return
     
     def renovate(self, interactable):
-        renovation_dict = {1:"renovation1", 2:"renovation2", 3:"renovation3", 4:"renovation4", 5:"renovation5", 6:"renovation6", 7:"renovation7", 8:"renovation8", 9:"renovation9"}
-        renovation = renovation_dict[int(interactable.properties["renovate_num"])]
-        self.current_room.scene[renovation].visible=True
-        self.current_room.scene["renovation2_replace"].visible = not(self.current_room.scene["renovation2"].visible)
+        if self.allowed_to_renovate(interactable):
+            renovation_dict = {1:"renovation1", 2:"renovation2", 3:"renovation3", 4:"renovation4", 5:"renovation5", 6:"renovation6", 7:"renovation7", 8:"renovation8", 9:"renovation9"}
+            renovation = renovation_dict[int(interactable.properties["renovate_num"])]
+            self.current_room.scene[renovation].visible=True
+            if renovation == 2 and self.current_room.scene["renovation2_replace"]:
+                self.current_room.scene["renovation2_replace"].visible = not(self.current_room.scene["renovation2"].visible)
+            interactable.properties["complete"] = True
+            self.lonely_man_quest.check_subquest(self,interactable)
+            consumable_item = interactable.properties["consumable_item"] 
+            quantity = interactable.properties["quantity"] 
+            if consumable_item == "None":
+                return
+            else:
+                self.player_sprite.remove_from_inventory(consumable_item,quantity=quantity)
+            
+            
         
     def check_pickaxe_condition(self, pickaxeInteractable):
             if self.player_sprite.currently_inspecting:

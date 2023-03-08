@@ -1,0 +1,13 @@
+{
+    "hallway_npc": {
+        "first_convo": [
+            "Perfect! I can't wait to see everyone again.",
+            "Now, I have quite a lot of books in the house. My wife loved to read, but I haven't been able to even look at them since...",
+            "...",
+            "Could you please put them on the shelf in the corner?"
+        ],
+        "final_convo": [
+            "I know she wouldn't have wanted them hidden away like this. It's hard, but I'll feel better somehow once you put them on the shelf in the corner."
+        ]
+    }
+}

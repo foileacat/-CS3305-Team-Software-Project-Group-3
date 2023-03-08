@@ -6,7 +6,33 @@ from classes.Consumable import Consumable
 from constants import *
 
 egg = Item(id=1,name="Egg",filename=EXAMPLE_EGG_SPRITE_LINK)
-book =Item(id=1,name="Book",filename="assets/guiassets/AssetPacks/Free Pack/Free Pixel Paper/Png/Sprites/1 items Pack/5.png")
+book =Item(id=1,name="Books",filename="assets/guiassets/AssetPacks/Free Pack/Free Pixel Paper/Png/Sprites/1 items Pack/5.png")
+book.quantity = 25
+book.description = "Jeez, these are not getting any lighter the longer I carry them"
+
+plants =Item(id=1,name="Seeds",filename="assets/guiassets/AssetPacks/Free Pack/Free Pixel Paper/Png/Sprites/1 items Pack/5.png")
+plants.quantity = 2
+plants.description = "I can't believe these are going to grow to a whole plant. From something so tiny!!"
+
+sack =Item(id=1,name="Sacks",filename=EXAMPLE_EGG_SPRITE_LINK )
+sack.quantity = 2
+sack.description = "What is in these? They weigh as much as me!"
+
+shirt =Item(id=1,name="Wet Shirt",filename=EXAMPLE_EGG_SPRITE_LINK )
+shirt.description = "This is really wet. I wish tumble driers existed in this universe."
+
+berries =Item(id=1,name="Berries",filename=EXAMPLE_EGG_SPRITE_LINK )
+berries.description = "These look so good, maybe he won't notice if I sneak a few.."
+berries.quantity = 5
+
+fish =Item(id=1,name="Fish",filename=EXAMPLE_EGG_SPRITE_LINK )
+fish.description = "These smell... like fish. I think that's bad?"
+fish.quantity = 2
+
+flowers =Item(id=1,name="Flowers",filename="assets/customassets/white_flower.png" )
+flowers.quantity = 7
+flowers.description = "These are so pretty! I feel like a real gardener."
+
 white_flower_quest = Item(id="white_flower_quest",name="White Flower",filename="assets/customassets/white_flower.png")
 red_flower_quest = Item(id="red_flower_quest",name="Red Flower",filename="assets/customassets/red_flower.png")
 yellow_flower_quest = Item(id="yellow_flower_quest",name="Yellow Flower",filename="assets/customassets/yellow_flower.png")

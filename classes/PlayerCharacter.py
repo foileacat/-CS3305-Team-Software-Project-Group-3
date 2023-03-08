@@ -244,7 +244,6 @@ class PlayerCharacter(Character):
             return
     
     def die(self):
-        print("ok")
         self.dying = False
         self.dead = True
 
@@ -255,7 +254,6 @@ class PlayerCharacter(Character):
             if self.current_item().type == "Pickaxe":
                 self.mining = True
                 pickaxe_interactable.properties["pickaxe_condition"] -= 1 
-                print(pickaxe_interactable.properties["pickaxe_condition"])
                 asset="assets/customassets/"+pickaxe_interactable.properties['item_id']+".png"
                 ore =Item(id=1,name=pickaxe_interactable.properties["name"],filename=asset,image_width=16,image_height=16)
                 ore.description = "This is the emerald ore the blacksmith needs! I should bring this to him ASAP"
@@ -269,10 +267,28 @@ class PlayerCharacter(Character):
         else:
             return False
         
-    def add_to_inventory(self,item):
-        self.inventory.add_to_inventory(item)
-        self.inventory_bar.update_on_add()
+    def add_to_inventory(self,item,if_doesnt_have=False):
+        
+        if if_doesnt_have:
+            if self.has_item(item):
+                return
+            else:
+                self.inventory.add_to_inventory(item)
+                self.inventory_bar.update_on_add()
+        else:
+            self.inventory.add_to_inventory(item)
+            self.inventory_bar.update_on_add()
 
+    def remove_from_inventory(self,item_name,quantity=False):
+        slot=self.inventory.in_inventory(item_name)
+        if quantity:
+            slot.item.quantity-=int(quantity)
+            self.inventory_bar.update_on_add()
+            if slot.item.quantity == 0:
+                self.inventory_bar.remove_certain_item(slot)
+        else:
+            self.inventory_bar.remove_certain_item(slot)
+        return
     def respawn(self,game):
         self.health = 10
         self.dying = False

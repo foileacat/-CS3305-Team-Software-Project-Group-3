@@ -1,0 +1,11 @@
+{
+    "hallway_npc": {
+        "first_convo": [
+            "Oh hello! From the dirt on your hands im guessing you've planted all my flowers. You have no idea how excited I am!",
+            "Next, could you please take this shirt and hang it on the line to dry? You're my first guest in a while, so I definitely need to freshen up"
+        ],
+        "final_convo": [
+            "The clothes line is outside. Make sure you hang the shirt up before it starts raining!"
+        ]
+    }
+}

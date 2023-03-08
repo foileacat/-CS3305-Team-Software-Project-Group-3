@@ -27,7 +27,6 @@ class Inventory():
         self.selected_slot=0
 
         self.slots[6].insert_item(items.egg)
-        self.slots[7].insert_item(items.book)
         
         self.slots[0].insert_item(items.old_pickaxe)
         

@@ -61,55 +61,91 @@
   </object>
   <object id="77" gid="879" x="111.701" y="97.4925" width="16" height="32.4179">
    <properties>
+    <property name="complete" type="bool" value="false"/>
+    <property name="consumable_item" value="Wet Shirt"/>
     <property name="on_interact" value="renovate"/>
+    <property name="quantity" type="int" value="1"/>
+    <property name="quest" value="hangup_washing"/>
     <property name="renovate_num" value="1"/>
    </properties>
   </object>
   <object id="78" gid="882" x="98.8657" y="190.328" width="30.3284" height="26.4478">
    <properties>
+    <property name="complete" type="bool" value="false"/>
+    <property name="consumable_item" value="Sacks"/>
     <property name="on_interact" value="renovate"/>
+    <property name="quantity" type="int" value="2"/>
+    <property name="quest" value="fill_cart"/>
     <property name="renovate_num" value="2"/>
    </properties>
   </object>
   <object id="80" gid="3895" x="95.5821" y="208.239" width="16" height="16">
    <properties>
+    <property name="complete" type="bool" value="false"/>
+    <property name="consumable_item" value="Flowers"/>
     <property name="on_interact" value="renovate"/>
+    <property name="quantity" type="int" value="1"/>
+    <property name="quest" value="clear_flowers"/>
     <property name="renovate_num" value="3"/>
    </properties>
   </object>
   <object id="81" gid="3895" x="111.701" y="207.045" width="16" height="16">
    <properties>
+    <property name="complete" type="bool" value="false"/>
+    <property name="consumable_item" value="Flowers"/>
     <property name="on_interact" value="renovate"/>
+    <property name="quantity" type="int" value="1"/>
+    <property name="quest" value="clear_flowers"/>
     <property name="renovate_num" value="4"/>
    </properties>
   </object>
   <object id="82" gid="3895" x="127.821" y="207.045" width="16" height="16">
    <properties>
+    <property name="complete" type="bool" value="false"/>
+    <property name="consumable_item" value="Flowers"/>
     <property name="on_interact" value="renovate"/>
+    <property name="quantity" type="int" value="1"/>
+    <property name="quest" value="clear_flowers"/>
     <property name="renovate_num" value="5"/>
    </properties>
   </object>
   <object id="83" gid="3895" x="144.836" y="205.851" width="16" height="16">
    <properties>
+    <property name="complete" type="bool" value="false"/>
+    <property name="consumable_item" value="Flowers"/>
     <property name="on_interact" value="renovate"/>
+    <property name="quantity" type="int" value="1"/>
+    <property name="quest" value="clear_flowers"/>
     <property name="renovate_num" value="6"/>
    </properties>
   </object>
   <object id="84" gid="3895" x="161.254" y="207.045" width="16" height="16">
    <properties>
+    <property name="complete" type="bool" value="false"/>
+    <property name="consumable_item" value="Flowers"/>
     <property name="on_interact" value="renovate"/>
+    <property name="quantity" type="int" value="1"/>
+    <property name="quest" value="clear_flowers"/>
     <property name="renovate_num" value="7"/>
    </properties>
   </object>
   <object id="85" gid="3895" x="177.075" y="207.343" width="16" height="16">
    <properties>
+    <property name="complete" type="bool" value="false"/>
+    <property name="consumable_item" value="Flowers"/>
     <property name="on_interact" value="renovate"/>
+    <property name="quantity" type="int" value="1"/>
+    <property name="quest" value="clear_flowers"/>
     <property name="renovate_num" value="8"/>
    </properties>
   </object>
-  <object id="86" gid="3895" x="192.597" y="208.836" width="16" height="16">
+  <object id="86" gid="3895" x="192.597" y="208.836" width="17" height="17">
    <properties>
+    <property name="complete" type="bool" value="false"/>
+    <property name="consumable_item" value="Flowers"/>
     <property name="on_interact" value="renovate"/>
+    <property name="quantity" type="int" value="1"/>
+    <property name="quest" value="clear_flowers"/>
     <property name="renovate_num" value="9"/>
    </properties>
   </object>
@@ -145,12 +181,12 @@
 0,0,3747,3748,3749,3750,0,0,0,0,0,0,0,0,0,0,0,0,0,3733,3734,0,0,0,
 0,0,3763,3764,3765,3766,0,0,0,0,0,0,0,0,0,0,0,0,0,3717,3718,0,0,0,
 3747,3748,3779,3780,3781,3782,0,0,0,0,0,0,0,0,0,0,0,0,0,3733,3734,0,0,0,
-3763,3764,3765,3766,0,0,0,0,0,0,0,1718,1719,1720,0,0,0,0,3717,3718,0,0,0,0,
-3779,3780,3781,3782,0,0,0,0,0,0,0,1751,1752,1753,0,0,0,0,3733,3734,0,0,0,0,
-3747,3748,3749,3750,0,0,0,0,0,0,0,1784,1785,1786,0,0,0,0,3717,3718,0,0,0,0,
-3763,3764,3765,3766,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3733,3734,0,0,0,0,
-3779,3780,3781,3782,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3717,3718,0,0,0,0,
-3763,3764,3765,3766,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3733,3734,0,0,0,0,
+3763,3764,3765,3766,3879,0,0,0,0,0,0,1718,1719,1720,0,0,0,0,3717,3718,0,0,0,0,
+3779,3780,3781,3782,3847,0,0,0,0,0,0,1751,1752,1753,0,0,0,0,3733,3734,0,0,0,0,
+3747,3748,3749,3848,3883,0,0,0,0,0,0,1784,1785,1786,0,0,0,0,3717,3718,0,0,0,0,
+3763,3764,3765,3766,3884,0,0,0,0,0,0,0,0,0,0,0,0,0,3733,3734,0,0,0,0,
+3779,3780,3781,3782,3717,3718,0,0,0,0,0,0,0,0,0,0,0,0,3717,3718,0,0,0,0,
+3763,3764,3765,3766,3733,3734,0,0,0,0,0,0,0,0,0,0,0,0,3733,3734,0,0,0,0,
 3779,3780,3781,3782,0,3717,3718,3717,3718,3717,3718,3717,3718,3717,3718,3717,3718,3717,3718,0,0,0,0,0,
 0,0,0,0,0,3733,3734,3733,3734,3733,3734,3733,3734,3733,3734,3733,3734,3733,3734,0,0,0,0,0,
 0,0,3763,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

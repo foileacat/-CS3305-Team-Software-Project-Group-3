@@ -1,0 +1,11 @@
+{
+    "hallway_npc": {
+        "first_convo": [
+            "Thank you! I feel better already",
+            "Now that the forest is safe, I can finally visit the town again! Can you fill the cart outside with these sacks? I want to bring them to the market next time I go!"
+        ],
+        "final_convo": [
+            "Those sacks are heavy! Make sure you put them on the cart before you hurt your back!"
+        ]
+    }
+}

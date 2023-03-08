@@ -1,0 +1,11 @@
+{
+    "hallway_npc": {
+        "first_convo": [
+            "Oh wow! It looks so beautiful, it feels like she's still here.",
+            "The house almost looks back to normal, it's just missing the two plants at the doorway. Could you replant them for me?"
+        ],
+        "final_convo": [
+            "The plants at the doorway are going to look beautiful once they're replanted! I can't wait."
+        ]
+    }
+}

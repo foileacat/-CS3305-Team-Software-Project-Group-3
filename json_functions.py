@@ -8,9 +8,21 @@ def deserialise_data(file_name):
 
 def get_one_conversation(file_name, conversation_name):
     npc_object = deserialise_data(file_name)
+    
     conversations = npc_object.values()
     
     for conversation in conversations:
         for key in conversation.keys():
+            
             if key == conversation_name:
                 return conversation[key]
+
+def get_conversation_names(file_name):
+    npc_object = deserialise_data(file_name)
+    
+    conversations = npc_object.values()
+    conversation_list = []
+    for conversation in conversations:
+        for key in conversation.keys():
+            conversation_list.append(key)
+    return conversation_list

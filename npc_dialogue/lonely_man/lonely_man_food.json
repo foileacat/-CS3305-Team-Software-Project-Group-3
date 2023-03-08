@@ -1,0 +1,15 @@
+{
+    "hallway_npc": {
+        "first_convo": [
+            "I can't believe it. The house looks amazing!",
+            "Now, I dont know about you, but I'm getting hungry from all this hard work!",
+            "...",
+            "HA! Only kidding!",
+            "But really. You're doing backbreaking labour here. You need a good snack.",
+            "If you could go turn on the stove in the corner and put these fish and these fruits in the baskets, we can have a nice rest!"
+        ],
+        "final_convo": [
+            "Don't worry, once you serve the food we can kick our feet up."
+        ]
+    }
+}

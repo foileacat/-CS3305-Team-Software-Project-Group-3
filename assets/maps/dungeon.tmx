@@ -39,7 +39,7 @@
  <tileset firstgid="3143" source="Sources/TilesetExteriorFloor.tsx"/>
  <tileset firstgid="3715" source="Sources/TilesetNature.tsx"/>
  <objectgroup id="6" name="interactables">
-  <object id="81" gid="3720" x="49.3333" y="163.833" width="16" height="53">
+  <object id="81" gid="3720" x="60.3333" y="167.833" width="22" height="53">
    <properties>
     <property name="destination_room" type="int" value="1"/>
     <property name="on_interact" value="room_transition"/>
