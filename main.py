@@ -112,6 +112,7 @@ class MyGame(arcade.Window):
                                                     center_x=0, center_y=0)
 
     def on_draw(self):
+        
         # This command has to happen before we start drawing
         self.clear()
         # this camera is used for everything except the gui
@@ -119,8 +120,7 @@ class MyGame(arcade.Window):
         self.scene.draw(pixelated=True)
         interactableObjects = arcade.check_for_collision_with_list(
             self.player_sprite, self.scene["interactables"])
-        
-        self.player_sprite.draw_hit_box()
+    
 
         if self.current_room.has_mineable:
                 self.scene["Ore List"].clear()
@@ -604,6 +604,18 @@ class MyGame(arcade.Window):
             else:
                 self.respawn_timer+=1
         """ Movement and game logic. Runs constantly when anything changes."""
+        if self.current_room.has_npcs:
+            npcs = arcade.check_for_collision_with_list(self.player_sprite, 
+                                                        self.scene["NPC"])
+            if npcs:
+                pass
+            else:
+                if self.player_sprite.bottom > self.current_room.npc.center_x:
+                    self.scene.move_sprite_list_after("NPC", "Player Stuff")
+                    self.scene.move_sprite_list_after("NPC Stuff", "NPC")
+                else:
+                    self.scene.move_sprite_list_after("Player","NPC Stuff",)
+                    self.scene.move_sprite_list_after("Player Stuff", "Player")
         self.physics_engine.update()
         self.scene.on_update(delta_time=1/60)
         if self.current_room.has_npcs:

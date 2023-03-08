@@ -14,4 +14,3 @@ def get_one_conversation(file_name, conversation_name):
         for key in conversation.keys():
             if key == conversation_name:
                 return conversation[key]
-
