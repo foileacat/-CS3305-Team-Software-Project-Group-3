@@ -88,7 +88,7 @@ class MyGame(arcade.Window):
             self), blacksmith.setup(self), living_room.setup(self), bedroom.setup(self), kitchen.setup(self), forest.setup(self), enemy_house.setup(self),
             dungeon.setup(self), forest_hideout.setup(self), lonely_house.setup(self),maze.setup(self)]
         
-        self.current_room_index = 14
+        self.current_room_index = 0
         self.current_room = self.rooms[self.current_room_index]
         self.scene = self.current_room.scene
 
@@ -444,6 +444,8 @@ class MyGame(arcade.Window):
         Runs when a player presses the interact key next to an interactable object. 
         It will run the function named in the interactable objects on_interact attribute, from the tmx file
         """
+        self.player_sprite.change_x = 0
+        self.player_sprite.change_y = 0
         if self.current_room.has_npcs:
             npcs = arcade.check_for_collision_with_list(
                 self.player_sprite, self.scene["NPC"])
@@ -582,7 +584,11 @@ class MyGame(arcade.Window):
 
     def show_message(self, interactable):
         if self.player_sprite.currently_inspecting:
-            self.player_sprite.currently_inspecting = False
+            if self.inspect_message_UI.not_fully_displayed():
+                self.inspect_message_UI.display_full_text()
+            else:
+                self.player_sprite.currently_inspecting = False
+                self.inspect_message_UI.reset()
             return
         else:
             self.player_sprite.currently_inspecting = True
@@ -593,16 +599,20 @@ class MyGame(arcade.Window):
 
     def handle_npc_interaction(self, npc):
         if self.player_sprite.currently_npc_interacting:
-            self.current_npc = npc
-            if self.count == len(self.current_npc.get_current_conversation()) - 1:
-                self.player_sprite.currently_npc_interacting=False
-                npc.interacting = False
-                npc.end_convo()
-                return
+            if self.npc_message_UI.not_fully_displayed():
+                self.npc_message_UI.display_full_text()
             else:
-                self.count+=1
+                self.current_npc = npc
+                if self.count == len(self.current_npc.get_current_conversation()) - 1:
+                    self.player_sprite.currently_npc_interacting=False
+                    npc.interacting = False
+                    npc.end_convo()
+                    self.count = 0
+                    return
+                else:
+                    self.count+=1
         else:
-            self.inspect_message_UI.reset()
+            self.npc_message_UI.reset()
             self.player_sprite.currently_npc_interacting = True
             self.count = 0
             npc.interacting = True
