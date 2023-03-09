@@ -822,6 +822,7 @@ class MyGame(arcade.Window):
         self.perf_graph_list.append(graph)
 
     def room_transition_allowed(self, destination_room):
+        """start quests when entering rooms:"""
         if destination_room == "forest":
             if self.witch_quest.active == False:
                 self.witch_quest.start()
@@ -842,10 +843,7 @@ class MyGame(arcade.Window):
                 self.dojo_quest.start()
                 return True
             
-        if destination_room == "enemy_house":
-            if self.witch_quest.steps["talk_to_witch"].is_active():
-                return "I should talk to the witch outside first."
-            
+        "Wont let you leave area with incomplete quest:"
         if destination_room == "main_room":
             if self.current_room_name == "forest":
                 if self.witch_quest.complete == False:
@@ -863,7 +861,12 @@ class MyGame(arcade.Window):
             if self.current_room_name == "forest_hideout":
                 if self.lonely_man_quest.complete == False:
                     return "I'll stay here until I find out what's up with this family, and get the gem."
-                
+        """Witch quest logic"""
+        if destination_room == "enemy_house":
+            if self.witch_quest.steps["talk_to_witch"].is_active():
+                return "I should talk to the witch outside first."
+            
+        "Blacksmith Logic"
         if self.current_room_name == "cave_outside":
             if destination_room == "living_room":
                 if self.blacksmith_quest.steps["speak_to_blacksmith"].is_active():
@@ -877,7 +880,7 @@ class MyGame(arcade.Window):
             if destination_room == "cave_outside":
                 if self.blacksmith_quest.steps["read_diary"].is_active():
                         return "I need to figure out that flower. I can't leave until I find a clue!"
-                
+        "Dojo Logic"
         if destination_room == "dojo":
                 if self.current_room_name == "maze":
                     self.dojo_quest.maze_complete = True

@@ -10,22 +10,22 @@ book =Item(id=1,name="Books",filename="assets/guiassets/AssetPacks/Free Pack/Fre
 book.quantity = 25
 book.description = "Jeez, these are not getting any lighter the longer I carry them"
 
-plants =Item(id=1,name="Seeds",filename="assets/guiassets/AssetPacks/Free Pack/Free Pixel Paper/Png/Sprites/1 items Pack/5.png")
+plants =Item(id=1,name="Seeds",filename="assets/assetpacks/ninja/Items/Food/SeedLargeWhite.png")
 plants.quantity = 2
 plants.description = "I can't believe these are going to grow to a whole plant. From something so tiny!!"
 
-sack =Item(id=1,name="Sacks",filename=EXAMPLE_EGG_SPRITE_LINK )
+sack =Item(id=1,name="Sacks",filename="assets/customassets/sack.png" )
 sack.quantity = 2
 sack.description = "What is in these? They weigh as much as me!"
 
-shirt =Item(id=1,name="Wet Shirt",filename=EXAMPLE_EGG_SPRITE_LINK )
+shirt =Item(id=1,name="Wet Shirt",filename="assets/guiassets/AssetPacks/Free Pack/Free Pixel Paper/Png/Sprites/2 Equipments Pack/33.png")
 shirt.description = "This is really wet. I wish tumble driers existed in this universe."
 
-berries =Item(id=1,name="Berries",filename=EXAMPLE_EGG_SPRITE_LINK )
+berries =Item(id=1,name="Berries",filename="assets/assetpacks/ninja/Items/Food/SeedBig3.png" )
 berries.description = "These look so good, maybe he won't notice if I sneak a few.."
 berries.quantity = 5
 
-fish =Item(id=1,name="Fish",filename=EXAMPLE_EGG_SPRITE_LINK )
+fish =Item(id=1,name="Fish",filename="assets/assetpacks/ninja/Items/Food/Fish.png" )
 fish.description = "These smell... like fish. I think that's bad?"
 fish.quantity = 2
 

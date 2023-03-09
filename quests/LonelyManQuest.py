@@ -30,26 +30,26 @@ class LonelyManQuest():
                         pass
                     else:
                         return False
-        self.steps[quest_to_check].make_complete()
+        self.steps[quest_to_check].make_done()
 
     def update_subquests(self):
-        if self.steps["clear_flowers"].is_completed():
+        if self.steps["clear_flowers"].is_done():
             self.steps["hangup_washing"].activate()
-            self.steps["clear_flowers"].make_done()
-        if self.steps["hangup_washing"].is_completed():
+            self.steps["clear_flowers"].make_complete()
+        if self.steps["hangup_washing"].is_done():
             self.steps["fill_cart"].activate()
-            self.steps["hangup_washing"].make_done()
-        if self.steps["fill_cart"].is_completed():
+            self.steps["hangup_washing"].make_complete()
+        if self.steps["fill_cart"].is_done():
             self.steps["shelve_books"].activate()
-            self.steps["fill_cart"].make_done()
-        if self.steps["shelve_books"].is_completed():
+            self.steps["fill_cart"].make_complete()
+        if self.steps["shelve_books"].is_done():
             self.steps["plant_plants"].activate()
-            self.steps["shelve_books"].make_done()
-        if self.steps["plant_plants"].is_completed():
+            self.steps["shelve_books"].make_complete()
+        if self.steps["plant_plants"].is_done():
             self.steps["sort_food"].activate()
-            self.steps["plant_plants"].make_done()
-        if self.steps["sort_food"].is_completed():
-            self.steps["sort_food"].make_done()
+            self.steps["plant_plants"].make_complete()
+        if self.steps["sort_food"].is_done():
+            self.steps["sort_food"].make_complete()
             self.complete = True
 
     def give_needed_items(self,game):
