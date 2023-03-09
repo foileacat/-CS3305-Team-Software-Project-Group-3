@@ -568,11 +568,12 @@ class MyGame(arcade.Window):
                         if required_item == "Gem Key":
                             self.blacksmith_quest.steps["get_gem"] == "complete"
                             self.blacksmith_quest.complete = True
-                        self.player_sprite.add_to_inventory(
+                            self.player_sprite.gem_2 = True
+                            invInteractable.properties["collected"] = True
+                        else:
+                            self.player_sprite.add_to_inventory(
                             get_item(invInteractable.properties["item_id"]))
-                        invInteractable.properties["collected"] = True
-                        
-
+                            invInteractable.properties["collected"] = True
                     else:
                         self.player_sprite.currently_inspecting = True
                         self.inspect_message_UI.reset()

@@ -33,6 +33,7 @@ def load_lonely_man_dialogue(game,lonely_man):
         lonely_man.update_conversation_list("npc_dialogue/lonely_man/lonely_man_food.json")
     if game.lonely_man_quest.complete:
         lonely_man.update_conversation_list("npc_dialogue/lonely_man/lonely_man_after.json")
+        game.player_sprite.gem_3 = True
     
    
 def load_blacksmith_dialogue(game,blacksmith):
@@ -67,6 +68,9 @@ def load_blacksmith_dialogue(game,blacksmith):
         game.blacksmith_quest.steps["collect_ores"] = "done"
         blacksmith.update_conversation_list("npc_dialogue/blacksmith/blacksmith_after.json")
         game.blacksmith_quest.steps["get_gem"] = "active"
+    if game.player_sprite.gem_2 == True:
+        game.blacksmith_quest.steps["get_gem"] = "complete"
+        game.blacksmith_quest.complete = True
    
 def load_blacksmith_wife_dialogue(game,blacksmith_wife):
     if game.blacksmith_quest.steps["speak_to_wife"] == "active":
@@ -95,6 +99,7 @@ def load_witch_dialogue(game,witch):
         witch.update_conversation_list("npc_dialogue/witch/witch_after.json")
         subquests["return_to_witch"].make_complete()
         quest.complete = True
+        game.player_sprite.gem_1 = True
     
 def load_sensei_dialogue(game,sensei):
     quest = game.dojo_quest
@@ -120,6 +125,7 @@ def load_sensei_dialogue(game,sensei):
             subquests["challenge_of_courage"].make_complete()
             sensei.update_conversation_list("npc_dialogue/sensei/sensei_after.json")
             quest.complete = True
+            game.player_sprite.gem_4 = True
     return
 
 def load_apprentice_dialogue(game,apprentice):

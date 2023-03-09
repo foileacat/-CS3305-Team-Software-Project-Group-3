@@ -39,6 +39,10 @@ class PlayerCharacter(Character):
         self.dead = False
         self.mining = False
         self.watering_can_count = 0
+        self.gem_1 = False
+        self.gem_2 = False
+        self.gem_3 = False
+        self.gem_4 = False
         
         
     def load_textures(self):
