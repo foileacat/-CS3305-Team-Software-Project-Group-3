@@ -17,19 +17,19 @@ def load_npc_dialogue(game,npc):
 def load_lonely_man_dialogue(game,lonely_man):
     game.lonely_man_quest.update_subquests()
     game.lonely_man_quest.give_needed_items(game)
-    if game.lonely_man_quest.steps["talk_to_old_man"] == "active":
-        game.lonely_man_quest.steps["talk_to_old_man"] = "complete"
+    if game.lonely_man_quest.steps["talk_to_old_man"].is_active():
+        game.lonely_man_quest.steps["talk_to_old_man"].make_complete()
         lonely_man.update_conversation_list("npc_dialogue/lonely_man/lonely_man_before.json")
-        game.lonely_man_quest.steps["clear_flowers"] = "active"
-    if game.lonely_man_quest.steps["hangup_washing"] == "active":
+        game.lonely_man_quest.steps["clear_flowers"].activate()
+    if game.lonely_man_quest.steps["hangup_washing"].is_active():
         lonely_man.update_conversation_list("npc_dialogue/lonely_man/lonely_man_washing.json")
-    if game.lonely_man_quest.steps["fill_cart"] == "active":
+    if game.lonely_man_quest.steps["fill_cart"].is_active():
         lonely_man.update_conversation_list("npc_dialogue/lonely_man/lonely_man_cart.json")
-    if game.lonely_man_quest.steps["shelve_books"] == "active":
+    if game.lonely_man_quest.steps["shelve_books"].is_active():
         lonely_man.update_conversation_list("npc_dialogue/lonely_man/lonely_man_books.json")
-    if game.lonely_man_quest.steps["plant_plants"] == "active":
+    if game.lonely_man_quest.steps["plant_plants"].is_active():
         lonely_man.update_conversation_list("npc_dialogue/lonely_man/lonely_man_plants.json")
-    if game.lonely_man_quest.steps["sort_food"] == "active":
+    if game.lonely_man_quest.steps["sort_food"].is_active():
         lonely_man.update_conversation_list("npc_dialogue/lonely_man/lonely_man_food.json")
     if game.lonely_man_quest.complete:
         lonely_man.update_conversation_list("npc_dialogue/lonely_man/lonely_man_after.json")

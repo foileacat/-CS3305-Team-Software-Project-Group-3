@@ -284,7 +284,8 @@ class MyGame(arcade.Window):
         self.camera_gui.use()
         update_health_bar(self)
         self.health_bar.draw()
-        self.draw_quest(self.blacksmith_quest)
+        self.draw_quest(self.lonely_man_quest)
+        #self.draw_quest(self.blacksmith_quest)
         #self.draw_quest(self.dojo_quest)
         #self.draw_quest(self.witch_quest,x_var=50)
 
@@ -386,7 +387,7 @@ class MyGame(arcade.Window):
         self.inventory_cursor.draw(pixelated=True)
 
     def allowed_to_renovate(self, interactable):
-        if self.lonely_man_quest.steps[interactable.properties["quest"]] == "active":
+        if self.lonely_man_quest.steps[interactable.properties["quest"]].is_active():
             if interactable.properties["complete"] == False:
                 return True
         else:
@@ -580,18 +581,25 @@ class MyGame(arcade.Window):
                         self.inspect_message_UI.reset()
                         self.inspect_text = invInteractable.properties["item_refuse_message"]
                 else:
+                    item = invInteractable.properties["item_id"]
+                    if item == "white_flower quest" or item == "yellow_flower_quest" or item == "red_flower_quest":
+                        if self.blacksmith_quest.steps["collect_flowers"].is_active() == False:
+                            self.player_sprite.currently_inspecting = True
+                            self.inspect_message_UI.reset()
+                            self.inspect_text = "This is lovely, but so delicate! I won't touch it, I don't wanna damage it!"
+                            return
                     self.player_sprite.currently_inspecting = True
                     self.inspect_message_UI.reset()
                     self.inspect_text = invInteractable.properties["item_collection_message"]
                     self.player_sprite.add_to_inventory(
                         get_item(invInteractable.properties["item_id"]))
-
                     invInteractable.properties["collected"] = True
 
     def character_creator(self, interactable):
         if self.character_creator_open == True:
             self.character_creator_open = False
             self.gui_character_creator_manager.disable()
+            
             return
         else:
             self.player_sprite.character_face_direction = FORWARD_FACING
@@ -854,7 +862,7 @@ class MyGame(arcade.Window):
         if destination_room == "dungeon":
             if self.current_room_name == "forest_hideout":
                 if self.lonely_man_quest.complete == False:
-                    return "I'll stay here until I can help the old man in the house, and get the gem."
+                    return "I'll stay here until I find out what's up with this family, and get the gem."
                 
         if self.current_room_name == "cave_outside":
             if destination_room == "living_room":

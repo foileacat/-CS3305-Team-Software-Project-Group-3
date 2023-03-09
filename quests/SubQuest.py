@@ -29,3 +29,10 @@ class Subquest():
             return True
         else:
             return False
+    
+    def is_done(self):
+        if self.state == "done":
+            return True
+        else:
+            return False
+        
