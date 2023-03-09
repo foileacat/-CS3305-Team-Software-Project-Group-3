@@ -284,8 +284,9 @@ class MyGame(arcade.Window):
         self.camera_gui.use()
         update_health_bar(self)
         self.health_bar.draw()
-        self.draw_quest(self.dojo_quest)
-        self.draw_quest(self.witch_quest,x_var=50)
+        self.draw_quest(self.blacksmith_quest)
+        #self.draw_quest(self.dojo_quest)
+        #self.draw_quest(self.witch_quest,x_var=50)
 
     def draw_inventory(self):
         screen_center_x = self.width // 2
@@ -566,7 +567,7 @@ class MyGame(arcade.Window):
                         self.inspect_message_UI.reset()
                         self.inspect_text = invInteractable.properties["item_collection_message"]
                         if required_item == "Gem Key":
-                            self.blacksmith_quest.steps["get_gem"] == "complete"
+                            self.blacksmith_quest.steps["get_gem"].make_complete()
                             self.blacksmith_quest.complete = True
                             self.player_sprite.gem_2 = True
                             invInteractable.properties["collected"] = True
@@ -650,9 +651,10 @@ class MyGame(arcade.Window):
             self.inspect_message_UI.reset()
             self.inspect_text = interactable.properties["inspect_text"]
             if interactable.properties["item_id"] == "wifes_diary_flower":
-                if self.blacksmith_quest.steps["read_diary"] == "active":
-                    self.blacksmith_quest.steps["read_diary"] = "complete"
-                    self.blacksmith_quest.steps["tell_blacksmith"] = "active"
+                if self.blacksmith_quest.steps["read_diary"].is_active():
+                    self.blacksmith_quest.diary_read = True
+                    self.blacksmith_quest.steps["read_diary"].make_complete()
+                    self.blacksmith_quest.steps["tell_blacksmith"].activate()
 
     def handle_npc_interaction(self, npc):
         if self.player_sprite.currently_npc_interacting:
@@ -856,16 +858,16 @@ class MyGame(arcade.Window):
                 
         if self.current_room_name == "cave_outside":
             if destination_room == "living_room":
-                if self.blacksmith_quest.steps["speak_to_blacksmith"] == "active":
+                if self.blacksmith_quest.steps["speak_to_blacksmith"].is_active():
                     return "I came here to see the blacksmith, I'll go there first."
                 
         if self.current_room_name == "living_room":
             if destination_room == "bedroom":
-                if self.blacksmith_quest.steps["speak_to_wife"] == "active":
+                if self.blacksmith_quest.steps["speak_to_wife"].is_active():
                         return "I dont want to be rude. I'll talk to the blacksmiths wife first."
                 
             if destination_room == "cave_outside":
-                if self.blacksmith_quest.steps["read_diary"] == "active":
+                if self.blacksmith_quest.steps["read_diary"].is_active():
                         return "I need to figure out that flower. I can't leave until I find a clue!"
                 
         if destination_room == "dojo":
@@ -893,7 +895,7 @@ class MyGame(arcade.Window):
     def draw_quest(self,quest,x_var=0):
         x_increase = 0
         for subquest in quest.steps:
-            if quest.steps[subquest].state == "active":
+            #if quest.steps[subquest].state == "active":
                 text = "name:",quest.steps[subquest].name,"state:",quest.steps[subquest].state,
                 arcade.draw_text(text, 100+x_var,100+x_increase, arcade.color.WHITE, 15)
                 x_increase +=25

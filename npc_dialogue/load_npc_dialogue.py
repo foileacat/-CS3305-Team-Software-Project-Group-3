@@ -37,49 +37,47 @@ def load_lonely_man_dialogue(game,lonely_man):
     
    
 def load_blacksmith_dialogue(game,blacksmith):
-    if game.blacksmith_quest.active == False:
-        game.blacksmith_quest.active = True
     game.blacksmith_quest.update_subquests(game)
     game.blacksmith_quest.give_needed_items(game)
-    if game.blacksmith_quest.steps["speak_to_blacksmith"] == "active":
-        game.blacksmith_quest.steps["speak_to_blacksmith"] = "complete"
-        game.blacksmith_quest.steps["speak_to_wife"] = "active"
+    if game.blacksmith_quest.steps["speak_to_blacksmith"].is_active():
+        game.blacksmith_quest.steps["speak_to_blacksmith"].make_complete()
+        game.blacksmith_quest.steps["speak_to_wife"].activate()
         blacksmith.update_conversation_list("npc_dialogue/blacksmith/blacksmith_before.json")
 
-    if game.blacksmith_quest.steps["speak_to_wife"] == "complete":
+    if game.blacksmith_quest.steps["speak_to_wife"].is_completed():
         blacksmith.update_conversation_list("npc_dialogue/blacksmith/blacksmith_before.json")
-        game.blacksmith_quest.steps["speak_to_wife"] = "done"
+        game.blacksmith_quest.steps["speak_to_wife"].make_done()
 
-    if game.blacksmith_quest.steps["read_diary"] == "complete":
-        game.blacksmith_quest.steps["read_diary"] = "done"
-        game.blacksmith_quest.steps["tell_blacksmith"] = "done"
-        game.blacksmith_quest.steps["collect_flowers"] = "active"
+    if game.blacksmith_quest.steps["read_diary"].is_completed():
+        game.blacksmith_quest.steps["read_diary"].make_done()
+        game.blacksmith_quest.steps["tell_blacksmith"].make_done()
+        game.blacksmith_quest.steps["collect_flowers"].activate()
         blacksmith.update_conversation_list("npc_dialogue/blacksmith/blacksmith_read_diary.json")
 
-    if game.blacksmith_quest.steps["collect_flowers"] == "active":
+    if game.blacksmith_quest.steps["collect_flowers"].is_active():
         if game.blacksmith_quest.right_flower:
-            game.blacksmith_quest.steps["collect_flowers"] = "complete"
-            game.blacksmith_quest.steps["collect_ores"] = "active"
+            game.blacksmith_quest.steps["collect_flowers"].make_complete()
+            game.blacksmith_quest.steps["collect_ores"].activate()
             blacksmith.update_conversation_list("npc_dialogue/blacksmith/blacksmith_flower.json")
         if game.blacksmith_quest.wrong_flower:
             blacksmith.update_conversation_list("npc_dialogue/blacksmith/blacksmith_wrong_flower.json")
 
-    if game.blacksmith_quest.steps["collect_ores"] == "complete":
-        game.blacksmith_quest.steps["collect_ores"] = "done"
+    if game.blacksmith_quest.steps["collect_ores"].is_completed():
+        game.blacksmith_quest.steps["collect_ores"].make_done()
         blacksmith.update_conversation_list("npc_dialogue/blacksmith/blacksmith_after.json")
-        game.blacksmith_quest.steps["get_gem"] = "active"
+        game.blacksmith_quest.steps["get_gem"].activate()
     if game.player_sprite.gem_2 == True:
-        game.blacksmith_quest.steps["get_gem"] = "complete"
+        game.blacksmith_quest.steps["get_gem"].make_complete()
         game.blacksmith_quest.complete = True
    
 def load_blacksmith_wife_dialogue(game,blacksmith_wife):
-    if game.blacksmith_quest.steps["speak_to_wife"] == "active":
-        game.blacksmith_quest.steps["speak_to_wife"] = "complete"
-        game.blacksmith_quest.steps["read_diary"] = "active"
+    if game.blacksmith_quest.steps["speak_to_wife"].is_active():
+        game.blacksmith_quest.steps["speak_to_wife"].make_complete()
+        game.blacksmith_quest.steps["read_diary"].activate()
         blacksmith_wife.update_conversation_list("npc_dialogue/blacksmith_wife/blacksmith_wife_before.json")
-    if game.blacksmith_quest.steps["collect_flowers"] == "complete":
+    if game.blacksmith_quest.steps["collect_flowers"].is_completed():
         blacksmith_wife.update_conversation_list("npc_dialogue/blacksmith_wife/blacksmith_wife_flowers.json")
-    if game.blacksmith_quest.steps["collect_ores"] == "complete":
+    if game.blacksmith_quest.steps["collect_ores"].is_completed():
         blacksmith_wife.update_conversation_list("npc_dialogue/blacksmith_wife/blacksmith_wife_after.json")
 
 def load_witch_dialogue(game,witch):
