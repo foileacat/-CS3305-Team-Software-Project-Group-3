@@ -51,6 +51,8 @@ class BlackSmithQuest():
                 if self.gem_key_given == False:
                     game.player_sprite.add_to_inventory(items.gem_key,if_doesnt_have=True)
                     self.gem_key_given = True
+            if self.complete == True:
+                
     
     def start(self):
         if self.complete == False:
