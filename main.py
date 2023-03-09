@@ -284,6 +284,8 @@ class MyGame(arcade.Window):
         self.camera_gui.use()
         update_health_bar(self)
         self.health_bar.draw()
+        self.draw_quest(self.dojo_quest)
+        self.draw_quest(self.witch_quest,x_var=50)
 
     def draw_inventory(self):
         screen_center_x = self.width // 2
@@ -376,7 +378,6 @@ class MyGame(arcade.Window):
                 self.inventory_display_description.draw()
 
             self.inventory_display_name.draw()
-        # self.inventory_display_box.draw(pixelated=True)
         slot_sprite_list.draw(pixelated=True)
         for slot in self.inventory.slots:
             if slot.number_text:
@@ -661,6 +662,9 @@ class MyGame(arcade.Window):
                 if self.count == len(self.current_npc.get_current_conversation()) - 1:
                     self.player_sprite.currently_npc_interacting = False
                     npc.interacting = False
+                    if self.dojo_quest.steps["challenge_of_wisdom"].is_active():
+                        if self.current_npc.id == "sensei":
+                            self.dojo_quest.wisdom_challenge_complete = True
                     npc.end_convo()
                     self.count = 0
                     return
@@ -821,6 +825,11 @@ class MyGame(arcade.Window):
             if self.lonely_man_quest.active == False:
                 self.lonely_man_quest.start()
                 return True
+        
+        if destination_room == "dojo_outside":
+            if self.dojo_quest.active == False:
+                self.dojo_quest.start()
+                return True
             
         if destination_room == "enemy_house":
             if self.witch_quest.steps["talk_to_witch"].is_active():
@@ -836,26 +845,58 @@ class MyGame(arcade.Window):
                     return "I don't want to leave before I can find the gem here!."
                 
             if self.current_room_name == "dojo_outside":
-                # CODE
-                return True
+                if self.dojo_quest.complete == False:
+                    return "I think I'll stay here until I find the gem"
+                
         if destination_room == "dungeon":
             if self.current_room_name == "forest_hideout":
                 if self.lonely_man_quest.complete == False:
                     return "I'll stay here until I can help the old man in the house, and get the gem."
+                
         if self.current_room_name == "cave_outside":
             if destination_room == "living_room":
                 if self.blacksmith_quest.steps["speak_to_blacksmith"] == "active":
                     return "I came here to see the blacksmith, I'll go there first."
+                
         if self.current_room_name == "living_room":
             if destination_room == "bedroom":
                 if self.blacksmith_quest.steps["speak_to_wife"] == "active":
                         return "I dont want to be rude. I'll talk to the blacksmiths wife first."
+                
             if destination_room == "cave_outside":
                 if self.blacksmith_quest.steps["read_diary"] == "active":
                         return "I need to figure out that flower. I can't leave until I find a clue!"
+                
+        if destination_room == "dojo":
+                if self.current_room_name == "maze":
+                    self.dojo_quest.maze_complete = True
+
+                if self.current_room_name == "dojo_outside":
+                    if self.dojo_quest.steps["talk_to_apprentice"].is_active():
+                        return "I should talk to the apprentice outside first."
+                    
+        if self.current_room_name == "dojo":
+            if destination_room == "dojo_outside":
+                if self.dojo_quest.steps["talk_to_sensei"].is_active():
+                    return "I should talk to the sensei first"
+                if self.dojo_quest.steps["challenge_of_wisdom"].is_completed() == False:
+                    return "I should see what the next challenge is!"
+                if self.dojo_quest.steps["challenge_of_courage"].is_completed() == False:
+                    return "I should do the last challenge before I leave!"
+            if destination_room == "maze":
+                if self.dojo_quest.steps["challenge_of_courage"].is_active() == False:
+                    return "This is spooky. I shouldn't go in here without asking the sensei first."
+                    
         return True
 
-
+    def draw_quest(self,quest,x_var=0):
+        x_increase = 0
+        for subquest in quest.steps:
+            if quest.steps[subquest].state == "active":
+                text = "name:",quest.steps[subquest].name,"state:",quest.steps[subquest].state,
+                arcade.draw_text(text, 100+x_var,100+x_increase, arcade.color.WHITE, 15)
+                x_increase +=25
+            
 def main():
     """ Main function """
     window = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)

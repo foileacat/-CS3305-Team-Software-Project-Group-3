@@ -8,6 +8,10 @@ def load_npc_dialogue(game,npc):
         load_blacksmith_wife_dialogue(game,npc)
     if npc.id == "witch":
         load_witch_dialogue(game,npc)
+    if npc.id == "sensei":
+        load_sensei_dialogue(game,npc)
+    if npc.id == "sensei_apprentice":
+        load_apprentice_dialogue(game,npc)
     return
 
 def load_lonely_man_dialogue(game,lonely_man):
@@ -92,3 +96,41 @@ def load_witch_dialogue(game,witch):
         subquests["return_to_witch"].make_complete()
         quest.complete = True
     
+def load_sensei_dialogue(game,sensei):
+    quest = game.dojo_quest
+    subquests = quest.steps
+    quest.update_subquests(game)
+    quest.give_required_items(game)
+    if subquests["talk_to_sensei"].is_active():
+        sensei.update_conversation_list("npc_dialogue/sensei/sensei_before.json")
+        subquests["talk_to_sensei"].make_complete()
+        subquests["challenge_of_wisdom"].activate()
+    if subquests["challenge_of_wisdom"].is_active():
+        if quest.wisdom_challenge_complete:
+            subquests["challenge_of_wisdom"].make_complete()
+            sensei.update_conversation_list("npc_dialogue/sensei/sensei_strength.json")
+            subquests["challenge_of_strength"].activate()
+    if subquests["challenge_of_strength"].is_active():
+        if quest.strength_challenge_complete:
+            subquests["challenge_of_strength"].make_complete()
+            sensei.update_conversation_list("npc_dialogue/sensei/sensei_courage.json")
+            subquests["challenge_of_courage"].activate()
+    if subquests["challenge_of_courage"].is_active():
+        if quest.maze_complete:
+            subquests["challenge_of_courage"].make_complete()
+            sensei.update_conversation_list("npc_dialogue/sensei/sensei_after.json")
+            quest.complete = True
+    return
+
+def load_apprentice_dialogue(game,apprentice):
+    quest = game.dojo_quest
+    subquests = quest.steps
+    if subquests["talk_to_apprentice"].is_active():
+        subquests["talk_to_apprentice"].make_complete()
+        subquests["talk_to_sensei"].activate()
+        apprentice.update_conversation_list("npc_dialogue/sensei_apprentice/sensei_apprentice_before.json")
+    if subquests["challenge_of_strength"].is_active():
+        apprentice.update_conversation_list("npc_dialogue/sensei_apprentice/sensei_apprentice_can.json")
+    if quest.complete:
+        apprentice.update_conversation_list("npc_dialogue/sensei_apprentice/sensei_apprentice_after.json")
+    return

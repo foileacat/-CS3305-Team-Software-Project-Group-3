@@ -37,7 +37,7 @@ def setup(self):
     room.scene = arcade.Scene.from_tilemap(room.tile_map)
 
     room.npc_list = arcade.SpriteList()
-    room.npc =  Npc(500,400,"Sensei",12, "npc_dialogue/generic_npc.json")
+    room.npc =  Npc(500,400,"Jane","sensei_apprentice", "npc_dialogue/generic_npc.json")
     room.npc.change_appearance([11,5],[5,4],[2,7],False,[0,0])
     room.npc_list.append(room.npc)
     room.scene.add_sprite_list("NPC", sprite_list=room.npc_list)
