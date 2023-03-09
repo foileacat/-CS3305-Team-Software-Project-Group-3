@@ -10,17 +10,18 @@
  <tileset firstgid="2494" source="Sources/Book.tsj"/>
  <tileset firstgid="3069" source="Sources/amber_ore_empty.tsj"/>
  <tileset firstgid="3073" source="Sources/amethyst_ore_empty.tsj"/>
+ <tileset firstgid="3077" source="Sources/amethyst_ore_empty.tsx"/>
  <objectgroup id="9" name="interactables">
   <object id="60" gid="23" x="94.667" y="66" width="19.6667" height="18.6667">
    <properties>
-    <property name="inspect_text" value="This pot is so dusty."/>
+    <property name="inspect_text" value="This pot is so dusty. I'm surprised it's not broken!"/>
     <property name="item_id" value="cave_pot"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
   <object id="62" gid="23" x="109.667" y="274.333" width="21.3333" height="21">
    <properties>
-    <property name="inspect_text" value="poor fucker"/>
+    <property name="inspect_text" value="What are these markings? I should have paid more attention in college."/>
     <property name="item_id" value="cave_grave"/>
     <property name="on_interact" value="show_message"/>
    </properties>
@@ -144,7 +145,7 @@
  </layer>
  <layer id="2" name="furniture" width="30" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBh6wIORgcETiL0Y6WfnOQ4GhhCgfaFAHMYI4VMDFDLjl/8HtCcBaF8iECcxQvi4wGcmBoazbEC3sWGXL2fCb5coGwQTC6YjmfcXqO8fCXpJtXM6AbcTA/5yA93IjbCXXuA/yE4e+tk3CvCD/3jinhEYT0wDEFfMQDtZRtMIWeAssEzcysrAsI0VwiYG4ItnYsoaUPnxF2jXNaCd11khbELqQYCUeP6K5g56llmU2jkQbh2MAAAABBuf
+   eJxjYBh6wIORgcETiL0Y6WfnOQ4GhhCgfaFAHMYI4VMDFDLjl/8HtCcBaF8iECcxQvi4wGcmBoazbEC3sWGXL2fCb5coGwQTC6YjmfcXqO8fCXpJtXM6AbcTA/5yA93IjbCXXuA/yE4e+tk3CvCD/3jinhUYT2wDEFfsQDs5RtMIWeAssEzcysrAsI0VwiYG4ItnYsoaUPnxF2jXNaCd11khbELqQYCUeP6K5g56llmU2jkQbh2MAABjxBu/
   </data>
  </layer>
  <layer id="10" name="over layer" width="30" height="20">

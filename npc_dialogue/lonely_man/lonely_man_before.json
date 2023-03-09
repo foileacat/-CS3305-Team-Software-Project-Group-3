@@ -1,46 +1,25 @@
 {
     "hallway_npc": {
         "first_convo": [
-            "...",
-            "Wait...",
-            "What?",
-            "What's going on??",
-            "Who are you??",
+            "Wait... What? What's going on?? Who are you??",
             "....",
-            "Please, excuse my manners",
-            "But WHAT??",
-            "....",
-            "I apologise, I haven't spoken to anyone in quite some time...",
-            "Who are you anyways? How did you get in? Those monsters have been keeping me trapped here for years!",
-            "I'm afraid that forest had been infested with monsters for quite some time, I can only thank you for defeating them.",
+            "Please, excuse my manners, But WHAT??",
+            "I apologise for my reaction, but I am very surprised to see another person! I haven't spoken to anyone in quite some time How did you even get in?",
+            "That forest had been infested with monsters for quite some time, and I was trapped here. I can only thank you for defeating them.",
             "So, whats your name stranger?",
             "...",
             ".....",
             ".......",
             "Not the talkative type?",
-            "Oh well, it's what I'm used to. I don't talk to people much anymore",
-            "You see, I used to be so happy, my beautiful wife and I used to live here with our dog",
-            "We would plant flowers, walk together in the forest, it was perfect.",
-            "When the monsters infested the forest, I told her it was too dangerous, but she insisted on standing up to them.",
-            "She was always so brave...",
-            "...",
-            "....",
+            "Oh well, it's what I'm used to. I don't talk to people much anymore. I haven't since the forest got infested.",
+            "Before the monsters came, my beautiful wife and I used to live here with our son. We would plant flowers, walk together in the forest, it was perfect.",
+            "My wife said they were just bullies, and my son agreed. I told them it was too dangerous, but she insisted on standing up to them. She was always so brave...",
             "Well anyways.",
-            "I miss her terribly, and I've stayed at home ever since.",
-            "In fact, I should apologise again",
-            "Since losing her I've not exactly taken care of the place. Everything is in disarray I'm afraid, I'm in no state to host guests",
-            "But... I don't suppose you could lend me a hand?",
-            "I can't get around anymore like I used to, and it would make the world of a difference to a lonely old man like me.",
-            "If you're interested, come ask me what needs done. I would of course give you a little something for your help."
-        ],
-        "second_convo": [
-            "Wait.. you really want to help? Wow!",
-            "I know, I mean I did ask, but I wasn't sure if you'd be willing to help me. I'm just a stranger to you after all.",
-            "And it's a lot TO ask!",
-            "But anyways! To start, would you mind replanting the flowers in the flower bed outside? ",
-            "They were so beautiful, but they haven't bloomed in a long time.",
-            "After that, come back and ask whats next!"
-
+            "I miss them terribly, and I've stayed at home ever since. In fact, I should apologise again! ",
+            "Since losing them I've not exactly taken care of the place. Everything is in disarray, I'm in no state to host guests.",
+            "But... I don't suppose you could lend me a hand? I can't get around anymore like I used to, and it would make the world of a difference to a lonely old man like me.",
+            "I know it's a lot to ask, but would you be able to start by replanting the flowers in the flower bed outside? They were so beautiful, but they haven't bloomed in a long time.",
+            "After that, come back and ask me what to do next! "
         ],
         "final_convo": [
             "Hello! Have you finished planting those flowers?"

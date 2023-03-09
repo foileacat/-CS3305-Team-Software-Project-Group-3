@@ -4,7 +4,7 @@ import items
 class BlackSmithQuest():
     def __init__(self):
         self.active = False
-        self.steps = {"speak_to_blacksmith":"active","speak_to_wife":"inactive","read_diary":"inactive","tell_blacksmith":"inactive","collect_flowers":"inactive","collect_ores":"inactive","get_gem":"inactive"}
+        self.steps = {"speak_to_blacksmith":"inactive","speak_to_wife":"inactive","read_diary":"inactive","tell_blacksmith":"inactive","collect_flowers":"inactive","collect_ores":"inactive","get_gem":"inactive"}
         self.complete = False
         self.diary_read = False
         self.pickaxe_key_given = False
@@ -51,4 +51,9 @@ class BlackSmithQuest():
                 if self.gem_key_given == False:
                     game.player_sprite.add_to_inventory(items.gem_key,if_doesnt_have=True)
                     self.gem_key_given = True
-        
+    
+    def start(self):
+        if self.complete == False:
+            self.active = True
+            self.steps["speak_to_blacksmith"] = "active"
+            print("quest started!")

@@ -1,0 +1,19 @@
+{"witch": {
+    "first_convo": [
+        "Hello fair traveller! Hello mystical adventurer! Hello-",
+        "Okay, actually, do I have to do the witch thing? I'm having a really bad day",
+        "Sorry, usually I do more but... it's been rough I've been up late-",
+        "Anyways! What's your name?",
+        "...",
+        "...",
+        "Okay cool. Not a conversationalist. That's okay! If you don't wanna talk, then listen.",
+        "So, I was doing a spell in my house over there, and I was doing really well. It was awesome!",
+        "Well. Until I messed it up. I accidentally summoned some monsters, and I'm all magicked out. I really dont feel like dealing with this right now.",
+        "Sooooo, if you aren't doing anything, could you maybe go defeat the monsters? Are you much of a warrior?",
+        "Doesn't matter, I have a sword laying around in my robe anyways. If you can defeat the monsters, I'll happily reward you. You don't have any interest in magic gems do you?"
+    ],
+    "final_convo": [
+        "Once you defeat those monsters, I promise I'll make it worth your while. They're just in my house up there!"
+    ]
+}
+}

@@ -1,0 +1,13 @@
+{"witch": {
+        "first_convo": [
+            "Oh my god! I can't believe you actually did it! I totally thought you were gonna-",
+            "Anyways. I always had complete confidence in you.",
+            "Really though, you've really saved my life over here! I appreciate your help.",
+            "Plus, a deals a deal! I'm guessing you take payment in magical gems? If you don't this is going to be really awkward.",
+            "Anyways. Thank you! I'll see ya around!"
+        ],
+        "final_convo": [
+            "I'm glad I got that sorted. I don't know if I'll be doing anymore spells for a little while though."
+        ]
+    }
+}

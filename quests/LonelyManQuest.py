@@ -9,7 +9,7 @@ import items
 class LonelyManQuest():
     def __init__(self):
         self.active = False
-        self.steps = {"clear_flowers":"inactive","hangup_washing":"inactive","fill_cart":"inactive","shelve_books":"inactive","plant_plants":"inactive","sort_food":"inactive"}
+        self.steps = {"talk_to_old_man":"inactive","clear_flowers":"inactive","hangup_washing":"inactive","fill_cart":"inactive","shelve_books":"inactive","plant_plants":"inactive","sort_food":"inactive"}
         self.complete = False
         self.book_given = False##
         self.sacks_given = False
@@ -79,3 +79,8 @@ class LonelyManQuest():
                 
         else:
             return
+        
+    def start(self):
+        if self.complete == False:
+            self.active = True
+            self.steps["talk_to_old_man"] = "active"

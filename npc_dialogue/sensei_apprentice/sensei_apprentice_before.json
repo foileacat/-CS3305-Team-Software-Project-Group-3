@@ -1,0 +1,14 @@
+{
+    "apprentice": {
+        "first_convo": [
+            "Oh Hi! I don't remember seeing you around the dojo before, what brings you here?",
+            "No! Wait! Don't say it! I can tell. You're here for the sensei's secret aren't you! I knew it!",
+            "Why the blank face? You know about the secret right? About the three impossible challenges you must complete?",
+            "I've tried SO MANY TIMES but it really is impossible! I'd say you should try it but, it might be a littleee difficult for a non-ninja.",
+            "Oh well. Let me know how it goes. I dont have high hopes BUT the prize is priceless. So hopefully you get lucky!"
+        ],
+        "final_convo": [
+            "Good luck! If you survive, I want to hear all about it!"
+        ]
+    }
+}

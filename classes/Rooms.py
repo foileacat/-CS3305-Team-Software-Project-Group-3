@@ -10,6 +10,7 @@ class Room:
     def __init__(self):
         # You may want many lists. 
        #Lists for coins, monsters, etc.
+        self.id = "N/A"
         self.entrances = []
         self.multiple_entrances = False
         self.has_mineable = False

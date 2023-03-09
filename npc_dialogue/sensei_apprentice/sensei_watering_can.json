@@ -1,0 +1,14 @@
+{
+    "apprentice": {
+        "first_convo": [
+            "Omg! You're back!! How is it going? Are you winning? From what I heard through the window, the passed the first challenge!",
+            "I heard the sensei talking about a vicious weapon, where is it?? Can I see it?",
+            "Wait what? A watering can?? That's so... just so...",
+            "AMAZING!!! The sensei really is a visionary!!",
+            "SQUEEEEEEEEEE!!!"
+        ],
+        "final_convo": [
+            "I can't believe the sensei is so wise... I'm so jealous!!"
+        ]
+    }
+}

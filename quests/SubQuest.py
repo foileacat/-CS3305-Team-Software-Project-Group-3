@@ -2,18 +2,18 @@ from constants import *
 
 
 class Subquest():
-    def __init__(self,name,description="Nothing here!"):
+    def __init__(self,name,description="Nothing here!",state="inactive"):
         self.name = name
-        self.description = ""
-        self.state = "inactive"
-        self.complete = False
+        self.description = description
+        self.state = state
+        self.completed = False
 
     def activate(self):
         self.state = "active"
 
-    def complete(self):
+    def make_complete(self):
         self.state = "complete"
-        self.complete = True
+        self.completed = True
     
     def make_done(self):
         self.state = "done"

@@ -6,16 +6,17 @@ def load_npc_dialogue(game,npc):
         load_blacksmith_dialogue(game,npc)
     if npc.id == "blacksmith_wife":
         load_blacksmith_wife_dialogue(game,npc)
+    if npc.id == "witch":
+        load_witch_dialogue(game,npc)
     return
 
 def load_lonely_man_dialogue(game,lonely_man):
-    if game.lonely_man_quest.active == False:
-        game.lonely_man_quest.active = True
-        game.lonely_man_quest.steps["clear_flowers"] = "active"
     game.lonely_man_quest.update_subquests()
     game.lonely_man_quest.give_needed_items(game)
-    if game.lonely_man_quest.steps["clear_flowers"] == "active":
+    if game.lonely_man_quest.steps["talk_to_old_man"] == "active":
+        game.lonely_man_quest.steps["talk_to_old_man"] = "complete"
         lonely_man.update_conversation_list("npc_dialogue/lonely_man/lonely_man_before.json")
+        game.lonely_man_quest.steps["clear_flowers"] = "active"
     if game.lonely_man_quest.steps["hangup_washing"] == "active":
         lonely_man.update_conversation_list("npc_dialogue/lonely_man/lonely_man_washing.json")
     if game.lonely_man_quest.steps["fill_cart"] == "active":
@@ -72,3 +73,22 @@ def load_blacksmith_wife_dialogue(game,blacksmith_wife):
         blacksmith_wife.update_conversation_list("npc_dialogue/blacksmith_wife/blacksmith_wife_flowers.json")
     if game.blacksmith_quest.steps["collect_ores"] == "complete":
         blacksmith_wife.update_conversation_list("npc_dialogue/blacksmith_wife/blacksmith_wife_after.json")
+
+def load_witch_dialogue(game,witch):
+    quest = game.witch_quest
+    subquests = quest.steps
+    quest.update_subquests(game)
+    quest.give_required_items(game)
+    if subquests["talk_to_witch"].is_active():
+        subquests["talk_to_witch"].make_complete()
+        witch.update_conversation_list("npc_dialogue/witch/witch_before.json")
+        subquests["fight_monsters"].activate()
+    if subquests["fight_monsters"].is_active():
+        if quest.monsters_defeated:
+            subquests["fight_monsters"].make_complete()
+            subquests["return_to_witch"].activate()
+    if subquests["return_to_witch"].is_active():
+        witch.update_conversation_list("npc_dialogue/witch/witch_after.json")
+        subquests["return_to_witch"].make_complete()
+        quest.complete = True
+    

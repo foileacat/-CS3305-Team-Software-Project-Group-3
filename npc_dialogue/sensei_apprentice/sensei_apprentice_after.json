@@ -1,0 +1,17 @@
+{
+    "apprentice": {
+        "first_convo": [
+            "NO. WAY. NO WAY NO WAY NO WAY!!",
+            "How is this possible?? Did you pass all the challenges? Learn the sensei's secret? Get the prize?",
+            "IM. SO. JEALOUS. Be honest, was the sensei really cool and epic? Say nothing if she was.",
+            "...",
+            "THAT'S SO COOL! One day, I'm gonna make the sensei proud and pass all the challenges too!",
+            "Enough about me, Congratulations! You've gotta be pretty tough to survive that!",
+            "I wanna ask you more about it, but I'll have to do it later. I gotta train extra hard now!",
+            "Good luck on your travels, I'll see you later!"
+        ],
+        "final_convo": [
+            "I still can't believe you pulled that off! One day, that's gonna be me!"
+        ]
+    }
+}

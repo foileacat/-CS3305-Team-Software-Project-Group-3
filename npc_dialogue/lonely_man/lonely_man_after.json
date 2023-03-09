@@ -2,13 +2,9 @@
     "hallway_npc": {
         "first_convo": [
             "Well... I just can't believe it.",
-            "I've spent so long alone here, I forgot what it was like to have someone be so kind to me",
-            "...",
-            "They really are looking down on me.",
-            "...",
-            "Thank you stranger. You have no idea what this means to me. I feel 10 years younger and 100 times more hopeful",
+            "I've spent so long alone here, I forgot what it was like to have someone be so kind to me. They really are looking down on me.",
             "When my wife was just a girl, a kind stranger gave her a gift, and she kept it her whole life.",
-            "She always told me there was kindness in the world, and you've shown me that.",
+            "She always told me there was kindness in the world, and you've shown me that. Thank you, stranger.",
             "Here, I want you to have it. She'd have loved you. I dont know if it's worth anything but it's the least I can do.",
             "Thank you, stranger. I wish you good luck in your travels!"
         ],

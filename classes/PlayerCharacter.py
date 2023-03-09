@@ -38,6 +38,7 @@ class PlayerCharacter(Character):
         self.taking_damage = False
         self.dead = False
         self.mining = False
+        self.watering_can_count = 0
         
         
     def load_textures(self):
@@ -192,6 +193,9 @@ class PlayerCharacter(Character):
                 return
             self.using_tool = True
             self.calculate_tool_stats()
+            if self.current_item().name == "Holey Watering Can":
+                self.watering_can_count+=1
+                print(self.watering_can_count)
 
     def use_consumable(self):
         self.inventory_bar.remove_item()

@@ -1,0 +1,13 @@
+{
+    "sensei": {
+        "first_convo": [
+            "Welcome young one! I can sense that you are here to take my challenge, and try earn my prize.",
+            "Well, Are you here to try to amuse me or actually prove your worth? Are you worthy to complete the dojos fights of glory?",
+            "I suppose we will see, after you pass my three challenges. First, I will test your wisdom. Then, I shall test your strength. Finally, I shall test your courage.",
+            "Are you ready to undertake these challenges? Come to me when you are ready to begin."
+        ],
+        "final_convo": [
+            "Come to me young one."
+        ]
+    }
+}
