@@ -1,0 +1,12 @@
+{
+    "mom": {
+        "first_convo": [
+            "Oh goodness! You're back already? That's amazing!",
+            "I heard that the Sensei could be tricky to deal with, so I'm glad you figured it out. Thats just amazing!",
+            "Now, we finally have all four gems. We just need to combine them to create the ultra-gem."
+        ],  
+        "final_convo": [
+            "Fcuk!"
+        ]
+    }
+}

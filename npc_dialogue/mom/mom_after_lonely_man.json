@@ -1,0 +1,15 @@
+{
+    "mom": {
+        "first_convo": [
+            "Welcome back Kiddo! How was the family? From your face, I'm guessing it wasn't great news. And I swear I heard fighting in the forest!",
+            "No matter, you have the gem and you're safe, that's all that matters!",
+            "And only one gem left to go!!",
+            "Thankfully, while you were gone that apprentice kid walked by, and told me about the 'Sensei's Secret'",
+            "I'm not sure what that is, but it sounds promising. And I bet you anything that the gem has something to do with it!",
+            "I'd head north to the Dojo quickly, we're almost there!"
+        ],  
+        "final_convo": [
+            "The Dojo is north, head there before someone else figures out the secret!"
+        ]
+    }
+}

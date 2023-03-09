@@ -1,0 +1,14 @@
+{
+    "mom": {
+        "first_convo": [
+            "Hey! How did it go? You got the gem??",
+            "That's wonderful honey! I'm so proud of you!",
+            "The bad news is that there are still three more gems to find. Good news is I think I know where to go next!",
+            "The blacksmith to the East lives there with his wife, and I know he goes mining sometimes. Those caves are very old, maybe he knows something!",
+            "Head over there and try find the next crystal."
+        ],  
+        "final_convo": [
+            "Have you headed over to the blacksmith yet? I'm sure you'll find something there!"
+        ]
+    }
+}

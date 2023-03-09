@@ -1,0 +1,20 @@
+{
+    "mom": {
+        "first_convo": [
+            "Hey Kiddo! How did you sleep? Well I hope! I'm sure you're excited to be home again, you've been away at college for quite some time!",
+            "You look so different! I'm not sure the village people will even recognise you. That's okay too though!",
+            "However, I have bad news. The village is not the same as you left it. A few years ago, the spell that has protected our village for 1000 years broke!",
+            "The spell was so ancient and old, not even the oldest elders knew how to cast it again. The village fell into chaos. That's why I havent visited you!",
+            "The villagers are unhappy, and bad things are happening everywhere. Monsters are roaming the lands and back luck has cursed everyone!",
+            "That's why it's so good you're here! You see, there is a way to fix the spell, but only someone young, and pure of heart can do it.",
+            "To fix the spell, you need to gather the four ancient gems that were created by an ancient magick many years ago.",
+            "They're scattered around the village, and I'm afraid I cannot help you find them. You must go alone!",
+            "However, I did hear that the forest witch might have one of the gems. You should go south to her house and ask her!",
+            "I'm sorry this isn't much of a welcome, but the fate of the village is at stake!",
+            "After you get the first gem from the witch, come ask me again, and we can figure out what to do next!"
+        ],
+        "final_convo": [
+            "The fate of the village is at stake! Go ahead Kiddo, you got this!"
+        ]
+    }
+}

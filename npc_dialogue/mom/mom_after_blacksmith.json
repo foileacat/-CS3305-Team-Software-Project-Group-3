@@ -1,0 +1,15 @@
+{
+    "mom": {
+        "first_convo": [
+            "Hi Honey! I see you have the next gem! Amazing job!",
+            "This is perfect, we already have half of the gems!",
+            "Here's where it gets tricky though. Do you remember the family who live in the house past the north-east forest? ",
+            "I think they knew something about gems, but I havent seen any of them since the spell broke! Can you go check on them?",
+            "The forest used to be beautiful, but I haven't been there since the spell broke. I've heard rumors of bad things, so be careful!",
+            "Once the family help you with the gem, we can figure out where the last one is."
+        ],  
+        "final_convo": [
+            "Be careful in the forest!"
+        ]
+    }
+}
