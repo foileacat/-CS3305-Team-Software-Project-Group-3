@@ -3,10 +3,14 @@
         "first_convo": [
             "Oh goodness! You're back already? That's amazing!",
             "I heard that the Sensei could be tricky to deal with, so I'm glad you figured it out. Thats just amazing!",
-            "Now, we finally have all four gems. We just need to combine them to create the ultra-gem."
+            "Now, we finally have all four gems. We just need to combine them...",
+            "Do a little twisting....",
+            "Anndddd Done!",
+            "Now, the village is safe and sound. We won't see any monsters from now on!",
+            "Good job kiddo! I hope you had fun and I hope you're excited for the rest of the visit!"
         ],  
         "final_convo": [
-            "Fcuk!"
+            "We won!"
         ]
     }
 }

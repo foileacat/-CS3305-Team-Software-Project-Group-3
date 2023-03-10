@@ -90,6 +90,7 @@ class MyGame(arcade.Window):
             dungeon.setup(self), forest_hideout.setup(self), lonely_house.setup(self), maze.setup(self)]
 
         self.current_room_index = 0
+        self.current_room_name = "starting_room"
         self.current_room = self.rooms[self.current_room_index]
         self.scene = self.current_room.scene
 
@@ -284,7 +285,8 @@ class MyGame(arcade.Window):
         self.camera_gui.use()
         update_health_bar(self)
         self.health_bar.draw()
-        self.draw_quest(self.lonely_man_quest)
+        self.draw_quest(self.gem_quest)
+        #self.draw_quest(self.lonely_man_quest)
         #self.draw_quest(self.blacksmith_quest)
         #self.draw_quest(self.dojo_quest)
         #self.draw_quest(self.witch_quest,x_var=50)
@@ -433,6 +435,14 @@ class MyGame(arcade.Window):
             self.handle_interact()
         if key == arcade.key.B:
             self.draw_performance = not self.draw_performance
+        if key == arcade.key.G:
+            self.witch_quest.complete = True
+        if key == arcade.key.H:
+            self.blacksmith_quest.complete = True
+        if key == arcade.key.J:
+            self.lonely_man_quest.complete = True
+        if key == arcade.key.K:
+            self.dojo_quest.complete = True
 
         "For inventory configuration - in progress"
 
@@ -605,6 +615,8 @@ class MyGame(arcade.Window):
             self.player_sprite.character_face_direction = FORWARD_FACING
             setup_character_creator_gui(self)
             self.character_creator_open = True
+            self.gem_quest.steps["customise"].make_complete()
+            self.gem_quest.steps["talk_to_mom"].activate()
 
     def room_transition(self, interactable):
         """
@@ -824,27 +836,42 @@ class MyGame(arcade.Window):
     def room_transition_allowed(self, destination_room):
         """start quests when entering rooms:"""
         if destination_room == "forest":
-            if self.witch_quest.active == False:
-                self.witch_quest.start()
-                return True
+            if self.gem_quest.steps["witch"].is_active() or self.gem_quest.steps["witch"].is_completed():
+                if self.witch_quest.active == False:
+                    self.witch_quest.start()
+                    return True
+            else:
+                return "I dont know what's over here, I'll wait for mom to tell me to go here."
             
         if destination_room == "cave_outside":
-            if self.blacksmith_quest.active == False:
-                self.blacksmith_quest.start()
-                return True
-            
+            if self.gem_quest.steps["blacksmith"].is_active() or self.gem_quest.steps["blacksmith"].is_completed():
+                if self.blacksmith_quest.active == False:
+                    self.blacksmith_quest.start()
+                    return True
+            else:
+                return "I hear wailing! I'll wait for mom to tell me to go here."   
+    
         if destination_room == "forest_hideout":
-            if self.lonely_man_quest.active == False:
-                self.lonely_man_quest.start()
-                return True
+            if self.gem_quest.steps["lonely"].is_active() or self.gem_quest.steps["lonely"].is_completed():
+                if self.lonely_man_quest.active == False:
+                    self.lonely_man_quest.start()
+                    return True
+            else:
+                return "This place is spooky, I'll wait for mom to tell me to go here."
         
         if destination_room == "dojo_outside":
-            if self.dojo_quest.active == False:
-                self.dojo_quest.start()
-                return True
+            if self.gem_quest.steps["dojo"].is_active() or self.gem_quest.steps["dojo"].is_completed():
+                if self.dojo_quest.active == False:
+                    self.dojo_quest.start()
+                    return True
+            else:
+                return "I think the Dojo is this way. I'll wait for mom to tell me to go here."
             
         "Wont let you leave area with incomplete quest:"
         if destination_room == "main_room":
+            if self.current_room_name == "starting_room":
+                if self.gem_quest.steps["customise"].is_completed() == False:
+                    return "I dont feel like myself. I should change my outfit at my dresser!"
             if self.current_room_name == "forest":
                 if self.witch_quest.complete == False:
                     return "No, I should stay here until I can get the gem from the witch."
@@ -910,7 +937,15 @@ class MyGame(arcade.Window):
                 text = "name:",quest.steps[subquest].name,"state:",quest.steps[subquest].state,
                 arcade.draw_text(text, 100+x_var,100+x_increase, arcade.color.WHITE, 15)
                 x_increase +=25
-            
+
+    def draw_quests(self):
+        x_increase = 0
+        for quest in self.quests:
+            for subquest in quest.steps:
+                if quest.steps[subquest].state == "active":
+                    text = "name:",quest.steps[subquest].name,"state:",quest.steps[subquest].state,
+                    arcade.draw_text(text, 100,100+x_increase, arcade.color.WHITE, 15)
+                    x_increase +=25            
 def main():
     """ Main function """
     window = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)

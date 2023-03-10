@@ -12,7 +12,37 @@ def load_npc_dialogue(game,npc):
         load_sensei_dialogue(game,npc)
     if npc.id == "sensei_apprentice":
         load_apprentice_dialogue(game,npc)
+    if npc.id == "mom":
+        load_mom_dialogue(game,npc)
     return
+
+def load_mom_dialogue(game,mom):
+    quest = game.gem_quest
+    subquests = quest.steps
+    quest.update_subquests(game)
+    if subquests["talk_to_mom"].is_active():
+        subquests["talk_to_mom"].make_complete()
+        subquests["witch"].activate()
+        mom.update_conversation_list("npc_dialogue/mom/mom_before.json")
+
+    if subquests["witch"].is_done():
+        subquests["witch"].make_complete()
+        mom.update_conversation_list("npc_dialogue/mom/mom_after_witch.json")
+        subquests["blacksmith"].activate()
+
+    if subquests["blacksmith"].is_done():
+        subquests["blacksmith"].make_complete()
+        mom.update_conversation_list("npc_dialogue/mom/mom_after_blacksmith.json")
+        subquests["lonely"].activate()
+
+    if subquests["lonely"].is_done():
+        subquests["lonely"].make_complete()
+        mom.update_conversation_list("npc_dialogue/mom/mom_after_lonely_man.json")
+        subquests["dojo"].activate()
+
+    if subquests["dojo"].is_done():
+        subquests["dojo"].make_complete()
+        mom.update_conversation_list("npc_dialogue/mom/mom_after_dojo.json")
 
 def load_lonely_man_dialogue(game,lonely_man):
     game.lonely_man_quest.update_subquests()
