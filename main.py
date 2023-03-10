@@ -20,8 +20,9 @@ from npc_dialogue.load_npc_dialogue import load_npc_dialogue
 from gui.TypewriterText import TypewriterTextWidget
 from quests.LonelyManQuest import LonelyManQuest
 from quests.setup_quests import setup_quests
-
+import sound_constants
 import json_functions
+from pyglet.media import get_audio_driver
 
 
 class MyGame(arcade.Window):
@@ -58,6 +59,8 @@ class MyGame(arcade.Window):
         self.any_sprite_x = 700
         self.any_sprite_y = 510
         self.respawn_timer = 0
+        self.current_song = sound_constants.peaceful_music
+        self.music_player = arcade.play_sound(self.current_song,volume=0.5,looping=True)
         setup_quests(self)
 
     def on_resize(self, width, height):
@@ -162,17 +165,19 @@ class MyGame(arcade.Window):
 
         if self.current_room.has_enemies:
             for enemy in self.current_room.enemy_list:
-
-                if arcade.has_line_of_sight(point_1=self.player_sprite.position,
-                                            point_2=enemy.position,
-                                            walls=self.current_room.wall_sprite_list):
-                    if self.player_sprite.health < 0:
-                        enemy.following = False
+                if self.player_sprite.health > 0:
+                    if arcade.has_line_of_sight(point_1=self.player_sprite.position,
+                                                point_2=enemy.position,
+                                                walls=self.current_room.wall_sprite_list,
+                                                check_resolution=5,
+                                                max_distance=10 * SPRITE_SIZE ):
+                        if self.player_sprite.health <= 0:
+                            enemy.following = False
+                        else:
+                            enemy.following = True
+                            enemy.target = self.player_sprite
                     else:
-                        enemy.following = True
-                        enemy.target = self.player_sprite
-                else:
-                    enemy.following = False
+                        enemy.following = False
 
             enemies = arcade.check_for_collision_with_list(self.player_sprite,
                                                            self.scene["Enemy"])
@@ -234,7 +239,7 @@ class MyGame(arcade.Window):
             else:
                 self.inspect_item_symbol_UI.color = arcade.color.CORNFLOWER_BLUE
             if interactable.properties["on_interact"] == "renovate":
-
+                self.inspect_item_symbol_UI.color = arcade.color.YELLOW
                 if self.allowed_to_renovate(interactable):
                     self.inspect_item_symbol_UI.draw(pixelated=True)
             else:
@@ -489,27 +494,30 @@ class MyGame(arcade.Window):
                 self.player_sprite, self.scene["NPC"])
             for npc in npcs:
                 self.handle_npc_interaction(npc)
-
+        
         interactables = arcade.check_for_collision_with_list(
             self.player_sprite, self.scene["interactables"])
 
         # change
-        for interactable in interactables:
+        if interactables:
+            interactable = interactables[0]
             getattr(self, interactable.properties['on_interact'])(interactable)
 
         if self.current_room.has_mineable or self.current_room.has_inventory:
             if self.current_room.has_mineable:
                 pickaxeInteractables = arcade.check_for_collision_with_list(
                     self.player_sprite, self.scene["pickaxe_inventory"])
-                for pickaxeInteractable in pickaxeInteractables:
+                if pickaxeInteractables:
+                    pickaxeInteractable = pickaxeInteractables[0]
                     getattr(self, pickaxeInteractable.properties['on_interact'])(
-                        pickaxeInteractable)
+                            pickaxeInteractable)
             if self.current_room.has_inventory:
                 invInteractables = arcade.check_for_collision_with_list(
                     self.player_sprite, self.scene["inventory"])
-                for invInteractable in invInteractables:
+                if invInteractables:
+                    invInteractable = invInteractables[0]
                     getattr(self, invInteractable.properties['on_interact'])(
-                        invInteractable)
+                            invInteractable)
 
         return
 
@@ -747,6 +755,7 @@ class MyGame(arcade.Window):
 
         self.scene.update_animation(delta_time, ["Animation", "Player"])
         self.scroll_to_player()
+        self.determine_music()
 
     def scroll_to_player(self):
         """
@@ -821,7 +830,7 @@ class MyGame(arcade.Window):
 
         # Create the on_update graph
         graph = arcade.PerfGraph(
-            GRAPH_WIDTH, GRAPH_HEIGHT, graph_data="update")
+            GRAPH_WIDTH, GRAPH_HEIGHT, graph_data="on_update")
         graph.center_x = GRAPH_WIDTH / 2 + (GRAPH_WIDTH + GRAPH_MARGIN)
         graph.center_y = self.height - GRAPH_HEIGHT / 2
         self.perf_graph_list.append(graph)
@@ -923,7 +932,8 @@ class MyGame(arcade.Window):
                 if self.dojo_quest.steps["challenge_of_wisdom"].is_completed() == False:
                     return "I should see what the next challenge is!"
                 if self.dojo_quest.steps["challenge_of_courage"].is_completed() == False:
-                    return "I should do the last challenge before I leave!"
+                    if self.dojo_quest.steps["challenge_of_strength"].is_completed():
+                        return "I should do the last challenge before I leave!"
             if destination_room == "maze":
                 if self.dojo_quest.steps["challenge_of_courage"].is_active() == False:
                     return "This is spooky. I shouldn't go in here without asking the sensei first."
@@ -945,7 +955,54 @@ class MyGame(arcade.Window):
                 if quest.steps[subquest].state == "active":
                     text = "name:",quest.steps[subquest].name,"state:",quest.steps[subquest].state,
                     arcade.draw_text(text, 100,100+x_increase, arcade.color.WHITE, 15)
-                    x_increase +=25            
+                    x_increase +=25    
+
+    def determine_music(self):
+        # if self.current_room_name == "starting_room":
+        #     song = sound_constants.starting_room_music
+        # elif self.current_room_name == "main_room":
+        #     song = sound_constants.starting_room_music
+        # # elif self.current_room_name == "forest":
+        # #     song = sound_constants.forest_music
+        if self.current_room_name == "enemy_house":
+            enemy_room = self.rooms[11]
+            if len(enemy_room.enemy_list) == 0:
+                song = sound_constants.peaceful_music
+            else:
+                song = sound_constants.enemy_house_fight_music
+        elif self.current_room_name == "blacksmith":
+            song = sound_constants.blacksmith_music
+        elif self.current_room_name == "living_room" or self.current_room_name == "bedroom" or self.current_room_name == "kitchen":
+            song = sound_constants.blacksmith_wife_house_music
+        elif self.current_room_name == "dungeon":
+            enemy_room = self.rooms[12]
+            if self.lonely_man_quest.complete:
+                song = sound_constants.lonely_man_before_music
+            else:
+                song = sound_constants.curse_music
+        elif self.current_room_name == "forest_hideout":
+            if self.lonely_man_quest.complete:
+                song = sound_constants.lonely_man_before_music
+            else:
+                song = sound_constants.curse_music
+        elif self.current_room_name == "lonely_house":
+            if self.lonely_man_quest.complete:
+                song = sound_constants.lonely_man_before_music
+            else:
+                song = sound_constants.curse_music
+        elif self.current_room_name == "dojo_outside" or self.current_room_name == "dojo":
+            song = sound_constants.dojo_music
+        elif self.current_room_name == "maze":
+            song = sound_constants.maze_music
+        else:
+            song = sound_constants.peaceful_music
+        if self.current_song == song:
+            return
+        else:
+            arcade.stop_sound(self.music_player)
+            self.current_song = song
+            self.music_player = arcade.play_sound(self.current_song,0.5,looping=True)
+            
 def main():
     """ Main function """
     window = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)

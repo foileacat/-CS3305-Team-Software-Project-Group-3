@@ -18,7 +18,7 @@ def setup(self):
         "walls": {
             "use_spatial_hash": True,
         },
-        "ENEMY": {
+        "Enemy": {
             "use_spatial_hash": True,
         }
         
@@ -49,7 +49,6 @@ def setup(self):
 
     room.wall_sprite_list.extend(room.scene["walls"])
     room.wall_list = []
-    
     room.wall_list.append(room.scene["walls"])
     return room
 

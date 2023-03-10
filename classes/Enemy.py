@@ -62,7 +62,7 @@ class Enemy(arcade.Sprite):
     def take_damage(self,enemy):
         x_diff = self.center_x - enemy.center_x
         y_diff = self.center_y - enemy.center_y-16
-      
+        
         if x_diff <= 0 and abs(x_diff) > abs(y_diff):
             self.character_face_direction=RIGHT_FACING
             self.center_x -= enemy.knockback*10
