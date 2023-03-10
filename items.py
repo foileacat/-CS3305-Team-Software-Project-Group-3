@@ -18,7 +18,8 @@ sack =Item(id=1,name="Sacks",filename="assets/customassets/sack.png" )
 sack.quantity = 2
 sack.description = "What is in these? They weigh as much as me!"
 
-shirt =Item(id=1,name="Wet Shirt",filename="assets/guiassets/AssetPacks/Free Pack/Free Pixel Paper/Png/Sprites/2 Equipments Pack/33.png")
+shirt =Item(id=1,name="Wet Shirt",filename="assets/customassets/tile161.png")
+shirt.color = arcade.color.RADICAL_RED
 shirt.description = "This is really wet. I wish tumble driers existed in this universe."
 
 berries =Item(id=1,name="Berries",filename="assets/assetpacks/ninja/Items/Food/SeedBig3.png" )
