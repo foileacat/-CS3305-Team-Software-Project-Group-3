@@ -11,7 +11,6 @@ class WitchQuest():
     def update_subquests(self,game):
         if self.steps["fight_monsters"].is_active():
             enemy_room = game.rooms[11]
-            print(len(enemy_room.enemy_list))
             if len(enemy_room.enemy_list) == 0:
                 self.monsters_defeated = True
 

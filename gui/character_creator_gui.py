@@ -26,7 +26,7 @@ def setup_character_creator_gui(self):
         self.v_box.add(ui_text_label.with_space_around(top=40,bottom=20))
 
 
-        ui_flatbutton_hair = arcade.gui.UIFlatButton(text="Hair", width=200)
+        ui_flatbutton_hair = arcade.gui.UIFlatButton(text="Hair", width=200,font_name="NinjaAdventure")
         self.v_box.add(ui_flatbutton_hair.with_space_around(bottom=20))
 
         # Handle Clicks
@@ -46,8 +46,8 @@ def setup_character_creator_gui(self):
             self.player_sprite.hair.change_color()
 
         # shirt#######################
-
-        ui_flatbutton_clothes = arcade.gui.UIFlatButton(text="Top", width=200)
+        arcade.gui.UIFlatButton()
+        ui_flatbutton_clothes = arcade.gui.UIFlatButton(text="Top", width=200,font_name="NinjaAdventure")
         self.v_box.add(ui_flatbutton_clothes.with_space_around(bottom=20))
 
         # Handle Clicks
@@ -69,7 +69,7 @@ def setup_character_creator_gui(self):
         # TBOTTOM######################
 
         ui_flatbutton_bottoms = arcade.gui.UIFlatButton(
-            text="Bottoms", width=200)
+            text="Bottoms", width=200,font_name="NinjaAdventure")
         self.v_box.add(ui_flatbutton_bottoms.with_space_around(bottom=20))
 
         # Handle Clicks
@@ -91,7 +91,7 @@ def setup_character_creator_gui(self):
         # TFULL######################
 
         ui_flatbutton_fullbody = arcade.gui.UIFlatButton(
-            text="Full Body", width=200)
+            text="Full Body", width=200,font_name="NinjaAdventure")
         self.v_box.add(ui_flatbutton_fullbody.with_space_around(bottom=20))
 
         # Handle Clicks

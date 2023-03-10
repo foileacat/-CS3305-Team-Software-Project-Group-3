@@ -30,8 +30,8 @@ class Npc(Character):
         self.home = True
         self.home_x = x
         self.home_y = y
-        self.x_range = 300
-        self.y_range = 200
+        self.x_range = 100
+        self.y_range = 100
         self.wandering = False
         self.hair = PlayerAccessory(character_lists.hairstyles,5,3)
         self.shirt = PlayerAccessory(character_lists.tops,1,3)

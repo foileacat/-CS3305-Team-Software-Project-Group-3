@@ -18,7 +18,6 @@ class InventorySlot():
 
     def insert_item(self,item):
         if self.occupied:
-            print("occupied!")
             return
         self.item=item
         self.occupied=True

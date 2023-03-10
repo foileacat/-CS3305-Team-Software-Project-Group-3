@@ -39,49 +39,49 @@
  <objectgroup id="6" name="interactables">
   <object id="31" gid="3060" x="79.5" y="49" width="17.25" height="28">
    <properties>
-    <property name="inspect_text" value="blahblah "/>
+    <property name="inspect_text" value="This thing hasn't worked in years. Its cool though, so we keep it."/>
     <property name="item_id" value="clock_01"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
   <object id="33" gid="3060" x="30.75" y="48.75" width="35" height="32.75">
    <properties>
-    <property name="inspect_text" value="efjkfkjfskfrrrr one two three four five six  seven eight nine ten 11 twelvetenn fiften sisrenn tenty"/>
+    <property name="inspect_text" value="I don't need this many books. They're all dusty!"/>
     <property name="item_id" value="bookshelf_01"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
   <object id="34" gid="3060" x="15.5511" y="69.6542" width="23.7857" height="17.3848" rotation="89.3857">
    <properties>
-    <property name="inspect_text" value="blah            blah "/>
+    <property name="inspect_text" value="I have missed this bed. It's so comfy!"/>
     <property name="item_id" value="bed_01"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
   <object id="35" gid="3060" x="126.767" y="47.4421" width="34.4466" height="16.4625" rotation="89.3857">
    <properties>
-    <property name="inspect_text" value="blahblah "/>
+    <property name="inspect_text" value="Comfy as ever old couch! And stained as ever too!"/>
     <property name="item_id" value="couch_01"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
   <object id="36" gid="3060" x="126.517" y="111.442" width="16.9691" height="18.65" rotation="89.3857">
    <properties>
-    <property name="inspect_text" value="It's soup!"/>
+    <property name="inspect_text" value="Eugh, we need to put a lid on this. I swear I see a fly."/>
     <property name="item_id" value="soup_01"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
   <object id="37" gid="3060" x="79.2667" y="126.942" width="15.9611" height="17.9108" rotation="89.3857">
    <properties>
-    <property name="inspect_text" value="blahblah "/>
+    <property name="inspect_text" value="Finally, berries are in season. I might just test them to be sure..."/>
     <property name="item_id" value="berries_01"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
   <object id="38" gid="3060" x="14.508" y="143.132" width="18.7592" height="34.6304" rotation="89.3857">
    <properties>
-    <property name="inspect_text" value="blahblah "/>
+    <property name="inspect_text" value="Looks like mom was cooking earlier!"/>
     <property name="item_id" value="choppingboard_01"/>
     <property name="on_interact" value="show_message"/>
    </properties>

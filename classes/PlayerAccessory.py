@@ -79,7 +79,6 @@ class PlayerAccessory(arcade.Sprite):
         if self.color_offset > overflow:
             self.color_offset = 0
         self.load_textures()
-        print("color",self.color_offset)
 
     def change_style(self):
         if self.alpha == 0:
@@ -96,7 +95,6 @@ class PlayerAccessory(arcade.Sprite):
                     self.color_offset = 0
             self.file_path = self.asset_list[self.asset_index]
             self.load_textures()
-            print("style",self.asset_index)
     def update_animation(self, player_sprite, delta_time: float = 1 / 60):
         self.face_direction = player_sprite.character_face_direction
         self.center_x = player_sprite.center_x

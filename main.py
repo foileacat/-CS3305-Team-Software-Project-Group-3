@@ -290,7 +290,7 @@ class MyGame(arcade.Window):
         self.camera_gui.use()
         update_health_bar(self)
         self.health_bar.draw()
-        self.draw_quest(self.gem_quest)
+        #self.draw_quest(self.gem_quest)
         #self.draw_quest(self.lonely_man_quest)
         #self.draw_quest(self.blacksmith_quest)
         #self.draw_quest(self.dojo_quest)
@@ -617,7 +617,6 @@ class MyGame(arcade.Window):
         if self.character_creator_open == True:
             self.character_creator_open = False
             self.gui_character_creator_manager.disable()
-            
             return
         else:
             self.player_sprite.character_face_direction = FORWARD_FACING

@@ -5,16 +5,16 @@
  <tileset firstgid="1528" source="Sources/TopDownHouse_SmallItems.tsx"/>
  <tileset firstgid="1592" source="Sources/TilesetRelief.tsx"/>
  <objectgroup id="6" name="interactables">
-  <object id="13" gid="1614" x="109.173" y="86.9853" width="26.1836" height="21.8752">
+  <object id="13" gid="1614" x="108.364" y="81.3207" width="26.1836" height="21.8752">
    <properties>
-    <property name="inspect_text" value="but hes a dumbfuck"/>
+    <property name="inspect_text" value="&quot;Shopping List: Eggs, Milk, Flour&quot;"/>
     <property name="item_id" value="wives_diary_2"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
   <object id="14" gid="1614" x="124.365" y="52.6512" width="20.3084" height="22.2668">
    <properties>
-    <property name="inspect_text" value="what's this doing here"/>
+    <property name="inspect_text" value="How cute!"/>
     <property name="item_id" value="love_potion"/>
     <property name="on_interact" value="show_message"/>
    </properties>
@@ -29,14 +29,14 @@
   </object>
   <object id="16" gid="1614" x="160.421" y="52.2595" width="31.6671" height="17.175">
    <properties>
-    <property name="inspect_text" value="What are you looking for in here huh?"/>
+    <property name="inspect_text" value="What are you looking for in here huh? I feel creepy."/>
     <property name="item_id" value="couples_wardrobe"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
   <object id="17" gid="1614" x="77.2856" y="53.942" width="20.7001" height="21.4835">
    <properties>
-    <property name="inspect_text" value="I love that dumbfuck"/>
+    <property name="inspect_text" value="&quot;I do love my husband, he's such a sweetheart!&quot;"/>
     <property name="item_id" value="wifes_diary_1"/>
     <property name="on_interact" value="show_message"/>
    </properties>
@@ -50,21 +50,21 @@
   </object>
   <object id="19" gid="1614" x="56.4011" y="101.105" width="25.4002" height="29.7087" rotation="180">
    <properties>
-    <property name="inspect_text" value="I don't wanna know"/>
+    <property name="inspect_text" value="Looks cozy!"/>
     <property name="item_id" value="couples_bed"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
   <object id="20" gid="1614" x="94.6197" y="140.721" width="52.0343" height="35.5838">
    <properties>
-    <property name="inspect_text" value="That's a fuck ton of plants"/>
+    <property name="inspect_text" value="That's a lot ton of plants. Green thumb?"/>
     <property name="item_id" value="wives_plant_table"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
   <object id="23" gid="1614" x="172.798" y="136.239" width="23.8335" height="23.4419">
    <properties>
-    <property name="inspect_text" value="nvm I love him"/>
+    <property name="inspect_text" value="&quot;Today I started yoga. It was intense!&quot;"/>
     <property name="item_id" value="wives_diary_4"/>
     <property name="on_interact" value="show_message"/>
    </properties>

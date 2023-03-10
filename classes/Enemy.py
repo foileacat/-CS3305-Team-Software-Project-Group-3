@@ -237,7 +237,6 @@ class Enemy(arcade.Sprite):
         ]
     
     def die(self):
-        print("ok")
         self.kill()
     def reload(self):
         self.health = self.max_health

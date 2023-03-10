@@ -151,6 +151,7 @@ class PlayerCharacter(Character):
     
     def current_item(self):
         return self.inventory_bar.current_slot().item
+        
 
     def is_holding_item(self):
         if self.inventory_bar.current_slot().occupied:
@@ -199,9 +200,12 @@ class PlayerCharacter(Character):
             self.calculate_tool_stats()
             if self.current_item().name == "Holey Watering Can":
                 self.watering_can_count+=1
-                print(self.watering_can_count)
 
     def use_consumable(self):
+        if self.current_item().is_consumable:
+            self.health += self.current_item().health
+            if self.health > 10:
+                self.health = 10
         self.inventory_bar.remove_item()
     
     def calculate_tool_stats(self):
