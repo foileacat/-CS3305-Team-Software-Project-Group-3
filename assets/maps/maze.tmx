@@ -12,7 +12,7 @@
   </properties>
   <object id="19" gid="203" x="134.947" y="59.0907" width="50" height="50">
    <properties>
-    <property name="inspect_text" value="&quot;you have won this round&quot;"/>
+    <property name="inspect_text" value="It says &quot;You are Victorious.&quot; - Nice!"/>
     <property name="item_id" value="frog_stone"/>
     <property name="on_interact" value="show_message"/>
    </properties>
@@ -40,7 +40,7 @@
  </layer>
  <layer id="2" name="walls" width="28" height="20">
   <data encoding="base64" compression="zlib">
-   eJzFVdsJgDAMFHSDoo6hIKhbqOD+QziBERRiuTbnAz24r6S5vNo2WZI0HnNhISyB7SlnwFbYCfuA/S43vS/xh95btfv+S4p9UNxh17yCzX9QZxw4H9LTNt0DH7qGWCzGh+mrroGZDZsTg1j/Gb2jV6yeNRvLx2VnX0sb9V7vgKWn47B3xM9Nn2X1QvEsO5rnUz20i7HcDr1KWJO7zSJW3yicyL1ggWKEduDqW4bw95+E7tcXePP/ZrgC6iM6PA==
+   eJy9VUEKwkAMLNgfFPUZCgX1F7Xg/x/hC0zBwrhMktl2cWBOmc1ssmk69l03FjwaT8Yzie3li/BmvBsfTnwrFz8FT9PNojaC6tcKXj9rasdciPeBa1je6etZg0U/wZmBnPf8MIY9KIE1RLkUjdJXrEF5G/VOCqL+K35rr1S/7G0yzdD/ajNv1nucgcwP86jfSHk3PKv6efmyOHvPvX5sFqO7rX4X41WcbRVRfeU+brFXWQ5vBmp3GUOrvbwV7Pv6B1r+vxV+AAQ9OuU=
   </data>
  </layer>
  <layer id="5" name="furniture2" width="28" height="20">

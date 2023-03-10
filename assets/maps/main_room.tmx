@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="24">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="32">
  <tileset firstgid="1" source="Sources/TilesetElement.tsx"/>
  <tileset firstgid="241" source="Sources/TilesetRelief.tsx"/>
  <tileset firstgid="481" source="Sources/TilesetInteriorFloor.tsx"/>
@@ -7,13 +7,11 @@
  <tileset firstgid="1614" source="Sources/fire_animation.tmx"/>
  <tileset firstgid="1620" source="Sources/Basic Furniture.tsx"/>
  <tileset firstgid="1674" source="Sources/TilesetNature.tsx"/>
+ <tileset firstgid="2010" source="Sources/TilesetExteriorFloor.tsx"/>
+ <tileset firstgid="2582" source="Sources/TilesetWater.tsx"/>
+ <tileset firstgid="3058" source="Sources/TilesetFloorDetail.tsx"/>
+ <tileset firstgid="3138" source="Sources/amethyst_ore_empty.tsj"/>
  <objectgroup id="3" name="interactables">
-  <object id="1" gid="265" x="128.082" y="160.36" width="16" height="16">
-   <properties>
-    <property name="item_id" value="placeholder_01"/>
-    <property name="on_interact" value="show_message"/>
-   </properties>
-  </object>
   <object id="2" gid="508" x="24.2857" y="363.052" width="8.0782" height="32.0137" rotation="90.936">
    <properties>
     <property name="destination_room" type="int" value="0"/>
@@ -22,7 +20,7 @@
     <property name="transition_id" value="starting_room"/>
    </properties>
   </object>
-  <object id="19" gid="508" x="305.409" y="417.34" width="8.0782" height="32.0137" rotation="179.923">
+  <object id="19" gid="508" x="305.387" y="400.829" width="16.556" height="48.5251" rotation="179.923">
    <properties>
     <property name="destination_room" type="int" value="2"/>
     <property name="on_interact" value="room_transition"/>
@@ -30,7 +28,7 @@
     <property name="transition_id" value="cave_outside"/>
    </properties>
   </object>
-  <object id="20" gid="508" x="150.03" y="36.1943" width="10.6368" height="44.7026" rotation="270.488">
+  <object id="20" gid="508" x="156.987" y="26.1854" width="15.6281" height="75.71" rotation="270.488">
    <properties>
     <property name="destination_room" type="int" value="4"/>
     <property name="on_interact" value="room_transition"/>
@@ -54,28 +52,76 @@
     <property name="transition_id" value="dungeon"/>
    </properties>
   </object>
+  <object id="26" gid="3140" x="143" y="404" width="51.5" height="22">
+   <properties>
+    <property name="inspect_text" value="It says &quot;Blacksmith: East. Witch: South&quot;"/>
+    <property name="item_id" value="sign_post"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="28" gid="3140" x="111" y="384.5" width="19" height="33.5">
+   <properties>
+    <property name="inspect_text" value="I wish the post office was still open. I haven't recieved mail in years!&quot;"/>
+    <property name="item_id" value="postbox"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="29" gid="3140" x="189.5" y="53.5" width="34" height="33.5">
+   <properties>
+    <property name="inspect_text" value="Wow. The dojo does NOT mess around when it comes to equipment!"/>
+    <property name="item_id" value="dojo_stuff"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="30" gid="3140" x="157.5" y="48.5" width="33.5" height="16">
+   <properties>
+    <property name="inspect_text" value="It says &quot;Dojo Up Ahead&quot;"/>
+    <property name="item_id" value="dojo_sign"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="27" gid="3140" x="14" y="413" width="51.5" height="22">
+   <properties>
+    <property name="inspect_text" value="I'm glad it never rains here. If it did this would be sooooo impractical."/>
+    <property name="item_id" value="sign_post"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
+  <object id="31" gid="3140" x="267.5" y="338.5" width="36" height="23.5">
+   <properties>
+    <property name="inspect_text" value="Who even owns this?? I think it's been abandoned."/>
+    <property name="item_id" value="sign_post"/>
+    <property name="on_interact" value="show_message"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer id="2" name="floor" width="20" height="30">
   <data encoding="base64" compression="zlib">
-   eJyLZ2BgiKcD5mRExfSwcxSP4lE8ikfxKB7Fo3ggMADVS91V
+   eJytlUEOg0AIRV1662kPYbtob2Cb1oOZ0RvoJJL8EhDozIKFcXx+4MPMfdfNLG5C8DPRQNbdcX6t5C1BfWNQX4RZw8sC87vHVXmf9rhAeGo8KBrT8Y77wOpN0fhUdE0Cz5P/B3JO8P2LhVY3SeOj//XSu7LfWKtIz6V6ZtDYypMJ6h/lSfOE+dbWjvOy8W9Pn4nXQhvxWu2G1jzqLfGi+0+rXeFxf1qzpWnjvrP2iMbC/YG7sNZzkdnle5aC8iyeo/3v0Vh00A6jmZdmi3aCR2M+ajwyHtdCd4qUj8b2MKV8zvRad/AisC0vDSe8f7w3wbPHdxs+DQfr
+  </data>
+ </layer>
+ <layer id="7" name="floor_detail" width="20" height="30">
+  <data encoding="base64" compression="zlib">
+   eJxjYBjeQIxnoF2ACiTp5J6v3Jhigy0sKAXY/IgPUMP/9Iq/wQqGq/8laOyvgcp7tPbXKBi6gNg0OSzqDSr44T+J9Q0IAAAwkQSa
   </data>
  </layer>
  <layer id="1" name="walls" width="20" height="30">
   <data encoding="base64" compression="zlib">
-   eJxbysDAsJTKmFpg1DzKgBz7yDJvsMfHqHmj5o2aR1/z/FlHzRss5hUAy3sm6hkHNo8W6Q8bLsOD8ekDAL71OIQ=
+   eJzTZmdg0EbDf5gZGP4i4X/MmGpwYRMgjmBlYLjAwsBwEYhBQBZKw4A8En87KwNOIAc1zwKo5isLbnUgcB/oxgdAfAOPeQlQ80TxqCEFrGKBmIcMTrNjV4sN9LAxMPQC8Twgng/Ep7GYRwqYAzRjLhDbQc2AhR85wA6LPn4KzEMH8kBz+Cg07xYbgn2XCuGHDt5QaN4voJt+A/EfIP7LRll8gAAXUC83OyLdJFBonhRQrzQ7It1Qah46oNS/tDZPgp0hYbCZdwVJ/2B032AzD1s5RYx5V8hwNzX8ew6o3w+I/dmpY94CoP44II4HYkl2BgVqxgd6ebAKqbxdy4apnpB8ARXyLyzsQEAZzbxToDoAiM8A8Vks9mOTh4XdAkj4PQClJ2x4GVDtf24Gho0cDAzTgHgDEDdyQMRx6QHFLwDPnEhC
   </data>
  </layer>
  <layer id="4" name="solids" width="20" height="30">
   <data encoding="base64" compression="zlib">
-   eJztzMcNACAQA0F/rm9CJYRKCH3hEhDc0yPtdwEREZE3wYDIEsv2/yt8VNZYd/gNPiZbbDv8RG4dfj8H2w==
+   eJxjYKAtKGXFLi4EFBdGkhNAk7dlJ9/OEBx2DiVAif+pBYwGgRtoDRxGgB9HwdAG1Eij1jRM5zNZGBhmAfFsIJ7DgipHTDnmCsRuSPw/QDP+AvE/IP7PgksX8UAWWB/IAbE8ECsAsTgPRNyccqNRgDuZ+nSAWB+I9XDIywCxLBDLEWmeDRDbA7Edme4ZagBX/oDFMy5AyzwBAwAn1w1n
   </data>
  </layer>
  <layer id="6" name="over layer" width="20" height="30">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMFiBHSsDgz0QOwCxIyvl5sUDzUgA4kQgTqKCeaNgFIwC7AAAZicCqQ==
+   eJztlUsOwVAYRv+Bx4IES1FW4rEH9qEtEkxoGWAixEBMPDbgMWAFzqASqT7lJkh8yZn0+3PS3pt7KyKST4q0EyId8MuV7hbQP0dLRpt7JBNxvpkW0cFIx/P7ZYBnCFZMXz0l0ki9Pp87noWi9/snOFv2YAd7OHjsR9wccZzgDBcFvn++K13OZQ/6is7nBM8UZop8a8ezcfkK3LsaFKEU8Q4OShlHBapQe8OXhVxA/6l1Nulb0A6Z81tnd2z6EYwVfcfS8ax+9P/Q5E7UwQDT434M690ZMDMEC2yP+bD+F3IHxlM0rA==
   </data>
  </layer>
  <objectgroup id="5" name="Animation">
-  <object id="21" gid="244" x="198.667" y="270.667" width="16" height="16"/>
+  <object id="24" gid="1614" x="192" y="473.333" width="16" height="32"/>
+  <object id="25" gid="1614" x="95.3333" y="476" width="16" height="32"/>
  </objectgroup>
 </map>

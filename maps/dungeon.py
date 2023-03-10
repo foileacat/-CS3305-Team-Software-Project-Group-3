@@ -8,7 +8,7 @@ def setup(self):
     room.starting_x = SPRITE_SIZE * 11.5
     room.starting_y = SPRITE_SIZE * 2.5
     room.respawn_x = SPRITE_SIZE*5
-    room.respawn_x = SPRITE_SIZE*9
+    room.respawn_y = SPRITE_SIZE*9
     room.has_enemies = True
     room.map_file = "assets/maps/dungeon.tmx"
 

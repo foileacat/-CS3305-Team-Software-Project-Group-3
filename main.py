@@ -860,7 +860,7 @@ class MyGame(arcade.Window):
             else:
                 return "I hear wailing! I'll wait for mom to tell me to go here."   
     
-        if destination_room == "forest_hideout":
+        if destination_room == "dungeon":
             if self.gem_quest.steps["lonely"].is_active() or self.gem_quest.steps["lonely"].is_completed():
                 if self.lonely_man_quest.active == False:
                     self.lonely_man_quest.start()

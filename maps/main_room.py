@@ -26,13 +26,13 @@ def setup(self):
         }
     }
     room.tile_map = arcade.load_tilemap(
-        room.map_file, SPRITE_SCALING, layer_options=layer_options)
+        room.map_file, SPRITE_SCALING, layer_options=layer_options,hit_box_algorithm=None)
     room.scene = arcade.Scene.from_tilemap(room.tile_map)
 
    #
     
     room.npc_list = arcade.SpriteList()
-    room.npc = Npc(500,500,"Mom","mom", "npc_dialogue/main_room.json")
+    room.npc = Npc(4*SPRITE_SIZE,14*SPRITE_SIZE,"Mom","mom", "npc_dialogue/main_room.json")
     room.npc_list.append(room.npc)
     room.scene.add_sprite_list("NPC", sprite_list=room.npc_list)
     room.scene.add_sprite_list("NPC Stuff", sprite_list = room.npc.accessory_list)

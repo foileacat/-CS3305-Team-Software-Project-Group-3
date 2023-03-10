@@ -7,7 +7,7 @@ def setup(self):
     room = Room()
     room.has_npcs = True
     room.multiple_entrances = True
-    room.entrances = {"main_room" : [10*SPRITE_SIZE,20*SPRITE_SIZE], "dojo" : [SPRITE_SIZE*14,SPRITE_SIZE*2]}
+    room.entrances = {"main_room" : [7*SPRITE_SIZE,27*SPRITE_SIZE], "dojo" : [SPRITE_SIZE*14,SPRITE_SIZE*2]}
     room.starting_x = SPRITE_SIZE * 11.5
     room.starting_y = SPRITE_SIZE * 2.5
     room.map_file = "assets/maps/outside_dojo.tmx"
