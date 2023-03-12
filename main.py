@@ -282,7 +282,7 @@ class MyGame(arcade.Window):
                 self.inventory.move_cursor("up")
             elif key == INVENTORY_BAR_CURSOR_DOWN:
                 self.inventory.move_cursor("down")
-        elif self.player_unpaused():
+        elif self.player_unpaused() and self.player_sprite.dead==False and self.player_sprite.dying==False:
             if key == UP_KEY:
                 self.player_sprite.change_y = MOVEMENT_SPEED
             elif key == DOWN_KEY:
