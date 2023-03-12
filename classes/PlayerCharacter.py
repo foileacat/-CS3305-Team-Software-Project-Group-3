@@ -198,6 +198,8 @@ class PlayerCharacter(Character):
             self.calculate_tool_stats()
             if self.current_item().name == "Holey Watering Can":
                 self.watering_can_count+=1
+            self.x_change = 0
+            self.y_change = 0
 
     def use_consumable(self):
         if self.current_item().is_consumable:

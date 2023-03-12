@@ -7,7 +7,7 @@ SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 800
 MIN_SCREEN_WIDTH = 1000
 MIN_SCREEN_HEIGHT = 650
-SCREEN_TITLE = "Fake Zelda"
+SCREEN_TITLE = "Crystal Springs"
 
 "Sprite Sizing"
 SPRITE_SCALING = 4 
@@ -66,6 +66,7 @@ INVENTORY_BAR_CURSOR_LEFT = arcade.key.LEFT
 INVENTORY_BAR_CURSOR_UP = arcade.key.UP
 INVENTORY_BAR_CURSOR_DOWN = arcade.key.DOWN
 
+VOLUME = 0.2
 FONT_PATH = "assets/assetpacks/ninja/HUD/Font/NormalFont.ttf"
 EXAMPLE_EGG_SPRITE_LINK = "assets/guiassets/AssetPacks/Free Pack/Free Pixel Paper/Png/Sprites/1 items Pack/1.png"
 INVENTORY_BAR_CURSOR_ASSET = "assets/guiassets/CustomAssets/InventoryCursor.png"

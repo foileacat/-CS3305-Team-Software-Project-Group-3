@@ -45,7 +45,7 @@ class MyGame(arcade.Window):
         self.respawn_timer = 0
         self.current_song = sound_constants.peaceful_music
         self.music_player = arcade.play_sound(
-            self.current_song, volume=0.5, looping=True)
+            self.current_song, volume=VOLUME, looping=True)
         setup_quests(self)
 
     def on_resize(self, width, height):
@@ -282,7 +282,7 @@ class MyGame(arcade.Window):
                 self.inventory.move_cursor("up")
             elif key == INVENTORY_BAR_CURSOR_DOWN:
                 self.inventory.move_cursor("down")
-        elif self.player_unpaused() and self.player_sprite.dead==False and self.player_sprite.dying==False:
+        elif self.player_unpaused() and self.player_sprite.dead==False and self.player_sprite.dying==False and self.player_sprite.using_tool==False:
             if key == UP_KEY:
                 self.player_sprite.change_y = MOVEMENT_SPEED
             elif key == DOWN_KEY:
@@ -775,7 +775,7 @@ class MyGame(arcade.Window):
             arcade.stop_sound(self.music_player)
             self.current_song = song
             self.music_player = arcade.play_sound(
-                self.current_song, 0.5, looping=True)
+                self.current_song, VOLUME, looping=True)
 
 
 def main():

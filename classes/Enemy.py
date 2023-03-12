@@ -242,15 +242,16 @@ class Enemy(arcade.Sprite):
         self.kill()
 
     def reload(self):
+        self.bounds_count = 0
         self.health = self.max_health
         self.center_x = self.start_x
         self.center_y = self.start_y
 
     def check_in_bounds(self):
-        if self.bounds_count > 200:
-            self.reload()
+        if self.bounds_count > 500:
             self.bounds_count = 0
-        else:
+            self.reload()
             
+        else:
             self.bounds_count+=1
         
