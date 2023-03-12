@@ -6,8 +6,13 @@ import items
 class BlackSmithQuest():
     def __init__(self):
         self.active = False
-        self.steps = {"speak_to_blacksmith": Subquest("speak_to_blacksmith"), "speak_to_wife": Subquest("speak_to_wife"), "read_diary": Subquest("read_diary"), "tell_blacksmith": Subquest(
-            "tell_blacksmith"), "collect_flowers": Subquest("collect_flowers"), "collect_ores": Subquest("collect_ores"), "get_gem": Subquest("get_gem")}
+        self.steps = {"speak_to_blacksmith": Subquest("speak_to_blacksmith",description="Talk to the Blacksmith in his house"),
+                       "speak_to_wife": Subquest("speak_to_wife",description="Talk to the blacksmith's wife."),
+                         "read_diary": Subquest("read_diary",description="Find a clue in the house to figure out her favorite flower."),
+                           "tell_blacksmith": Subquest("tell_blacksmith",description="Tell the blacksmith about her favorite flower."),
+                             "collect_flowers": Subquest("collect_flowers",description="Bring the blacksmith his wife's favorite flower."),
+                               "collect_ores": Subquest("collect_ores",description="Use the pickaxe to collect the ores, and bring them to the blacksmith"),
+                                 "get_gem": Subquest("get_gem",description="Use the key to collect the gem from the mine.")}
         self.complete = False
         self.diary_read = False
         self.pickaxe_key_given = False
@@ -36,7 +41,7 @@ class BlackSmithQuest():
                 if game.player_sprite.has_amount_of_items("Emerald Ore", 9):
                     if game.player_sprite.has_amount_of_items("Sapphire Ore", 3):
                         if game.player_sprite.has_amount_of_items("Amber Ore", 5):
-                            self.steps["collect_ores"].make_complete()
+                            self.steps["collect_ores"].make_done()
                             game.player_sprite.remove_from_inventory(
                                 "Amethyst Ore")
                             game.player_sprite.remove_from_inventory(

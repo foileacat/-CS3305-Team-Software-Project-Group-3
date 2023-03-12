@@ -5,8 +5,11 @@ import items
 class DojoQuest():
     def __init__(self):
         self.active = False
-        self.steps = {"talk_to_apprentice": Subquest("talk_to_apprentice"), "talk_to_sensei": Subquest("talk_to_sensei"), "challenge_of_wisdom": Subquest(
-            "challenge_of_wisdom"), "challenge_of_strength": Subquest("challenge_of_strength"), "challenge_of_courage": Subquest("challenge_of_courage")}
+        self.steps = {"talk_to_apprentice": Subquest("talk_to_apprentice",description="Talk to the sensei's apprentice outside."),
+                       "talk_to_sensei": Subquest("talk_to_sensei",description="Ask the sensei about her challenges."),
+                         "challenge_of_wisdom": Subquest("challenge_of_wisdom",description="Complete the challenge of wisdom."),
+                           "challenge_of_strength": Subquest("challenge_of_strength",description="Talk to the sensei after swinging the watering can 25 times."),
+                             "challenge_of_courage": Subquest("challenge_of_courage",description="Return to the sensei after completing the maze.")}
         self.watering_can_given = False
         self.maze_complete = False
         self.wisdom_challenge_complete = False

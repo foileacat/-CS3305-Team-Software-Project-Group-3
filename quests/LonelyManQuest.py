@@ -11,7 +11,13 @@ class LonelyManQuest():
     def __init__(self):
         self.active = False
        # self.steps = {"talk_to_old_man":"inactive","clear_flowers":"inactive","hangup_washing":"inactive","fill_cart":"inactive","shelve_books":"inactive","plant_plants":"inactive","sort_food":"inactive"}
-        self.steps = {"talk_to_old_man":Subquest("talk_to_old_man"),"clear_flowers":Subquest("clear_flowers"),"hangup_washing":Subquest("hangup_washing"),"fill_cart":Subquest("fill_cart"),"shelve_books":Subquest("shelve_books"),"plant_plants":Subquest("plant_plants"),"sort_food":Subquest("sort_food")}
+        self.steps = {"talk_to_old_man":Subquest("talk_to_old_man",description="Talk to the family in the house."),
+                      "clear_flowers":Subquest("clear_flowers",description="Return to the old man after planting the flowers."),
+                      "hangup_washing":Subquest("hangup_washing",description="Tell the old man after you hangup the washing outside."),
+                      "fill_cart":Subquest("fill_cart",description="Return to the old man after you fill the cart outside."),
+                      "shelve_books":Subquest("shelve_books",description="Tell the old man after you shelve all his books."),
+                      "plant_plants":Subquest("plant_plants",description="Tell the old man after you plant the plants at the doorway."),
+                      "sort_food":Subquest("sort_food",description="Return to the old man after you turn on the pot and fill the baskets with food.")}
         self.complete = False
         self.book_given = False##
         self.sacks_given = False

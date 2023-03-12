@@ -4,7 +4,7 @@ from constants import *
 class Subquest():
     def __init__(self,name,description="Nothing here!",state="inactive"):
         self.name = name
-        self.description = description
+        self.description =description
         self.state = state
         self.completed = False
 

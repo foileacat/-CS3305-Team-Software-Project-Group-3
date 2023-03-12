@@ -3,7 +3,9 @@ import items
 class WitchQuest():
     def __init__(self):
         self.active = False
-        self.steps = {"talk_to_witch": Subquest("talk_to_witch"),"fight_monsters" : Subquest("fight_monsters"),"return_to_witch":Subquest("return_to_witch")}
+        self.steps = {"talk_to_witch": Subquest("talk_to_witch",description="Talk to the witch in the forest."),
+                      "fight_monsters" : Subquest("fight_monsters",description="Return to the witch once all the monsters in her house are defeated."),
+                      "return_to_witch":Subquest("return_to_witch",description="Return to the witch.")}
         self.sword_given = False
         self.noodles_given = False
         self.monsters_defeated = False

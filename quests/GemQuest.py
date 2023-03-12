@@ -5,8 +5,13 @@ import items
 class GemQuest():
     def __init__(self):
         self.active = True
-        self.steps = {"customise": Subquest("customise",state="active"), "talk_to_mom": Subquest("talk_to_mom"), "witch": Subquest(
-            "witch"), "blacksmith": Subquest("blacksmith"), "lonely": Subquest("lonely"),"dojo": Subquest("dojo")}
+        self.steps = {"customise": Subquest("customise",state="active",description="Get dressed at the dresser in your house."),
+                       "talk_to_mom": Subquest("talk_to_mom",description="Talk to mom in the forest outside."),
+                         "witch": Subquest("witch",description="Talk to mom once you find the gem in the witches forest."),
+                           "blacksmith": Subquest("blacksmith",description="Talk to mom once you get the gem from the blacksmith."),
+                             "lonely": Subquest("lonely",description="Talk to mom after find the gem from the family in the woods"),
+                             "dojo": Subquest("dojo",description="Tell mom after you find the final gem in the dojo."),
+                             "finished":Subquest("finished",description="Congratulations! You found all the gems, the village is safe again!")}
         self.char_created = False
         self.complete = False
         self.witch = False
@@ -27,4 +32,5 @@ class GemQuest():
         if game.dojo_quest.complete and self.dojo == False:
             self.steps["dojo"].make_done()
             self.dojo = True
+            self.steps["finished"].activate()
             

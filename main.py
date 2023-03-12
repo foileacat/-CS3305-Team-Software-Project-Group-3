@@ -288,8 +288,9 @@ class MyGame(arcade.Window):
             self.camera_gui.use()
             self.draw_inventory()
         self.camera_gui.use()
-        update_health_bar(self)
-        self.health_bar.draw()
+        if self.player_sprite.currently_inspecting == False and self.player_sprite.currently_npc_interacting == False: 
+            update_health_bar(self)
+            self.health_bar.draw()
         #self.draw_quest(self.gem_quest)
         #self.draw_quest(self.lonely_man_quest)
         #self.draw_quest(self.blacksmith_quest)
@@ -387,12 +388,68 @@ class MyGame(arcade.Window):
                 self.inventory_display_description.draw()
 
             self.inventory_display_name.draw()
+        self.gem_list = arcade.SpriteList()
+        self.gem1 = arcade.Sprite(filename="assets/customassets/gem_1.png",scale=SPRITE_SCALING,center_x=screen_center_x - 390, center_y = screen_center_y+140)
+        self.gem2 = arcade.Sprite(filename="assets/customassets/gem_2.png",scale=SPRITE_SCALING,center_x=screen_center_x - 290, center_y = screen_center_y+140)
+        self.gem3 = arcade.Sprite(filename="assets/customassets/gem_3.png",scale=SPRITE_SCALING,center_x=screen_center_x - 190, center_y = screen_center_y+140)
+        self.gem4 = arcade.Sprite(filename="assets/customassets/gem_4.png",scale=SPRITE_SCALING,center_x=screen_center_x - 90, center_y = screen_center_y+140)
+        self.gem_text = arcade.Text(text="Gems", start_x=screen_center_x-290,
+                                          start_y=screen_center_y + 180, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=26)
+        if self.player_sprite.gem_1 == False:
+            self.gem1.color = arcade.color.BLACK
+        if self.player_sprite.gem_2 == False:
+            self.gem2.color = arcade.color.BLACK
+        if self.player_sprite.gem_3 == False:
+            self.gem3.color = arcade.color.BLACK
+        if self.player_sprite.gem_4 == False:
+            self.gem4.color = arcade.color.BLACK
+        self.gem_list.append(self.gem1)
+        self.gem_list.append(self.gem2)
+        self.gem_list.append(self.gem3)
+        self.gem_list.append(self.gem4)
         slot_sprite_list.draw(pixelated=True)
+        self.gem_list.draw(pixelated=True)
+        self.gem_text.draw()
         for slot in self.inventory.slots:
             if slot.number_text:
                 slot.number_text.draw()
         self.inventory_cursor.draw(pixelated=True)
-
+        descriptions = []
+        self.controls_text = arcade.Text(text="Controls", start_x=screen_center_x-320,
+                                          start_y=screen_center_y +60, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=26)
+        self.controls1 = arcade.Text(text="Move: WASD", start_x=screen_center_x-410,
+                                          start_y=screen_center_y +30, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=12)
+        self.controls2 = arcade.Text(text="Move in Inventory: Up, Down, Left, Right", start_x=screen_center_x-410,
+                                          start_y=screen_center_y +0, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=12)
+        self.controls3 = arcade.Text(text="Select from Inventory Bar: 1-8", start_x=screen_center_x-410,
+                                          start_y=screen_center_y -30, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=12)
+        self.controls4 = arcade.Text(text="Interact: Enter", start_x=screen_center_x-410,
+                                          start_y=screen_center_y -60, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=12)
+        self.controls5 = arcade.Text(text="Use Item: C", start_x=screen_center_x-410,
+                                          start_y=screen_center_y -90, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=12)
+        self.controls_text.draw()
+        self.controls1.draw()
+        self.controls2.draw()
+        self.controls3.draw()
+        self.controls4.draw()
+        self.controls5.draw()
+        for quest in self.quests:
+            if quest.active:
+                for subquest in quest.steps:
+                    if quest.steps[subquest].is_active() or quest.steps[subquest].is_done():
+                        descriptions.append(quest.steps[subquest].description)
+        self.quest_text = arcade.Text(text="Quests", start_x=screen_center_x-310,
+                                          start_y=screen_center_y -140, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=26)
+        self.quest_text.draw()
+        self.q_text1 = arcade.Text(text=descriptions[0], start_x=screen_center_x-410,
+                                          start_y=screen_center_y -170, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=12, multiline=True, width=350)
+        self.q_text1.draw()
+       
+        if len(descriptions) > 1:
+            self.q_text2 = arcade.Text(text=descriptions[1], start_x=screen_center_x-410,
+                                            start_y=screen_center_y - 215, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=12, multiline=True, width=350)
+            self.q_text2.draw()
+        
     def allowed_to_renovate(self, interactable):
         if self.lonely_man_quest.steps[interactable.properties["quest"]].is_active():
             if interactable.properties["complete"] == False:
