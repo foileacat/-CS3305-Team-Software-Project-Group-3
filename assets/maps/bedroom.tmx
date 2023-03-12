@@ -100,12 +100,12 @@
  </layer>
  <layer id="3" name="furniture" width="16" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYGBgWAnEq4B4NQMq4AdiAQbC4CYQ3wLi22ji9kDsAMTBTAwMakCsDsRXgPyrBMwTZEOwF7EwMDQD9YUBcTgQmzAyMJgyEuGoIQbWMFGm/w6a/r9A/A+I/5Npni4wjPWAWH+YhfUTloF2ASoAAO6CD9M=
+   eJxjYGBgWAnEq4B4NQMq4AdiAQbC4CYQ3wLi22ji9kDsAMTBTAwMakCsDsRXgPyrBMwTZEOwF7EwMDQD9YUBcTgQmzAyMJgyEuGoIQbWMFGm/w6a/r9A/A+I/2NR+5GI8NMFqtEDYn0ahDUx9pMKJIH+l4KGwSYovRNozy5GVLEnLLSxn1wAAN24Fb0=
   </data>
  </layer>
  <layer id="4" name="furniture 2" width="16" height="14">
   <data encoding="base64" compression="zlib">
-   eJxjYMANMoE4C488ITATiGehiS0FYm02CgwdBUSBw4wMDJ+BWJkJU+4jI/3dQ2v7JYH+lIL6dROUngK0Zyojqhit7CcXAADvsQpa
+   eJxjYMANMoE4C488ITATiGehiS0FYm02CgwdBUSBw4wMDJ+BWJlpoF0yCvABAC9eBLo=
   </data>
  </layer>
  <layer id="7" name="over layer" width="16" height="14">
