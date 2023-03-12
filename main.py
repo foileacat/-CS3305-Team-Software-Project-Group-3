@@ -288,7 +288,7 @@ class MyGame(arcade.Window):
             self.camera_gui.use()
             self.draw_inventory()
         self.camera_gui.use()
-        if self.player_sprite.currently_inspecting == False and self.player_sprite.currently_npc_interacting == False: 
+        if self.player_sprite.currently_inspecting == False and self.player_sprite.currently_npc_interacting == False and self.inventory_open == False and self.character_creator_open == False: 
             update_health_bar(self)
             self.health_bar.draw()
         #self.draw_quest(self.gem_quest)
