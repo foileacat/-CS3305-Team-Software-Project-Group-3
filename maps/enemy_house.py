@@ -34,9 +34,9 @@ def setup(self):
     room.enemy = Enemy(SPRITE_SIZE*5,SPRITE_SIZE*2,"bobesrta",12)
     room.enemy2 = Enemy(SPRITE_SIZE*12,SPRITE_SIZE*2,"bobesrta",12)
     room.enemy3 = Enemy(SPRITE_SIZE*16,SPRITE_SIZE*5,"bobesrta",12)
-    room.enemy4 = Enemy(SPRITE_SIZE*1,SPRITE_SIZE*5,"bobesrta",12)
-    room.enemy5 = Enemy(SPRITE_SIZE*2,SPRITE_SIZE*12,"bobesrta",12)
-    room.enemy6 = Enemy(SPRITE_SIZE*15,SPRITE_SIZE*12,"bobesrta",12)
+    room.enemy4 = Enemy(SPRITE_SIZE*2,SPRITE_SIZE*5,"bobesrta",12)
+    room.enemy5 = Enemy(SPRITE_SIZE*2,SPRITE_SIZE*11,"bobesrta",12)
+    room.enemy6 = Enemy(SPRITE_SIZE*15,SPRITE_SIZE*11,"bobesrta",12)
     room.enemies = [room.enemy,room.enemy2,room.enemy3,room.enemy4,room.enemy5,room.enemy6]
     room.enemy_list = arcade.SpriteList()
     room.enemy_list.extend(room.enemies)

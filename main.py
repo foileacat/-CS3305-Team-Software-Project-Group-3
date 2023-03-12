@@ -138,6 +138,9 @@ class MyGame(arcade.Window):
 
         if self.current_room.has_enemies:
             for enemy in self.current_room.enemy_list:
+                walls = arcade.check_for_collision_with_list(enemy,self.current_room.wall_sprite_list)
+                if walls:
+                    enemy.check_in_bounds()
                 if self.player_sprite.health > 0:
                     if arcade.has_line_of_sight(point_1=self.player_sprite.position,
                                                 point_2=enemy.position,
@@ -154,6 +157,7 @@ class MyGame(arcade.Window):
 
             enemies = arcade.check_for_collision_with_list(self.player_sprite,
                                                            self.scene["Enemy"])
+            
             if enemies:
                 enemy = enemies[0]
                 if self.player_sprite.using_tool:

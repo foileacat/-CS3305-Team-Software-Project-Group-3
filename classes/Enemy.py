@@ -16,9 +16,10 @@ class Enemy(arcade.Sprite):
         self.start_y = y
         self.character_face_direction = ENEMY_FORWARD_FACING
         # Used for flipping between image sequences
+        self.points = [[-8, 8], [-8, -8], [8, -8], [8, 8]]
+        self.set_hit_box(self.points)
         self.cur_texture = 0
         self.scale = 5
-        # creates hitbox
         self.filename="assets/assetpacks/ninja/Actor/Monsters/Spirit2/SpriteSheet.png"
         self.center_x = x
         self.center_y = y
@@ -35,6 +36,7 @@ class Enemy(arcade.Sprite):
         self.health = self.max_health
         self.dying = False
         self.dead = False
+        self.bounds_count = 0
 
     def on_update(self, delta_time: float = 1 / 60):
         return super().on_update(delta_time)
@@ -238,7 +240,17 @@ class Enemy(arcade.Sprite):
     
     def die(self):
         self.kill()
+
     def reload(self):
         self.health = self.max_health
         self.center_x = self.start_x
         self.center_y = self.start_y
+
+    def check_in_bounds(self):
+        if self.bounds_count > 200:
+            self.reload()
+            self.bounds_count = 0
+        else:
+            
+            self.bounds_count+=1
+        

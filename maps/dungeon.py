@@ -5,8 +5,8 @@ def setup(self):
 
     room = Room()
     room.entrances = {"main_room" : [SPRITE_SIZE*19,SPRITE_SIZE*22],"forest_hideout" : [SPRITE_SIZE*5,SPRITE_SIZE*9]}
-    room.starting_x = SPRITE_SIZE * 11.5
-    room.starting_y = SPRITE_SIZE * 2.5
+    room.starting_x = SPRITE_SIZE * 5
+    room.starting_y = SPRITE_SIZE * 9
     room.respawn_x = SPRITE_SIZE*5
     room.respawn_y = SPRITE_SIZE*9
     room.has_enemies = True
@@ -56,6 +56,9 @@ def setup(self):
     room.wall_sprite_list = arcade.SpriteList(use_spatial_hash=True)
 
     room.wall_sprite_list.extend(room.scene["walls"])
+    room.wall_sprite_list.extend(room.scene["trees"])
+    room.wall_sprite_list.extend(room.scene["trees2"])
+    room.wall_sprite_list.extend(room.scene["trees3"])
     
     room.wall_list = []
     # the rooms wall list is used for player collision.
