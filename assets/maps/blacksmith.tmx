@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="25">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="15" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="30">
  <tileset firstgid="1" source="Sources/TilesetInteriorFloor.tsx"/>
- <tileset firstgid="375" source="Sources/atlas_16x.tsx"/>
- <tileset firstgid="1143" source="Sources/TilesetHouse.tsx"/>
- <tileset firstgid="1902" source="Sources/TopDownHouse_SmallItems.tsx"/>
- <tileset firstgid="1966" source="Sources/TilesetRelief.tsx"/>
+ <tileset firstgid="1" source="Sources/atlas_16x.tsx"/>
+ <tileset firstgid="769" source="Sources/TilesetHouse.tsx"/>
+ <tileset firstgid="1528" source="Sources/TopDownHouse_SmallItems.tsx"/>
+ <tileset firstgid="1592" source="Sources/TilesetRelief.tsx"/>
  <objectgroup id="6" name="interactables">
   <properties>
    <property name="destination_room" type="int" value="1"/>
@@ -12,56 +12,49 @@
    <property name="transition_direction" type="int" value="1"/>
    <property name="transition_id" value="cave"/>
   </properties>
-  <object id="14" gid="1988" x="79.7917" y="39.7917" width="16" height="16">
+  <object id="14" gid="1614" x="79.7917" y="39.7917" width="16" height="16">
    <properties>
-    <property name="inspect_text" value="&quot;Rule #1: Watch out for the hammer!&quot;"/>
+    <property name="inspect_text" value="&quot;Rule #1: Watch the hammers!&quot;"/>
     <property name="item_id" value="blacksmith_rules"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="15" gid="1988" x="125.5" y="81.5417" width="21.5" height="20">
+  <object id="15" gid="1614" x="125.5" y="81.5417" width="21.5" height="20">
    <properties>
-    <property name="inspect_text" value="Ooo, I can see all the dents!"/>
+    <property name="inspect_text" value="I can see all the dents, pretty hardcore!"/>
     <property name="item_id" value="anvil"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="16" gid="1988" x="141.583" y="161.625" width="20.25" height="19.375">
+  <object id="16" gid="1614" x="143.346" y="161.331" width="20.25" height="19.375">
    <properties>
-    <property name="inspect_text" value="&quot;To-Do: Go mining&quot;"/>
+    <property name="inspect_text" value="&quot;To-Do: Go Mining&quot;"/>
     <property name="item_id" value="large_cave_rock-orange"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="17" gid="1988" x="173.667" y="163" width="34.25" height="27.125">
+  <object id="17" gid="1614" x="173.667" y="163" width="34.25" height="27.125">
    <properties>
-    <property name="inspect_text" value="These are scary! I hope noone uses these on me!"/>
+    <property name="inspect_text" value="Wow! I hope noone ever uses these on me!!"/>
     <property name="item_id" value="weapon_rack_2"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="18" gid="1988" x="143" y="207.333" width="18.375" height="16.5">
+  <object id="19" gid="1614" x="31.6667" y="117.667" width="18.25" height="20.875">
    <properties>
-    <property name="inspect_text" value="Wow, this is dusty!"/>
-    <property name="item_id" value="blacksmiths_pot"/>
-    <property name="on_interact" value="show_message"/>
-   </properties>
-  </object>
-  <object id="19" gid="1988" x="31.6667" y="117.667" width="18.25" height="20.875">
-   <properties>
-    <property name="inspect_text" value="This looks like it hasnt been touched in a while."/>
+    <property name="inspect_text" value="This looks dusty, I think it hasn't been used in ages."/>
     <property name="item_id" value="diary_blacksmith"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="21" gid="1988" x="174.625" y="195.25" width="33.5" height="28.5">
+  <object id="21" gid="1614" x="95.3104" y="161.762" width="33.5" height="28.5">
    <properties>
-    <property name="inspect_text" value="These are sharp, I wont touch"/>
+    <property name="inspect_text" value="These are sharp! I'm gonna back away very slowly..."/>
     <property name="item_id" value="weapon_rack"/>
     <property name="on_interact" value="show_message"/>
    </properties>
   </object>
-  <object id="23" gid="1988" x="109.75" y="45.375" width="20.375" height="17.75">
+  <object id="23" gid="1614" x="109.75" y="45.375" width="20.375" height="17.75">
    <properties>
     <property name="destination_room" type="int" value="2"/>
     <property name="on_interact" value="room_transition"/>
@@ -71,26 +64,26 @@
   </object>
  </objectgroup>
  <objectgroup id="8" name="Animation">
-  <object id="24" gid="1989" x="168" y="66.5" width="16" height="16"/>
+  <object id="24" gid="1615" x="6.37449" y="53.5155" width="16" height="20.1126"/>
  </objectgroup>
- <layer id="2" name="floor" width="15" height="15">
+ <layer id="2" name="floor" width="15" height="12">
   <data encoding="base64" compression="zlib">
-   eJzTZWZg0B3Fo3gUDxgGAIH3KjE=
+   eJzbzsjAsH0Uj+JhggH+hoFh
   </data>
  </layer>
- <layer id="1" name="walls" width="15" height="15">
+ <layer id="1" name="walls" width="15" height="12">
   <data encoding="base64" compression="zlib">
-   eJy7xcjAcItMzMVEPgbqTwDSCQwkAKD6BUB9C0b1juqlkd4ByQsAwYlE7Q==
+   eJxLYWBgSCETT6EAA/UnAOkEBhIAUP2CFAge1Tv49Q5IugIAapw8kQ==
   </data>
  </layer>
- <layer id="3" name="furniture" width="15" height="15">
+ <layer id="3" name="furniture" width="15" height="12">
   <data encoding="base64" compression="zlib">
-   eJxjYMAEScwMDPJMDAwKQKzIhEUBHjAJqNcfqCcAiAOR9DqyMTA4sZFmFghsB+pJAuJkHHpbgeJtZJiLCzRTyay9rAwM+1gxxdvZqWP+YAGVUP8YAcPNmIrxQCz4AAzjj1jC+Qcet/xipp17yAEAdc0M/g==
+   eJxjYMAEbxgZGFYC6VVAvBqLPD4gw8TAcBNI3wLi20jip1kYGM6wkGgYEDiyAt0D1PcWh15+oLwAK+nm4gK8VDLLHeheDyxuFmSjjvn0BE1oYVIF9Fc11G/MUP/sAfL3khG/1AYARvYNVQ==
   </data>
  </layer>
- <layer id="7" name="over layer" width="15" height="15">
+ <layer id="7" name="over layer" width="15" height="12">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFuMAcVgaGuawD7Qr6AUE2BgYhNvrbex4YxhewhPP1AXDLQAAAvPUD+Q==
+   eJxjYBgFuIAaCwODOstAu4I6IJEVlR8J9FcUmt9mA/lzhrh/AX1lArY=
   </data>
  </layer>
 </map>
