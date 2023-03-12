@@ -38,6 +38,7 @@ class Npc(Character):
         self.bottoms = PlayerAccessory(character_lists.bottoms,2,6)
         self.full_body = PlayerAccessory(character_lists.full_body,4,6)
         self.full_body.alpha = 0
+        self.full_body.hide = True
         self.shoes = PlayerAccessory(character_lists.shoes,0,1)
         self.full_body.alpha = 0
         self.populate_accessory_list()

@@ -25,13 +25,6 @@ class Inventory():
             InventorySlot(id=15)
         ]
         
-        #self.slots[0].insert_item(items.old_pickaxe)
-        
-        #self.slots[1].insert_item(items.rusty_sword)
-        
-        #self.slots[2].insert_item(items.holey_watering_can)
-        
-        self.slots[3].insert_item(items.noodles)
         self.selected_slot=0
     def move_cursor(self,direction):
         if direction=="right":
