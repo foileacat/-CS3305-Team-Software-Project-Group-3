@@ -543,7 +543,10 @@ class MyGame(arcade.Window):
 
     def check_pickaxe_condition(self, pickaxeInteractable):
         if self.player_sprite.currently_inspecting:
-            self.player_sprite.currently_inspecting = False
+            if self.inspect_message_UI.not_fully_displayed():
+                self.inspect_message_UI.display_full_text()
+            else:
+                self.player_sprite.currently_inspecting = False
             return
         else:
             ore_type = pickaxeInteractable.properties["item_id"]
@@ -570,7 +573,10 @@ class MyGame(arcade.Window):
 
     def check_inv_condition(self, invInteractable):
         if self.player_sprite.currently_inspecting:
-            self.player_sprite.currently_inspecting = False
+            if self.inspect_message_UI.not_fully_displayed():
+                self.inspect_message_UI.display_full_text()
+            else:
+                self.player_sprite.currently_inspecting = False
             return
         else:
             if invInteractable.properties["collected"]:
@@ -632,7 +638,10 @@ class MyGame(arcade.Window):
 
         """
         if self.player_sprite.currently_inspecting:
-            self.player_sprite.currently_inspecting = False
+            if self.inspect_message_UI.not_fully_displayed():
+                self.inspect_message_UI.display_full_text()
+            else:
+                self.player_sprite.currently_inspecting = False
             return
         if self.room_transition_allowed(interactable.properties["transition_id"]) == True:
             entrance = interactable.properties["transition_id"]
