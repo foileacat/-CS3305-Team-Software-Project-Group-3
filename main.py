@@ -1,28 +1,19 @@
 import arcade
 import arcade.gui
-from arcade.experimental.lights import Light, LightLayer
 import os
-import random
-import character_lists
 from gui.health_gui import setup_health_gui, update_health_bar, reposition_health_bar
 from gui.inspect_gui import setup_inspect_gui
 from gui.npc_chat_gui import setup_npc_gui
-from gui.setup_inventory import setup_inventory
+from gui.draw_inventory import draw_inventory
 from gui.character_creator_gui import setup_character_creator_gui
 from classes.PlayerCharacter import PlayerCharacter
-from classes.Inventory import Inventory
-from classes.InventoryBar import InventoryBar
-from classes.Item import Item
 from items import *
 from maps import *
 from constants import *
 from npc_dialogue.load_npc_dialogue import load_npc_dialogue
-from gui.TypewriterText import TypewriterTextWidget
-from quests.LonelyManQuest import LonelyManQuest
 from quests.setup_quests import setup_quests
 import sound_constants
 import json_functions
-from pyglet.media import get_audio_driver
 
 
 class MyGame(arcade.Window):
@@ -37,13 +28,9 @@ class MyGame(arcade.Window):
         # Set the working directory
         file_path = os.path.dirname(os.path.abspath(__file__))
         os.chdir(file_path)
-        self.draw_performance = False
-        self.perf_graph_list = None
         self.current_room_name = "starting_room"
         self.conversation_list = json_functions.get_one_conversation(
             "npc_dialogue/main_room.json", "first_convo")
-
-        #self.conversation_list = ["sdsdd","bijfjkdfkj sds sdsd sd d dd sd sdsss sd sd sd sd sdsdssd sds ds dsdsdsds ds d sds dsdsdsds sd s ds dsdsds sd sd sd sdsd sd sd sd s dsdsdsfwrg wrg rg wg ew ew gw gwe g kfjdkjfj", "ckdjfdkjfjk dfjkdjfk", "dksdsjkdjk dkjsdjk", "eskjdsjkd sdkjsdjk"]
         self.set_minimum_size(MIN_SCREEN_WIDTH, MIN_SCREEN_HEIGHT)
         self.frame_count = 0
         self.current_room_index = 0
@@ -55,19 +42,15 @@ class MyGame(arcade.Window):
         self.camera_gui = arcade.Camera(
             SCREEN_WIDTH, SCREEN_HEIGHT)
         self.count = 0
-        "dumb"
-        self.any_sprite_x = 700
-        self.any_sprite_y = 510
         self.respawn_timer = 0
         self.current_song = sound_constants.peaceful_music
-        self.music_player = arcade.play_sound(self.current_song,volume=0.5,looping=True)
+        self.music_player = arcade.play_sound(
+            self.current_song, volume=0.5, looping=True)
         setup_quests(self)
 
     def on_resize(self, width, height):
         self.camera_sprites.resize(int(width), int(height))
         self.camera_gui.resize(int(width), int(height))
-        # update_constants(self)
-        # reposition_health_bar(self)
         super().on_resize(width, height)
         self.inventory_bar.resize(self)
         print(f"Window resized to: {width}, {height}")
@@ -108,15 +91,6 @@ class MyGame(arcade.Window):
         self.physics_engine = arcade.PhysicsEngineSimple(
             self.player_sprite, walls=self.current_room.wall_list)
 
-        '''''Performance Metrics'''
-        self.setup_performance_graphs()
-
-        """Preliminary Lighting Code - For later"""
-        # self.light_layer = LightLayer(SCREEN_WIDTH, SCREEN_HEIGHT)
-        # light = Light(736, 400, 100, (120,30,0), "soft")
-        # light2 = Light(95*4, 650, 400, (80,80,100), "soft")
-        # self.light_layer.add(light)
-        # self.light_layer.add(light2)
         self.inspect_item_symbol_UI = arcade.Sprite(filename="assets/assetpacks/ninja/HUD/Arrow.png", scale=3,
                                                     center_x=0, center_y=0)
 
@@ -161,7 +135,6 @@ class MyGame(arcade.Window):
                         ore = arcade.Sprite(
                             filename=filename, scale=SPRITE_SCALING+0.1, center_x=item.center_x, center_y=item.center_y)
                         self.scene["Ore List"].append(ore)
-            # self.current_room.ore_list.draw()
 
         if self.current_room.has_enemies:
             for enemy in self.current_room.enemy_list:
@@ -170,7 +143,7 @@ class MyGame(arcade.Window):
                                                 point_2=enemy.position,
                                                 walls=self.current_room.wall_sprite_list,
                                                 check_resolution=5,
-                                                max_distance=10 * SPRITE_SIZE ):
+                                                max_distance=10 * SPRITE_SIZE):
                         if self.player_sprite.health <= 0:
                             enemy.following = False
                         else:
@@ -197,9 +170,6 @@ class MyGame(arcade.Window):
                                              center_y=self.player_sprite.center_y+20,
                                              scale=3)
                 holding_item.draw(pixelated=True)
-        # self.spritea = arcade.Sprite(filename="assets/guiassets/CustomAssets/qq1map.png",center_y=100,center_x=500,scale=6)
-        # self.spritea.draw(pixelated=True)
-        # self.player_sprite.generate_floating_head(180,130).draw(pixelated=True)
 
         if self.player_sprite.currently_inspecting:
             self.camera_gui.use()
@@ -281,175 +251,15 @@ class MyGame(arcade.Window):
                 self.inspect_item_symbol_UI.color = arcade.csscolor.SEA_GREEN
                 self.inspect_item_symbol_UI.draw(pixelated=True)
 
-        if self.draw_performance:
-            self.draw_performance_graph()
-
         if self.inventory_open:
             self.camera_gui.use()
-            self.draw_inventory()
+            draw_inventory(self)
         self.camera_gui.use()
-        if self.player_sprite.currently_inspecting == False and self.player_sprite.currently_npc_interacting == False and self.inventory_open == False and self.character_creator_open == False: 
+        if self.player_sprite.currently_inspecting == False and self.player_sprite.currently_npc_interacting == False and self.inventory_open == False and self.character_creator_open == False:
             update_health_bar(self)
             self.health_bar.draw()
-        #self.draw_quest(self.gem_quest)
-        #self.draw_quest(self.lonely_man_quest)
-        #self.draw_quest(self.blacksmith_quest)
-        #self.draw_quest(self.dojo_quest)
-        #self.draw_quest(self.witch_quest,x_var=50)
 
-    def draw_inventory(self):
-        screen_center_x = self.width // 2
-        screen_center_y = self.height // 2
-        self.book = arcade.Sprite(filename="assets/guiassets/CustomAssets/Larger-Book-Test-2.png",
-                                  scale=5, center_x=screen_center_x, center_y=screen_center_y)
-        self.book.draw(pixelated=True)
-        inventory_start_x = screen_center_x + 100
-        inventory_start_y = screen_center_y + 120
-        inventory_text_start_x = screen_center_x + 150
-        inventory_text_start_y = screen_center_y + 180
-        slot_sprite_list = arcade.SpriteList()
-        increase_x = 0
-        for index in range(5):
-            slot_background = arcade.Sprite(filename="assets/guiassets/CustomAssets/InventorySlotBackground8.png",
-                                            scale=4, center_x=inventory_start_x+increase_x, center_y=inventory_start_y)
-            # slot_background.color = arcade.color.CELESTIAL_BLUE
-            slot_sprite_list.append(slot_background)
-            slot = self.inventory.slots[index]
-            slot.center_x = inventory_start_x+increase_x
-            slot.center_y = inventory_start_y
-            slot.position_item()
-            increase_x += 70
-            if slot.occupied:
-                slot_sprite_list.append(slot.item)
-        increase_x = 0
-        for index in range(5):
-            slot_background = arcade.Sprite(filename="assets/guiassets/CustomAssets/InventorySlotBackground8.png",
-                                            scale=4, center_x=inventory_start_x+increase_x, center_y=inventory_start_y-70)
-            slot_sprite_list.append(slot_background)
-            slot = self.inventory.slots[index+5]
-            slot.center_x = inventory_start_x+increase_x
-            slot.center_y = inventory_start_y-70
-            slot.position_item()
-            increase_x += 70
-            if slot.occupied:
-                slot_sprite_list.append(slot.item)
-        increase_x = 0
-        for index in range(5):
-            slot_background = arcade.Sprite(filename="assets/guiassets/CustomAssets/InventorySlotBackground8.png",
-                                            scale=4, center_x=inventory_start_x+increase_x, center_y=inventory_start_y-140)
-            slot_sprite_list.append(slot_background)
-            slot = self.inventory.slots[index+10]
-            slot.center_x = inventory_start_x+increase_x
-            slot.center_y = inventory_start_y-140
-            slot.position_item()
-            increase_x += 70
-            if slot.occupied:
-                slot_sprite_list.append(slot.item)
-        for slot in self.inventory.slots:
-            if slot.selected:
-                x = slot.center_x
-                y = slot.center_y
-                self.selected_item = slot.item
-                self.inventory_cursor = arcade.Sprite(
-                    filename=INVENTORY_BAR_CURSOR_ASSET, scale=4, center_x=x, center_y=y)
 
-        self.inventory_text = arcade.Text(text="Inventory", start_x=inventory_text_start_x,
-                                          start_y=inventory_text_start_y, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=26)
-        self.inventory_text.draw()
-        #self.inventory_display_box = arcade.Sprite(filename="assets/guiassets/CustomAssets/InventorySlotBackground8.png",scale=11,center_x=inventory_start_x+50,center_y=inventory_start_y-270)
-        if self.selected_item:
-            self.inventory_display_name = arcade.Text(text=self.selected_item.name, start_x=inventory_start_x-20,
-                                                      start_y=inventory_start_y-210, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=19)
-            if self.selected_item.is_tool:
-                self.selected_item.generate_stats()
-                self.inventory_display_stat1 = arcade.Text(text=self.selected_item.statistic_one, start_x=inventory_start_x-20,
-                                                           start_y=inventory_start_y-230, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=12)
-                self.inventory_display_stat2 = arcade.Text(text=self.selected_item.statistic_two, start_x=inventory_start_x-20,
-                                                           start_y=inventory_start_y-250, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=12)
-                self.inventory_display_stat3 = arcade.Text(text=self.selected_item.statistic_three, start_x=inventory_start_x-20,
-                                                           start_y=inventory_start_y-270, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=12)
-                self.inventory_display_description = arcade.Text(text=self.selected_item.description, start_x=inventory_start_x-20,
-                                                                 start_y=inventory_start_y-310, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=12, multiline=True, width=350)
-                self.inventory_display_stat1.draw()
-                self.inventory_display_stat2.draw()
-                self.inventory_display_stat3.draw()
-                self.inventory_display_description.draw()
-            elif self.selected_item.is_consumable:
-                self.selected_item.generate_stats()
-                self.inventory_display_stat1 = arcade.Text(text=self.selected_item.statistic_one, start_x=inventory_start_x-20,
-                                                           start_y=inventory_start_y-250, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=12)
-                self.inventory_display_description = arcade.Text(text=self.selected_item.description, start_x=inventory_start_x-20,
-                                                                 start_y=inventory_start_y-280, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=12, multiline=True, width=350)
-                self.inventory_display_stat1.draw()
-                self.inventory_display_description.draw()
-            else:
-                self.inventory_display_description = arcade.Text(text=self.selected_item.description, start_x=inventory_start_x-20,
-                                                                 start_y=inventory_start_y-240, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=12, multiline=True, width=350)
-                self.inventory_display_description.draw()
-
-            self.inventory_display_name.draw()
-        self.gem_list = arcade.SpriteList()
-        self.gem1 = arcade.Sprite(filename="assets/customassets/gem_1.png",scale=SPRITE_SCALING,center_x=screen_center_x - 390, center_y = screen_center_y+140)
-        self.gem2 = arcade.Sprite(filename="assets/customassets/gem_2.png",scale=SPRITE_SCALING,center_x=screen_center_x - 290, center_y = screen_center_y+140)
-        self.gem3 = arcade.Sprite(filename="assets/customassets/gem_3.png",scale=SPRITE_SCALING,center_x=screen_center_x - 190, center_y = screen_center_y+140)
-        self.gem4 = arcade.Sprite(filename="assets/customassets/gem_4.png",scale=SPRITE_SCALING,center_x=screen_center_x - 90, center_y = screen_center_y+140)
-        self.gem_text = arcade.Text(text="Gems", start_x=screen_center_x-290,
-                                          start_y=screen_center_y + 180, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=26)
-        if self.player_sprite.gem_1 == False:
-            self.gem1.color = arcade.color.BLACK
-        if self.player_sprite.gem_2 == False:
-            self.gem2.color = arcade.color.BLACK
-        if self.player_sprite.gem_3 == False:
-            self.gem3.color = arcade.color.BLACK
-        if self.player_sprite.gem_4 == False:
-            self.gem4.color = arcade.color.BLACK
-        self.gem_list.append(self.gem1)
-        self.gem_list.append(self.gem2)
-        self.gem_list.append(self.gem3)
-        self.gem_list.append(self.gem4)
-        slot_sprite_list.draw(pixelated=True)
-        self.gem_list.draw(pixelated=True)
-        self.gem_text.draw()
-        for slot in self.inventory.slots:
-            if slot.number_text:
-                slot.number_text.draw()
-        self.inventory_cursor.draw(pixelated=True)
-        descriptions = []
-        self.controls_text = arcade.Text(text="Controls", start_x=screen_center_x-320,
-                                          start_y=screen_center_y +60, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=26)
-        self.controls1 = arcade.Text(text="Move: WASD", start_x=screen_center_x-410,
-                                          start_y=screen_center_y +30, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=12)
-        self.controls2 = arcade.Text(text="Move in Inventory: Up, Down, Left, Right", start_x=screen_center_x-410,
-                                          start_y=screen_center_y +0, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=12)
-        self.controls3 = arcade.Text(text="Select from Inventory Bar: 1-8", start_x=screen_center_x-410,
-                                          start_y=screen_center_y -30, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=12)
-        self.controls4 = arcade.Text(text="Interact: Enter", start_x=screen_center_x-410,
-                                          start_y=screen_center_y -60, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=12)
-        self.controls5 = arcade.Text(text="Use Item: C", start_x=screen_center_x-410,
-                                          start_y=screen_center_y -90, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=12)
-        self.controls_text.draw()
-        self.controls1.draw()
-        self.controls2.draw()
-        self.controls3.draw()
-        self.controls4.draw()
-        self.controls5.draw()
-        for quest in self.quests:
-            if quest.active:
-                for subquest in quest.steps:
-                    if quest.steps[subquest].is_active() or quest.steps[subquest].is_done():
-                        descriptions.append(quest.steps[subquest].description)
-        self.quest_text = arcade.Text(text="Quests", start_x=screen_center_x-310,
-                                          start_y=screen_center_y -140, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=26)
-        self.quest_text.draw()
-        self.q_text1 = arcade.Text(text=descriptions[0], start_x=screen_center_x-410,
-                                          start_y=screen_center_y -170, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=12, multiline=True, width=350)
-        self.q_text1.draw()
-       
-        if len(descriptions) > 1:
-            self.q_text2 = arcade.Text(text=descriptions[1], start_x=screen_center_x-410,
-                                            start_y=screen_center_y - 215, color=arcade.color.BLACK, font_name="NinjaAdventure", font_size=12, multiline=True, width=350)
-            self.q_text2.draw()
-        
     def allowed_to_renovate(self, interactable):
         if self.lonely_man_quest.steps[interactable.properties["quest"]].is_active():
             if interactable.properties["complete"] == False:
@@ -487,39 +297,12 @@ class MyGame(arcade.Window):
                 self.inventory_bar.select_slot(key)
                 self.player_sprite.using_tool = False
             elif key == arcade.key.C:
-
                 self.use_selected_item()
         if key == arcade.key.I:
             self.inventory_bar.resize(self)
             self.inventory_open = not self.inventory_open
-
         if key == INTERACT_KEY:
             self.handle_interact()
-        if key == arcade.key.B:
-            self.draw_performance = not self.draw_performance
-        if key == arcade.key.G:
-            self.witch_quest.complete = True
-        if key == arcade.key.H:
-            self.blacksmith_quest.complete = True
-        if key == arcade.key.J:
-            self.lonely_man_quest.complete = True
-        if key == arcade.key.K:
-            self.dojo_quest.complete = True
-
-        "For inventory configuration - in progress"
-
-        # if key == arcade.key.T:
-        #     self.any_sprite_y+=10
-        #     print("x= ", self.any_sprite_x, ", y= ",self.any_sprite_y)
-        # if key == arcade.key.G:
-        #     self.any_sprite_y-=10
-        #     print("x= ", self.any_sprite_x, ", y= ",self.any_sprite_y)
-        # if key == arcade.key.F:
-        #     self.any_sprite_x-=10
-        #     print("x= ", self.any_sprite_x, ", y= ",self.any_sprite_y)
-        # if key == arcade.key.H:
-        #     self.any_sprite_x+=10
-        #     print("x= ", self.any_sprite_x, ", y= ",self.any_sprite_y)
 
     def on_key_release(self, key, modifiers):
         """Called when the user releases a key. """
@@ -551,7 +334,7 @@ class MyGame(arcade.Window):
                 self.player_sprite, self.scene["NPC"])
             for npc in npcs:
                 self.handle_npc_interaction(npc)
-        
+
         interactables = arcade.check_for_collision_with_list(
             self.player_sprite, self.scene["interactables"])
 
@@ -567,14 +350,14 @@ class MyGame(arcade.Window):
                 if pickaxeInteractables:
                     pickaxeInteractable = pickaxeInteractables[0]
                     getattr(self, pickaxeInteractable.properties['on_interact'])(
-                            pickaxeInteractable)
+                        pickaxeInteractable)
             if self.current_room.has_inventory:
                 invInteractables = arcade.check_for_collision_with_list(
                     self.player_sprite, self.scene["inventory"])
                 if invInteractables:
                     invInteractable = invInteractables[0]
                     getattr(self, invInteractable.properties['on_interact'])(
-                            invInteractable)
+                        invInteractable)
 
         return
 
@@ -649,13 +432,14 @@ class MyGame(arcade.Window):
                         self.inspect_message_UI.reset()
                         self.inspect_text = invInteractable.properties["item_collection_message"]
                         if required_item == "Gem Key":
-                            self.blacksmith_quest.steps["get_gem"].make_complete()
+                            self.blacksmith_quest.steps["get_gem"].make_complete(
+                            )
                             self.blacksmith_quest.complete = True
                             self.player_sprite.gem_2 = True
                             invInteractable.properties["collected"] = True
                         else:
                             self.player_sprite.add_to_inventory(
-                            get_item(invInteractable.properties["item_id"]))
+                                get_item(invInteractable.properties["item_id"]))
                             invInteractable.properties["collected"] = True
                     else:
                         self.player_sprite.currently_inspecting = True
@@ -850,63 +634,6 @@ class MyGame(arcade.Window):
         position = self.view_left, self.view_bottom
         self.camera_sprites.move_to(position, CAMERA_SPEED)
 
-    def focus_player(self):
-        """
-        Manages scrolling camera. Runs constantly from the on_update function
-        """
-        # Scroll left
-        left_boundary = self.view_left + VIEWPORT_MARGIN
-        if self.player_sprite.left < left_boundary:
-            self.view_left -= left_boundary - self.player_sprite.left
-
-        # Scroll right
-        right_boundary = self.view_left + self.width - VIEWPORT_MARGIN
-        if self.player_sprite.right > right_boundary:
-            self.view_left += self.player_sprite.right - right_boundary
-
-        # Scroll up
-        top_boundary = self.view_bottom + self.height - VIEWPORT_MARGIN
-        if self.player_sprite.top > top_boundary:
-            self.view_bottom += self.player_sprite.top - top_boundary
-
-        # Scroll down
-        bottom_boundary = self.view_bottom + VIEWPORT_MARGIN
-        if self.player_sprite.bottom < bottom_boundary:
-            self.view_bottom -= bottom_boundary - self.player_sprite.bottom
-
-        # Scroll to the proper location
-        position = self.view_left, self.view_bottom
-        self.camera_sprites.move_to(position, CAMERA_SPEED)
-
-    def draw_performance_graph(self):
-        self.camera_gui.use()
-        self.perf_graph_list.draw()
-        text = f"FPS: {arcade.get_fps(60):5.1f}"
-        arcade.draw_text(text, 10, 10, arcade.color.BLACK, 22)
-
-    def setup_performance_graphs(self):
-        self.perf_graph_list = arcade.SpriteList()
-
-        # Create the FPS performance graph
-        graph = arcade.PerfGraph(GRAPH_WIDTH, GRAPH_HEIGHT, graph_data="FPS")
-        graph.center_x = GRAPH_WIDTH / 2
-        graph.center_y = self.height - GRAPH_HEIGHT / 2
-        self.perf_graph_list.append(graph)
-
-        # Create the on_update graph
-        graph = arcade.PerfGraph(
-            GRAPH_WIDTH, GRAPH_HEIGHT, graph_data="on_update")
-        graph.center_x = GRAPH_WIDTH / 2 + (GRAPH_WIDTH + GRAPH_MARGIN)
-        graph.center_y = self.height - GRAPH_HEIGHT / 2
-        self.perf_graph_list.append(graph)
-
-        # Create the on_draw graph
-        graph = arcade.PerfGraph(
-            GRAPH_WIDTH, GRAPH_HEIGHT, graph_data="on_draw")
-        graph.center_x = GRAPH_WIDTH / 2 + (GRAPH_WIDTH + GRAPH_MARGIN) * 2
-        graph.center_y = self.height - GRAPH_HEIGHT / 2
-        self.perf_graph_list.append(graph)
-
     def room_transition_allowed(self, destination_room):
         """start quests when entering rooms:"""
         if destination_room == "forest":
@@ -916,15 +643,15 @@ class MyGame(arcade.Window):
                     return True
             else:
                 return "I dont know what's over here, I'll wait for mom to tell me to go here."
-            
+
         if destination_room == "cave_outside":
             if self.gem_quest.steps["blacksmith"].is_active() or self.gem_quest.steps["blacksmith"].is_completed():
                 if self.blacksmith_quest.active == False:
                     self.blacksmith_quest.start()
                     return True
             else:
-                return "I hear wailing! I'll wait for mom to tell me to go here."   
-    
+                return "I hear wailing! I'll wait for mom to tell me to go here."
+
         if destination_room == "dungeon":
             if self.gem_quest.steps["lonely"].is_active() or self.gem_quest.steps["lonely"].is_completed():
                 if self.lonely_man_quest.active == False:
@@ -932,7 +659,7 @@ class MyGame(arcade.Window):
                     return True
             else:
                 return "This place is spooky, I'll wait for mom to tell me to go here."
-        
+
         if destination_room == "dojo_outside":
             if self.gem_quest.steps["dojo"].is_active() or self.gem_quest.steps["dojo"].is_completed():
                 if self.dojo_quest.active == False:
@@ -940,7 +667,7 @@ class MyGame(arcade.Window):
                     return True
             else:
                 return "I think the Dojo is this way. I'll wait for mom to tell me to go here."
-            
+
         "Wont let you leave area with incomplete quest:"
         if destination_room == "main_room":
             if self.current_room_name == "starting_room":
@@ -949,15 +676,15 @@ class MyGame(arcade.Window):
             if self.current_room_name == "forest":
                 if self.witch_quest.complete == False:
                     return "No, I should stay here until I can get the gem from the witch."
-                
+
             if self.current_room_name == "cave_outside":
                 if self.blacksmith_quest.complete == False:
                     return "I don't want to leave before I can find the gem here!."
-                
+
             if self.current_room_name == "dojo_outside":
                 if self.dojo_quest.complete == False:
                     return "I think I'll stay here until I find the gem"
-                
+
         if destination_room == "dungeon":
             if self.current_room_name == "forest_hideout":
                 if self.lonely_man_quest.complete == False:
@@ -966,30 +693,30 @@ class MyGame(arcade.Window):
         if destination_room == "enemy_house":
             if self.witch_quest.steps["talk_to_witch"].is_active():
                 return "I should talk to the witch outside first."
-            
+
         "Blacksmith Logic"
         if self.current_room_name == "cave_outside":
             if destination_room == "living_room":
                 if self.blacksmith_quest.steps["speak_to_blacksmith"].is_active():
                     return "I came here to see the blacksmith, I'll go there first."
-                
+
         if self.current_room_name == "living_room":
             if destination_room == "bedroom":
                 if self.blacksmith_quest.steps["speak_to_wife"].is_active():
-                        return "I dont want to be rude. I'll talk to the blacksmiths wife first."
-                
+                    return "I dont want to be rude. I'll talk to the blacksmiths wife first."
+
             if destination_room == "cave_outside":
                 if self.blacksmith_quest.steps["read_diary"].is_active():
-                        return "I need to figure out that flower. I can't leave until I find a clue!"
+                    return "I need to figure out that flower. I can't leave until I find a clue!"
         "Dojo Logic"
         if destination_room == "dojo":
-                if self.current_room_name == "maze":
-                    self.dojo_quest.maze_complete = True
+            if self.current_room_name == "maze":
+                self.dojo_quest.maze_complete = True
 
-                if self.current_room_name == "dojo_outside":
-                    if self.dojo_quest.steps["talk_to_apprentice"].is_active():
-                        return "I should talk to the apprentice outside first."
-                    
+            if self.current_room_name == "dojo_outside":
+                if self.dojo_quest.steps["talk_to_apprentice"].is_active():
+                    return "I should talk to the apprentice outside first."
+
         if self.current_room_name == "dojo":
             if destination_room == "dojo_outside":
                 if self.dojo_quest.steps["talk_to_sensei"].is_active():
@@ -1002,33 +729,10 @@ class MyGame(arcade.Window):
             if destination_room == "maze":
                 if self.dojo_quest.steps["challenge_of_courage"].is_active() == False:
                     return "This is spooky. I shouldn't go in here without asking the sensei first."
-                    
+
         return True
 
-    def draw_quest(self,quest,x_var=0):
-        x_increase = 0
-        for subquest in quest.steps:
-            #if quest.steps[subquest].state == "active":
-                text = "name:",quest.steps[subquest].name,"state:",quest.steps[subquest].state,
-                arcade.draw_text(text, 100+x_var,100+x_increase, arcade.color.WHITE, 15)
-                x_increase +=25
-
-    def draw_quests(self):
-        x_increase = 0
-        for quest in self.quests:
-            for subquest in quest.steps:
-                if quest.steps[subquest].state == "active":
-                    text = "name:",quest.steps[subquest].name,"state:",quest.steps[subquest].state,
-                    arcade.draw_text(text, 100,100+x_increase, arcade.color.WHITE, 15)
-                    x_increase +=25    
-
     def determine_music(self):
-        # if self.current_room_name == "starting_room":
-        #     song = sound_constants.starting_room_music
-        # elif self.current_room_name == "main_room":
-        #     song = sound_constants.starting_room_music
-        # # elif self.current_room_name == "forest":
-        # #     song = sound_constants.forest_music
         if self.current_room_name == "enemy_house":
             enemy_room = self.rooms[11]
             if len(enemy_room.enemy_list) == 0:
@@ -1066,8 +770,10 @@ class MyGame(arcade.Window):
         else:
             arcade.stop_sound(self.music_player)
             self.current_song = song
-            self.music_player = arcade.play_sound(self.current_song,0.5,looping=True)
-            
+            self.music_player = arcade.play_sound(
+                self.current_song, 0.5, looping=True)
+
+
 def main():
     """ Main function """
     window = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
