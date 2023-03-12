@@ -1,5 +1,4 @@
 from quests.SubQuest import Subquest
-import items
 
 
 class GemQuest():

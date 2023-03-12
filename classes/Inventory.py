@@ -1,14 +1,11 @@
-import arcade
 from classes.InventorySlot import InventorySlot
-from classes.Item import Item
-from classes.Tool import Tool
-from classes.Consumable import Consumable
 from constants import *
-import items
+
+
 class Inventory():
     def __init__(self):
-        self.slots=[
-            InventorySlot(id=0,selected=True),
+        self.slots = [
+            InventorySlot(id=0, selected=True),
             InventorySlot(id=1),
             InventorySlot(id=2),
             InventorySlot(id=3),
@@ -24,38 +21,39 @@ class Inventory():
             InventorySlot(id=14),
             InventorySlot(id=15)
         ]
-        
-        self.selected_slot=0
-    def move_cursor(self,direction):
-        if direction=="right":
-            movement=1
-        elif direction=="left":
-            movement=-1
-        elif direction=="up":
-            movement=-5
+
+        self.selected_slot = 0
+
+    def move_cursor(self, direction):
+        if direction == "right":
+            movement = 1
+        elif direction == "left":
+            movement = -1
+        elif direction == "up":
+            movement = -5
         else:
-            movement=5
+            movement = 5
         for slot in self.slots:
-            slot.selected=False
-        
+            slot.selected = False
+
         if direction == "up" or direction == "down":
-            self.selected_slot+=movement
-            if self.selected_slot<0:
-                self.selected_slot= 15 + self.selected_slot
-            if self.selected_slot>14:
-                self.selected_slot= self.selected_slot - 15
+            self.selected_slot += movement
+            if self.selected_slot < 0:
+                self.selected_slot = 15 + self.selected_slot
+            if self.selected_slot > 14:
+                self.selected_slot = self.selected_slot - 15
 
         else:
-            self.selected_slot+=movement
-            if self.selected_slot<0:
-                self.selected_slot=14
-            if self.selected_slot>14:
-                self.selected_slot=0
+            self.selected_slot += movement
+            if self.selected_slot < 0:
+                self.selected_slot = 14
+            if self.selected_slot > 14:
+                self.selected_slot = 0
         self.slots[self.selected_slot].selected = True
-        
-    def add_to_inventory(self,item):
+
+    def add_to_inventory(self, item):
         if self.in_inventory(item.name):
-            self.in_inventory(item.name).item.quantity+=1
+            self.in_inventory(item.name).item.quantity += 1
             return
         inserted = False
         for slot in self.slots:
@@ -64,10 +62,10 @@ class Inventory():
                     slot.insert_item(item)
                     inserted = True
                     return
-                
-    def in_inventory(self,name):
+
+    def in_inventory(self, name):
         for slot in self.slots:
             if slot.occupied:
-                    if slot.item.name == name:
-                        return slot
+                if slot.item.name == name:
+                    return slot
         return False

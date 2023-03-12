@@ -1,4 +1,4 @@
-import arcade
+
 from classes.Item import Item
 from constants import *
 

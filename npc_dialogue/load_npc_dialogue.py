@@ -1,4 +1,3 @@
-import items 
 def load_npc_dialogue(game,npc):
     if npc.id == "lonely_man":
         load_lonely_man_dialogue(game,npc)

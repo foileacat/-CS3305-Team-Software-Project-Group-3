@@ -1,4 +1,4 @@
-import arcade
+
 from constants import *
 import math
 import random
@@ -6,7 +6,6 @@ import character_lists
 from classes.Character import Character
 from classes.PlayerAccessory import PlayerAccessory
 
-import json 
 import json_functions
 
 

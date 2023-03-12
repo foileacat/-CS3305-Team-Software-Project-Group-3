@@ -1,4 +1,3 @@
-import arcade
 from constants import *
 import character_lists
 from classes.PlayerAccessory import PlayerAccessory
@@ -6,7 +5,7 @@ from classes.Character import Character
 from classes.Inventory import Inventory
 from classes.InventoryBar import InventoryBar
 from classes.Item import Item
-import items
+
 class PlayerCharacter(Character):
 
     """Creates our player"""
@@ -28,7 +27,6 @@ class PlayerCharacter(Character):
         self.bottoms = PlayerAccessory(character_lists.bottoms,2,6)
         self.full_body = PlayerAccessory(character_lists.full_body,4,6)
         self.shoes = PlayerAccessory(character_lists.shoes,0,1)
-        # self.sword = PlayerAccessory(["assets/characterassets/Character v.2/separate/sword/tool/sword.png"],0,0)
         self.full_body.alpha = 0
         self.health = 10
         self.knockback = 3
@@ -268,7 +266,7 @@ class PlayerCharacter(Character):
                 pickaxe_interactable.properties["pickaxe_condition"] -= 1 
                 asset="assets/customassets/"+pickaxe_interactable.properties['item_id']+".png"
                 ore =Item(id=1,name=pickaxe_interactable.properties["name"],filename=asset,image_width=16,image_height=16)
-                ore.description = "This is the emerald ore the blacksmith needs! I should bring this to him ASAP"
+                ore.description = "Oooo shiny! This is the ore the blacksmith needs, I should bring this to him ASAP"
                 self.add_to_inventory(ore)
             else:
                 return

@@ -36,17 +36,6 @@ def setup(self):
     room.npc_list.append(room.npc)
     room.scene.add_sprite_list("NPC", sprite_list=room.npc_list)
     room.scene.add_sprite_list("NPC Stuff", sprite_list = room.npc.accessory_list)
-    # room.enemy = Enemy(500,300,"bobesrta",12)
-    # room.enemies = []
-    # room.enemies.append(room.enemy)
-    # room.enemy_list = arcade.SpriteList()
-    # room.enemy_list.append(room.enemy)
-    # room.wall_sprite_list = arcade.SpriteList(use_spatial_hash=True)
-
-    # room.wall_sprite_list.extend(room.scene["walls"])
-    # room.wall_sprite_list.extend(room.scene["solids"])
-
-    # room.scene.add_sprite_list("Enemy", sprite_list=room.enemy_list)
    
     room.scene.add_sprite("Player", self.player_sprite)
     room.scene.add_sprite_list("Player Stuff", sprite_list = self.player_accessory_list)

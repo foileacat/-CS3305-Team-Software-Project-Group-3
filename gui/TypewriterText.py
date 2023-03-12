@@ -48,7 +48,3 @@ class TypewriterTextWidget(arcade.gui.UITextArea):
         self.text = self.full_text
         self.current_char = len(self.full_text)
         self.trigger_full_render()
-
-
-#a = TypewriterTextWidget(x=350, y=130, text_color=(0, 0, 0), text="")
-#ass = arcade.gui.UITextArea(x,y,width,height,text,font_name,font_size,text_color,multiline,scroll_speed,size_hint,size_hint_min,size_hint_max,style)

@@ -13,9 +13,6 @@ def setup_character_creator_gui(self):
         self.v_box = arcade.gui.UIBoxLayout()
         self.background_sprite=arcade.Sprite(filename="assets/guiassets/CustomAssets/Plain-Page.png",scale=12)
         
-        # self.background_widget = arcade.gui.UISpriteWidget(sprite=background)
-        # self.v_box.add(self.background_widget)
-        # Create a text label
         ui_text_label = arcade.gui.UITextArea(text="Character Customiser",
                                               text_color=arcade.csscolor.BLACK,
                                               width=450,

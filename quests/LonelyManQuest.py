@@ -1,8 +1,4 @@
-import arcade
-from classes.InventorySlot import InventorySlot
-from classes.Item import Item
-from classes.Tool import Tool
-from classes.Consumable import Consumable
+
 from constants import *
 from quests.SubQuest import Subquest
 import items
@@ -10,7 +6,6 @@ import items
 class LonelyManQuest():
     def __init__(self):
         self.active = False
-       # self.steps = {"talk_to_old_man":"inactive","clear_flowers":"inactive","hangup_washing":"inactive","fill_cart":"inactive","shelve_books":"inactive","plant_plants":"inactive","sort_food":"inactive"}
         self.steps = {"talk_to_old_man":Subquest("talk_to_old_man",description="Talk to the family in the house."),
                       "clear_flowers":Subquest("clear_flowers",description="Return to the old man after planting the flowers."),
                       "hangup_washing":Subquest("hangup_washing",description="Tell the old man after you hangup the washing outside."),
